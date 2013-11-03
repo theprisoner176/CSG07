@@ -1,7 +1,11 @@
-List of Minutes for group XX:
+﻿List of Minutes for group 07:
 
 !! Below is an example - replace with details of actual minutes
 
-1. 13_09_31_weekly.txt
-2. …..
-
+1. 2013_10_12_minutes.odt
+2. 2013_10_15_minutes.odt
+3. 2013_10_18_minutes.odt
+4. 2013_10_22_minutes.odt
+5. 2013_10_25_minutes.odt
+6. 2013_10_29_minutes.odt
+7. 2013_11_01_minutes.odt
