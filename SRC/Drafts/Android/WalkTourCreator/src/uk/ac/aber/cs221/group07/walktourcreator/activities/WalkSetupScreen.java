@@ -8,14 +8,26 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 
+/**
+ * This class is responsible for displaying the walk setup screen, and reacting to button presses
+ */
 public class WalkSetupScreen extends Activity {
 
+	/**
+	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
+	 * specified in res/layout/activity_walk_setup_screen.xml
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_walk_setup_screen);
 	}
 
+	/**
+	 * starts new MapScreen activity and passes information about the walk name.
+	 * 
+	 * @param v is the View that called this method
+	 */
 	public void submit(View v){
 		Intent intent = new Intent(this, MapScreen.class);
 	    startActivity(intent);

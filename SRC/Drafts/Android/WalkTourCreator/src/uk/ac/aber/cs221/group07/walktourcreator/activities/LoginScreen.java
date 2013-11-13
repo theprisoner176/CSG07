@@ -1,25 +1,22 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
-import uk.ac.aber.cs221.group07.walktourcreator.R.layout;
-import uk.ac.aber.cs221.group07.walktourcreator.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-
+/**
+ * This class is responsible for displaying the login screen, and reacting to button presses
+ *
+ */
 public class LoginScreen extends Activity {
-
+	/**
+	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
+	 * specified in res/layout/activity_login_screen.xml
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_screen);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login_screen, menu);
-		return true;
 	}
 
 }

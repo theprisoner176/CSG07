@@ -7,7 +7,11 @@ import android.app.Activity;
 import android.view.Menu;
 
 public class OptionsScreen extends Activity {
-
+	
+	/**
+	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
+	 * specified in res/layout/activity_options_screen.xml
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
