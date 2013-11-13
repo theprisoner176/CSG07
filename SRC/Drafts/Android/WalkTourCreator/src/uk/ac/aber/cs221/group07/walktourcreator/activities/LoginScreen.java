@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.view.Menu;
 /**
  * This class is responsible for displaying the login screen, and reacting to button presses
- *
  */
 public class LoginScreen extends Activity {
 	/**

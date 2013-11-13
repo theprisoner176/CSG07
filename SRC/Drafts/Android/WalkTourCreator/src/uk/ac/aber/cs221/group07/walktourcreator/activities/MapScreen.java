@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
+
+/**
+ * This class is responsible for displaying the map screen, and reacting to button presses
+ */
 public class MapScreen extends Activity {
 	
 	/**

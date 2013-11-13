@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 
+/**
+ * This class is responsible for displaying the main menu screen, and reacting to button presses
+ */
 public class MainMenu extends Activity {
 
 	/**
@@ -41,6 +44,10 @@ public class MainMenu extends Activity {
 		Intent intent = new Intent(this, OptionsScreen.class);
 	    startActivity(intent);
 	}
+	/**
+	 * start a new LoginScreen activity
+	 * @param v is the View that is called the method
+	 */
 	public void StartLoginScreen(View v){
 		Intent intent = new Intent(this, LoginScreen.class);
 	    startActivity(intent);

@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
+/**
+ * This class is responsible for displaying the the options for the app, and reacting to button presses
+ */
 public class OptionsScreen extends Activity {
 	
 	/**
