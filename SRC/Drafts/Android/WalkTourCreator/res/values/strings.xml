@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WalkTourCreator</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_activity_options_screen">OptionsScreen</string>
+    <string name="title_activity_my_walks_screen">MyWalksScreen</string>
+    <string name="title_activity_map_screen">MapScreen</string>
+    <string name="title_activity_walk_setup_screen">WalkSetupScreen</string>
+
+    <!-- General Values -->
+    <string name="cancel">Go Back</string>
+    <string name="delete">Delete Walk</string>
+    <string name="open">Open Walk</string>
+    <string name="submit">Submit</string>
+
+    <!-- Start Screen values -->
+    <string name="welcome_message">Welcome to Walk creator</string>
+    <string name="brief_credits">Created by Group 7</string>
+    <string name="instructions">tap screen to continue</string>
+
+    <!-- Main Menu values -->
+    <string name="start_new_walk">Start Walk!</string>
+    <string name="open_options_screen">Options</string>
+    <string name="view_previous_walks">My Walks</string>
+    <string name="open_login_screen">Login</string>
+
+    <!-- MapScreen values -->
+    <string name="add_point_of_interest">add POI</string>
+    <string name="options_popup">Options</string>
+    <string name="play_pause">Play/Pause</string>
+	<!-- Login Screen -->
+	<string name="login_button">Login</string>
+	<string name="register_button">Register</string>
+	<string name="username_hint">Username or email</string>
+	<string name="password_hint">Password</string>
+	  
+    <!-- Walk set up -->
+    <string name="title">title(Optional)</string>
+    <string name="long_description">description(Optional)</string>
+    <string name="short_description">short Description(Optional)</string>
+    <!-- Options screen values -->
+    <string name="calibrate_gps">Calibrate GPS</string>
+    <string name="other">Other</string>
+    <string name="title_activity_login_screen">LoginScreen</string>
+
+</resources>
