@@ -11,7 +11,7 @@ import android.app.Activity;
 /**
  * This class is responsible for displaying the a two-tabbed screen with lists of walks, and reacting to button presses
  */
-public class MyWalksScreen extends Activity {
+public class MyWalksScreen extends GeneralActivity {
 
 	private WalkManager walkDatabase;
 	

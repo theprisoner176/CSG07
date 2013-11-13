@@ -9,7 +9,7 @@ import android.view.View;
 /**
  * This class is responsible for displaying the main menu screen, and reacting to button presses
  */
-public class MainMenu extends Activity {
+public class MainMenu extends GeneralActivity {
 
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 

@@ -42,7 +42,7 @@
     <string name="long_description">description(Optional)</string>
     <string name="short_description">short Description(Optional)</string>
     <!-- Options screen values -->
-    <string name="calibrate_gps">Calibrate GPS</string>
+    <string name="change_background_color">Change Screen Color</string>
     <string name="other">Other</string>
     <string name="title_activity_login_screen">LoginScreen</string>
 

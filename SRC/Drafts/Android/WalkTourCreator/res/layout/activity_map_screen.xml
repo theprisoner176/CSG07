@@ -17,19 +17,20 @@
         android:text="@string/options_popup" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/add_point_of_interest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/button3"
         android:layout_toRightOf="@+id/button1"
+        android:onClick="addPOI"
         android:text="@string/add_point_of_interest" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button2"
+        android:layout_alignBottom="@+id/add_point_of_interest"
         android:layout_alignParentRight="true"
         android:text="@string/play_pause" />
 

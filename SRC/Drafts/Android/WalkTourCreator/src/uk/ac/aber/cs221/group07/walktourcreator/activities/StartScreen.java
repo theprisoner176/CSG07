@@ -11,7 +11,7 @@ import android.view.View;
 /**
  * This class is responsible for displaying the start screen, and reacting to button presses
  */
-public class StartScreen extends Activity {
+public class StartScreen extends GeneralActivity {
 
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 

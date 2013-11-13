@@ -15,7 +15,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="155dp"
-        android:text="@string/calibrate_gps" />
+        android:onClick="changeBackgroundColor"
+        android:text="@string/change_background_color" />
 
     <Button
         android:id="@+id/button2"

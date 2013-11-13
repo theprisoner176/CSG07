@@ -7,7 +7,7 @@ import android.view.Menu;
 /**
  * This class is responsible for displaying the login screen, and reacting to button presses
  */
-public class LoginScreen extends Activity {
+public class LoginScreen extends GeneralActivity {
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
 	 * specified in res/layout/activity_login_screen.xml
