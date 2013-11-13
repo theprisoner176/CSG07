@@ -23,6 +23,10 @@ public class OptionsScreen extends GeneralActivity {
 		setContentView(R.layout.activity_options_screen);
 	}
 	
+	/**
+	 * changes the background color of all GeneralActivity subclasses 
+	 * @param v is the View that called the method
+	 */
 	public void changeBackgroundColor(View v){
 		super.setBackgroundColor(Color.CYAN);
 	}

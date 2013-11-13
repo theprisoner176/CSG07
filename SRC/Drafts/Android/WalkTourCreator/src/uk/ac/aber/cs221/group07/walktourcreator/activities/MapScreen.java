@@ -8,6 +8,7 @@ import uk.ac.aber.cs221.group07.walktourcreator.views.PopupView;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.DialogFragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,16 +33,14 @@ public class MapScreen extends GeneralActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map_screen);
-		//stores a reference of the map to an instance variable
 		
+		//stores a reference of the map to an instance variable
 		//map = (MapView) findViewById(R.id.map_view);
 	}
 	
 	public void addPOI(View v){
-		LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		AddPoiView pw = new AddPoiView(inflater.inflate(R.layout.popup_window_add_poi, null, false), 100, 100,true);
-		// The code below assumes that the root container has an id called 'main'
-		pw.showAtLocation(this.getCurrentFocus(), Gravity.CENTER, 0, 0); //this.findViewById(R.id.main), Gravity.CENTER, 0, 0)
+		AddPoiView poiDialog = new AddPoiView();
+		//poiDialog.show(getFragmentManager(), "message 1");
 	}
 
 }
