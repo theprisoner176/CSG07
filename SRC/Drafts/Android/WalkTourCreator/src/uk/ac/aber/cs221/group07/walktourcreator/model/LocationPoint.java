@@ -14,7 +14,7 @@ public class LocationPoint {
 	private double longitude;
 	
 	/**
-	 * holds the distance (north-south) from the equater)
+	 * holds the distance (north-south) from the equator)
 	 */
 	private double latitude;
 	

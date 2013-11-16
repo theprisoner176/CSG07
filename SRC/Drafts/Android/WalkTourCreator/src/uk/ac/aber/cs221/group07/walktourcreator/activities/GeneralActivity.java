@@ -13,7 +13,6 @@ public abstract class GeneralActivity extends Activity{
 	protected static int foregroundColor = Color.BLUE;
 	
 	protected static int textColor = Color.BLACK;
-	protected static int textSize = 12;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +27,5 @@ public abstract class GeneralActivity extends Activity{
 	}
 	public void setTextColor(int c){
 		textColor = c;
-	}
-	public void setTextSize(int s){
-		textSize=s;
 	}
 }
