@@ -1,5 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.services;
 
+import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import android.app.Service;
 import android.content.Context;
@@ -29,6 +30,8 @@ public class RouteRecorder extends Service implements LocationListener{
 	
 	@Override
 	public IBinder onBind(Intent arg0) {
+		
+		walk = new WalkModel("test");//string will be from bundled info from intent
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 1, this);
 		monitorMovement();
 		return null;
@@ -37,6 +40,8 @@ public class RouteRecorder extends Service implements LocationListener{
 	private void monitorMovement(){
 		Location l = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		System.out.println(l);
+		walk.addLocation(new LocationPoint(l.getLongitude(),l.getLatitude()));
+		
 	}
 
 	@Override
