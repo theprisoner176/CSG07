@@ -47,8 +47,15 @@ public class LocationPoint {
 	/**
 	 * @return the Time that the recording was made
 	 */
-	protected Date getTime(){
+	public Date getTime(){
 		return time;
+	}
+	
+	public double getLogitude(){
+		return longitude;
+	}
+	public double getLatitude(){
+		return latitude;
 	}
 	
 	/**

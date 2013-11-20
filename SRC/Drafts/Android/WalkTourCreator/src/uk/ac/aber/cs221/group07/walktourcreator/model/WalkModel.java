@@ -41,6 +41,9 @@ public class WalkModel {
 	public Vector<LocationPoint> getRoutePath(){
 		return path;
 	}
+	public void setTraveledRoute(Vector<LocationPoint> path){
+		this.path = path;
+	}
 	
 	public String getTitle(){
 		return title;
