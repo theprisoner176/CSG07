@@ -16,6 +16,11 @@ public class WalkManager extends SQLiteOpenHelper{
 	
 	private final static String DATABASE_NAME = "walks.db"; 
 
+	private static int nextWalkId = 0;
+	private static int nextLocationId = 0;
+	private static int nextPlaceId = 0;
+	private static int nextPhotoId = 0;
+	
 	/**
 	 * contains the SQL commands used to create the 'location' table
 	 */
@@ -66,7 +71,8 @@ public class WalkManager extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		
-		values.put("id", 10);
+		values.put("id", nextWalkId);
+		nextWalkId++;
 		values.put("title", walk.getTitle());
 		values.put("short_desc", walk.getShortDescription());
 		values.put("long_desc", walk.getLongDescription());
@@ -87,29 +93,50 @@ public class WalkManager extends SQLiteOpenHelper{
 	}
 	private int addLocation(LocationPoint location,SQLiteDatabase db,int walkId){
 		ContentValues values = new ContentValues();
+		values.put("id",nextLocationId);
 		values.put("latitude",location.getLatitude());
 		values.put("longitude",location.getLogitude());
-		return 0;//return id
+		values.put("time",location.getTime());
+		db.insert("location", null, values);
+		nextLocationId++;
+		return (nextLocationId-1);
 	}
-	private int addPlace(PointOfInterest poi,SQLiteDatabase db,int LocationWalkId){
-		return 0;//return id
+	private int addPlace(PointOfInterest poi,SQLiteDatabase db,int locationId){
+		ContentValues values = new ContentValues();
+		values.put("id",nextPlaceId);
+		values.put("location_id",locationId);
+		values.put("description", poi.getDescription());
+		for(ImageInformation image:poi.getImages()){
+			addPhoto(image,db,nextPlaceId-1);
+		}
+		nextPlaceId++;
+		return (nextPlaceId-1);
+	}
+	private int addPhoto(ImageInformation image,SQLiteDatabase db,int placeId){
+		ContentValues values = new ContentValues();
+		values.put("id",nextPhotoId);
+		values.put("place_id",placeId);
+		values.put("title", image.getTitle());
+		nextPhotoId++;
+		return (nextPhotoId-1);
 	}
 	
 	
 	public WalkModel getWalkByID(int index){
 		SQLiteDatabase db = this.getReadableDatabase();
 		String select = "SELECT * FROM walk WHERE id="+index;
-		//db.se
+
 		Cursor cur = db.rawQuery(select, null);
 		cur.moveToFirst();
 		
 		String title = cur.getString(cur.getColumnIndex("title"));
+		int id = cur.getInt(cur.getColumnIndex("id"));
+		String longDesc = cur.getString(cur.getColumnIndex("long_desc"));
+		String shortDesc = cur.getString(cur.getColumnIndex("short_desc"));
+		Vector<LocationPoint> path = getLocationFromWalkByWalkId(db,index);
+		
+		WalkModel retval = new WalkModel(id,title,path,shortDesc,longDesc);
 	
-		WalkModel retval = new WalkModel(title);
-	
-		retval.setShortDescription(cur.getString(cur.getColumnIndex("short_desc")));
-		retval.setLongDescription(cur.getString(cur.getColumnIndex("long_desc")));
-		retval.setTraveledRoute(getLocationFromWalkByWalkId(db,index));
 		db.close();
 		return retval;
 	}
@@ -120,10 +147,9 @@ public class WalkManager extends SQLiteOpenHelper{
 		while(cur.moveToNext()){
 			double latitude = cur.getDouble(cur.getColumnIndex("latitude"));
 			double longitude = cur.getDouble(cur.getColumnIndex("longitude"));
-			LocationPoint location = new LocationPoint(latitude,longitude);
-			
+			double time = cur.getDouble(cur.getColumnIndex("timestamp"));
+			LocationPoint location = new LocationPoint(latitude,longitude,time);
 			retval.add(location);
-			
 		}
 		return retval;
 	}

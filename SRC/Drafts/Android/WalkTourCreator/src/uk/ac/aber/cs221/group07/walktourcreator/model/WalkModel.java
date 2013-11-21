@@ -6,7 +6,7 @@ import java.util.Vector;
  * stores all information about a single walk
  */
 public class WalkModel {
-
+	
 	/**
 	 * holds the name of the walk, is used as an identifier
 	 */
@@ -25,7 +25,7 @@ public class WalkModel {
 	/**
 	 * stores the vector of LocationPoints that make up the walk
 	 */
-	private Vector<LocationPoint> path = new Vector<LocationPoint>();
+	private Vector<LocationPoint> path;
 	
 	/**
 	 * creates a new walking model with the title that is passed
@@ -33,6 +33,17 @@ public class WalkModel {
 	 */
 	public WalkModel(String name){
 		title= name;
+		path = new Vector<LocationPoint>();
+	}
+	
+	/**
+	 * constructor used to create a WalkModel from existing data.
+	 */
+	public WalkModel(int id,String title,Vector<LocationPoint> path,String shortDesc,String longDesc){
+		this.title= title;
+		this.path = path;
+		this.shortDesc = shortDesc;
+		this.longDesc = longDesc;
 	}
 	
 	/**
@@ -41,10 +52,11 @@ public class WalkModel {
 	public Vector<LocationPoint> getRoutePath(){
 		return path;
 	}
-	public void setTraveledRoute(Vector<LocationPoint> path){
-		this.path = path;
-	}
+
 	
+	/**
+	 * returns title
+	 */
 	public String getTitle(){
 		return title;
 	}

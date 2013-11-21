@@ -8,6 +8,8 @@ import java.util.Date;
  */
 public class LocationPoint {
 
+	
+	
 	/**
 	 * holds the distance (east-west) from Greenwich)
 	 */
@@ -21,16 +23,7 @@ public class LocationPoint {
 	/**
 	 * keeps a record of when the location was captured 
 	 */
-	private Date time;
-	
-	/**
-	 * allows sub classes to not have constructor
-	 */
-	public LocationPoint(LocationPoint p){
-		this.latitude = p.latitude;
-		this.longitude = p.longitude;
-		this.time = p.time;
-	}
+	private double time;
 	
 	/**
 	 * creates new LoactionPoint
@@ -42,12 +35,21 @@ public class LocationPoint {
 		longitude=x;
 		latitude=y;
 		long mil = System.currentTimeMillis();
-		time = new Date(mil);
+		time = new Date(mil).getTime();
 	}
+	/**
+	 * create locationPoint from existing data.
+	 */
+	public LocationPoint(double x,double y,double time){
+		this.time = time;
+		this.latitude = y;
+		this.longitude = x;
+	}
+	
 	/**
 	 * @return the Time that the recording was made
 	 */
-	public Date getTime(){
+	public double getTime(){
 		return time;
 	}
 	

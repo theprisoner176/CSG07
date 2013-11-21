@@ -18,11 +18,19 @@ public class PointOfInterest extends LocationPoint{
 	 */
 	private String description;
 	
-	/**
-	 * 
-	 * @param p is the location of the POI
-	 */
-	public PointOfInterest(LocationPoint p){
-		super(p);
+
+	public PointOfInterest(double x,double y){
+		super(x,y);
+		images = new Vector<ImageInformation>();
+	}
+	
+	public Vector<ImageInformation> getImages(){
+		return images;
+	}
+	public String getDescription(){
+		return description;
+	}
+	public void setDescription(String desc){
+		description = desc;
 	}
 }
