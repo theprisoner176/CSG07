@@ -29,7 +29,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -38,10 +38,10 @@
             android:text="@string/submit" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/long_description_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/button1"
+            android:layout_above="@+id/submit"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="14dp"
@@ -50,18 +50,18 @@
             android:hint="@string/long_description" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/short_description_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/editText2"
+            android:layout_above="@+id/long_description_input"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/editText1"
+            android:layout_below="@+id/title_input"
             android:ems="10"
             android:hint="@string/short_description" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/title_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
