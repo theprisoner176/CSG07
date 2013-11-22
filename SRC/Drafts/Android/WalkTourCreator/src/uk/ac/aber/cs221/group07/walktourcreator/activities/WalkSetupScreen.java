@@ -44,13 +44,9 @@ public class WalkSetupScreen extends GeneralActivity {
 		
 		WalkModel walk = new WalkModel(title);
 		walk.setShortDescription(short_desc);
-		walk.setLongDescription("long");
-		
+		walk.setLongDescription(long_desc);
 		manager.addWalkModel(walk);
-		walk =  manager.getWalkByID(10);
-		String walkString = walk.getTitle()+"\n"+walk.getShortDescription()+"\n"+walk.getLongDescription()+"\n\n";
-		
-		((EditText) findViewById(R.id.long_description_input)).getText().append(walkString);
+
 		//Intent intent = new Intent(this, MapScreen.class);
 	    //startActivity(intent);
 	}

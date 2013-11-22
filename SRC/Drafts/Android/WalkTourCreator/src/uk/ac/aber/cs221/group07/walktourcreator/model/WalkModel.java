@@ -52,7 +52,12 @@ public class WalkModel {
 	public Vector<LocationPoint> getRoutePath(){
 		return path;
 	}
-
+	public double getDistance(){
+		return 0;
+	}
+	public double getTimeTaken(){
+		return 0;
+	}
 	
 	/**
 	 * returns title

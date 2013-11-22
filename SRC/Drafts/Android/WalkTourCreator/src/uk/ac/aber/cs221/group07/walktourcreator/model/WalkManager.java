@@ -16,17 +16,13 @@ public class WalkManager extends SQLiteOpenHelper{
 	
 	private final static String DATABASE_NAME = "walks.db"; 
 
-	private static int nextWalkId = 0;
-	private static int nextLocationId = 0;
-	private static int nextPlaceId = 0;
-	private static int nextPhotoId = 0;
 	
 	/**
 	 * contains the SQL commands used to create the 'location' table
 	 */
 	private final static String CREATE_LOCATION_TABLE = 
 			"CREATE TABLE location (" +
-			"id INTEGER PRIMARY KEY UNIQUE NOT NULL," +
+			"id INTEGER PRIMARY KEY AUTOINCREMENT," +
 			"walk_id INTEGER NOT NULL REFERENCES walk(id) DEFAULT 0," +
 			"latitude REAL DEFAULT 0," +
 			"longitude REAL DEFAULT 0," +
@@ -37,7 +33,7 @@ public class WalkManager extends SQLiteOpenHelper{
 	 */
 	private final static String CREATE_WALK_TABLE = 
 			"CREATE TABLE walk (" +
-			"id INTEGER PRIMARY KEY UNIQUE NOT NULL," +
+			"id INTEGER PRIMARY KEY AUTOINCREMENT," +
 			"title TEXT NOT NULL DEFAULT 'defaultWalk'," +
 			"short_desc TEXT NOT NULL DEFAULT 'shrt'," +
 			"long_desc TEXT NOT NULL DEFAULT 'lng'," +
@@ -49,7 +45,7 @@ public class WalkManager extends SQLiteOpenHelper{
 	 */
 	private final static String CREATE_PLACE_TABLE =
 			"CREATE TABLE place (" +
-			"id INTEGER PRIMARY KEY NOT NULL UNIQUE," +
+			"id INTEGER PRIMARY KEY AUTOINCREMENT," +
 			"location_id INTEGER REFERENCES location(id) ON UPDATE CASCADE ON DELETE CASCADE NOT NULL," +
 			"description INTEGER NOT NULL)";
 
@@ -58,21 +54,19 @@ public class WalkManager extends SQLiteOpenHelper{
 	 */
 	private final static String CREATE_PHOTO_TABLE =
 			"CREATE TABLE photo (" +
-			"id INTEGER PRIMARY KEY UNIQUE NOT NULL," +
+			"id INTEGER PRIMARY KEY AUTOINCREMENT," +
 			"place_id INTEGER REFERENCES photo(id) ON UPDATE CASCADE ON DELETE CASCADE NOT NULL," +
 			"photo_name TEXT NOT NULL)";
 	
 	
 	public WalkManager(Context context) {
-		super(context, DATABASE_NAME, null, 8);
+		super(context, DATABASE_NAME, null, 13);
 	}
 	
 	public void addWalkModel(WalkModel walk){
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		
-		values.put("id", nextWalkId);
-		nextWalkId++;
 		values.put("title", walk.getTitle());
 		values.put("short_desc", walk.getShortDescription());
 		values.put("long_desc", walk.getLongDescription());
@@ -93,32 +87,26 @@ public class WalkManager extends SQLiteOpenHelper{
 	}
 	private int addLocation(LocationPoint location,SQLiteDatabase db,int walkId){
 		ContentValues values = new ContentValues();
-		values.put("id",nextLocationId);
 		values.put("latitude",location.getLatitude());
 		values.put("longitude",location.getLogitude());
 		values.put("time",location.getTime());
 		db.insert("location", null, values);
-		nextLocationId++;
-		return (nextLocationId-1);
+		return (0);
 	}
 	private int addPlace(PointOfInterest poi,SQLiteDatabase db,int locationId){
 		ContentValues values = new ContentValues();
-		values.put("id",nextPlaceId);
 		values.put("location_id",locationId);
 		values.put("description", poi.getDescription());
 		for(ImageInformation image:poi.getImages()){
-			addPhoto(image,db,nextPlaceId-1);
+			addPhoto(image,db,0);
 		}
-		nextPlaceId++;
-		return (nextPlaceId-1);
+		return (0);
 	}
 	private int addPhoto(ImageInformation image,SQLiteDatabase db,int placeId){
 		ContentValues values = new ContentValues();
-		values.put("id",nextPhotoId);
 		values.put("place_id",placeId);
 		values.put("title", image.getTitle());
-		nextPhotoId++;
-		return (nextPhotoId-1);
+		return (0);
 	}
 	
 	
@@ -127,6 +115,10 @@ public class WalkManager extends SQLiteOpenHelper{
 		String select = "SELECT * FROM walk WHERE id="+index;
 
 		Cursor cur = db.rawQuery(select, null);
+		if(cur.getCount()<=0){
+			cur.close();
+			return null;
+		}
 		cur.moveToFirst();
 		
 		String title = cur.getString(cur.getColumnIndex("title"));
