@@ -22,21 +22,15 @@ public class WalkRow extends TableRow{
     	title.setText(walk.getTitle());
     	
     	short_desc = new TextView(context);
-    	short_desc.setMaxEms(5);
-    	short_desc.setMaxLines(1);
     	short_desc.setText(makeTextFit(walk.getShortDescription(),10));
     	
     	long_desc = new TextView(context);
     	long_desc.setText(makeTextFit(walk.getLongDescription(),20));
     	
     	distance = new TextView(context);
-    	distance.setMaxEms(5);
-    	distance.setMaxLines(1);
     	distance.setText(""+walk.getDistance());
     	
     	time_taken = new TextView(context);
-    	time_taken.setMaxEms(5);
-    	time_taken.setMaxLines(1);
     	time_taken.setText(""+walk.getTimeTaken());
 
     	addView(title);
