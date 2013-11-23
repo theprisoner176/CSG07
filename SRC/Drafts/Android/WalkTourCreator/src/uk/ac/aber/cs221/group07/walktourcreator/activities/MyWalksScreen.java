@@ -2,7 +2,10 @@ package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
+import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
+import uk.ac.aber.cs221.group07.walktourcreator.views.WalkRow;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -31,26 +34,13 @@ public class MyWalksScreen extends GeneralActivity {
 	 *
 	 */
 	private void updateList(){
-		CharSequence[] walkNames = { "Aberystwyth", "Borth", "aber->Borth" };
-		CharSequence[] shrtDesc = {"Short 1","Short 2","Short 3"};
-		
 		TableLayout table = (TableLayout) findViewById(R.id.localWalks);
-		//TableLayout table2 = (TableLayout) findViewById(R.id.serverSideWalks);
-		
-	    for (int walkIndex = 0; walkIndex < walkNames.length; walkIndex++) {
-	    	TableRow row = new TableRow(this);
-	    	
-	    	TextView title = new TextView(this);
-	    	title.setText(walkNames[walkIndex]);
-	    	
-	    	TextView description = new TextView(this);
-	    	description.setText(shrtDesc[walkIndex]);
-
-	    	row.addView(title);
-	    	row.addView(description);
-	    	//table2.addView(row);
+		WalkModel walk;
+		WalkManager manager = new WalkManager(this);
+		for(int i=1;(walk =  manager.getWalkByID(i))!=null;i++){	
+	    	WalkRow row = new WalkRow(this,walk);
 	    	table.addView(row);
-	    }
+		}
 	}
 
 }
