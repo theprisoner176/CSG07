@@ -4,13 +4,13 @@ WalkModel:
 A WalkModel holds all the data concerning a single route, this includes a list of all location points that trace the path and a list of all the places of interest. 
 
 RouteRecorder:
-The RouteRecorder retrieves the current location from the system, and depending on factors such as speed and direction, the location information will be added to the local WalkModel. This class will carry out some analysis of the path traveled so far to determine when to record points,i.e. if a recorded path seems to be traveling in a straight line then fewer point will be added.
+The RouteRecorder retrieves the current location from the system, and depending on factors such as speed and direction, the location information will be added to the local WalkModel. This class will carry out some analysis of the path traveled so far to determine when to record points,i.e. if a recorded path seems to be traveling in a straight line then fewer point will be need added than if the path traces a circle.
 
 WalkManager:
-WalkManager interacts with the local sqlite database, it used to both save and retrieve WalkModels from the local storage.
+WalkManager interacts with the local sqlite database, it used to both save and retrieve WalkModels from the local storage. Instances of this class are created as and when they are needed, it does’t need to be passed between other objects.
 
 FileTransferManager:
-A connection will be made with the server via the FileTransferManager. It is responsible uploading and downloading WalkModels, including all associated images, from the database server. 
+A connection will be made with the server via the FileTransferManager. It is responsible uploading and downloading WalkModels, including all associated images, from the database server. This class only interacts with the WalkManager, so any objects wishing to upload of download content must connect through WalkManager, this is to add an extra layer of abstraction that simplifies the solution.
 
 GeneralActivity:
-GeneralActivity is an abstract class that extends Activity. It provides subclasses with access to several static variable that define the layout, set background colour etc.
+GeneralActivity is an abstract class that extends Activity.It defines the general layout of all the screens (MainMenuSreen, MapScreen, etc.). It provides subclasses with access to several static variable that describe the layout, that allow changes such things as the background, and text colour.
