@@ -1,0 +1,11 @@
+index - This will be the main class where users will first experience the website. 
+It will provide the user with pictures and a link to the 'walklist' class.
+
+walklist - This class will process information from our database and display it as a list of walks. 
+The walks will be clickable in order to view them in more detail.
+
+walkdetails - This class will be used to give the user a more in depth look at a specific walk. 
+This means they will be able to see a map view, images taken on the walk, and points of interest.
+
+googlemapsapi - The Google Maps API will be used to portray a persons walk data into a visual map. 
+The user will also be able to view points of interest on the map.
