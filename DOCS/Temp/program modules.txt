@@ -150,7 +150,9 @@ linkImageToWalk();
 
 /* This code will be used to link the Image to the data in the server */
 
+---------------------------------------------------------------------Add above to significant algorithms. Create a new category. One for Android, one for web and add it under web
 
+-------------------------------------------Add below to Interface description. Create a new category for web (3.4 Web)
 
 What I will in each web page:-
 
