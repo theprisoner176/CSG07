@@ -1,0 +1,184 @@
+PHP Code
+
+
+ConnectToDatabase();
+
+/* This code can either be done before the html tags or called when need. This code will likely be on each page as database access is likely */  
+
+$con=mysqli_connect("db.dcs.aber.ac.uk”, “csgp07_13_14”,"csadmgp07","c54admgp07");
+
+//heck connection
+if (mysqli_connect_errno())
+{
+ echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+mysqli_close($con);
+
+
+unzipFiles();
+
+/* Code to Unzip data sent from android, however likely to change from zip folder to http */
+$zip = new ZipArchive;
+
+if ($zip->open('test.zip') === TRUE) {
+	$zip->extractTo('/my/destination/dir/');
+	$zip->close();
+	echo 'ok';
+
+} else{
+ echo 'failed';
+} 
+
+appendToDatabase();
+
+
+
+/* List all the fields that you wish to append to the database */
+
+$sql="INSERT INTO csgp07_13_14  (ShortDescription, LongDescription, PointOfInterest, Coordinates, Title)
+VALUES
+('$_POST[ShortDescription]','$_POST[LongDescription]','$_POST[PointOfInterest]', '$_POST[Coordinates]', '$_POST[Title]')";
+if (!mysqli_query($con,$sql))
+{
+die('Error: ' . mysqli_error($con));
+}
+echo "1 record added";
+mysqli_close($con)
+
+
+findImage()
+
+/* The code to find a image */
+
+
+
+
+
+
+
+
+
+getWalkListInfo();
+
+/*This code shouldnt be changed to much, other than what other columns wish to be shown. This is the table that will be seen on the WalkList page */
+
+$result = mysqli_query($con,"SELECT * FROM csgp07_13_14");
+ 
+//Add Check button code
+
+echo”<table border='1'>
+<tr>
+<th>ShortDescription</th>
+<th>Location</th>
+<th>Title</th>
+</tr>";
+
+while($row = mysqli_fetch_array($result))
+{
+echo "<tr>";
+echo "<td>" . $row['ShortDescription'] . "</td>";
+echo "<td>" . $row['Location'] . "</td>";
+echo "<td>" . $row['Title'] . "</td>";
+echo "</tr>";
+}
+echo "</table>";  
+
+
+getWalkDetailInfo();
+
+/*This will be the table that is shown when the user has selected a walk. It will display a new table showing new collumns */
+
+$result = mysqli_query($con,"SELECT * FROM csgp07_13_14");
+
+echo”<table border='1'>
+<tr>
+<th>LongDescription</th>
+<th>Images</th>
+<th>Coordinates</th>
+<th>PointOfInterest</th>
+</tr>";
+
+while($row = mysqli_fetch_array($result))
+{
+echo "<tr>";
+echo "<td>" . $row['LongDescription'] . "</td>";
+echo "<td>" . $row['Images'] . "</td>";
+echo "<td>" . $row['Coordinates'] . "</td>";
+echo "<td>" . $row['PointOfInterest'] . "</td>";
+echo "</tr>";
+}
+echo "</table>"; 
+
+
+
+
+
+
+
+
+
+
+
+getShortDescription();
+
+
+/*This code will be for the Walk Details page. It will show the short description if the long description has not been filled */
+
+check to see if Long description != null
+	if long descrition == null{
+	
+	Display short description
+}else{
+ 
+	return long description 
+}
+
+
+deleteWalk();
+
+/*This part of the code should be placed before the table */
+
+<form action="delete" method="post">
+
+/*Code to delete the Information from the database */
+
+echo '<td><input type="submit" name="deleteItem" value="'.$row['id'].'" /></td>"';
+
+
+linkImageToWalk();
+
+/* This code will be used to link the Image to the data in the server */
+
+
+
+What I will in each web page:-
+
+Index
+
+ConnectToDatabase();
+
+FindImage();
+
+
+
+
+Walk List
+
+ConnectToDatabase();
+
+GetWalkDetailInfo();
+
+AppendToDatabase();
+
+
+
+Walk Details
+
+ConnectToDatabase();
+
+GetWalkDetailInfo();
+
+GetShortDescription();
+DeletWalk();
+FindImage();
