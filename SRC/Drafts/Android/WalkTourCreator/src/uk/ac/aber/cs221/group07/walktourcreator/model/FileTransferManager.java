@@ -16,10 +16,10 @@ import org.apache.http.message.BasicNameValuePair;
  * @author HarryBuckley
  *
  */
-public class FileTransferManager {
+public class FileTransferManager{
 
 	private final static String dataServer = "http://users.aber.ac.uk/hfb1/this.php";
-		
+			
 	/**
 	* makes a connection to data server and
 	* uploads all files belonging to the given
@@ -27,12 +27,17 @@ public class FileTransferManager {
 	* the method succeeded without problems.
 	*/
 	public int uploadWalk(WalkModel walk){		
-		post (  packageData(walk)  );
+		//create a new thread for each upload
+		new Uploader(walk).start();
 		return 0;
 	}
 	
-	private List<NameValuePair> packageData(WalkModel data){
-		List<NameValuePair> dataPairs = new Vector<NameValuePair>(2);
+	private static void uploadWalkData(WalkModel data){
+		post(packageData(data));
+	}
+	
+	private static List<NameValuePair> packageData(WalkModel data){
+		List<NameValuePair> dataPairs = new Vector<NameValuePair>();
 		
 		dataPairs.add(new BasicNameValuePair("title"		, data.getTitle()));
 		dataPairs.add(new BasicNameValuePair("short_desc"	, data.getShortDescription()));
@@ -40,11 +45,27 @@ public class FileTransferManager {
 		dataPairs.add(new BasicNameValuePair("hours"		, Double.toString(data.getTimeTaken())));
 		dataPairs.add(new BasicNameValuePair("distance"		, Double.toString(data.getDistance())));
 		
+		
+		for(LocationPoint point:data.getRoutePath()){
+			if(point instanceof LocationPoint){
+				packageLocation(dataPairs,point);
+			}
+			else{
+				packageLocation(dataPairs,point);
+			}
+		}
 		//add other stuff to upload places and locations
         return dataPairs;
 	}
 	
-	private void post(List<NameValuePair> pakagedData) {
+	private static void packageLocation(List<NameValuePair> dataPairs,LocationPoint point){
+		
+		dataPairs.add(new BasicNameValuePair("latitude"		, Double.toString(point.getLatitude())));
+		dataPairs.add(new BasicNameValuePair("longitude"	, Double.toString(point.getLongitude())));
+		dataPairs.add(new BasicNameValuePair("time"			, Double.toString(point.getTime())));
+	}
+	
+	private static void post(List<NameValuePair> pakagedData) {
 	    HttpClient httpclient = new DefaultHttpClient();
 	    HttpPost httppost = new HttpPost(dataServer);
 	    try {
@@ -58,4 +79,20 @@ public class FileTransferManager {
 	        //do some error handling
 	    } catch (IOException e) { }
 	} 
+
+	private class Uploader extends Thread{
+		private WalkModel data;
+		
+		public Uploader(WalkModel walk){
+			data = walk;
+		}
+		public void run(){
+			FileTransferManager.uploadWalkData(data);
+	
+		}
+	}
+	
+	
+	
+
 }

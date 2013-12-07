@@ -59,7 +59,7 @@ public class LocationPoint {
 	/**
 	* returns the longitude, the east/west * distance from Greenwich.
 	*/
-	public double getLogitude(){
+	public double getLongitude(){
 		return longitude;
 	}
 	

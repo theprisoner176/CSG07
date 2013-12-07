@@ -94,7 +94,7 @@ public class WalkManager extends SQLiteOpenHelper{
 	private int addLocation(LocationPoint location,SQLiteDatabase db,int walkId){
 		ContentValues values = new ContentValues();
 		values.put("latitude",location.getLatitude());
-		values.put("longitude",location.getLogitude());
+		values.put("longitude",location.getLongitude());
 		values.put("time",location.getTime());
 		db.insert("location", null, values);
 		return (0);
@@ -164,7 +164,7 @@ public class WalkManager extends SQLiteOpenHelper{
 	* the server interaction is handled by the FileTransferManager. */
 	public int uploadWalk(WalkModel walk){
 		FileTransferManager transfer = new FileTransferManager();
-		return transfer.uploadWalk(null);
+		return transfer.uploadWalk(walk);
 		
 	}
 	/**
