@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * interact with database
  * saves and retrieved all walks
+ * @author HarryBuckley
  */
 public class WalkManager extends SQLiteOpenHelper{
 	
@@ -63,6 +64,10 @@ public class WalkManager extends SQLiteOpenHelper{
 		super(context, DATABASE_NAME, null, 13);
 	}
 	
+	
+	/**
+	 * adds the passed WalkModel to the local database. 
+	 */
 	public void addWalkModel(WalkModel walk){
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -85,6 +90,7 @@ public class WalkManager extends SQLiteOpenHelper{
 		}
 		db.close();
 	}
+	
 	private int addLocation(LocationPoint location,SQLiteDatabase db,int walkId){
 		ContentValues values = new ContentValues();
 		values.put("latitude",location.getLatitude());
@@ -93,6 +99,7 @@ public class WalkManager extends SQLiteOpenHelper{
 		db.insert("location", null, values);
 		return (0);
 	}
+	
 	private int addPlace(PointOfInterest poi,SQLiteDatabase db,int locationId){
 		ContentValues values = new ContentValues();
 		values.put("location_id",locationId);
@@ -102,6 +109,7 @@ public class WalkManager extends SQLiteOpenHelper{
 		}
 		return (0);
 	}
+	
 	private int addPhoto(ImageInformation image,SQLiteDatabase db,int placeId){
 		ContentValues values = new ContentValues();
 		values.put("place_id",placeId);
@@ -109,7 +117,9 @@ public class WalkManager extends SQLiteOpenHelper{
 		return (0);
 	}
 	
-	
+	/**
+	 * returns the WalkModel with an id matching the passed one.
+	 */
 	public WalkModel getWalkByID(int index){
 		SQLiteDatabase db = this.getReadableDatabase();
 		String select = "SELECT * FROM walk WHERE id="+index;
@@ -148,6 +158,28 @@ public class WalkManager extends SQLiteOpenHelper{
 	private PointOfInterest getPlaceByLocationID(int index){
 		return null;
 	}
+	
+	/**
+	* uploads the given walk to the server,
+	* the server interaction is handled by the FileTransferManager. */
+	public int uploadWalk(WalkModel walk){
+		FileTransferManager transfer = new FileTransferManager();
+		return transfer.uploadWalk(null);
+		
+	}
+	/**
+	* returns the requested walk from the server,
+	* the server interaction is handled by the FileTransferManager. 
+	* */
+	public WalkModel getWalkFromServerById(){
+		return null;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	@Override

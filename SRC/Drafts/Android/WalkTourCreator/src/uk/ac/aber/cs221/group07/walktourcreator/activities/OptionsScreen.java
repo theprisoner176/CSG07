@@ -2,6 +2,7 @@ package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.R.layout;
+import uk.ac.aber.cs221.group07.walktourcreator.views.WalkFinishedView;
 import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.view.View;
 
 /**
  * This class is responsible for displaying the the options for the app, and reacting to button presses
+ * @author HarryBuckley
  */
 public class OptionsScreen extends GeneralActivity {
 	
@@ -20,15 +22,19 @@ public class OptionsScreen extends GeneralActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		new WalkFinishedView(null, this);
 		setContentView(R.layout.activity_options_screen);
 	}
 	
 	/**
-	 * changes the background color of all GeneralActivity subclasses 
-	 * @param v is the View that called the method
+	 * Starts a new MyWalkScreen activity,
+	 * and displays it to the user.
+	 * The parameter v, is the object that called the method.
+	 * @param v is the object that called the method
 	 */
 	public void changeBackgroundColor(View v){
 		super.setBackgroundColor(Color.CYAN);
 	}
 
+	
 }

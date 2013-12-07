@@ -4,6 +4,7 @@ import java.util.Vector;
 
 /**
  * stores all information about a single walk
+ * @author HarryBuckley
  */
 public class WalkModel {
 	
@@ -37,7 +38,8 @@ public class WalkModel {
 	}
 	
 	/**
-	 * constructor used to create a WalkModel from existing data.
+	 * creates a WalkModel, with LocationPoints already set, it is used 
+	 * by the WalkManager when loading walk from database.
 	 */
 	public WalkModel(int id,String title,Vector<LocationPoint> path,String shortDesc,String longDesc){
 		this.title= title;
@@ -47,38 +49,64 @@ public class WalkModel {
 	}
 	
 	/**
-	 * returns the path (so far) of the walk
+	 * returns a vector of all the LocationPoint in the walk. 
 	 */
 	public Vector<LocationPoint> getRoutePath(){
 		return path;
 	}
+	
+    /**
+	 * returns the running total of km travelled.
+	 */
 	public double getDistance(){
 		return 0;
 	}
+	
+	/**
+	 * returns the elapsed time since the walk was started. 
+	 */
 	public double getTimeTaken(){
 		return 0;
 	}
 	
 	/**
-	 * returns title
-	 */
+	* returns the name of the walk.
+	*/
 	public String getTitle(){
 		return title;
 	}
+	
+	/**
+	 * returns a short description of the walk 
+	 */
 	public String getShortDescription(){
 		return shortDesc;
 	}
+	
+	/**
+	 * set the short description of the walk. 
+	 */
 	public void setShortDescription(String newShortDesc){
 		shortDesc =newShortDesc;
 	}
+	
+	/**
+	 * returns a long description of the walk. 
+	 */
 	public String getLongDescription(){
 		return longDesc;
 	}
+	
+	/**
+	 * set the long description for the walk. 
+	 */
 	public void setLongDescription(String newLongDesc){
 		longDesc =newLongDesc;
 	}
-	//...
-	//...
+	
+	/**
+	 * adds a LocationPoint to the walk. 
+	 */
 	public void addLocation(LocationPoint point){
 		path.add(point);
 	}

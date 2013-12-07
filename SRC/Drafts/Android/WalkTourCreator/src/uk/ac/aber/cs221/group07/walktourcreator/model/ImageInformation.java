@@ -2,7 +2,7 @@ package uk.ac.aber.cs221.group07.walktourcreator.model;
 
 /**
  * This class stores information about a single image
- *
+ *@author HarryBuckley
  */
 public class ImageInformation {
 

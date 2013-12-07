@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:onClick="submit"
+            android:onClick="startWalk"
             android:text="@string/submit" />
 
         <EditText

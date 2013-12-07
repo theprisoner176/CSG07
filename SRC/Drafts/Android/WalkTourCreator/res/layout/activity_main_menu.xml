@@ -27,16 +27,6 @@
         android:text="@string/view_previous_walks" />
 
     <Button
-        android:id="@+id/open_login_screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/view_previous_walks"
-        android:layout_alignRight="@+id/view_previous_walks"
-        android:layout_below="@+id/open_options_screen"
-        android:onClick="StartLoginScreen"
-        android:text="@string/open_login_screen" />
-
-    <Button
         android:id="@+id/open_options_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

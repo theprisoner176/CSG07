@@ -8,6 +8,7 @@ import android.view.View;
 
 /**
  * This class is responsible for displaying the main menu screen, and reacting to button presses
+ * @author HarryBuckley
  */
 public class MainMenu extends GeneralActivity {
 
@@ -20,37 +21,37 @@ public class MainMenu extends GeneralActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 	}
+	
 	/**
-	 * start a new MyWalksScreen activity
+	 * Starts a new WalkSetupScreen activity,
+	 * and displays it to the user.
+	 * The parameter v, is the object that called the method.
 	 * @param v is the View that is called the method
 	 */
 	public void startMyWalksScreen(View v){
 		Intent intent = new Intent(this, MyWalksScreen.class);
 	    startActivity(intent);
 	}
+	
 	/**
-	 * start a new WalkSetupScreen activity
-	 * @param v is the View that is called the method
+	 * Starts a new WalkSetupScreen activity,
+	 * and displays it to the user.
+	 * The parameter v, is the object that called the method.
+	 * @param v is the View that is called the method.
 	 */
 	public void startWalkSetupScreen(View v){
 		Intent intent = new Intent(this, WalkSetupScreen.class);
 	    startActivity(intent);
 	}
 	/**
-	 * start a new OptionsScreen activity
+	 * Starts a new OptionsScreen activity,
+	 * and displays it to the user.
+	 * The parameter v, is the object that called the method.
 	 * @param v is the View that is called the method
 	 */
 	public void startOptionsScreen(View v){
 		Intent intent = new Intent(this, OptionsScreen.class);
 	    startActivity(intent);
 	}
-	/**
-	 * start a new LoginScreen activity
-	 * @param v is the View that is called the method
-	 */
-	public void StartLoginScreen(View v){
-		Intent intent = new Intent(this, LoginScreen.class);
-	    startActivity(intent);
-	}
-
+	
 }

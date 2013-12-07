@@ -5,6 +5,12 @@ import android.content.Context;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+
+/**
+ * 
+ * @author HarryBuckley
+ *
+ */
 public class WalkRow extends TableRow{
 
 	private TextView title;

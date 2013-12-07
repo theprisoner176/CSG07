@@ -3,7 +3,6 @@ package uk.ac.aber.cs221.group07.walktourcreator.activities;
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.R.layout;
 import uk.ac.aber.cs221.group07.walktourcreator.views.AddPoiView;
-import uk.ac.aber.cs221.group07.walktourcreator.views.MapView;
 import uk.ac.aber.cs221.group07.walktourcreator.views.PopupView;
 import android.os.Bundle;
 import android.app.Activity;
@@ -17,13 +16,9 @@ import android.view.View;
 
 /**
  * This class is responsible for displaying the map screen, and reacting to button presses
+ * @author HarryBuckley
  */
 public class MapScreen extends GeneralActivity {
-	
-	/**
-	 * holds reference to the 
-	 */
-	private MapView map;
 	
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
@@ -38,9 +33,23 @@ public class MapScreen extends GeneralActivity {
 		//map = (MapView) findViewById(R.id.map_view);
 	}
 	
+	/**
+	* creates and displays a AddPoiView.
+	* The parameter v, is the object that called the method. */
 	public void addPOI(View v){
-		AddPoiView poiDialog = new AddPoiView();
-		//poiDialog.show(getFragmentManager(), "message 1");
+		
+	}
+	/**
+	* creates and displays a WalkFinishedView.
+	* The parameter v, is the object that called the method. */
+	public void finishWalk(View v){
+		
+	}
+	/**
+	* creates and displays a PlacesVisitedView.
+	* The parameter v, is the object that called the method. */
+	public void showPlacesVisited(View v){
+		
 	}
 
 }
