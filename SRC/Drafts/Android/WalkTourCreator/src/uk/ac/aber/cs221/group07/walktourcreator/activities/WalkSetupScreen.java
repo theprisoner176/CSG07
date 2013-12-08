@@ -50,7 +50,7 @@ public class WalkSetupScreen extends GeneralActivity {
 		manager.addWalkModel(walk);
 		manager.uploadWalk(walk);
 
-		//Intent intent = new Intent(this, MapScreen.class);
-	    //startActivity(intent);
+		Intent intent = new Intent(this, MapScreen.class);
+	    startActivity(intent);
 	}
 }
