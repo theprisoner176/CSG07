@@ -1,32 +1,21 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
-import uk.ac.aber.cs221.group07.walktourcreator.R.layout;
-import uk.ac.aber.cs221.group07.walktourcreator.views.AddPoiView;
-import uk.ac.aber.cs221.group07.walktourcreator.views.PopupView;
-
+import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-
-import android.os.Bundle;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.view.Menu;
 /**
  * This class is responsible for displaying the map screen, and reacting to button presses
  * @author HarryBuckley
  */
 public class MapScreen extends GeneralActivity{
+	public final LatLng LOCATION_START = new LatLng(52.416204,-4.065419);
 	
 	private GoogleMap map;
 	
@@ -40,7 +29,7 @@ public class MapScreen extends GeneralActivity{
 		setContentView(R.layout.activity_map_screen);
 		
 		setUpMapIfNeeded();
-		
+		initLocation();
 		//stores a reference of the map to an instance variable
 		//map = (MapView) findViewById(R.id.map_view);
 	}
@@ -63,6 +52,12 @@ public class MapScreen extends GeneralActivity{
 	* The parameter v, is the object that called the method. */
 	public void showPlacesVisited(View v){
 		
+	}
+	
+	public void initLocation(){
+		map.addMarker(new MarkerOptions().position(LOCATION_START).title("You are here"));
+		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(LOCATION_START,17);
+		map.animateCamera(update);
 	}
 	
 	private void setUpMapIfNeeded() {

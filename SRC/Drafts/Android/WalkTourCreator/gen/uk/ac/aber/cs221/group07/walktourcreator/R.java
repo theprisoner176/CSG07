@@ -219,13 +219,13 @@ containing a value of this type.
         public static final int add_point_of_interest=0x7f05000a;
         public static final int btn_close_popup=0x7f050017;
         public static final int button1=0x7f050008;
-        public static final int button2=0x7f05000d;
+        public static final int button2=0x7f05000c;
         public static final int button3=0x7f05000b;
         public static final int hybrid=0x7f050004;
         public static final int localWalks=0x7f05000e;
         public static final int long_description_input=0x7f050012;
         public static final int map=0x7f050009;
-        public static final int map_view=0x7f05000c;
+        public static final int map_view=0x7f05000d;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int open_options_screen=0x7f050007;
