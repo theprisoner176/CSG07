@@ -13,13 +13,13 @@
  walkID INT,
  latitude FLOAT,
  longitude FLOAT,
- timestamp, FLOAT
+ timestamp FLOAT
  )";
 
  // Execute query
  if (mysqli_query($con,$sql))
   {
-  echo "Table persons created successfully";
+  echo "Table Locations created successfully";
   }
 else
   {
