@@ -51,9 +51,9 @@ public class MainMenu extends GeneralActivity {
 	 * @param v is the View that is called the method
 	 */
 	public void startOptionsScreen(View v){
-		//Intent intent = new Intent(this, OptionsScreen.class);
-	    //startActivity(intent);
-	    new WalkFinishedView(getBaseContext(),null, this,v);
+		Intent intent = new Intent(this, OptionsScreen.class);
+	    startActivity(intent);
+	    //new WalkFinishedView(getBaseContext(),null, this,v);
 	}
 	
 }
