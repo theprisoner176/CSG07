@@ -4,6 +4,7 @@ import uk.ac.aber.cs221.group07.walktourcreator.R;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 
 /**
  * The GeneralActivity class 
@@ -20,10 +21,21 @@ public abstract class GeneralActivity extends Activity{
 	
 	protected static int textColor = Color.BLACK;
 	
+	protected int rootLayoutId  = 0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.getWindow().getDecorView().setBackgroundColor(backgroundColor);		
+	}
+	
+	public void setContentView(int layoutResID){
+		super.setContentView(layoutResID);
+		rootLayoutId = layoutResID;
+	}
+	
+	public View getContentView(){
+		return findViewById(rootLayoutId);
 	}
 	
 	/**

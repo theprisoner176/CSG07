@@ -22,7 +22,6 @@ public class OptionsScreen extends GeneralActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		new WalkFinishedView(null, this);
 		setContentView(R.layout.activity_options_screen);
 	}
 	

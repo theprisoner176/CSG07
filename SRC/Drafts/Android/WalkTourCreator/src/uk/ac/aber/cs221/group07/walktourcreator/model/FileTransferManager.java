@@ -51,8 +51,8 @@ public class FileTransferManager{
 			walkData.put("title"		, data.getTitle());
 			walkData.put("short_desc"	, data.getShortDescription());
 			walkData.put("long_desc"	, data.getLongDescription());
-			walkData.put("hours"		, Double.toString(data.getTimeTaken()));
-			walkData.put("distance"		, Double.toString(data.getDistance()));
+			walkData.put("hours"		, data.getTimeTaken());
+			walkData.put("distance"		, data.getDistance());
 			//add all location points
 			walkData.put("locations", packageRoute(data.getRoutePath()));
 			//add all places of interest

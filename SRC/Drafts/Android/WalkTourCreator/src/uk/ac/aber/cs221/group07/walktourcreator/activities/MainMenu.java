@@ -1,6 +1,7 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
+import uk.ac.aber.cs221.group07.walktourcreator.views.WalkFinishedView;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -50,8 +51,9 @@ public class MainMenu extends GeneralActivity {
 	 * @param v is the View that is called the method
 	 */
 	public void startOptionsScreen(View v){
-		Intent intent = new Intent(this, OptionsScreen.class);
-	    startActivity(intent);
+		//Intent intent = new Intent(this, OptionsScreen.class);
+	    //startActivity(intent);
+	    new WalkFinishedView(getBaseContext(),null, this,v);
 	}
 	
 }

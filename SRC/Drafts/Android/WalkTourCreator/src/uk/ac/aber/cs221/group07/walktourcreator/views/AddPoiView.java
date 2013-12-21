@@ -1,11 +1,13 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
+import uk.ac.aber.cs221.group07.walktourcreator.activities.GeneralActivity;
 import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.app.FragmentManager;
+import android.view.LayoutInflater;
 import android.view.View;
 
 /**
@@ -19,8 +21,12 @@ public class AddPoiView extends PopupView{
 	 * displays an place description input popup, 
 	 * and gives it a link to the RouteRecorder 
 	 */
-	public AddPoiView(RouteRecorder recorder,Activity owner){
-		super(null, owner, R.layout.popup_finish_walk);
+	public AddPoiView(Context context,RouteRecorder recorder,GeneralActivity owner){
+		super(context,owner.getContentView());		
+		
+		LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
+	    View popupView = layoutInflater.inflate(R.layout.popup_finish_walk, null);  
+		super.setContentView(popupView);
 	}
 	/**
 	 * creates a PointOfInterst out of the given
