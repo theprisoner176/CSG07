@@ -5,6 +5,7 @@ import uk.ac.aber.cs221.group07.walktourcreator.R.layout;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
@@ -50,7 +51,12 @@ public class WalkSetupScreen extends GeneralActivity {
 		manager.addWalkModel(walk);
 		manager.uploadWalk(walk);
 
-		Intent intent = new Intent(this, MapScreen.class);
-	    startActivity(intent);
+		//Intent intent = new Intent(this, MapScreen.class);
+	    //startActivity(intent);
+		//testing camera stuff
+		 /*Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+		        startActivityForResult(takePictureIntent, 1);
+		    }*/
 	}
 }

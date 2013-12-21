@@ -49,14 +49,28 @@ public class WalkModel {
 	}
 	
 	/**
-	 * returns a vector of all the LocationPoint in the walk. 
+	 * returns a vector of all the LocationPoint in the walk. Including PointsOfInterests
 	 */
 	public Vector<LocationPoint> getRoutePath(){
 		return path;
 	}
 	
+	/**
+	 * returns a vector of all the places of interest in the walk. 
+	 */
+	public Vector<PointOfInterest> getPoiList(){
+		Vector<PointOfInterest> poi = new Vector<PointOfInterest>();
+		for(LocationPoint point:getRoutePath()){
+			if(point instanceof PointOfInterest){
+				poi.add((PointOfInterest) point);
+			}
+		}
+		return poi;
+	}
+	
+	
     /**
-	 * returns the running total of km travelled.
+	 * returns the running total of km traveled.
 	 */
 	public double getDistance(){
 		return 0;
@@ -110,5 +124,6 @@ public class WalkModel {
 	public void addLocation(LocationPoint point){
 		path.add(point);
 	}
+	
 	
 }
