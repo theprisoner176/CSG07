@@ -28,6 +28,10 @@ public class ImageInformation {
 		title = name;
 	}
 	
+	public String getImageAsString(){
+		return "AN IMAGE";
+	}
+	
 	public String getTitle(){
 		return title;
 	}

@@ -2,6 +2,8 @@ package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.R.layout;
+import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
+import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import android.os.Bundle;
@@ -48,6 +50,14 @@ public class WalkSetupScreen extends GeneralActivity {
 		WalkModel walk = new WalkModel(title);
 		walk.setShortDescription(short_desc);
 		walk.setLongDescription(long_desc);
+		// test data
+		LocationPoint p = new LocationPoint(3,3);
+		PointOfInterest poi = new PointOfInterest(6,7);
+		poi.setDescription("This is a place of interest");
+		
+		walk.addLocation(p);
+		walk.addLocation(poi);
+		
 		manager.addWalkModel(walk);
 		manager.uploadWalk(walk);
 

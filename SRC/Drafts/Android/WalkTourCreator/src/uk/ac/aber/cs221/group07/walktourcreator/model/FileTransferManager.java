@@ -57,7 +57,7 @@ public class FileTransferManager{
 			walkData.put("locations", packageRoute(data.getRoutePath()));
 			//add all places of interest
 			walkData.put("places", packagePlaces(data.getPoiList()));
-			
+					
 		}catch (JSONException e){ }
 		return walkData;
 	}
@@ -88,27 +88,29 @@ public class FileTransferManager{
 	}
 	
 	private static JSONObject packagePoi(PointOfInterest poi) throws JSONException{
-		//will need to sort out lists of images and image names.
 		JSONObject place = new JSONObject();
-		//JSONArray images = new JSONArray();
-		//poi.get
-		//for(ImageInformation )
+		place.put("description",poi.getDescription() );
 		
-		//place.put("decription", poi.getDescription());
-		//place.put("images",images);
+		JSONArray images = new JSONArray();
+		for(ImageInformation image:poi.getImages()){
+			images.put(image.getImageAsString());
+		}
+		
+		place.put("images",images);
 		return place;
 	}
 	
 	private static void post(JSONObject pakagedData) {
 	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost(dataServer);
+	    HttpPost post = new HttpPost(dataServer);
 	    try {
-	    	//add some meta-data
-	    	httppost.setHeader(new BasicHeader("Content-Type","application/json"));
-	    	//add walk data to message
-	        httppost.setEntity(new StringEntity(pakagedData.toString()));
+	    	//add walk data to message	    	
+	        List<NameValuePair> dataPairs = new Vector<NameValuePair>();
+	        
+	        dataPairs.add(new BasicNameValuePair("JSON",pakagedData.toString()));
+	      	post.setEntity(new UrlEncodedFormEntity(dataPairs));
 	        //send message
-	        HttpResponse response = httpclient.execute(httppost);
+	        HttpResponse response = httpclient.execute(post);
 	        
 	        //do something to check the response
 	        //do some error handling
@@ -123,7 +125,6 @@ public class FileTransferManager{
 		}
 		public void run(){
 			post(packageData(data));
-	
 		}
 	}
 }

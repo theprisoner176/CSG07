@@ -8,7 +8,7 @@ import java.util.Vector;
  */
 public class PointOfInterest extends LocationPoint{
 
-	private Vector<ImageInformation> images;
+	private Vector<ImageInformation> images = new Vector<ImageInformation>();
 	
 	/**
 	 * holds the name of the POI
