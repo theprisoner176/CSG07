@@ -51,23 +51,17 @@ function deletePhotoTable($con){
 	}	
 }
 
-if(isSet($_POST["tableList"])){
+if(isSet($_POST["table_delete"])){
 	
-	foreach($_POST["tableList"] as $tableID){
 
-		if($tableID == 1){
 			deleteLocationTable($con);
-		}
-		if($tableID == 2){
+
 			deleteListOfWalksTable($con);
-		}
-		if($tableID == 3){
+
 			deletePlaceDescriptionTable($con);
-		}
-		if($tableID == 4){
+
 			deletePhotoTable($con);	
-		}
-	}
+
 }
 else{
 	echo "No Info";

@@ -12,7 +12,6 @@ if (mysqli_connect_errno()){
 
  function createLocationTable($con){ 
  
-	
 		$sql="CREATE TABLE Location(
 			id INT NOT NULL AUTO_INCREMENT,
 			PRIMARY KEY(id),
@@ -81,24 +80,56 @@ function createListOfWalksTable($con){
 		else {
 			echo "<br>Error creating Photo table: " . mysqli_error($con);
 		}
-	  
-
  }
- if(isSet($_POST["tableList"])){
-	foreach($_POST["tableList"] as $tableID){
-		if($tableID == 1){
-			createLocationTable($con);
-		}
-		if($tableID == 2){
-			createListOfWalksTable($con);
-		}
-		if($tableID == 3){
-			createPlaceDescriptionTable($con);
-		}
-		if($tableID == 4){
-			createPhotoTable($con);	
-		}
+ 
+ function joinTables($con){
+ 
+ //Link photo placeID to Location ID --- This is not being run
+ $sql = "SELECT Photo.id, Location.id ".
+ "FROM Photo, Location ".
+	"WHERE Photo.placeId = Location.id";
+	
+ //Link List_of_Walks ID to Location walkID
+ $sql = "SELECT List_of_Walks.id, Location.id ".
+ "FROM List_of_Walks, Location ".
+	"WHERE List_of_Walks.id = Location.walkID";
+	if (mysqli_query($con,$sql)){
+		echo "<p>Linked List_of_Walks ID to Location walkID</p>";
 	}
+	else {
+		echo "<br>Error linking Link List_of_Walks ID to Location walkID: " . mysqli_error($con);
+	}
+ //Link Place_description locationID to Location ID
+	$sql = "SELECT Place_description.id, Location.id ".
+ "FROM Place_description, Location ".
+	"WHERE Place_description.locationId = Location.id";
+	if (mysqli_query($con,$sql)){
+		echo "<p>Linked Place_description locationID to Location ID</p>";
+	}
+	else {
+		echo "<br>Error linking Place_description locationID to Location ID: " . mysqli_error($con);
+	}
+//Link photo placeID to Place_description ID
+	$sql = "SELECT Photo.id, Place_description.id ".
+ "FROM Photo, Place_description ".
+	"WHERE Photo.placeId = Place_description.id";
+	
+	if (mysqli_query($con,$sql)){
+		echo "<p>Linked photo placeID to Place_description ID</p>";
+	}
+	else {
+		echo "<br>Error linking photo placeID to Place_description ID: " . mysqli_error($con);
+	}
+ }
+ 
+ if(isSet($_POST["table_create"])){
+
+	createLocationTable($con);
+	createListOfWalksTable($con);
+	createPlaceDescriptionTable($con);
+	createPhotoTable($con);
+	joinTables($con);
+	
 }
 else{
 	echo "<p> No data given</p>";	

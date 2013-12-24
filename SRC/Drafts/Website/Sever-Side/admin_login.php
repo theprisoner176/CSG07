@@ -18,40 +18,20 @@ session_start();
 	</head>
 	
 	<body> 
-		<?php
-			$tableId = 0;
-			while($tableId < 4){
-				if($tableId == 0){
-					echo "<p>Location";
-				}
-					
-				elseif($tableId == 1){
-					echo "<p>List of Walks";
-				}
+		<p>This will create the following tables
+					<br>Location
+					<br>List of Walks
+					<br>Place Description
+					<br>Photos</p>
 				
-				elseif($tableId == 2){
-					echo "<p>Place Description";
-				}
-				
-				elseif($tableId == 3){
-					echo "<p>Photos";
-				}
-				
-				$tableId++;
-				echo <<<EOT
-					<form action = "c_tables.php" method = "post" name = "tableForm"> 
-						<input type="checkbox" id = "$tableId" name = "tableList[]" value="$tableId" />
-					</p>
-EOT;
-			}
-			echo <<<EOT
-			<p>
-				<input type = "submit" value = "Create Tables"/>
+			
+
+			<p><form action = "c_tables.php" method = "post" name = "tableForm"> 
+				<input type = "submit" name = "table_create" value = "Create Tables and Join" />
 			</form>
 			</p>
-EOT;
-		?>
 		<a href = "list_table.php">View Tables</a><br>
+		<a href = "field_form.php">Add Data to Fields</a><br>
 		<a href = "logon.php">Logout Page</a>
 	</body>
 </html>

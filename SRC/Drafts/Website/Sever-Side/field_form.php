@@ -1,3 +1,11 @@
+<?php
+session_save_path('../web/sessions');
+session_start();
+if(!isSet($_SESSION['gpadmin'])){
+		header("Location: logon.php");	
+	}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,5 +45,7 @@
 		<p> photoname </p><input type="textbox" name="photo"/>
 		<p><input type="submit"/></p>
 	</form>
+	
+	<a href = "list_table.php">View Tables</a><br>
 </body>
 </html>
