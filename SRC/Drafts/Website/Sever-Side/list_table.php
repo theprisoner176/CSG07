@@ -7,10 +7,20 @@ session_start();
 	$con=mysqli_connect("db.dcs.aber.ac.uk","csadmgp07","c54admgp07","csgp07_13_14");
 
 	  $res = mysqli_query($con,"SHOW TABLES");
+	  $field;
+	  $fieldNo = 0;
 	  while($cRow = mysqli_fetch_array($res)){
 	    echo "<p>" . $cRow[0] . "</p>";
+		$field = mysqli_query($con,"SELECT * FROM $cRow[0]");
 
-	}
+		echo "<table border='1'>";//list every field in the table
+		while($row = mysqli_fetch_array($field)){
+			echo "<td>" . $row[$fieldNo] . "</td>";
+				$fieldNo++;
+		}
+		echo "</tr>";
+		}
+	
 	mysqli_close($con);
 			echo <<<EOT
 			<p>
