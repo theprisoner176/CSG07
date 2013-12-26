@@ -42,6 +42,8 @@ public class MainMenu extends GeneralActivity {
 	 */
 	public void startWalkSetupScreen(View v){
 		Intent intent = new Intent(this, WalkSetupScreen.class);
+		//used to test map stuff without going through setup screen
+		//Intent intent = new Intent(this, MapScreen.class);
 	    startActivity(intent);
 	}
 	/**
