@@ -51,18 +51,20 @@ public class WalkSetupScreen extends GeneralActivity {
 		walk.setShortDescription(short_desc);
 		walk.setLongDescription(long_desc);
 		// test data
-		LocationPoint p = new LocationPoint(3,3);
-		PointOfInterest poi = new PointOfInterest(6,7);
-		poi.setDescription("This is a place of interest");
+//		LocationPoint p = new LocationPoint(3,3);
+//		PointOfInterest poi = new PointOfInterest(6,7);
+//		poi.setDescription("This is a place of interest");
+//		
+//		walk.addLocation(p);
+//		walk.addLocation(poi);
 		
-		walk.addLocation(p);
-		walk.addLocation(poi);
+		//manager.addWalkModel(walk);
+		//manager.uploadWalk(walk);
 		
-		manager.addWalkModel(walk);
-		manager.uploadWalk(walk);
-
 		Intent intent = new Intent(this, MapScreen.class);
+		intent.putExtra("walk", walk);
 	    startActivity(intent);
+	    
 		//testing camera stuff
 		 /*Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {

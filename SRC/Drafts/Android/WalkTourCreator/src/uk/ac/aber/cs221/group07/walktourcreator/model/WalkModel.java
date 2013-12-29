@@ -1,12 +1,16 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
+import java.io.Serializable;
 import java.util.Vector;
+
+import android.widget.Toast;
+import android.content.ContextWrapper;
 
 /**
  * stores all information about a single walk
  * @author HarryBuckley
  */
-public class WalkModel {
+public class WalkModel implements Serializable{
 	
 	/**
 	 * holds the name of the walk, is used as an identifier
@@ -25,6 +29,8 @@ public class WalkModel {
 	
 	/**
 	 * stores the vector of LocationPoints that make up the walk
+	 * !note - changed to array list for easier testing of
+	 * passing objects between activities
 	 */
 	private Vector<LocationPoint> path;
 	
@@ -124,6 +130,8 @@ public class WalkModel {
 	public void addLocation(LocationPoint point){
 		path.add(point);
 	}
-	
+
+
+
 	
 }

@@ -29,12 +29,12 @@ public class LocationPoint {
 	/**
 	 * creates new LoactionPoint
 	 * 
-	 * @param x the longitude position
-	 * @param y the latitude position
+	 * @param lat the longitude position
+	 * @param lng the latitude position
 	 */
-	public LocationPoint(double x,double y){
-		longitude=x;
-		latitude=y;
+	public LocationPoint(double lat,double lng){
+		longitude=lng;
+		latitude=lat;
 		long mil = System.currentTimeMillis();
 		time = new Date(mil).getTime();
 	}
