@@ -91,6 +91,7 @@ new TWTR.Widget({
 				while ($walk = mysqli_fetch_array($database->get_result())){
 						echo "<li>" . $walk["title"] . "</li>";
 				}
+				$database->close_connection();
 				?>
 			</section>
 			
