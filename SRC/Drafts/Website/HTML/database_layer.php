@@ -53,4 +53,12 @@
 				return $this->result;
 		}
 		
+		/**
+		 * Closes a connection to a database
+		 */
+		 public function close_connection(){
+			 mysqli_close($this->get_connection());
+		 }
+		
 }
+?>
