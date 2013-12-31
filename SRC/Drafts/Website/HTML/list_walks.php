@@ -89,7 +89,7 @@ new TWTR.Widget({
 				//outputs the results
 				// An option to make it OO with having a class called Walk, and in here creating a new Walk...to which would be outputted in the same way
 				while ($walk = mysqli_fetch_array($database->get_result())){
-						echo "<a href=walk_details.php?walk=".$walk["title"].">" . $walk["title"] . "</a>";
+						echo "<a href=walk_details.php?walk=".$walk["title"]."&amp;walk_id=".$walk["id"].">" . $walk["title"] . "</a>";
 						echo "<br/>";
 				}
 				$database->close_connection();
