@@ -7,6 +7,7 @@
 		 private $connection;
 		 private $query;
 		 private $result;
+		 private $sanitised_item;
 		 
 		
 		/*
@@ -59,6 +60,16 @@
 		 public function close_connection(){
 			 mysqli_close($this->get_connection());
 		 }
+		 
+		 /**
+		  * Santises an item from SQL Injection
+		  * @param is the object before sanitising it
+		  * return the sanitised String value
+		  */
+		 public function santise_item($object){
+				return $this->santise_item = strip_tags(mysqli_escape_string($this->get_connection(), $object));
+		}
+		
 		
 }
 ?>
