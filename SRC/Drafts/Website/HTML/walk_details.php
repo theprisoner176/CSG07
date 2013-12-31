@@ -30,9 +30,9 @@
 							///creates a new instance of the database walk option
 							$database = new DatabaseWalk();
 							$database->connect();
-							echo "<h2>" . $_GET['walk']. "</h2>";
-							$walk = $_GET['walk'];
-							$walk_id = $_GET['walk_id'];
+							$walk = $database->santise_item($_GET['walk']);
+							$walk_id = $database->santise_item($_GET['walk_id']);
+							echo "<h2>" .  $walk. "</h2>";	
 							$query = "SELECT * from List_of_Walks WHERE title='{$walk}' AND id='{$walk_id}'";
 							$database->prepare_query($query);
 							//sends the query
