@@ -8,7 +8,7 @@
 	$LIST_OF_WALKS = "List_of_Walks";
 	$LOCATION = "Location";
 	$PHOTO = "Photo";
-	$DESCRIPTION = "Description";
+	$DESCRIPTION = "Place_description";
 	send_table_query($LIST_OF_WALKS, $con);
 	echo "<br>";
 	send_table_query($LOCATION, $con);
