@@ -1,6 +1,7 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
+import uk.ac.aber.cs221.group07.walktourcreator.views.WalkFinishedView;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.view.View;
 
 /**
  * This class is responsible for displaying the main menu screen, and reacting to button presses
+ * @author HarryBuckley
  */
 public class MainMenu extends GeneralActivity {
 
@@ -20,37 +22,40 @@ public class MainMenu extends GeneralActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 	}
+	
 	/**
-	 * start a new MyWalksScreen activity
+	 * Starts a new WalkSetupScreen activity,
+	 * and displays it to the user.
+	 * The parameter v, is the object that called the method.
 	 * @param v is the View that is called the method
 	 */
 	public void startMyWalksScreen(View v){
 		Intent intent = new Intent(this, MyWalksScreen.class);
 	    startActivity(intent);
 	}
+	
 	/**
-	 * start a new WalkSetupScreen activity
-	 * @param v is the View that is called the method
+	 * Starts a new WalkSetupScreen activity,
+	 * and displays it to the user.
+	 * The parameter v, is the object that called the method.
+	 * @param v is the View that is called the method.
 	 */
 	public void startWalkSetupScreen(View v){
 		Intent intent = new Intent(this, WalkSetupScreen.class);
+		//used to test map stuff without going through setup screen
+		//Intent intent = new Intent(this, MapScreen.class);
 	    startActivity(intent);
 	}
 	/**
-	 * start a new OptionsScreen activity
+	 * Starts a new OptionsScreen activity,
+	 * and displays it to the user.
+	 * The parameter v, is the object that called the method.
 	 * @param v is the View that is called the method
 	 */
 	public void startOptionsScreen(View v){
 		Intent intent = new Intent(this, OptionsScreen.class);
 	    startActivity(intent);
+	    //new WalkFinishedView(getBaseContext(),null, this,v);
 	}
-	/**
-	 * start a new LoginScreen activity
-	 * @param v is the View that is called the method
-	 */
-	public void StartLoginScreen(View v){
-		Intent intent = new Intent(this, LoginScreen.class);
-	    startActivity(intent);
-	}
-
+	
 }

@@ -2,7 +2,7 @@ package uk.ac.aber.cs221.group07.walktourcreator.model;
 
 /**
  * This class stores information about a single image
- *
+ *@author HarryBuckley
  */
 public class ImageInformation {
 
@@ -26,6 +26,10 @@ public class ImageInformation {
 	 */
 	public ImageInformation(String name){
 		title = name;
+	}
+	
+	public String getImageAsString(){
+		return "AN IMAGE";
 	}
 	
 	public String getTitle(){

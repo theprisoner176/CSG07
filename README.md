@@ -1,5 +1,5 @@
 #Group 07 Walking Tour Creator Project
-
+ 
 This project allows the user to record a walk on their Android application by adding point of interests - which is associated with a title, short and long description and an image. The user can then view their walks on the website, aswell as a list of other walks. They will then be able to see any information to do with the walk on the website. 
 
 ## Development 

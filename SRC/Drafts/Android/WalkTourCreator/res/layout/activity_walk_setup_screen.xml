@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:onClick="submit"
+            android:onClick="startWalk"
             android:text="@string/submit" />
 
         <EditText
@@ -58,7 +58,8 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/title_input"
             android:ems="10"
-            android:hint="@string/short_description" />
+            android:hint="@string/short_description"
+            android:scrollHorizontally="false" />
 
         <EditText
             android:id="@+id/title_input"

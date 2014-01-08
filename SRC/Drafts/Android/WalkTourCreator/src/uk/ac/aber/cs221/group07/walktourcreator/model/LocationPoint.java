@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * This class stores a map position and records the time at which is was taken
+ * @author HarryBuckley
  */
 public class LocationPoint {
 
@@ -28,18 +29,20 @@ public class LocationPoint {
 	/**
 	 * creates new LoactionPoint
 	 * 
-	 * @param x the longitude position
-	 * @param y the latitude position
+	 * @param lat the longitude position
+	 * @param lng the latitude position
 	 */
-	public LocationPoint(double x,double y){
-		longitude=x;
-		latitude=y;
+	public LocationPoint(double lat,double lng){
+		longitude=lng;
+		latitude=lat;
 		long mil = System.currentTimeMillis();
 		time = new Date(mil).getTime();
 	}
+	
 	/**
-	 * create locationPoint from existing data.
-	 */
+	* creates a LocationPoint,
+	* used to recreate a point stored in the database.
+	*/
 	public LocationPoint(double x,double y,double time){
 		this.time = time;
 		this.latitude = y;
@@ -53,9 +56,16 @@ public class LocationPoint {
 		return time;
 	}
 	
-	public double getLogitude(){
+	/**
+	* returns the longitude, the east/west * distance from Greenwich.
+	*/
+	public double getLongitude(){
 		return longitude;
 	}
+	
+	/**
+	 * returns the latitude, the north/south distance from the equator.
+	 */
 	public double getLatitude(){
 		return latitude;
 	}

@@ -5,6 +5,7 @@ import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.views.WalkRow;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -13,6 +14,7 @@ import android.app.Activity;
 
 /**
  * This class is responsible for displaying the a two-tabbed screen with lists of walks, and reacting to button presses
+ * @author HarryBuckley
  */
 public class MyWalksScreen extends GeneralActivity {
 
@@ -41,6 +43,14 @@ public class MyWalksScreen extends GeneralActivity {
 	    	WalkRow row = new WalkRow(this,walk);
 	    	table.addView(row);
 		}
+	}
+	
+	/**
+	 * open a WalkInfoView popup on selected walk
+	 * The parameter v, is the object that called the method.
+	 */
+	public void viewWalk(View v){
+	
 	}
 
 }
