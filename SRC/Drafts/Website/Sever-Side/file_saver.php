@@ -22,19 +22,16 @@
 		$data = json_decode($json,true);
 		var_dump($data);
 
-
-		//insert all table Variables
 		
-		$shortDescription=$data['shortDesc'];
-		$longDescription=$data['longDesc'];
-		$photoName=$data['photoName'];
-		$titleName=$data['titleName'];
-		$coordinates=$data['coordinates'];
+		$shortDescription=$_POST['shortDesc'];
+		$longDescription=$_POST['longDesc'];
+		$photoName=$_POST['photoName'];
+		$coordinates=$_POST['coordinates'];
 		
 
-		//Get Table Name and field names
-		$sql = "INSERT INTO createListOfWalksTable(shortDesc, longDes,) values($sortDescription,$longDescription,0)";
-		$sql = "INSERT INTO createPhotoTable(photoName) values($photoName,0)";
+		//insert post data into tables 
+		$sql = "INSERT INTO createListOfWalksTable values($sortDescription,$longDescription,0)";
+		$sql = "INSERT INTO createPhotoTable values($photoName,0)";
 		
 		
 		mysql_query($sql);
