@@ -33,10 +33,10 @@
 							$walk = $database->santise_item($_GET['walk']);
 							$walk_id = $database->santise_item($_GET['walk_id']);
 							echo "<h2>" .  $walk. "</h2>";	
-							$query = "SELECT * from List_of_Walks WHERE title='{$walk}' AND id='{$walk_id}'";
+							$query = "SELECT * from List_of_Walks WHERE title='$walk' AND id='$walk_id'";
 							$database->prepare_query($query);
 							//sends the query
-							$database->send_query($query);
+							$database->send_query($database->get_query());
 							//outputs the results
 							// An option to make it OO with having a class called Walk, and in here creating a new Walk...to which would be outputted in the same way
 							while ($walk = mysqli_fetch_array($database->get_result())){
