@@ -20,9 +20,16 @@
 		/**
 		 * Prepares a query for the database, but it santises it first
 		 * @param is the SQL query sent to the server
+		 * @param uses the overloading way of checking whether there's any additional bits to the query.
 		 */
-		public function prepare_query($query){
-			$this->query = strip_tags(mysqli_escape_string($this->get_connection(), $query));
+		public function prepare_query($query, $query_extra=NULL){
+			if($query_extra != NULL){
+				$this->query = $query .mysqli_escape_string($this->get_connection(), $query_extra);
+				echo "<br>" . $this->query;
+			}
+			else {
+				$this->query = $query;
+			}
 		}
 		
 		/**
