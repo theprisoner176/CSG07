@@ -89,10 +89,9 @@ function createListOfWalksTable($con){
  "FROM Photo, Location ".
 	"WHERE Photo.placeId = Location.id";
 	
- //Link List_of_Walks ID to Location walkID
- $sql = "SELECT List_of_Walks.id, Location.id ".
- "FROM List_of_Walks, Location ".
-	"WHERE List_of_Walks.id = Location.walkID";
+ //Link List_of_Walks ID to Location walkID---Changed---Check
+ $sql = "SELECT * FROM Location LEFT JOIN List_of_Walks ON Location.walkID=List_of_Walks.id";
+
 	if (mysqli_query($con,$sql)){
 		echo "<p>Linked List_of_Walks ID to Location walkID</p>";
 	}
