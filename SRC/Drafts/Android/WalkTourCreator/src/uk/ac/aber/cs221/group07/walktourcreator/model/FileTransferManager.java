@@ -24,7 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * 
+ * Handles the encoding and uploading of walk data.
  * @author HarryBuckley
  *
  */

@@ -21,7 +21,7 @@ public class PlacesVisitedView extends PopupView{
 	 * creates a PlacesVisitedView instance. 
 	 * All the PointOfInterest from the 
 	 * passed walk are displayed in a table.
-	 * @param context, 
+	 * @param context, provides the context for the view. 
 	 * @param walk, the walk that contains the locations that are to be displayed
 	 * @param owner, this is the view that this class is a subview of.
 	 */

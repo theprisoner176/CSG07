@@ -16,8 +16,9 @@ import android.view.View;
  */
 public class PoiInfoView extends PopupView{
 	/**
-	 * creates a PoiInfoView instance. The PointOfInterest * that is passed to it
-	 *is displayed in in the popup.
+	 * creates a PoiInfoView instance. The PointOfInterest that is passed to it
+	 * is displayed in in the popup.
+	 * @param context, provides the context for the view. 
 	 */
 	public PoiInfoView(Context context,PointOfInterest point,GeneralActivity owner){
 		super(context,owner.getContentView());			
