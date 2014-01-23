@@ -25,10 +25,19 @@ public abstract class PopupView extends PopupWindow{
 
 	public View parent;
 	
+	/**
+	 * 
+	 * @param context, provides the context for the view.
+	 * @param parent 
+	 */
 	public PopupView(Context context, View parent) {
 		super(context);
 		this.parent = parent;
-	}		
+	}
+	
+	/**
+	 * 
+	 */
 	public void setContentView(View contentView){
 		contentView.setBackgroundColor(Color.BLUE);
 		super.setContentView(contentView);
@@ -40,6 +49,10 @@ public abstract class PopupView extends PopupWindow{
 				(int)0.9*parent.getHeight()
 				,true);*/
 	}
+	
+	/**
+	 * 
+	 */
 	public void cancel(){
 		this.dismiss();
 	}

@@ -9,6 +9,10 @@ import android.view.View;
  */
 public class WalkView extends View{
 
+	/**
+	 * 
+	 * @param context
+	 */
 	public WalkView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub

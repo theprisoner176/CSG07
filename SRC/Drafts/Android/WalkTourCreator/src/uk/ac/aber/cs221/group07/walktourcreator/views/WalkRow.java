@@ -12,15 +12,29 @@ import android.widget.TextView;
  *
  */
 public class WalkRow extends TableRow{
-
+	
+	/** holds the title of a walk*/
 	private TextView title;
+	
+	/** holds the short description for a walk*/
 	private TextView short_desc;
+	
+	/** holds the long description for a walk*/
 	private TextView long_desc;
+	
+	/** holds the distance of a walk*/
 	private TextView distance;
+	
+	/** hols the time it take to complete a walk*/
 	private TextView time_taken;
 	
 	
-	
+	/**
+	 * creates a walkRow object that will contain, information about the given walk.
+	 * 
+	 * @param context
+	 * @param walk, the walk that stats are to be displayed.
+	 */
 	public WalkRow(Context context,WalkModel walk) {
 		super(context);
     	
@@ -45,6 +59,13 @@ public class WalkRow extends TableRow{
     	addView(distance);
     	addView(time_taken);
 	}
+	
+	/**
+	 * reduces the length of a string so that it will fit into a column in the table.
+	 * @param s the string to the shrunk.
+	 * @param size the required string length.
+	 * @return the new string of length 'size'
+	 */
 	public String makeTextFit(String s,int size){
 		if(s.length()<=size||size<5)
 			return s;

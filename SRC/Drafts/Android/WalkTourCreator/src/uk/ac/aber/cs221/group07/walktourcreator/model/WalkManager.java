@@ -91,6 +91,13 @@ public class WalkManager extends SQLiteOpenHelper{
 		db.close();
 	}
 	
+	/**
+	 * 
+	 * @param location the location to be added
+	 * @param db the local database that is accessed
+	 * @param walkId the unique id of the added location.
+	 * @return returns 0 if no error.
+	 */
 	private int addLocation(LocationPoint location,SQLiteDatabase db,int walkId){
 		ContentValues values = new ContentValues();
 		values.put("latitude",location.getLatitude());
@@ -100,6 +107,13 @@ public class WalkManager extends SQLiteOpenHelper{
 		return (0);
 	}
 	
+	/**
+	 * 
+	 * @param poi the poi to be added
+	 * @param db db the local database that is accessed
+	 * @param locationId the unique id of the added poi.
+	 * @return returns 0 if no error.
+	 */
 	private int addPlace(PointOfInterest poi,SQLiteDatabase db,int locationId){
 		ContentValues values = new ContentValues();
 		values.put("location_id",locationId);
@@ -110,6 +124,13 @@ public class WalkManager extends SQLiteOpenHelper{
 		return (0);
 	}
 	
+	/**
+	 * 
+	 * @param image the image to be added to database
+	 * @param db the local database that is accessed
+	 * @param placeId the unique id of the photo
+	 * @return 0 if no error
+	 */
 	private int addPhoto(ImageInformation image,SQLiteDatabase db,int placeId){
 		ContentValues values = new ContentValues();
 		values.put("place_id",placeId);
@@ -119,6 +140,7 @@ public class WalkManager extends SQLiteOpenHelper{
 	
 	/**
 	 * returns the WalkModel with an id matching the passed one.
+	 * @param index, the id of the walk you want.
 	 */
 	public WalkModel getWalkByID(int index){
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -142,6 +164,13 @@ public class WalkManager extends SQLiteOpenHelper{
 		db.close();
 		return retval;
 	}
+	
+	/**
+	 * 
+	 * @param db the local database that is accessed 
+	 * @param index the id of the walk that rout you want.
+	 * @return a vector of all the point of the walk.
+	 */
 	private Vector<LocationPoint> getLocationFromWalkByWalkId(SQLiteDatabase db,int index){
 		Vector<LocationPoint> retval = new Vector<LocationPoint>();
 		String select = "SELECT * FROM location WHERE walk_id="+index;
@@ -155,22 +184,34 @@ public class WalkManager extends SQLiteOpenHelper{
 		}
 		return retval;
 	}
+	
+	/**
+	 *  will need to be changed I think the another parameter of walk id is needed., or return vector of all
+	 *  points of intereest instead
+	 * @param index 
+	 * @return 
+	 */
 	private PointOfInterest getPlaceByLocationID(int index){
 		return null;
 	}
 	
 	/**
 	* uploads the given walk to the server,
-	* the server interaction is handled by the FileTransferManager. */
+	* the server interaction is handled by the FileTransferManager. 
+	* 
+	* @param walk, the walk to be uploaded.
+	*/
 	public int uploadWalk(WalkModel walk){
 		FileTransferManager transfer = new FileTransferManager();
 		return transfer.uploadWalk(walk);
 		
 	}
 	/**
-	* returns the requested walk from the server,
-	* the server interaction is handled by the FileTransferManager. 
-	* */
+	 * PERHAPS TO BE REMOVED
+	 * 
+	 * returns the requested walk from the server,
+	 * the server interaction is handled by the FileTransferManager. 
+	 */
 	public WalkModel getWalkFromServerById(){
 		return null;
 	}

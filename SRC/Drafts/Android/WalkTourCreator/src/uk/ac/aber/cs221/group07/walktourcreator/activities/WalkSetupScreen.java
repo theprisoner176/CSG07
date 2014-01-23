@@ -35,7 +35,7 @@ public class WalkSetupScreen extends GeneralActivity {
 	* Starts a new MapScreen activity, and displays it to the user. * The detail that the user has input,
 	* are passed to the new activity.
 	* The parameter v, is the object that called the method.
-	*  @param v is the View that called this method
+	* @param v is the View that called this method
 	*/
 	public void startWalk(View v){
 		WalkManager manager = new WalkManager(this);

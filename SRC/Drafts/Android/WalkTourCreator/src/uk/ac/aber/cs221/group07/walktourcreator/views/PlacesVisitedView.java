@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 /**
+ * Create a popupView that displays a list of all the points of interest
+ * that have been visited along the walk.
  * 
  * @author HarryBuckley
  *
@@ -19,6 +21,9 @@ public class PlacesVisitedView extends PopupView{
 	 * creates a PlacesVisitedView instance. 
 	 * All the PointOfInterest from the 
 	 * passed walk are displayed in a table.
+	 * @param context, 
+	 * @param walk, the walk that contains the locations that are to be displayed
+	 * @param owner, this is the view that this class is a subview of.
 	 */
 	public PlacesVisitedView(Context context,WalkModel walk,GeneralActivity owner){
 		super(context,owner.getContentView());			
@@ -29,7 +34,7 @@ public class PlacesVisitedView extends PopupView{
 	
 	/**
 	 * opens a PoiInfoView.
-	 * The parameter v, is the object that called the method. 
+	 * @param The parameter v, is the object that called the method. 
 	 */
 	public void getPoiInfo(View v){
 

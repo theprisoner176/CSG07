@@ -20,6 +20,11 @@ public class WalkFinishedView extends PopupView{
 	 * displays a screen displaying
 	 * a summary of the finished walk, and
 	 * shows various options to the user regarding the WalkModel.
+	 * 
+	 * @param context, provides the context for the view.
+	 * @param walk,
+	 * @param owner,
+	 * @param parent,
 	 */
 	public WalkFinishedView(Context context,WalkModel walk,GeneralActivity owner,View parent){
 		super(context,parent);
@@ -30,7 +35,7 @@ public class WalkFinishedView extends PopupView{
 	
 	/**
 	 * open a PoiInfoView
-	 * The parameter v, is the object that called the method. 
+	 * @param The parameter v, is the object that called the method. 
 	 */
 	public void uploadWalk(View v){
 		

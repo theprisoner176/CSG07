@@ -37,6 +37,8 @@ public class FileTransferManager{
 	* uploads all files belonging to the given
 	* file, the return values will be zero if
 	* the method succeeded without problems.
+	* 
+	* @param walk, the walk that is to be uploaded.
 	*/
 	public int uploadWalk(WalkModel walk){		
 		//create a new thread for each upload
@@ -44,6 +46,11 @@ public class FileTransferManager{
 		return 0;
 	}
 	
+	/**
+	 * 
+	 * @param data, the walk that is to be uploaded.
+	 * @return the walk encoded into a json object.
+	 */
 	private static JSONObject packageData(WalkModel data){
 		JSONObject walkData = new JSONObject();
 		try{
@@ -61,6 +68,14 @@ public class FileTransferManager{
 		}catch (JSONException e){ }
 		return walkData;
 	}
+	
+	/**
+	 * packages all the places of interest into a JSONArray.
+	 * 
+	 * @param poiList, a vector of all the places in the walk.
+	 * @return a JSON Array containing all the places of interest in the walk
+	 * @throws JSONException
+	 */
 	private static JSONArray packagePlaces(Vector<PointOfInterest> poiList) throws JSONException{
 		JSONArray routeData = new JSONArray();
 		for(PointOfInterest poi: poiList){
@@ -69,6 +84,13 @@ public class FileTransferManager{
 		return routeData;
 	}
 	
+	/**
+	 * packages the route into a JSONArray.
+	 * 
+	 * @param route, a vector containing all the points a long the walk.
+	 * @return a JSON Array containing all the point along the walk
+	 * @throws JSONException
+	 */
 	private static JSONArray packageRoute(Vector<LocationPoint> route) throws JSONException{
 		JSONArray routeData = new JSONArray();
 		for(LocationPoint point: route){
@@ -77,7 +99,13 @@ public class FileTransferManager{
 		return routeData;
 	}
 	
-	
+	/**
+	 * packages a single location into a JSONObject
+	 * 
+	 * @param point the point to be encoded
+	 * @return the encoded point.
+	 * @throws JSONException
+	 */
 	private static JSONObject packageLocationPoint(LocationPoint point) throws JSONException{
 		JSONObject location = new JSONObject();
 
@@ -87,6 +115,13 @@ public class FileTransferManager{
 		return location;
 	}
 	
+	/**
+	 * package a single place of interest into a JSONObject
+	 *
+	 * @param poi the place of interest to be encoded.
+	 * @return the encoded poi.
+	 * @throws JSONException
+	 */
 	private static JSONObject packagePoi(PointOfInterest poi) throws JSONException{
 		JSONObject place = new JSONObject();
 		place.put("description",poi.getDescription() );
@@ -100,6 +135,10 @@ public class FileTransferManager{
 		return place;
 	}
 	
+	/**
+	 * sends the JSON data to the dataserver.
+	 * @param pakagedData the data to be sent.
+	 */
 	private static void post(JSONObject pakagedData) {
 	    HttpClient httpclient = new DefaultHttpClient();
 	    HttpPost post = new HttpPost(dataServer);
@@ -116,13 +155,20 @@ public class FileTransferManager{
 	        //do some error handling
 	    } catch (IOException e) { }
 	} 
-
+	
+	/**
+	 *  a inner class that keeps the upload working in a separate thread.
+	 */
 	private class Uploader extends Thread{
+		/**holds the walk to be encoded, then uploaded*/
 		private WalkModel data;
 		
+		/**set the walk data*/
 		public Uploader(WalkModel walk){
 			data = walk;
 		}
+		
+		/** start process of upload*/
 		public void run(){
 			post(packageData(data));
 		}

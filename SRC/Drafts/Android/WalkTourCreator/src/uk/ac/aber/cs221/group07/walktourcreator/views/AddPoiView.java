@@ -11,7 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 /**
- * 
+ * AddPoiView creates popupView that prompts the user to enter information 
+ * about a new place of interest.
  * @author HarryBuckley
  *
  */
@@ -20,6 +21,9 @@ public class AddPoiView extends PopupView{
 	/**
 	 * displays an place description input popup, 
 	 * and gives it a link to the RouteRecorder 
+	 * @param context, provides the context for the view.
+	 * @param recorder, the RouteRecorder that ...
+	 * @param owner, this is the view that this class is a subview of.
 	 */
 	public AddPoiView(Context context,RouteRecorder recorder,GeneralActivity owner){
 		super(context,owner.getContentView());		
@@ -31,7 +35,7 @@ public class AddPoiView extends PopupView{
 	/**
 	 * creates a PointOfInterst out of the given
 	 * data (from text fields) and add the point the the WalkModel 
-	 * The parameter v, is the object that called the method.
+	 * @param The parameter v, is the object that called the method.
 	 */
 	public void submit(View v){
 		
@@ -39,7 +43,7 @@ public class AddPoiView extends PopupView{
 	/**
 	 * uses ImageHandler to open the photoLibrary,
 	 * the selected photo is then added to the PointOfInterest. 
-	 * The parameter v, is the object that called the method.
+	 * @param The parameter v, is the object that called the method.
 	 */
 	public void getPhotoFromLibrary(View v){
 		
@@ -47,7 +51,7 @@ public class AddPoiView extends PopupView{
 	/**
 	 * uses ImageHandler to open the camera app,
 	 * the taken photo is then added to the PointOfInterest. 
-	 * The parameter v, is the object that called the method. 
+	 * @param The parameter v, is the object that called the method. 
 	 */
 	public void getPhotoFromCamera(View v){
 		

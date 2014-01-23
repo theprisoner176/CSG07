@@ -22,6 +22,9 @@ public class WalkInfoView extends PopupView{
 	 * creates a WalkInfoView instance.
 	 *  The WalkModel that is passed to it
 	 *  is displayed in in the popup.
+	 *  @param context, provides the context for the view.
+	 *  @param walk,
+	 *  @param owner,
 	 */
 	public WalkInfoView(Context context,WalkModel walk,GeneralActivity owner){
 		super(context,owner.getContentView());	
