@@ -5,34 +5,27 @@ package uk.ac.aber.cs221.group07.walktourcreator.model;
  *@author HarryBuckley
  */
 public class ImageInformation {
-
+	
 	/**
-	 * holds the title of an image, used 
-	 */
-	private String title;
-	/**
-	 * The name of the actual file, not the title because is has to be unique
+	 * The name of the actual file, is has to be unique to all other photos stored by the app.
 	 */
 	private String fileName;
-	/**
-	 * description of image
-	 */
-	private String description;
 	
 	/**
 	 * creates the ImageInformation and set name
 	 * 
 	 * @param name the name of the new photo
 	 */
-	public ImageInformation(String name){
-		title = name;
+	public ImageInformation(String filename){
+		fileName = filename;
 	}
 	
 	public String getImageAsString(){
+		//open image at fileName.jpg
 		return "AN IMAGE";
 	}
-	
-	public String getTitle(){
-		return title;
+	public void deleteImage(){
+		//remove image file
 	}
+	
 }

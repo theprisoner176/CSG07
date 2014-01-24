@@ -33,7 +33,6 @@ public class MyWalksScreen extends GeneralActivity {
 
 	/**
 	 * updateList populates TableLayouts from both Tabs, with walk data from 'walkDatabase'
-	 *
 	 */
 	private void updateList(){
 		TableLayout table = (TableLayout) findViewById(R.id.localWalks);

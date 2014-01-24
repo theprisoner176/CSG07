@@ -8,16 +8,13 @@ import java.util.Vector;
  */
 public class PointOfInterest extends LocationPoint{
 
+	/** holds all the images that are related to this poi.*/
 	private Vector<ImageInformation> images = new Vector<ImageInformation>();
 	
-	/**
-	 * holds the name of the POI
-	 */
+	/** holds the name of the POI */
 	private String title;
 	
-	/**
-	 * holds a description of the POI
-	 */
+	/** holds a description of the POI*/
 	private String description;
 	
 	/**
@@ -34,6 +31,10 @@ public class PointOfInterest extends LocationPoint{
 	* used when creating a PointOfInterest from a database entry. */
 	public PointOfInterest(double x,double y,double time){
 		super(x,y,time);
+	}
+	
+	public void addImage(ImageInformation newImage){
+		images.add(newImage);
 	}
 	
 	/**
@@ -55,5 +56,12 @@ public class PointOfInterest extends LocationPoint{
 	 */
 	public void setDescription(String desc){
 		description = desc;
+	}
+	
+	/**
+	 * sets the title of this point. 
+	 */
+	public void setTitle(String title){
+		this.title = title;
 	}
 }

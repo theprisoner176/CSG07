@@ -1,7 +1,10 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
+import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
+import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
+import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.services.PositionListener;
 import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
@@ -10,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,11 +26,12 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 /**
  * This class is responsible for displaying the map screen, and reacting to button presses
  * @author HarryBuckley
  */
-public class MapScreen extends Activity {
+public class MapScreen extends GeneralActivity {
 	 public final LatLng LOCATION_START = new LatLng(52.416204,-4.065419);
 	
 	 private GoogleMap map;
@@ -36,7 +41,6 @@ public class MapScreen extends Activity {
 	 private RouteRecorder recorder;
 	 private Marker currentPosition;
 	 private WalkModel walk;
-	 
 	
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
@@ -50,7 +54,7 @@ public class MapScreen extends Activity {
 		setUpMapIfNeeded();
 		
 		Intent intent = getIntent();
-		WalkModel walk = (WalkModel) intent.getSerializableExtra("walk");
+		walk = (WalkModel) intent.getSerializableExtra("walk");
 		
 		LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
@@ -64,21 +68,37 @@ public class MapScreen extends Activity {
 		//map = (MapView) findViewById(R.id.map_view);
 	}
 	
-	public void setWalk(WalkModel w){
-		walk = w;
-	}
 	
 	/**
-	* creates and displays a AddPoiView.
-	* The parameter v, is the object that called the method. */
+	 * creates and displays a AddPoiView.
+	 * The parameter v, is the object that called the method.
+	 */
 	public void addPOI(View v){
-		
+		//for testing only this will be done in another screen/popup
+		ImageHandler image_saver = new ImageHandler(this);
+		PointOfInterest newPoi = new PointOfInterest(1.0,2.0);
+		newPoi.addImage(image_saver.getPhotoFromCamera());
+		newPoi.setTitle("A great place to go");
+		newPoi.setDescription("it is blah blah blah ...");
+		walk.addLocation(newPoi);
 	}
+	
 	/**
 	* creates and displays a WalkFinishedView.
 	* The parameter v, is the object that called the method. */
 	public void finishWalk(View v){
+		//test will perhaps be moved elsewhere
+		//*
+		WalkManager manager = new WalkManager(this);
 		
+		LocationPoint p = new LocationPoint(3,3);
+		PointOfInterest poi = new PointOfInterest(6,7);
+		poi.setDescription("This is a place of interest");
+		
+		walk.addLocation(p);
+		walk.addLocation(poi);
+		//manager.addWalkModel(walk);
+		manager.uploadWalk(walk);//*/
 	}
 	/**
 	* creates and displays a PlacesVisitedView.

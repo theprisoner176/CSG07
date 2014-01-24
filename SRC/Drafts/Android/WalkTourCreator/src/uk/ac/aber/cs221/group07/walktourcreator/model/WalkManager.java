@@ -61,6 +61,7 @@ public class WalkManager extends SQLiteOpenHelper{
 	
 	
 	public WalkManager(Context context) {
+		
 		super(context, DATABASE_NAME, null, 13);
 	}
 	
@@ -134,7 +135,7 @@ public class WalkManager extends SQLiteOpenHelper{
 	private int addPhoto(ImageInformation image,SQLiteDatabase db,int placeId){
 		ContentValues values = new ContentValues();
 		values.put("place_id",placeId);
-		values.put("title", image.getTitle());
+		values.put("photo_data", image.getImageAsString());
 		return (0);
 	}
 	

@@ -30,7 +30,7 @@
     <!-- MapScreen values -->
     <string name="add_point_of_interest">add POI</string>
     <string name="options_popup">Options</string>
-    <string name="play_pause">Play/Pause</string>
+    <string name="play_pause">Finish</string>
 	<!-- Login Screen -->
 	<string name="login_button">Login</string>
 	<string name="register_button">Register</string>

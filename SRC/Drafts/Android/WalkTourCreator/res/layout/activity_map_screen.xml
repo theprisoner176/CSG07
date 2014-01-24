@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/add_point_of_interest"
         android:layout_alignParentRight="true"
+        android:onClick="finishWalk"
         android:text="@string/play_pause" />
 
     <Button

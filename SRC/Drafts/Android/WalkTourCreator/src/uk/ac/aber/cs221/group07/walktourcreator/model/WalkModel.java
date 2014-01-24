@@ -12,19 +12,13 @@ import android.content.ContextWrapper;
  */
 public class WalkModel implements Serializable{
 	
-	/**
-	 * holds the name of the walk, is used as an identifier
-	 */
+	/** holds the name of the walk, is used as an identifier */
 	private String title;
 	
-	/**
-	 * store a long description of the walk, it is limited to X characters
-	 */
+	/** store a long description of the walk, it is limited to X characters */
 	private String longDesc;
 	
-	/**
-	 * store a short description of the walk, it is limited to X characters
-	 */
+	/** store a short description of the walk, it is limited to X characters */
 	private String shortDesc;
 	
 	/**
@@ -130,8 +124,4 @@ public class WalkModel implements Serializable{
 	public void addLocation(LocationPoint point){
 		path.add(point);
 	}
-
-
-
-	
 }
