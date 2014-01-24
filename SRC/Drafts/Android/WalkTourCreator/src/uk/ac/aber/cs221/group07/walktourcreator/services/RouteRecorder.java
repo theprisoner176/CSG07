@@ -32,7 +32,13 @@ public class RouteRecorder extends Service{
 	 * holds the number of milliseconds the app wait before getting a location
 	 */
 	private long frequencyOfRecorder;
+	/**
+	 * PositionListener to process new location data.
+	 */
 	private PositionListener posListener;
+	/**
+	 * The map screen.
+	 */
 	private MapScreen gMap;
 	
 	/**
@@ -43,28 +49,21 @@ public class RouteRecorder extends Service{
 		
 	}
 	
-	
+	/**
+	 * Constructor for the recorder. Takes a PositionListener and a LocationManager
+	 * to start listening for location updates.
+	 */
 	public RouteRecorder(PositionListener posListener,LocationManager manager){
 		locationManager = manager;
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, posListener);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3, 0, posListener);
 	}
-	
-	public void setMap(MapScreen map){
-		gMap = map;
-	}
-	
+
+	/**
+	 * Makes a reference of the WalkModel for the current walk.
+	 * @param w
+	 */
 	public void setWalk(WalkModel w){
 		walk = w;
-	}
-	
-	/**
-	 * starts the recording of location points
-	 */
-	public void startRecording(){
-		LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-		posListener = new PositionListener();
-		posListener.setMap(gMap);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, posListener);
 	}
 	
 	/**
@@ -74,6 +73,10 @@ public class RouteRecorder extends Service{
 		
 	}
 	
+	/**
+	 * saves the location in the WalkModel object
+	 * @param loc
+	 */
 	public void newLocation(LocationPoint loc){
 		walk.addLocation(loc);
 	}

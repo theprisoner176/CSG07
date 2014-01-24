@@ -53,14 +53,22 @@ public class MapScreen extends GeneralActivity {
 		
 		setUpMapIfNeeded();
 		
+		//get a reference to the intent used to instantiate the class
+		//and get the WalkModel object that was created
 		Intent intent = getIntent();
 		walk = (WalkModel) intent.getSerializableExtra("walk");
 		
+		//location manager to get location data
 		LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
+		//position listener used to process action when location data is gathered
 		PositionListener posListener = new PositionListener();
 		posListener.setMap(this);
+		
+		//create recorder and pass listener and manager
 		recorder = new RouteRecorder(posListener,manager);
+		
+		//give control of the map
 		recorder.setWalk(walk);
 		posListener.setRecorder(recorder);
 		
@@ -107,24 +115,27 @@ public class MapScreen extends GeneralActivity {
 		
 	}
 	
-	public void initLocation(){
-		map.addMarker(new MarkerOptions().position(LOCATION_START).title("You are here"));
-		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(LOCATION_START,17);
-		map.animateCamera(update);
-	}
-	
+	/*
+	 * Called whenever location data is gathered
+	 */
 	public void updatePosition(LocationPoint loc){
+		//Takes the lat and lng of the LocationPoint and creates a LatLng object
 		LatLng pos = new LatLng(loc.getLatitude(),loc.getLongitude());
+		//Focus camera on user location
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(pos,17);
 		map.animateCamera(update);
 		if(currentPosition!=null){
 			currentPosition.remove();
 		}
+		//put marker to show current user location
 		currentPosition = map.addMarker(new MarkerOptions().position(pos));
 		String str =  "added point"+loc.getLatitude()+";"+loc.getLongitude();
 		Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
 	}
 	
+	/*
+	 * Created the map if it is not already created
+	 */
 	private void setUpMapIfNeeded() {
 	    // Do a null check to confirm that we have not already instantiated the map.
 	    if (map == null) {
@@ -137,5 +148,13 @@ public class MapScreen extends GeneralActivity {
 	        }
 	    }
 	}
+	
+//	protected void onPause(){
+//		Toast.makeText(getApplicationContext(), "PAUSE", Toast.LENGTH_LONG).show();
+//	}
+//	
+//	protected void onDestroy(){
+//		Toast.makeText(getApplicationContext(), "DESTROYED", Toast.LENGTH_LONG).show();
+//	}
 
 }

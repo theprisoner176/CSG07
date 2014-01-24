@@ -14,8 +14,11 @@ public class PositionListener implements LocationListener {
 	
 	@Override
 	public void onLocationChanged(Location loc) {
+		//Create a LocationPoint and set lat and lng to the recieved location
 		LocationPoint pos = new LocationPoint(loc.getLatitude(),loc.getLongitude());
+		//update map camera to new position
 		map.updatePosition(pos);
+		//send it to the recorder which saves it in the WalkModel
 		recorder.newLocation(pos);
 		
 	}
