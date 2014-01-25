@@ -62,7 +62,7 @@ public class FileTransferManager{
 			walkData.put("distance"		, data.getDistance());
 			//add all location points
 			walkData.put("locations", packageRoute(data.getRoutePath()));
-			//add all places of interest
+			// all places of interest
 			walkData.put("places", packagePlaces(data.getPoiList()));
 					
 		}catch (JSONException e){ }

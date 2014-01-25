@@ -1,5 +1,7 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
+import java.util.Vector;
+
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
@@ -36,10 +38,10 @@ public class MyWalksScreen extends GeneralActivity {
 	 */
 	private void updateList(){
 		TableLayout table = (TableLayout) findViewById(R.id.localWalks);
-		WalkModel walk;
 		WalkManager manager = new WalkManager(this);
-		for(int i=1;(walk =  manager.getWalkByID(i))!=null;i++){	
-	    	WalkRow row = new WalkRow(this,walk);
+	    
+		for(WalkModel walk:manager.getAllWalks()){
+			WalkRow row = new WalkRow(this,walk);
 	    	table.addView(row);
 		}
 	}

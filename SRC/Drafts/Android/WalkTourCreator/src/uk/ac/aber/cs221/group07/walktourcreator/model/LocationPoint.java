@@ -9,7 +9,11 @@ import java.util.Date;
  */
 public class LocationPoint {
 
+	/** holds the next id, that can be used */
+	private static int nextId = 0;
 	
+	/** holds an id that is unique to the current walk*/
+	private int id;
 	
 	/**
 	 * holds the distance (east-west) from Greenwich)
@@ -24,7 +28,7 @@ public class LocationPoint {
 	/**
 	 * keeps a record of when the location was captured 
 	 */
-	private double time;
+	private long time;
 	
 	/**
 	 * creates new LoactionPoint
@@ -33,31 +37,35 @@ public class LocationPoint {
 	 * @param lng the latitude position
 	 */
 	public LocationPoint(double lat,double lng){
-		longitude=lng;
-		latitude=lat;
-		long mil = System.currentTimeMillis();
-		time = new Date(mil).getTime();
+		this(lat,lng,System.currentTimeMillis());
 	}
 	
 	/**
 	* creates a LocationPoint,
 	* used to recreate a point stored in the database.
+	* 
+	*  @param lat the longitude position
+	*  @param lng the latitude position
+	*  @param time, the time in milliseconds that this point was reached
+	*  @param id, used to to identify this point uniquely 
 	*/
-	public LocationPoint(double x,double y,double time){
+	public LocationPoint(double lat,double lng,long time){
 		this.time = time;
-		this.latitude = y;
-		this.longitude = x;
+		this.latitude = lat;
+		this.longitude = lng;
+		this.id = nextId;
+		nextId++;
 	}
 	
 	/**
 	 * @return the Time that the recording was made
 	 */
-	public double getTime(){
+	public long getTime(){
 		return time;
 	}
 	
 	/**
-	* returns the longitude, the east/west * distance from Greenwich.
+	* returns the longitude, the east/west distance from Greenwich.
 	*/
 	public double getLongitude(){
 		return longitude;
@@ -72,7 +80,7 @@ public class LocationPoint {
 	
 	/**
 	 * works out the distance between two 
-	 * @param point the Location the you want the know the distance of
+	 * @param point the Location the you want the know the distance to
 	 * @return the distance between itself and the given Location
 	 */
 	protected double distanceTo(LocationPoint point){

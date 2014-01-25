@@ -16,25 +16,23 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class WalkManager extends SQLiteOpenHelper{
 	
 	private final static String DATABASE_NAME = "walks.db"; 
-
 	
 	/**
 	 * contains the SQL commands used to create the 'location' table
 	 */
 	private final static String CREATE_LOCATION_TABLE = 
 			"CREATE TABLE location (" +
-			"id INTEGER PRIMARY KEY AUTOINCREMENT," +
+			"time INTEGER PRIMARY KEY," +
 			"walk_id INTEGER NOT NULL REFERENCES walk(id) DEFAULT 0," +
 			"latitude REAL DEFAULT 0," +
-			"longitude REAL DEFAULT 0," +
-			"timestamp REAL DEFAULT 0)";
+			"longitude REAL DEFAULT 0)";
 
 	/**
 	 * contains the SQL commands used to create the 'walk' table
 	 */
 	private final static String CREATE_WALK_TABLE = 
 			"CREATE TABLE walk (" +
-			"id INTEGER PRIMARY KEY AUTOINCREMENT," +
+			"id INTEGER PRIMARY KEY," +
 			"title TEXT NOT NULL DEFAULT 'defaultWalk'," +
 			"short_desc TEXT NOT NULL DEFAULT 'shrt'," +
 			"long_desc TEXT NOT NULL DEFAULT 'lng'," +
@@ -46,9 +44,11 @@ public class WalkManager extends SQLiteOpenHelper{
 	 */
 	private final static String CREATE_PLACE_TABLE =
 			"CREATE TABLE place (" +
-			"id INTEGER PRIMARY KEY AUTOINCREMENT," +
-			"location_id INTEGER REFERENCES location(id) ON UPDATE CASCADE ON DELETE CASCADE NOT NULL," +
-			"description INTEGER NOT NULL)";
+			"time INTEGER PRIMARY KEY," +
+			"description INTEGER NOT NULL," +
+			"walk_id INTEGER NOT NULL REFERENCES walk(id) DEFAULT 0," +
+			"latitude REAL DEFAULT 0," +
+			"longitude REAL DEFAULT 0)";
 
 	/**
 	 * contains the SQL commands used to create the 'photo' table
@@ -61,8 +61,7 @@ public class WalkManager extends SQLiteOpenHelper{
 	
 	
 	public WalkManager(Context context) {
-		
-		super(context, DATABASE_NAME, null, 13);
+		super(context, DATABASE_NAME, null, 17);
 	}
 	
 	
@@ -73,128 +72,120 @@ public class WalkManager extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		
+		//don't add if already added...
+		String select = "SELECT * FROM walk WHERE id = " + walk.getID();
+		Cursor cur = db.rawQuery(select, null);
+		if(cur.getCount()<=0){ //no matches
+			cur.close();
+			return;
+		}
+		//add to walk table
+		values.put("id", walk.getID());
 		values.put("title", walk.getTitle());
 		values.put("short_desc", walk.getShortDescription());
 		values.put("long_desc", walk.getLongDescription());
-		values.put("hours", 1.3);
-		values.put("distance", 13.0);
-		
+		values.put("hours", walk.getTimeTaken());
+		values.put("distance", walk.getDistance());
 		db.insert("walk", null, values);
-		
-		for(LocationPoint location : walk.getRoutePath()){
-			if(location instanceof PointOfInterest){
-				addPlace((PointOfInterest)location,db,addLocation(location,db,1));
-			}
-			else{
-				addLocation(location,db,1);
-			}
-		}
+		//add the path of the walk (locations and places)
+		addPath(walk.getRoutePath(),db,walk.getID());
 		db.close();
 	}
 	
+	
+	
 	/**
+	 * adds all the path data to the database
 	 * 
 	 * @param location the location to be added
 	 * @param db the local database that is accessed
 	 * @param walkId the unique id of the added location.
-	 * @return returns 0 if no error.
 	 */
-	private int addLocation(LocationPoint location,SQLiteDatabase db,int walkId){
-		ContentValues values = new ContentValues();
-		values.put("latitude",location.getLatitude());
-		values.put("longitude",location.getLongitude());
-		values.put("time",location.getTime());
-		db.insert("location", null, values);
-		return (0);
+	private void addPath(Vector<LocationPoint> path,SQLiteDatabase db,long walkId){
+		for(LocationPoint location: path){
+			ContentValues values = new ContentValues();
+			values.put("time",location.getTime());
+			values.put("latitude",location.getLatitude());
+			values.put("longitude",location.getLongitude());
+		
+			if(location instanceof PointOfInterest){
+				values.put("description", ((PointOfInterest) location).getDescription());
+				addPhotos((PointOfInterest) location,db,location.getTime());
+				db.insert("place", null, values);
+			}
+			else{
+				db.insert("location", null, values);
+			}
+		}
 	}
 	
-	/**
-	 * 
-	 * @param poi the poi to be added
-	 * @param db db the local database that is accessed
-	 * @param locationId the unique id of the added poi.
-	 * @return returns 0 if no error.
-	 */
-	private int addPlace(PointOfInterest poi,SQLiteDatabase db,int locationId){
-		ContentValues values = new ContentValues();
-		values.put("location_id",locationId);
-		values.put("description", poi.getDescription());
-		for(ImageInformation image:poi.getImages()){
-			addPhoto(image,db,0);
-		}
-		return (0);
-	}
 	
 	/**
 	 * 
 	 * @param image the image to be added to database
 	 * @param db the local database that is accessed
 	 * @param placeId the unique id of the photo
-	 * @return 0 if no error
 	 */
-	private int addPhoto(ImageInformation image,SQLiteDatabase db,int placeId){
-		ContentValues values = new ContentValues();
-		values.put("place_id",placeId);
-		values.put("photo_data", image.getImageAsString());
-		return (0);
+	private void addPhotos(PointOfInterest poi,SQLiteDatabase db,long placeId){
+		for(ImageInformation image:poi.getImages()){
+			ContentValues values = new ContentValues();
+			values.put("place_id",placeId);
+			values.put("photo_name", image.getFileName());
+		}
 	}
 	
 	/**
 	 * returns the WalkModel with an id matching the passed one.
 	 * @param index, the id of the walk you want.
 	 */
-	public WalkModel getWalkByID(int index){
+	public Vector<WalkModel> getAllWalks(){
 		SQLiteDatabase db = this.getReadableDatabase();
-		String select = "SELECT * FROM walk WHERE id="+index;
-
+		String select = "SELECT * FROM walk";
+		Vector<WalkModel> walks= new Vector<WalkModel>();
+		
 		Cursor cur = db.rawQuery(select, null);
-		if(cur.getCount()<=0){
+		if(cur.getCount()<=0){ //no matches
 			cur.close();
 			return null;
 		}
 		cur.moveToFirst();
-		
-		String title = cur.getString(cur.getColumnIndex("title"));
-		int id = cur.getInt(cur.getColumnIndex("id"));
-		String longDesc = cur.getString(cur.getColumnIndex("long_desc"));
-		String shortDesc = cur.getString(cur.getColumnIndex("short_desc"));
-		Vector<LocationPoint> path = getLocationFromWalkByWalkId(db,index);
-		
-		WalkModel retval = new WalkModel(id,title,path,shortDesc,longDesc);
-	
+		do{
+			String title = cur.getString(cur.getColumnIndex("title"));
+			int id = cur.getInt(cur.getColumnIndex("id"));
+			String longDesc = cur.getString(cur.getColumnIndex("long_desc"));
+			String shortDesc = cur.getString(cur.getColumnIndex("short_desc"));
+			Vector<LocationPoint> path = getPathFromWalk(db,id);
+			
+			WalkModel walk = new WalkModel(id,title,path,shortDesc,longDesc);
+			walks.add(walk);
+			
+		}while(cur.moveToNext());
 		db.close();
-		return retval;
+		return walks;
 	}
 	
 	/**
+	 * returns all the locations and places from a walk
 	 * 
 	 * @param db the local database that is accessed 
 	 * @param index the id of the walk that rout you want.
 	 * @return a vector of all the point of the walk.
 	 */
-	private Vector<LocationPoint> getLocationFromWalkByWalkId(SQLiteDatabase db,int index){
+	private Vector<LocationPoint> getPathFromWalk(SQLiteDatabase db,int index){
+		//CURRENTLY ONLY ADDS LOCATIONS NOT POIs 
 		Vector<LocationPoint> retval = new Vector<LocationPoint>();
-		String select = "SELECT * FROM location WHERE walk_id="+index;
-		Cursor cur = db.rawQuery(select, null);
+		String selectLocation = "SELECT * FROM location WHERE walk_id="+index;
+		Cursor cur = db.rawQuery(selectLocation, null);
 		while(cur.moveToNext()){
 			double latitude = cur.getDouble(cur.getColumnIndex("latitude"));
 			double longitude = cur.getDouble(cur.getColumnIndex("longitude"));
-			double time = cur.getDouble(cur.getColumnIndex("timestamp"));
+			long time = cur.getLong(cur.getColumnIndex("time"));
 			LocationPoint location = new LocationPoint(latitude,longitude,time);
 			retval.add(location);
 		}
 		return retval;
 	}
 	
-	/**
-	 *  will need to be changed I think the another parameter of walk id is needed., or return vector of all
-	 *  points of intereest instead
-	 * @param index 
-	 * @return 
-	 */
-	private PointOfInterest getPlaceByLocationID(int index){
-		return null;
-	}
 	
 	/**
 	* uploads the given walk to the server,
@@ -207,22 +198,6 @@ public class WalkManager extends SQLiteOpenHelper{
 		return transfer.uploadWalk(walk);
 		
 	}
-	/**
-	 * PERHAPS TO BE REMOVED
-	 * 
-	 * returns the requested walk from the server,
-	 * the server interaction is handled by the FileTransferManager. 
-	 */
-	public WalkModel getWalkFromServerById(){
-		return null;
-	}
-	
-	
-	
-	
-	
-	
-	
 	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
@@ -238,7 +213,6 @@ public class WalkManager extends SQLiteOpenHelper{
 		db.execSQL("DROP TABLE IF EXISTS location");
 		db.execSQL("DROP TABLE IF EXISTS place");
 		db.execSQL("DROP TABLE IF EXISTS photo");
-	 
 		this.onCreate(db);
 	}
 

@@ -95,7 +95,7 @@ public class MapScreen extends GeneralActivity {
 	* creates and displays a WalkFinishedView.
 	* The parameter v, is the object that called the method. */
 	public void finishWalk(View v){
-		//test will perhaps be moved elsewhere
+		//test, will perhaps be moved elsewhere
 		//*
 		WalkManager manager = new WalkManager(this);
 		
@@ -105,7 +105,7 @@ public class MapScreen extends GeneralActivity {
 		
 		walk.addLocation(p);
 		walk.addLocation(poi);
-		//manager.addWalkModel(walk);
+		manager.addWalkModel(walk);
 		manager.uploadWalk(walk);//*/
 	}
 	/**

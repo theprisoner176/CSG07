@@ -42,7 +42,7 @@ public class ImageHandler {
 				owner.startActivityForResult(takePictureIntent, 1);
 			}
 		}
-		return new ImageInformation(photoFile.getName());
+		return new ImageInformation(photoFile.getAbsolutePath());
 	}
 	
 	/**

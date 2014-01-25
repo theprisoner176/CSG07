@@ -38,19 +38,26 @@ public class WalkSetupScreen extends GeneralActivity {
 	* @param v is the View that called this method
 	*/
 	public void startWalk(View v){
-		WalkManager manager = new WalkManager(this);
+		//get input from text fields
 		String title = ((EditText) findViewById(R.id.title_input)).getText().toString();
 		String short_desc =  ((EditText) findViewById(R.id.short_description_input)).getText().toString();
 		String long_desc =  ((EditText) findViewById(R.id.long_description_input)).getText().toString();
-		
+		//clear text boxes
 		((EditText) findViewById(R.id.title_input)).getText().clear();
 		((EditText) findViewById(R.id.short_description_input)).getText().clear();
 		((EditText) findViewById(R.id.long_description_input)).getText().clear();
 		
+		/*
+		 * ADD SOME VALIDATION OF INPUT, 
+		 * WILL NEED TO ADD SOME, ERROR OUTPUT TELLING THE USER 
+		 * WHAT TO DO IF INVALID DATA IS ADDED
+		 */
+		
+		//if input is fine
 		WalkModel walk = new WalkModel(title);
 		walk.setShortDescription(short_desc);
 		walk.setLongDescription(long_desc);
-
+		//go to map screen and pass it the newly created walk
 		Intent intent = new Intent(this, MapScreen.class);
 		intent.putExtra("walk", walk);
 	    startActivity(intent);

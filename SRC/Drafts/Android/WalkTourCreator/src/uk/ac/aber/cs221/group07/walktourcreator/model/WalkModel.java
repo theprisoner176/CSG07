@@ -12,6 +12,9 @@ import android.content.ContextWrapper;
  */
 public class WalkModel implements Serializable{
 	
+	/**holds and id that is unique on the device, eg another device could have the same id*/
+	private long id;
+	
 	/** holds the name of the walk, is used as an identifier */
 	private String title;
 	
@@ -33,6 +36,7 @@ public class WalkModel implements Serializable{
 	 * @param name is the title of the new walkModel
 	 */
 	public WalkModel(String name){
+		id = System.currentTimeMillis();
 		title= name;
 		path = new Vector<LocationPoint>();
 	}
@@ -42,6 +46,7 @@ public class WalkModel implements Serializable{
 	 * by the WalkManager when loading walk from database.
 	 */
 	public WalkModel(int id,String title,Vector<LocationPoint> path,String shortDesc,String longDesc){
+		this.id = System.currentTimeMillis();
 		this.title= title;
 		this.path = path;
 		this.shortDesc = shortDesc;
@@ -123,5 +128,9 @@ public class WalkModel implements Serializable{
 	 */
 	public void addLocation(LocationPoint point){
 		path.add(point);
+	}
+	
+	public long getID(){
+		return id;
 	}
 }

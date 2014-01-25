@@ -29,7 +29,7 @@ public class PointOfInterest extends LocationPoint{
 	* creates a PointOfInterest, at position x,y.
 	* The time is also explicitly defined, this is
 	* used when creating a PointOfInterest from a database entry. */
-	public PointOfInterest(double x,double y,double time){
+	public PointOfInterest(double x,double y,long time){
 		super(x,y,time);
 	}
 	
