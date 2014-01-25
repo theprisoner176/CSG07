@@ -108,7 +108,7 @@ public class FileTransferManager{
 	 */
 	private static JSONObject packageLocationPoint(LocationPoint point) throws JSONException{
 		JSONObject location = new JSONObject();
-
+		location.put("walk_id", 1);
 		location.put("longitude", point.getLongitude());
 		location.put("latitude", point.getLatitude());
 		location.put("time", point.getTime());
@@ -124,15 +124,24 @@ public class FileTransferManager{
 	 */
 	private static JSONObject packagePoi(PointOfInterest poi) throws JSONException{
 		JSONObject place = new JSONObject();
-		place.put("description",poi.getDescription() );
+		place.put("location_id",poi.getDescription() );
+		place.put("description",poi.getDescription());
 		
 		JSONArray images = new JSONArray();
 		for(ImageInformation image:poi.getImages()){
-			images.put(image.getImageAsString());
+			images.put(packageImage(image));
 		}
 		
 		place.put("images",images);
 		return place;
+	}
+	private static JSONObject packageImage(ImageInformation imageData) throws JSONException{
+		JSONObject image = new JSONObject();
+		image.put("place_id", 1);
+		image.put("file_name",imageData.getFileName());
+		image.put("JPEG_file",imageData.getImageAsString());
+		
+		return image;
 	}
 	
 	/**
