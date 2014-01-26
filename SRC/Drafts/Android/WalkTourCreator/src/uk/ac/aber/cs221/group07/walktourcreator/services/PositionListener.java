@@ -22,24 +22,6 @@ public class PositionListener implements LocationListener {
 		recorder.newLocation(pos);
 		
 	}
-
-	@Override
-	public void onProviderDisabled(String arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onProviderEnabled(String arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public void setMap(MapScreen gMap){
 		map = gMap;
@@ -48,5 +30,15 @@ public class PositionListener implements LocationListener {
 	public void setRecorder(RouteRecorder rec){
 		recorder = rec;
 	}
+	
+	/**needed is class implements LocationListener but not used*/
+	@Override
+	public void onProviderDisabled(String arg0) {}
+	/**needed is class implements LocationListener but not used*/
+	@Override
+	public void onProviderEnabled(String arg0) {}
+	/**needed is class implements LocationListener but not used*/
+	@Override
+	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {}
 
 }

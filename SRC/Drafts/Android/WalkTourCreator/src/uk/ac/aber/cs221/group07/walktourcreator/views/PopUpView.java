@@ -1,19 +1,9 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
-import uk.ac.aber.cs221.group07.walktourcreator.R;
+import uk.ac.aber.cs221.group07.walktourcreator.activities.GeneralActivity;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
-import android.graphics.Point;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 
@@ -23,16 +13,20 @@ import android.widget.PopupWindow;
  */
 public abstract class PopupView extends PopupWindow{
 
-	public View parent;
+	/**provides link to the view that this popup is linked to*/
+	private View parent;
+	
+	/**provides link to the activity that this popup is displayed in*/
+	protected Activity owner;
 	
 	/**
-	 * 
 	 * @param context, provides the context for the view.
 	 * @param parent 
 	 */
-	public PopupView(Context context, View parent) {
+	public PopupView(GeneralActivity context) {
 		super(context);
-		this.parent = parent;
+		owner = context;
+		this.parent = context.getContentView();
 	}
 	
 	/**

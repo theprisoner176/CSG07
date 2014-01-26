@@ -1,7 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -11,14 +10,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +40,7 @@ public class FileTransferManager{
 	}
 	
 	/**
+	 * packages  all the walk model data up into a json object
 	 * 
 	 * @param data, the walk that is to be uploaded.
 	 * @return the walk encoded into a json object.
@@ -64,6 +58,8 @@ public class FileTransferManager{
 			walkData.put("locations", packageRoute(data.getRoutePath()));
 			// all places of interest
 			walkData.put("places", packagePlaces(data.getPoiList()));
+			//add all photos
+			//...
 					
 		}catch (JSONException e){ }
 		return walkData;
@@ -135,6 +131,14 @@ public class FileTransferManager{
 		place.put("images",images);
 		return place;
 	}
+	
+	/**
+	 * packages the image in to a json object, the data is added as a string.
+	 * 
+	 * @param imageData
+	 * @return the images in the form of a json object
+	 * @throws JSONException
+	 */
 	private static JSONObject packageImage(ImageInformation imageData) throws JSONException{
 		JSONObject image = new JSONObject();
 		image.put("place_id", 1);
@@ -161,7 +165,6 @@ public class FileTransferManager{
 	        HttpResponse response = httpclient.execute(post);
 	        
 	        //do something to check the response
-	        //do some error handling
 	    } catch (IOException e) { }
 	} 
 	

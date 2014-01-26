@@ -19,26 +19,19 @@ import android.os.IBinder;
  */
 public class RouteRecorder extends Service{
 
-	/**
-	 * the current walk that's being made
-	 */
+	/**the current walk that's being made*/
 	private WalkModel walk;
 	
-	/**
-	 * managers the getting of gps location
-	 */
+	/** managers the getting of gps location */
 	private LocationManager locationManager;
-	/**
-	 * holds the number of milliseconds the app wait before getting a location
-	 */
+	
+	/** holds the number of milliseconds the app wait before getting a location*/
 	private long frequencyOfRecorder;
-	/**
-	 * PositionListener to process new location data.
-	 */
+	
+	/** PositionListener to process new location data.*/
 	private PositionListener posListener;
-	/**
-	 * The map screen.
-	 */
+	
+	/** The map screen.*/
 	private MapScreen gMap;
 	
 	/**
@@ -98,7 +91,6 @@ public class RouteRecorder extends Service{
 	
 	@Override
 	public IBinder onBind(Intent arg0) {
-		
 		walk = new WalkModel("test");//string will be from bundled info from intent
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 1, posListener);
 		monitorMovement();

@@ -9,17 +9,32 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+/**
+ * Handles interaction with the system camera and photo gallery access,
+ * and saves the resulting image
+ * 
+ * @author HarryBuckley
+ *
+ */
 public class ImageHandler {
 	
+	/**the activity that initialized the camera/gallery access*/ 
 	private Activity owner;
 
-	
+	/**
+	 * creates a new ImageHandler object
+	 * @param owner the activity that initialized the object
+	 */
 	public ImageHandler(Activity owner){
 		this.owner = owner;
 	}
 	
+	/**
+	 * starts the system photo gallery browser, where the user can select an image.
+	 * @return information about the selected image
+	 */
 	public ImageInformation getPhotoFromLibrary(){
-		//i don't think this works
+		//NONE OF THIS TESTED AT ALL
 		Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -40,33 +55,23 @@ public class ImageHandler {
 			if (photoFile != null) {
 				takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(photoFile));
 				owner.startActivityForResult(takePictureIntent, 1);
+				return new ImageInformation(photoFile.getAbsolutePath());
 			}
 		}
-		return new ImageInformation(photoFile.getAbsolutePath());
+		//if some error
+		return null;
 	}
 	
 	/**
 	 * creates an empty file where the new image will be saved, the filename is the time the file was created
 	 * this is because is has to be unique.
-	 * @return the name of the newly created file.
+	 * 
+	 * @return the new file
 	 */
 	private File createPhotoFile(){
 		File image = null;
-		
-		
-		
-		File storageDir = owner.getApplicationContext().getFilesDir();
-		
-		//File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 		String filename = Long.toString(System.currentTimeMillis());
-		try{
-			image = File.createTempFile(
-					filename,  //unique file name
-					".jpg",        
-					storageDir
-			);
-		}
-		catch(Exception e){	}
+		image =  new File(owner.getFilesDir(), filename);
 	    return image;
 	}
 }

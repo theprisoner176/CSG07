@@ -1,26 +1,18 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
-import java.util.Vector;
-
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.views.WalkRow;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
-import android.app.Activity;
 
 /**
  * This class is responsible for displaying the a two-tabbed screen with lists of walks, and reacting to button presses
  * @author HarryBuckley
  */
 public class MyWalksScreen extends GeneralActivity {
-
-	private WalkManager walkDatabase;
 	
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
@@ -48,10 +40,10 @@ public class MyWalksScreen extends GeneralActivity {
 	
 	/**
 	 * open a WalkInfoView popup on selected walk
-	 * The parameter v, is the object that called the method.
+	 * @param v, is the object that called the method.
 	 */
 	public void viewWalk(View v){
-	
+		//open another view show all the poi in the selected walk.
 	}
 
 }

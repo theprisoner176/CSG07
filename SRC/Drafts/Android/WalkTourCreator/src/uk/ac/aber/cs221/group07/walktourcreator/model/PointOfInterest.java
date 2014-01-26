@@ -33,34 +33,30 @@ public class PointOfInterest extends LocationPoint{
 		super(x,y,time);
 	}
 	
+	/**
+	 * adds reference to an image to the poi.
+	 * @param newImage,is the image that is to be added
+	 */
 	public void addImage(ImageInformation newImage){
 		images.add(newImage);
 	}
 	
-	/**
-	 * returns all the images associated with this point. 
-	 */
+	/** returns all the images associated with this point. */
 	public Vector<ImageInformation> getImages(){
 		return images;
 	}
 	
-	/**
-	 * returns the description of this place. 
-	 */
+	/** returns the description of this place.  */
 	public String getDescription(){
 		return description;
 	}
 	
-	/**
-	 * sets the description of this point. 
-	 */
+	/** sets the description of this point. */
 	public void setDescription(String desc){
 		description = desc;
 	}
 	
-	/**
-	 * sets the title of this point. 
-	 */
+	/** sets the title of this point. */
 	public void setTitle(String title){
 		this.title = title;
 	}

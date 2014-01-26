@@ -15,6 +15,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class WalkManager extends SQLiteOpenHelper{
 	
+	/**holds the name of the database store on the device*/
 	private final static String DATABASE_NAME = "walks.db"; 
 	
 	/**
@@ -67,6 +68,7 @@ public class WalkManager extends SQLiteOpenHelper{
 	
 	/**
 	 * adds the passed WalkModel to the local database. 
+	 * @param walk, is the walk that will be added to the database
 	 */
 	public void addWalkModel(WalkModel walk){
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -79,6 +81,7 @@ public class WalkManager extends SQLiteOpenHelper{
 			cur.close();
 			return;
 		}
+		
 		//add to walk table
 		values.put("id", walk.getID());
 		values.put("title", walk.getTitle());
@@ -172,14 +175,17 @@ public class WalkManager extends SQLiteOpenHelper{
 	 * @return a vector of all the point of the walk.
 	 */
 	private Vector<LocationPoint> getPathFromWalk(SQLiteDatabase db,int index){
+		double latitude;
+		double longitude;
+		long time;
 		//CURRENTLY ONLY ADDS LOCATIONS NOT POIs 
 		Vector<LocationPoint> retval = new Vector<LocationPoint>();
 		String selectLocation = "SELECT * FROM location WHERE walk_id="+index;
 		Cursor cur = db.rawQuery(selectLocation, null);
 		while(cur.moveToNext()){
-			double latitude = cur.getDouble(cur.getColumnIndex("latitude"));
-			double longitude = cur.getDouble(cur.getColumnIndex("longitude"));
-			long time = cur.getLong(cur.getColumnIndex("time"));
+			latitude = cur.getDouble(cur.getColumnIndex("latitude"));
+			longitude = cur.getDouble(cur.getColumnIndex("longitude"));
+			time = cur.getLong(cur.getColumnIndex("time"));
 			LocationPoint location = new LocationPoint(latitude,longitude,time);
 			retval.add(location);
 		}
@@ -199,6 +205,7 @@ public class WalkManager extends SQLiteOpenHelper{
 		
 	}
 	
+	/**called when initialy creating a database, to built it from scratch*/
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(CREATE_WALK_TABLE);
@@ -207,6 +214,7 @@ public class WalkManager extends SQLiteOpenHelper{
 		db.execSQL(CREATE_PHOTO_TABLE);
 	}
 	
+	/**called when a new version of the database hase been created*/
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("DROP TABLE IF EXISTS walk");

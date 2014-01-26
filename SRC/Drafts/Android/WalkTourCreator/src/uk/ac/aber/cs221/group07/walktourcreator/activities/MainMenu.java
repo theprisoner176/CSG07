@@ -1,9 +1,7 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
-import uk.ac.aber.cs221.group07.walktourcreator.views.WalkFinishedView;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 
@@ -16,6 +14,8 @@ public class MainMenu extends GeneralActivity {
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
 	 * specified in res/layout/activity_main_menu.xml
+	 * 
+	 * @param savedInstanceState, is not used in this case
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +24,8 @@ public class MainMenu extends GeneralActivity {
 	}
 	
 	/**
-	 * Starts a new WalkSetupScreen activity,
-	 * and displays it to the user.
-	 * The parameter v, is the object that called the method.
+	 * Starts a new WalkSetupScreen activity, and displays it to the user.
+	 * 
 	 * @param v is the View that is called the method
 	 */
 	public void startMyWalksScreen(View v){
@@ -35,27 +34,23 @@ public class MainMenu extends GeneralActivity {
 	}
 	
 	/**
-	 * Starts a new WalkSetupScreen activity,
-	 * and displays it to the user.
-	 * The parameter v, is the object that called the method.
+	 * Starts a new WalkSetupScreen activity, and displays it to the user.
+	 * 
 	 * @param v is the View that is called the method.
 	 */
 	public void startWalkSetupScreen(View v){
 		Intent intent = new Intent(this, WalkSetupScreen.class);
-		//used to test map stuff without going through setup screen
-		//Intent intent = new Intent(this, MapScreen.class);
 	    startActivity(intent);
 	}
+	
 	/**
-	 * Starts a new OptionsScreen activity,
-	 * and displays it to the user.
-	 * The parameter v, is the object that called the method.
+	 * Starts a new OptionsScreen activity, and displays it to the user.
+	 * 
 	 * @param v is the View that is called the method
 	 */
 	public void startOptionsScreen(View v){
 		Intent intent = new Intent(this, OptionsScreen.class);
 	    startActivity(intent);
-	    //new WalkFinishedView(getBaseContext(),null, this,v);
 	}
 	
 }

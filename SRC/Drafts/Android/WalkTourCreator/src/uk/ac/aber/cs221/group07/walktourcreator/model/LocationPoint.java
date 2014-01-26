@@ -15,19 +15,13 @@ public class LocationPoint {
 	/** holds an id that is unique to the current walk*/
 	private int id;
 	
-	/**
-	 * holds the distance (east-west) from Greenwich)
-	 */
+	/** holds the distance (east-west) from Greenwich) */
 	private double longitude;
 	
-	/**
-	 * holds the distance (north-south) from the equator)
-	 */
+	/** holds the distance (north-south) from the equator) */
 	private double latitude;
 	
-	/**
-	 * keeps a record of when the location was captured 
-	 */
+	/** keeps a record of when the location was captured  */
 	private long time;
 	
 	/**
@@ -65,14 +59,14 @@ public class LocationPoint {
 	}
 	
 	/**
-	* returns the longitude, the east/west distance from Greenwich.
-	*/
+	 *  @return the longitude, the east/west distance from Greenwich.
+	 */
 	public double getLongitude(){
 		return longitude;
 	}
 	
 	/**
-	 * returns the latitude, the north/south distance from the equator.
+	 *  @return the latitude, the north/south distance from the equator.
 	 */
 	public double getLatitude(){
 		return latitude;

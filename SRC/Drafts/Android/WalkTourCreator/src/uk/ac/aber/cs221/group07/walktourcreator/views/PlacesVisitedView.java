@@ -23,10 +23,9 @@ public class PlacesVisitedView extends PopupView{
 	 * passed walk are displayed in a table.
 	 * @param context, provides the context for the view. 
 	 * @param walk, the walk that contains the locations that are to be displayed
-	 * @param owner, this is the view that this class is a subview of.
 	 */
-	public PlacesVisitedView(Context context,WalkModel walk,GeneralActivity owner){
-		super(context,owner.getContentView());			
+	public PlacesVisitedView(GeneralActivity context,WalkModel walk){
+		super(context);			
 		LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
 	    View popupView = layoutInflater.inflate(R.layout.popup_finish_walk, null);  
 		super.setContentView(popupView);

@@ -20,8 +20,8 @@ public class PoiInfoView extends PopupView{
 	 * is displayed in in the popup.
 	 * @param context, provides the context for the view. 
 	 */
-	public PoiInfoView(Context context,PointOfInterest point,GeneralActivity owner){
-		super(context,owner.getContentView());			
+	public PoiInfoView(GeneralActivity context,PointOfInterest point){
+		super(context);			
 		LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
 	    View popupView = layoutInflater.inflate(R.layout.popup_finish_walk, null);  
 		super.setContentView(popupView);

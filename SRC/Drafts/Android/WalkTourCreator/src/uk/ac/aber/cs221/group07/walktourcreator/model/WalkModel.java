@@ -24,11 +24,7 @@ public class WalkModel implements Serializable{
 	/** store a short description of the walk, it is limited to X characters */
 	private String shortDesc;
 	
-	/**
-	 * stores the vector of LocationPoints that make up the walk
-	 * !note - changed to array list for easier testing of
-	 * passing objects between activities
-	 */
+	/** stores the vector of LocationPoints that make up the walk*/
 	private Vector<LocationPoint> path;
 	
 	/**
@@ -78,14 +74,18 @@ public class WalkModel implements Serializable{
 	 * returns the running total of km traveled.
 	 */
 	public double getDistance(){
-		return 0;
+		double total =0;
+		for(int i=0;i<path.size()-1;i++){
+			total += path.get(i).distanceTo(path.get(i+1));
+		}
+		return total;
 	}
 	
 	/**
 	 * returns the elapsed time since the walk was started. 
 	 */
 	public double getTimeTaken(){
-		return 0;
+		return path.get(path.size()-1).getTime() - path.get(0).getTime();
 	}
 	
 	/**
@@ -130,6 +130,10 @@ public class WalkModel implements Serializable{
 		path.add(point);
 	}
 	
+	/**
+	 *  not sure if this will be used.
+	 * @return 
+	 */
 	public long getID(){
 		return id;
 	}

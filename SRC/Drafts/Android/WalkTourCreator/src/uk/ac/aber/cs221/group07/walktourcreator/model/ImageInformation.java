@@ -1,12 +1,8 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
-import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.RandomAccessFile;
-
-import android.provider.MediaStore.Files;
 
 /**
  * This class stores information about a single image
@@ -14,9 +10,7 @@ import android.provider.MediaStore.Files;
  */
 public class ImageInformation {
 	
-	/**
-	 * The name of the actual file, is has to be unique to all other photos stored by the app.
-	 */
+	/** The name of the actual file, is has to be unique to all other photos stored by the app */
 	private String fileName;
 	
 	/**
@@ -39,6 +33,7 @@ public class ImageInformation {
 	public String getImageAsString(){
 		String retval = null;
         try {
+        	File imageFile = new File(fileName);
         	FileInputStream file = new FileInputStream(fileName);
         	// Open file
         	DataInputStream inputStream = new DataInputStream(file);

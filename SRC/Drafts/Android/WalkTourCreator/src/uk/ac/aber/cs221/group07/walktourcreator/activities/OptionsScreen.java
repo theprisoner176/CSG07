@@ -1,12 +1,8 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
-import uk.ac.aber.cs221.group07.walktourcreator.R.layout;
-import uk.ac.aber.cs221.group07.walktourcreator.views.WalkFinishedView;
 import android.os.Bundle;
-import android.app.Activity;
 import android.graphics.Color;
-import android.view.Menu;
 import android.view.View;
 
 /**
@@ -18,6 +14,8 @@ public class OptionsScreen extends GeneralActivity {
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
 	 * specified in res/layout/activity_options_screen.xml
+	 * 
+	 * @param savedInstanceState is not used.
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
