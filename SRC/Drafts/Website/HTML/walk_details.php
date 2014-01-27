@@ -1,10 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>List of walks</title>
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="../CSS/print.css" media="print" />
-	
+	<link rel="stylesheet" type="text/css" href="../CSS/print.css" media="print" /> 
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">  
+	  <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMaDwxzucsIfiT1sYyFKWIvDljXOWSeM0&sensor=false"></script>
+    <script>
+var map;
+function initialize() {
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(52.416667, -4.066667)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
 </head>
 <body>
 	<header>
@@ -22,10 +45,9 @@
 		</ul>
 	</nav>
 	<section id="intro"></section>
-	<div id="content">
-				<article class="stream">
-					<header>
+		<div id="map-canvas"></div>
 						<?php
+						
 							include "database_layer.php";
 							///creates a new instance of the database walk option
 							$database = new DatabaseWalk();
@@ -51,63 +73,5 @@
 							$database->close_connection();							
 							
 						?>
-					</header>
-						<br />
-					<section class="messages">
-					
-					
-					
-<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>
-new TWTR.Widget({
-  version: 2,
-  type: 'search',
-  search: 'html5 or css3',
-  interval: 6000,
-  title: 'HTML5 / CSS3',
-  subject: 'Awesomeness',
-  width: 670,
-  height: 2200,
-  theme: {
-    shell: {
-      background: '#82d9fd',
-      color: '#ffffff'
-    },
-    tweets: {
-      background: '#ffffff',
-      color: '#444444',
-      links: '#1bbf5f'
-    }
-  },
-  features: {
-    scrollbar: false,
-    loop: true,
-    live: true,
-    hashtags: true,
-    timestamp: true,
-    avatars: true,
-    behavior: 'default'
-  }
-}).render().start();
-</script>
-
-					</section>
-				</article>
-				
-		</div>
-		
-		<aside>
-			<section>	
-				
-				
-			</section>
-			
-		</aside>
-
-	<footer>
-		<br />
-		<p>&nbsp;</p>
-	</footer>
-
 </body>
 </html>
