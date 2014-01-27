@@ -88,9 +88,21 @@ new TWTR.Widget({
 				$database->send_query($database->get_query());
 				//outputs the results
 				// An option to make it OO with having a class called Walk, and in here creating a new Walk...to which would be outputted in the same way
+				$database_count = new DatabaseWalk();
+				$database_count->connect();
 				while ($walk = mysqli_fetch_array($database->get_result())){
+					 $query = "SELECT * from Location l INNER JOIN Place_description d on l.id = d.locationID";
+					 $database_count->prepare_query($query);
+					 $database_count->send_query($database_count->get_query());
+					 $count = mysqli_fetch_array($database_count->get_result());
+						echo "<div class='walk'>";
+						echo "<br/>";
 						echo "<a href=walk_details.php?walk=".$walk["title"]."&amp;walk_id=".$walk["id"].">" . $walk["title"] . "</a>";
 						echo "<br/>";
+						echo "Short Desc:" . $walk["shortDesc"];
+						echo "<br/>";
+						echo "Number POI " . count($count);
+						echo "</div>";
 				}
 				$database->close_connection();
 				?>
