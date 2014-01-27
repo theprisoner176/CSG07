@@ -23,8 +23,8 @@ import org.json.JSONObject;
  */
 public class FileTransferManager{
 
-	private final static String dataServer = "http://users.aber.ac.uk/mas69/file_saver.php";
-	//private final static String dataServer = "http://users.aber.ac.uk/hfb1/this.php";
+	//private final static String dataServer = "http://users.aber.ac.uk/mas69/file_saver.php";
+	private final static String dataServer = "http://users.aber.ac.uk/hfb1/this.php";
 			
 	/**
 	* makes a connection to data server and

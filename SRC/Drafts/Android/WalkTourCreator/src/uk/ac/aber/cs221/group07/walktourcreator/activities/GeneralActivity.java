@@ -108,12 +108,11 @@ public abstract class GeneralActivity extends Activity{
 	        	try {
 					FileInputStream input = new FileInputStream(source);
 					FileOutputStream output = new FileOutputStream(destination);
-					
-					byte[] buf = new byte[1024];
-				    int len;
-				    while ((len = input.read(buf)) > 0) {
-				    	output.write(buf, 0, len);
-				    }
+
+					byte[] buffer = new byte[(int)source.length()];
+				    
+					output.write(input.read(buffer));
+				    
 				    input.close();
 				    output.close();
 					

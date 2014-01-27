@@ -38,9 +38,8 @@ public class ImageInformation {
 		String retval = null;
         try {
         	File f = new File(fileName);
-        	int size = (int) f.length();
         	           
-        	fileData = new byte[size];
+        	fileData = new byte[(int) f.length()];
                    
         	BufferedInputStream buf = new BufferedInputStream(new FileInputStream(f));
         	buf.read(fileData, 0, fileData.length);
