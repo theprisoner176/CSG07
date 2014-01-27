@@ -26,7 +26,8 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="40dp"
             android:text="@string/app_name"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge" 
+            android:imeOptions="actionNext"/>
 
         <Button
             android:id="@+id/submit"
@@ -44,22 +45,24 @@
             android:layout_above="@+id/submit"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
+            android:layout_below="@+id/short_description_input"
             android:layout_marginBottom="14dp"
             android:ems="10"
+            android:hint="@string/long_description"
             android:inputType="textMultiLine"
-            android:hint="@string/long_description" />
+            android:imeOptions="actionDone" />
 
         <EditText
             android:id="@+id/short_description_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/long_description_input"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/title_input"
             android:ems="10"
             android:hint="@string/short_description"
-            android:scrollHorizontally="false" />
+            android:scrollHorizontally="false"
+            android:imeOptions="actionNext" />
 
         <EditText
             android:id="@+id/title_input"
