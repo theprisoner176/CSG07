@@ -85,9 +85,9 @@ public abstract class GeneralActivity extends Activity{
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == 1984) { //result from camera activity
-	        if (resultCode == CAMERA_ACTIVITY_RESULT_CODE) {
-	            Toast.makeText(this, "Image saved to:\n" + data.getData(), Toast.LENGTH_LONG).show();
+		if (requestCode == CAMERA_ACTIVITY_RESULT_CODE) { //result from camera activity
+	        if (resultCode == RESULT_OK) {
+	            Toast.makeText(this, "Image saved", Toast.LENGTH_LONG).show();
 	        } else {
 	            Toast.makeText(this, "Image not saved\n", Toast.LENGTH_LONG).show();
 	        }
