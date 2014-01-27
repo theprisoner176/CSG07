@@ -55,7 +55,8 @@ function createListOfWalksTable($con){
 			id INT NOT NULL AUTO_INCREMENT,
 			PRIMARY KEY(id),
 			locationId INT NOT NULL,
-			description VARCHAR (100) NOT NULL
+			description VARCHAR (100) NOT NULL, 
+			FOREIGN KEY (locationId) REFERENCES Location(id)
 		)";
 		if (mysqli_query($con,$sql)){
 			echo "<p>Table Place Description created successfully</p>";
