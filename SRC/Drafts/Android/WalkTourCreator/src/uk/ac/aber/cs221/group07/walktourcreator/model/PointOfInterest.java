@@ -21,8 +21,8 @@ public class PointOfInterest extends LocationPoint{
  	 * creates a PointOfInterest, at position x,y.
      * The time is set automatically
 	 */
-	public PointOfInterest(double x,double y){
-		super(x,y);
+	public PointOfInterest(double lat,double lng){
+		super(lat,lng);
 	}
 	
 	/**
@@ -63,5 +63,16 @@ public class PointOfInterest extends LocationPoint{
 	/** sets the title of this point. */
 	public void setTitle(String title){
 		this.title = title;
+	}
+	
+	public double getLongitude(){
+		return longitude;
+	}
+	
+	/**
+	 * returns the latitude, the north/south distance from the equator.
+	 */
+	public double getLatitude(){
+		return latitude;
 	}
 }

@@ -28,15 +28,15 @@
     <string name="open_login_screen">Login</string>
 
     <!-- MapScreen values -->
-    <string name="add_point_of_interest">add POI</string>
+    <string name="add_point_of_interest">Add POI</string>
     <string name="options_popup">Options</string>
     <string name="play_pause">Finish</string>
-	<!-- Login Screen -->
-	<string name="login_button">Login</string>
-	<string name="register_button">Register</string>
-	<string name="username_hint">Username or email</string>
-	<string name="password_hint">Password</string>
-	  
+    <!-- Login Screen -->
+    <string name="login_button">Login</string>
+    <string name="register_button">Register</string>
+    <string name="username_hint">Username or email</string>
+    <string name="password_hint">Password</string>
+
     <!-- Walk set up -->
     <string name="title">title(Optional)</string>
     <string name="long_description">description(Optional)</string>
@@ -45,5 +45,9 @@
     <string name="change_background_color">Change Screen Color</string>
     <string name="other">Other</string>
     <string name="title_activity_login_screen">LoginScreen</string>
+    <string name="title_activity_add_poi_screen">AddPoiScreen</string>
+    <string name="test_dialog">Dialog test</string>
+    <string name="done">Done</string>
+    <string name="title_activity_add_poi_dialog">AddPoiDialog</string>
 
 </resources>

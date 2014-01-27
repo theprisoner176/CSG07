@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="18" />
-	<!-- Google maps API settings  -->
+    <!-- Google maps API settings -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
@@ -24,12 +24,11 @@
         android:name="com.example.mapdemo.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
     <uses-permission android:name="com.example.mapdemo.permission.MAPS_RECEIVE" />
-    
+
     <!-- Maps API needs OpenGL ES 2.0. -->
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-    
 
     <application
         android:allowBackup="true"
@@ -69,6 +68,23 @@
         <activity
             android:name="uk.ac.aber.cs221.group07.walktourcreator.activities.WalkSetupScreen"
             android:label="@string/title_activity_walk_setup_screen" >
+        </activity>
+        <activity
+            android:name="uk.ac.aber.cs221.group07.walktourcreator.AddPoiScreen"
+            android:label="@string/title_activity_add_poi_screen"
+            android:parentActivityName="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen"
+            android:theme="@android:style/Theme.Holo.Dialog" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen" />
+        </activity>
+        <activity
+            android:name="uk.ac.aber.cs221.group07.walktourcreator.AddPoiDialog"
+            android:label="@string/title_activity_add_poi_dialog"
+            android:parentActivityName="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen" />
         </activity>
     </application>
 

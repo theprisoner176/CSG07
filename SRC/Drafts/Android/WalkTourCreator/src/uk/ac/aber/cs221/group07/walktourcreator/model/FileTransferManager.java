@@ -23,8 +23,7 @@ import org.json.JSONObject;
  */
 public class FileTransferManager{
 
-	//private final static String dataServer = "http://users.aber.ac.uk/mas69/file_saver.php";
-	private final static String dataServer = "http://users.aber.ac.uk/hfb1/this.php";
+	private final static String dataServer = "http://users.aber.ac.uk/mas69/file_saver.php";
 			
 	/**
 	* makes a connection to data server and
@@ -47,7 +46,6 @@ public class FileTransferManager{
 	 * @return the walk encoded into a json object.
 	 */
 	private static JSONObject packageData(WalkModel data){
-		JSONObject walk = new JSONObject();
 		JSONObject walkData = new JSONObject();
 		try{
 			//add walk data
@@ -58,11 +56,9 @@ public class FileTransferManager{
 			walkData.put("distance"		, data.getDistance());
 			//add all location points
 			walkData.put("route", packageRoute(data.getRoutePath()));
-			
-			walk.put("walk", walkData);
 					
 		}catch (JSONException e){ }
-		return walk;
+		return walkData;
 	}
 	
 	/**
@@ -98,8 +94,8 @@ public class FileTransferManager{
 			JSONArray images = new JSONArray();
 			for(ImageInformation image:((PointOfInterest)point).getImages()){
 				JSONObject jsonImage = new JSONObject();
-				//jsonImage.put("file_data",image.getFileName());
-				jsonImage.put("file_data",image.getImageAsString());
+				jsonImage.put("file_data",image.getFileName());
+				//image.put("file_data",imageData.getImageAsString());
 				images.put(jsonImage);
 			}
 			location.put("images",images);

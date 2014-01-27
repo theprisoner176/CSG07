@@ -5,12 +5,13 @@ import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.views.WalkView;
+import uk.ac.aber.cs221.group07.walktourcreator.R;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.IBinder;
+import android.widget.TextView;
 
 /**
  * 
@@ -34,6 +35,8 @@ public class RouteRecorder extends Service{
 	/** The map screen.*/
 	private MapScreen gMap;
 	
+	public boolean poiRec = false;
+	
 	/**
 	* creates a RouteRecorder instance,
 	* with the MapView that will display the walk.
@@ -46,9 +49,17 @@ public class RouteRecorder extends Service{
 	 * Constructor for the recorder. Takes a PositionListener and a LocationManager
 	 * to start listening for location updates.
 	 */
-	public RouteRecorder(PositionListener posListener,LocationManager manager){
+	public RouteRecorder(PositionListener listener,LocationManager manager){
 		locationManager = manager;
+		posListener = listener;
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3, 0, posListener);
+	}
+	
+	public RouteRecorder(PositionListener listener, LocationManager manager,boolean isPoiRec){
+		locationManager = manager;
+		posListener = listener;
+		poiRec = isPoiRec;
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, posListener);
 	}
 
 	/**
@@ -62,8 +73,9 @@ public class RouteRecorder extends Service{
 	/**
 	 * adds a PointOfInterest to the recorded path. 
 	 */
-	public void savePoi(PointOfInterest poi){
-		
+	public void savePoi(PointOfInterest poi){	
+		walk.addLocation(poi);
+		this.finishWalk();
 	}
 	
 	/**
@@ -77,8 +89,9 @@ public class RouteRecorder extends Service{
 	/**
 	 * stops the recoding of locations. 
 	 */
-	public void finish(){
-		
+	public void finishWalk(){
+		locationManager.removeUpdates(posListener);
+		locationManager = null;
 	}
 	
 	

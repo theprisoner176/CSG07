@@ -14,12 +14,16 @@ public class LocationPoint {
 	
 	/** holds an id that is unique to the current walk*/
 	private int id;
+
+	/**
+	 * holds the distance (east-west) from Greenwich)
+	 */
+	protected double longitude;
 	
-	/** holds the distance (east-west) from Greenwich) */
-	private double longitude;
-	
-	/** holds the distance (north-south) from the equator) */
-	private double latitude;
+	/**
+	 * holds the distance (north-south) from the equator)
+	 */
+	protected double latitude;
 	
 	/** keeps a record of when the location was captured  */
 	private long time;

@@ -1,14 +1,11 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import uk.ac.aber.cs221.group07.walktourcreator.activities.GeneralActivity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -75,19 +72,8 @@ public class ImageHandler {
 	 */
 	private File createPhotoFile(){
 		File image = null;
-		//Uri fileUri = getOutputMediaFileUri(Enviroment.MEDIA_TYPE_IMAGE);
-		String filename = Long.toString(System.currentTimeMillis());		
-		FileOutputStream fos;
-		try {
-			fos = owner.openFileOutput(filename, Context.MODE_WORLD_WRITEABLE);
-			fos.close();
-		
-		} catch (Exception e) {}
-		
-		//Get reference to the file
-		File f = new File(owner.getFilesDir(), filename);
-		
-		
-	    return f;
+		String filename = Long.toString(System.currentTimeMillis());
+		image =  new File(owner.getFilesDir(), filename);
+	    return image;
 	}
 }

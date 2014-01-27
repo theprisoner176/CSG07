@@ -1,26 +1,28 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
-import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.services.PositionListener;
 import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -83,25 +85,7 @@ public class MapScreen extends GeneralActivity {
 		//map = (MapView) findViewById(R.id.map_view);
 	}
 	
-	/**
-	 * Called whenever location data is gathered
-	 * 
-	 * @param loc,
-	 */
-	public void updatePosition(LocationPoint loc){
-		//Takes the lat and lng of the LocationPoint and creates a LatLng object
-		LatLng pos = new LatLng(loc.getLatitude(),loc.getLongitude());
-		//Focus camera on user location
-		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(pos,17);
-		map.animateCamera(update);
-		if(currentPosition!=null){
-			currentPosition.remove();
-		}
-		//put marker to show current user location
-		currentPosition = map.addMarker(new MarkerOptions().position(pos));
-		String str =  "added point"+loc.getLatitude()+";"+loc.getLongitude();
-		Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
-	}
+
 	
 	/**
 	 * Created the map if it is not already created
@@ -123,6 +107,20 @@ public class MapScreen extends GeneralActivity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
+		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		
+		PositionListener poiListener = new PositionListener();
+		poiListener.setMap(this);
+		
+		RouteRecorder poiRec = new RouteRecorder(poiListener, poiManager,true);
+		if(walk!=null){
+			poiRec.setWalk(walk);
+		}
+		poiListener.setRecorder(poiRec);
+		
+		
+		
+		/*
 		//for testing only this will be done in another screen/popup
 		ImageHandler image_saver = new ImageHandler(this);
 		PointOfInterest newPoi = new PointOfInterest(1.0,2.0);
@@ -130,6 +128,31 @@ public class MapScreen extends GeneralActivity {
 		newPoi.setTitle("A great place to go");
 		newPoi.setDescription("it is blah blah blah ...");
 		walk.addLocation(newPoi);
+		*/
+	}
+	
+	public void showDialog(final PointOfInterest poi) {
+		LayoutInflater inflater = (LayoutInflater)MapScreen.this.getSystemService(LAYOUT_INFLATER_SERVICE);
+		View layout = inflater.inflate(R.layout.activity_add_poi_dialog, null);
+		
+		
+		new AlertDialog.Builder(this)
+	    .setMessage("Enter details for the Point of Interest")
+	    .setView(layout)
+	    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	        	TextView poiTitle = (TextView)findViewById(R.id.poi_title);
+	        	TextView poiDescription = (TextView)findViewById(R.id.poi_title);
+	        	poi.setTitle(poiTitle.toString());
+	        	poi.setDescription(poiDescription.toString());
+	        }
+	     })
+	    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	            // do nothing
+	        }
+	     })
+	     .show();
 	}
 	
 	/**
@@ -138,16 +161,30 @@ public class MapScreen extends GeneralActivity {
 	*/
 	public void finishWalk(View v){
 		//test, will perhaps be moved elsewhere
-		WalkManager manager = new WalkManager(this);
+
+
+		Intent intent = new Intent(this, MainMenu.class);
+		recorder.finishWalk();
+		finish();
+		startActivity(intent);
 		
-		LocationPoint p = new LocationPoint(3,3);
-		PointOfInterest poi = new PointOfInterest(6,7);
-		poi.setDescription("This is a place of interest");
 		
-		walk.addLocation(p);
-		walk.addLocation(poi);
-		manager.addWalkModel(walk);
-		manager.uploadWalk(walk);
+		//test will perhaps be moved elsewhere
+		
+
+//		WalkManager manager = new WalkManager(this);
+//		
+//		LocationPoint p = new LocationPoint(3,3);
+//		PointOfInterest poi = new PointOfInterest(6,7);
+//		poi.setDescription("This is a place of interest");
+//		
+//		walk.addLocation(p);
+//		walk.addLocation(poi);
+//		manager.addWalkModel(walk);
+//		manager.uploadWalk(walk);
+//		manager.uploadWalk(walk);
+
+
 	}
 	
 	/**
@@ -159,11 +196,30 @@ public class MapScreen extends GeneralActivity {
 	}
 	
 	
-	/*
-	protected void onPause(){
-		Toast.makeText(getApplicationContext(), "PAUSE", Toast.LENGTH_LONG).show();
+	/**
+	 * Called whenever location data is gathered
+	 */
+	public void updatePosition(LocationPoint loc){
+		//Takes the lat and lng of the LocationPoint and creates a LatLng object
+		LatLng pos = new LatLng(loc.getLatitude(),loc.getLongitude());
+		//Focus camera on user location
+		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(pos,17);
+		map.animateCamera(update);
+		if(currentPosition!=null){
+			currentPosition.remove();
+		}
+		//put marker to show current user location
+		currentPosition = map.addMarker(new MarkerOptions().position(pos));
+		String str =  "added point"+loc.getLatitude()+";"+loc.getLongitude();
+		//Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
 	}
-	*/
+	
+	public void newPoi(PointOfInterest poi){
+		LatLng pos = new LatLng(poi.getLatitude(),poi.getLongitude());
+		map.addMarker(new MarkerOptions().position(pos).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+		
+	}
+	
 	
 	/*
 	protected void onDestroy(){

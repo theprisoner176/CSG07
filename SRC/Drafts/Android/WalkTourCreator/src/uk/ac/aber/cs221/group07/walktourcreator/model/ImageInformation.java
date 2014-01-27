@@ -1,12 +1,8 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
-import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.nio.ByteBuffer;
-
-import android.provider.MediaStore.Files;
 
 /**
  * This class stores information about a single image
@@ -35,26 +31,17 @@ public class ImageInformation {
 	 * @return file contents as modified UTF-8
 	 */
 	public String getImageAsString(){
-		byte[] fileData = null;
 		String retval = null;
         try {
-        	//FileInputStream file = new FileInputStream(fileName);
+        	File imageFile = new File(fileName);
+        	FileInputStream file = new FileInputStream(fileName);
         	// Open file
-        	///DataInputStream inputStream = new DataInputStream(file);
-        	//retval = inputStream.readUTF();
-        	//inputStream.close();
-        	
-        	File f = new File(fileName);
-        	int size = (int) f.length();
-            
-        	fileData = new byte[size];
-            
-            BufferedInputStream buf = new BufferedInputStream(new FileInputStream(f));
-            buf.read(fileData, 0, fileData.length);
-            buf.close();
-            retval = new String(fileData, "UTF-8");
+        	DataInputStream inputStream = new DataInputStream(file);
+        	retval = inputStream.readUTF();
+        	inputStream.close();
         }
-        catch(Exception exc){  }
+        catch(Exception exc){ }
+        
 		return retval;
 	}
 	
