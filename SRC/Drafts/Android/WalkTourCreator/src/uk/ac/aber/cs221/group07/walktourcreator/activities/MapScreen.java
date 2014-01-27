@@ -168,7 +168,18 @@ public class MapScreen extends GeneralActivity {
 	public void finishWalk(View v){
 		//test, will perhaps be moved elsewhere
 
-
+		WalkManager manager = new WalkManager(this);
+//		
+		LocationPoint p = new LocationPoint(3,3);
+		PointOfInterest poi = new PointOfInterest(6,7);
+		poi.setDescription("This is a place of interest");
+		
+		walk.addLocation(p);
+		walk.addLocation(poi);
+//		manager.addWalkModel(walk);
+		manager.uploadWalk(walk);
+//		manager.uploadWalk(walk);
+		
 		Intent intent = new Intent(this, MainMenu.class);
 		recorder.finishWalk();
 		finish();
@@ -177,18 +188,6 @@ public class MapScreen extends GeneralActivity {
 		
 		//test will perhaps be moved elsewhere
 		
-
-//		WalkManager manager = new WalkManager(this);
-//		
-//		LocationPoint p = new LocationPoint(3,3);
-//		PointOfInterest poi = new PointOfInterest(6,7);
-//		poi.setDescription("This is a place of interest");
-//		
-//		walk.addLocation(p);
-//		walk.addLocation(poi);
-//		manager.addWalkModel(walk);
-//		manager.uploadWalk(walk);
-//		manager.uploadWalk(walk);
 
 
 	}
