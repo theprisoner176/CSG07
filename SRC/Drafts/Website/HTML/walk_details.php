@@ -39,6 +39,20 @@ function initialize() {
       title: 'Shrewsbury'
   });
 
+  var flightPlanCoordinates = [
+    new google.maps.LatLng(52.416667, -4.066667),
+    new google.maps.LatLng(52.7077, -2.7541),
+  ];
+  
+    var flightPath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+
+  flightPath.setMap(map);
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
