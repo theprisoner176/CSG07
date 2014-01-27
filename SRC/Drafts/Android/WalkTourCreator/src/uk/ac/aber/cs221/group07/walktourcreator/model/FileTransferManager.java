@@ -108,6 +108,10 @@ public class FileTransferManager{
 		location.put("longitude", point.getLongitude());
 		location.put("latitude", point.getLatitude());
 		location.put("time", point.getTime());
+		if(point instanceof PointOfInterest){
+			location.put("location_id",poi.getDescription() );
+			location.put("description",poi.getDescription());
+		}
 		return location;
 	}
 	
