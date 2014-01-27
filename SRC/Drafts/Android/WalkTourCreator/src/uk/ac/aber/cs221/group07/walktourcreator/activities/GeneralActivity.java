@@ -1,9 +1,11 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * The GeneralActivity class, used to specify some basic features
@@ -13,6 +15,9 @@ import android.view.View;
  *
  */
 public abstract class GeneralActivity extends Activity{
+	
+	public static int CAMERA_ACTIVITY_RESULT_CODE = 1984;
+	public static int GALLERY_ACTIVITY_RESULT_CODE = 1993;
 	
 	/** stores the background color used by all GeneralActivitys*/
 	protected static int backgroundColor = Color.RED;
@@ -77,5 +82,22 @@ public abstract class GeneralActivity extends Activity{
 	*/
 	public void setTextColor(int c){
 		textColor = c;
+	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1984) { //result from camera activity
+	        if (resultCode == CAMERA_ACTIVITY_RESULT_CODE) {
+	            Toast.makeText(this, "Image saved to:\n" + data.getData(), Toast.LENGTH_LONG).show();
+	        } else {
+	            Toast.makeText(this, "Image not saved\n", Toast.LENGTH_LONG).show();
+	        }
+	    }
+		if (requestCode == GALLERY_ACTIVITY_RESULT_CODE) { //result from gallery activity
+	        if (resultCode == RESULT_OK) {
+	            Toast.makeText(this, "Image added to walk:\n" + data.getData(), Toast.LENGTH_LONG).show();
+	        } else {
+	            Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
+	        }
+	    }
 	}
 }

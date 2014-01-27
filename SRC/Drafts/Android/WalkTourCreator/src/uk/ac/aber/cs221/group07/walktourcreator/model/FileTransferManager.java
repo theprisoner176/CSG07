@@ -55,29 +55,10 @@ public class FileTransferManager{
 			walkData.put("hours"		, data.getTimeTaken());
 			walkData.put("distance"		, data.getDistance());
 			//add all location points
-			walkData.put("locations", packageRoute(data.getRoutePath()));
-			// all places of interest
-			walkData.put("places", packagePlaces(data.getPoiList()));
-			//add all photos
-			//...
+			walkData.put("route", packageRoute(data.getRoutePath()));
 					
 		}catch (JSONException e){ }
 		return walkData;
-	}
-	
-	/**
-	 * packages all the places of interest into a JSONArray.
-	 * 
-	 * @param poiList, a vector of all the places in the walk.
-	 * @return a JSON Array containing all the places of interest in the walk
-	 * @throws JSONException
-	 */
-	private static JSONArray packagePlaces(Vector<PointOfInterest> poiList) throws JSONException{
-		JSONArray routeData = new JSONArray();
-		for(PointOfInterest poi: poiList){
-			routeData.put(packagePoi(poi));
-		}
-		return routeData;
 	}
 	
 	/**
@@ -90,7 +71,7 @@ public class FileTransferManager{
 	private static JSONArray packageRoute(Vector<LocationPoint> route) throws JSONException{
 		JSONArray routeData = new JSONArray();
 		for(LocationPoint point: route){
-			routeData.put(packageLocationPoint(point));
+			routeData.put(packagepathData(point));
 		}
 		return routeData;
 	}
@@ -102,54 +83,24 @@ public class FileTransferManager{
 	 * @return the encoded point.
 	 * @throws JSONException
 	 */
-	private static JSONObject packageLocationPoint(LocationPoint point) throws JSONException{
+	private static JSONObject packagepathData(LocationPoint point) throws JSONException{
 		JSONObject location = new JSONObject();
-		location.put("walk_id", 1);
 		location.put("longitude", point.getLongitude());
 		location.put("latitude", point.getLatitude());
 		location.put("time", point.getTime());
 		if(point instanceof PointOfInterest){
-			location.put("location_id",poi.getDescription() );
-			location.put("description",poi.getDescription());
+			location.put("description",((PointOfInterest)point).getDescription());
+			location.put("title",((PointOfInterest)point).getTitle());
+			JSONArray images = new JSONArray();
+			for(ImageInformation image:((PointOfInterest)point).getImages()){
+				JSONObject jsonImage = new JSONObject();
+				jsonImage.put("file_data",image.getFileName());
+				//image.put("file_data",imageData.getImageAsString());
+				images.put(jsonImage);
+			}
+			location.put("images",images);
 		}
 		return location;
-	}
-	
-	/**
-	 * package a single place of interest into a JSONObject
-	 *
-	 * @param poi the place of interest to be encoded.
-	 * @return the encoded poi.
-	 * @throws JSONException
-	 */
-	private static JSONObject packagePoi(PointOfInterest poi) throws JSONException{
-		JSONObject place = new JSONObject();
-		place.put("location_id",poi.getDescription() );
-		place.put("description",poi.getDescription());
-		
-		JSONArray images = new JSONArray();
-		for(ImageInformation image:poi.getImages()){
-			images.put(packageImage(image));
-		}
-		
-		place.put("images",images);
-		return place;
-	}
-	
-	/**
-	 * packages the image in to a json object, the data is added as a string.
-	 * 
-	 * @param imageData
-	 * @return the images in the form of a json object
-	 * @throws JSONException
-	 */
-	private static JSONObject packageImage(ImageInformation imageData) throws JSONException{
-		JSONObject image = new JSONObject();
-		image.put("place_id", 1);
-		image.put("file_name",imageData.getFileName());
-		image.put("JPEG_file",imageData.getImageAsString());
-		
-		return image;
 	}
 	
 	/**

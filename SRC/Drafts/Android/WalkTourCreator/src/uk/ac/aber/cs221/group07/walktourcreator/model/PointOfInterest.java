@@ -56,6 +56,10 @@ public class PointOfInterest extends LocationPoint{
 		description = desc;
 	}
 	
+	public String getTitle(){
+		return title;
+	}
+	
 	/** sets the title of this point. */
 	public void setTitle(String title){
 		this.title = title;

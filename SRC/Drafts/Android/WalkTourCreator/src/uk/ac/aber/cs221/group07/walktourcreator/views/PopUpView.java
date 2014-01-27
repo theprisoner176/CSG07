@@ -17,7 +17,7 @@ public abstract class PopupView extends PopupWindow{
 	private View parent;
 	
 	/**provides link to the activity that this popup is displayed in*/
-	protected Activity owner;
+	protected GeneralActivity owner;
 	
 	/**
 	 * @param context, provides the context for the view.
