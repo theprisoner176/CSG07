@@ -1,5 +1,13 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -94,6 +102,24 @@ public abstract class GeneralActivity extends Activity{
 	    }
 		if (requestCode == GALLERY_ACTIVITY_RESULT_CODE) { //result from gallery activity
 	        if (resultCode == RESULT_OK) {
+	        	File destination = (File) data.getSerializableExtra("file_destination");
+	        	File source = new File(data.getData().toString());
+	        	
+	        	try {
+					FileInputStream input = new FileInputStream(source);
+					FileOutputStream output = new FileOutputStream(destination);
+					
+					byte[] buf = new byte[1024];
+				    int len;
+				    while ((len = input.read(buf)) > 0) {
+				    	output.write(buf, 0, len);
+				    }
+				    input.close();
+				    output.close();
+					
+	        	} catch (Exception e) { }
+	        	
+	        	
 	            Toast.makeText(this, "Image added to walk:\n" + data.getData(), Toast.LENGTH_LONG).show();
 	        } else {
 	            Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();

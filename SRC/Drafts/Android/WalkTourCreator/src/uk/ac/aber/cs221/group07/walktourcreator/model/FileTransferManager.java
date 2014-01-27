@@ -24,6 +24,7 @@ import org.json.JSONObject;
 public class FileTransferManager{
 
 	private final static String dataServer = "http://users.aber.ac.uk/mas69/file_saver.php";
+	//private final static String dataServer = "http://users.aber.ac.uk/hfb1/this.php";
 			
 	/**
 	* makes a connection to data server and
@@ -46,7 +47,6 @@ public class FileTransferManager{
 	 * @return the walk encoded into a json object.
 	 */
 	private static JSONObject packageData(WalkModel data){
-		JSONObject walk = new JSONObject();
 		JSONObject walkData = new JSONObject();
 		try{
 			//add walk data
@@ -57,10 +57,9 @@ public class FileTransferManager{
 			walkData.put("distance"		, data.getDistance());
 			//add all location points
 			walkData.put("route", packageRoute(data.getRoutePath()));
-			walk.put("walk", walkData);
 					
 		}catch (JSONException e){ }
-		return walk;
+		return walkData;
 	}
 	
 	/**
