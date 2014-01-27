@@ -1,6 +1,7 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
+import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
@@ -107,7 +108,7 @@ public class MapScreen extends GeneralActivity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		/*LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
 		PositionListener poiListener = new PositionListener();
 		poiListener.setMap(this);
@@ -118,8 +119,13 @@ public class MapScreen extends GeneralActivity {
 		}
 		poiListener.setRecorder(poiRec);
 		
-		
-		
+		*/
+		ImageHandler image_saver = new ImageHandler(this);
+		PointOfInterest newPoi = new PointOfInterest(1.0,2.0);
+		newPoi.addImage(image_saver.getPhotoFromLibrary());
+		newPoi.setTitle("A great place to go");
+		newPoi.setDescription("it is blah blah blah ...");
+		walk.addLocation(newPoi);
 		/*
 		//for testing only this will be done in another screen/popup
 		ImageHandler image_saver = new ImageHandler(this);

@@ -1,8 +1,11 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
+import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+
+import android.util.Base64;
 
 /**
  * This class stores information about a single image
@@ -31,14 +34,19 @@ public class ImageInformation {
 	 * @return file contents as modified UTF-8
 	 */
 	public String getImageAsString(){
+		byte[] fileData = null;
 		String retval = null;
         try {
-        	File imageFile = new File(fileName);
-        	FileInputStream file = new FileInputStream(fileName);
-        	// Open file
-        	DataInputStream inputStream = new DataInputStream(file);
-        	retval = inputStream.readUTF();
-        	inputStream.close();
+        	File f = new File(fileName);
+        	int size = (int) f.length();
+        	           
+        	fileData = new byte[size];
+                   
+        	BufferedInputStream buf = new BufferedInputStream(new FileInputStream(f));
+        	buf.read(fileData, 0, fileData.length);
+        	buf.close();
+        	retval = Base64.encodeToString(fileData, Base64.NO_WRAP);
+        	//retval = new String(fileData, "UTF-8");
         }
         catch(Exception exc){ }
         

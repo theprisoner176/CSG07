@@ -9,20 +9,12 @@ import java.util.Date;
  */
 public class LocationPoint {
 
-	/** holds the next id, that can be used */
-	private static int nextId = 0;
 	
-	/** holds an id that is unique to the current walk*/
-	private int id;
 
-	/**
-	 * holds the distance (east-west) from Greenwich)
-	 */
+	/** holds the distance (east-west) from Greenwich) */
 	protected double longitude;
 	
-	/**
-	 * holds the distance (north-south) from the equator)
-	 */
+	/** holds the distance (north-south) from the equator) */
 	protected double latitude;
 	
 	/** keeps a record of when the location was captured  */
@@ -51,8 +43,6 @@ public class LocationPoint {
 		this.time = time;
 		this.latitude = lat;
 		this.longitude = lng;
-		this.id = nextId;
-		nextId++;
 	}
 	
 	/**

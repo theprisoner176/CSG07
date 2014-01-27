@@ -1,11 +1,13 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import uk.ac.aber.cs221.group07.walktourcreator.activities.GeneralActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -36,12 +38,13 @@ public class ImageHandler {
 	 * @return information about the selected image
 	 */
 	public ImageInformation getPhotoFromLibrary(){
-		//NONE OF THIS TESTED AT ALL
 		Intent intent = new Intent();
+		File fileToCopyto = createPhotoFile();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.putExtra("file_destination", fileToCopyto);
         owner.startActivityForResult(Intent.createChooser(intent,"Select Picture"), GeneralActivity.GALLERY_ACTIVITY_RESULT_CODE);
-		return new ImageInformation(null);
+		return new ImageInformation(fileToCopyto.getAbsolutePath());
 	}
 	
 	/**
@@ -71,9 +74,15 @@ public class ImageHandler {
 	 * @return the new file
 	 */
 	private File createPhotoFile(){
-		File image = null;
-		String filename = Long.toString(System.currentTimeMillis());
-		image =  new File(owner.getFilesDir(), filename);
-	    return image;
+		String filename = Long.toString(System.currentTimeMillis());		
+		FileOutputStream fos;
+		try {
+			fos = owner.openFileOutput(filename, Context.MODE_WORLD_WRITEABLE);
+			fos.close();
+				
+		} catch (Exception e) {}				
+		//Get reference to the file
+		return new File(owner.getFilesDir(), filename);
+
 	}
 }
