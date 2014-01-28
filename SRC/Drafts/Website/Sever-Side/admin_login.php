@@ -1,5 +1,5 @@
 <?php 
-session_save_path('../web/sessions');
+session_save_path('../../web/sessions');
 session_start();
 	if(!isSet($_SESSION['gpadmin'])){
 		header("Location: logon.php");	

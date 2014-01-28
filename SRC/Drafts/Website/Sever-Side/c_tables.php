@@ -1,5 +1,5 @@
 <?php
-session_save_path('../web/sessions');
+session_save_path('../../web/sessions');
 session_start();
 	if(!isSet($_SESSION['gpadmin'])){
 		header("Location: logon.php");	
@@ -19,7 +19,6 @@ if (mysqli_connect_errno()){
 			latitude FLOAT,
 			longitude FLOAT,
 			timestamp FLOAT
-			FOREIGN KEY (walkID) REFERENCES List_of_Walks(id)
 		)";
 		if (mysqli_query($con,$sql)){
 			echo "<p>Table Locations created successfully</p>";
@@ -40,7 +39,6 @@ function createListOfWalksTable($con){
 			longDesc VARCHAR (500),
 			hours FLOAT,
 			distance FLOAT
-			
 		)";
 		if (mysqli_query($con,$sql)){
 			echo "<p>Table List Of Walks created successfully</p>";
@@ -57,8 +55,7 @@ function createListOfWalksTable($con){
 			id INT NOT NULL AUTO_INCREMENT,
 			PRIMARY KEY(id),
 			locationId INT NOT NULL,
-			description VARCHAR (100) NOT NULL, 
-			FOREIGN KEY (locationId) REFERENCES Location(id)
+			description VARCHAR (100) NOT NULL
 		)";
 		if (mysqli_query($con,$sql)){
 			echo "<p>Table Place Description created successfully</p>";
@@ -76,7 +73,6 @@ function createListOfWalksTable($con){
 			PRIMARY KEY(id),
 			placeId INT NOT NULL,
 			photoName VARCHAR (100) NOT NULL
-			FOREIGN KEY (placeId) REFERENCES Place_description(id)
 		)";
 		if (mysqli_query($con,$sql)){
 			echo "<p>Table Photos created successfully</p>";
@@ -131,7 +127,7 @@ function createListOfWalksTable($con){
 	createListOfWalksTable($con);
 	createPlaceDescriptionTable($con);
 	createPhotoTable($con);
-	//joinTables($con);
+	joinTables($con);
 	
 }
 else{
