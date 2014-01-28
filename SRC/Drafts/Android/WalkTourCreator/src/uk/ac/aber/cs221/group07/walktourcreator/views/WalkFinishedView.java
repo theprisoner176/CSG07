@@ -27,7 +27,7 @@ public class WalkFinishedView extends PopupView{
 		super(owner);
 		LayoutInflater layoutInflater = (LayoutInflater) owner.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
 	    View popupView = layoutInflater.inflate(R.layout.popup_finish_walk, null);  
-		super.setContentView(popupView);
+		//super.setContentView(popupView);
 	}
 	
 	/**

@@ -26,7 +26,8 @@ public class PositionListener implements LocationListener {
 		}else if(recorder.poiRec == true){
 			PointOfInterest poi = new PointOfInterest(loc.getLatitude(),loc.getLongitude());
 			map.newPoi(poi);
-			map.showDialog(poi);
+			map.showDialog();
+			
 			recorder.savePoi(poi);
 			
 		}

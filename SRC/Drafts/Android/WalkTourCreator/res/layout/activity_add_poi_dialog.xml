@@ -22,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Enter Title" >
+            android:hint="Enter Title"
+             >
 
             <requestFocus />
         </EditText>
@@ -41,7 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="90dp"
             android:drawableTop="@android:drawable/ic_menu_camera"
-            android:text="Take photo" />
+            android:text="Take photo"
+            android:onClick = "addImage" />
 
         <Gallery
             android:id="@+id/gallery1"

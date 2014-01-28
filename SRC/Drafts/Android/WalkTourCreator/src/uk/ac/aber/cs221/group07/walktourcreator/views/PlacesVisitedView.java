@@ -28,7 +28,7 @@ public class PlacesVisitedView extends PopupView{
 		super(context);			
 		LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
 	    View popupView = layoutInflater.inflate(R.layout.popup_finish_walk, null);  
-		super.setContentView(popupView);
+		//super.setContentView(popupView);
 	}
 	
 	/**

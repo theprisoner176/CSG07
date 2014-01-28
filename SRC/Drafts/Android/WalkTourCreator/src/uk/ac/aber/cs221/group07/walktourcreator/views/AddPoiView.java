@@ -30,7 +30,7 @@ public class AddPoiView extends PopupView{
 		
 		LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
 	    View popupView = layoutInflater.inflate(R.layout.popup_finish_walk, null);  
-		super.setContentView(popupView);
+		//super.setContentView(popupView);
 	}
 	
 	/**
@@ -48,8 +48,8 @@ public class AddPoiView extends PopupView{
 	 * @param The parameter v, is the object that called the method.
 	 */
 	public void getPhotoFromLibrary(View v){
-		ImageHandler image = new ImageHandler(owner);
-		image.getPhotoFromLibrary();
+	//	ImageHandler image = new ImageHandler(owner);
+	//	image.getPhotoFromLibrary();
 	}
 	
 	/**
@@ -58,8 +58,8 @@ public class AddPoiView extends PopupView{
 	 * @param The parameter v, is the object that called the method. 
 	 */
 	public void getPhotoFromCamera(View v){
-		ImageHandler image = new ImageHandler(owner);
-		image.getPhotoFromCamera();
+	//	ImageHandler image = new ImageHandler(owner);
+	//	image.getPhotoFromCamera();
 	}
 
 

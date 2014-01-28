@@ -1,53 +1,38 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
-import uk.ac.aber.cs221.group07.walktourcreator.activities.GeneralActivity;
-import android.app.Activity;
-import android.graphics.Color;
+import uk.ac.aber.cs221.group07.walktourcreator.R;
+import uk.ac.aber.cs221.group07.walktourcreator.model.DialogClickListener;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.PopupWindow;
 
 
 /** 
  * provides an general overlay panel that other classes can extend
  * @author HarryBuckley
  */
-public abstract class PopupView extends PopupWindow{
+public abstract class PopupView {
 
-	/**provides link to the view that this popup is linked to*/
-	private View parent;
-	
-	/**provides link to the activity that this popup is displayed in*/
-	protected GeneralActivity owner;
-	
-	/**
-	 * @param context, provides the context for the view.
-	 * @param parent 
-	 */
-	public PopupView(GeneralActivity context) {
-		super(context);
-		owner = context;
-		this.parent = context.getContentView();
+	public PopupView(Context context){
+		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View layout = inflater.inflate(R.layout.activity_add_poi_dialog, null);
+		
+		DialogClickListener okListener = new DialogClickListener();
+//		okListener.setPointOfInterest(poi);
+//		okListener.setInflaterView(inflater, layout);
+		
+		new AlertDialog.Builder(context)
+	    .setMessage("Enter details for the Point of Interest")
+	    .setView(layout)
+	    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	            // do nothing
+	        }
+	     })
+	     .setPositiveButton(android.R.string.yes, okListener)
+	     .show();
 	}
 	
-	/**
-	 * 
-	 */
-	public void setContentView(View contentView){
-		contentView.setBackgroundColor(Color.BLUE);
-		super.setContentView(contentView);
-		this.showAsDropDown(parent);
-		/*update(
-				(int)0.05*parent.getWidth(),
-				(int)0.05*parent.getHeight(),
-				(int)0.9*parent.getWidth(),
-				(int)0.9*parent.getHeight()
-				,true);*/
-	}
-	
-	/**
-	 * 
-	 */
-	public void cancel(){
-		this.dismiss();
-	}
 }
