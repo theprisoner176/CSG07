@@ -4,7 +4,6 @@ import uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
-import uk.ac.aber.cs221.group07.walktourcreator.views.WalkView;
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import android.app.Service;
 import android.content.Intent;
@@ -37,13 +36,6 @@ public class RouteRecorder extends Service{
 	
 	public boolean poiRec = false;
 	
-	/**
-	* creates a RouteRecorder instance,
-	* with the MapView that will display the walk.
-	*/
-	public RouteRecorder(WalkView map){
-		
-	}
 	
 	/**
 	 * Constructor for the recorder. Takes a PositionListener and a LocationManager

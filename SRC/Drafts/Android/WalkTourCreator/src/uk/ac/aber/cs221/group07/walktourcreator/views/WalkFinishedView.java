@@ -13,7 +13,7 @@ import android.view.View;
  * @author HarryBuckley
  *
  */
-public class WalkFinishedView extends PopupView{
+public class WalkFinishedView {
 	
 	/**
 	 * displays a screen displaying
@@ -24,7 +24,7 @@ public class WalkFinishedView extends PopupView{
 	 * @param owner, activity that owns this popup. 
 	 */
 	public WalkFinishedView(WalkModel walk,GeneralActivity owner ){
-		super(owner);
+		//super(owner);
 		LayoutInflater layoutInflater = (LayoutInflater) owner.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
 	    View popupView = layoutInflater.inflate(R.layout.popup_finish_walk, null);  
 		//super.setContentView(popupView);

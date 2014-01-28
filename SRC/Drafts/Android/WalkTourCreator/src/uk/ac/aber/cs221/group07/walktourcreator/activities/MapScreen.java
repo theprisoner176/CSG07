@@ -1,7 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
-import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
@@ -41,6 +40,7 @@ public class MapScreen extends GeneralActivity {
 	private LocationClient mLocationClient;
 	private TextView mMessageView;
 	private Marker currentPosition;
+	private PoiDialogView poiDialog;
 	
 	/** holds the object that is responsible for tracking the path of the walk*/
 	private RouteRecorder recorder;
@@ -48,6 +48,8 @@ public class MapScreen extends GeneralActivity {
 	/** stores the walk that the user is currently on.*/
 	 private WalkModel walk;
 	
+	 
+	 
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
 	 * specified in res/layout/activity_map_screen.xml
@@ -79,9 +81,6 @@ public class MapScreen extends GeneralActivity {
 		//give control of the map
 		recorder.setWalk(walk);
 		posListener.setRecorder(recorder);
-		
-		//stores a reference of the map to an instance variable
-		//map = (MapView) findViewById(R.id.map_view);
 	}
 	
 
@@ -106,38 +105,25 @@ public class MapScreen extends GeneralActivity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+//		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+//		
+//		PositionListener poiListener = new PositionListener();
+//		poiListener.setMap(this);
+//		
+//		RouteRecorder poiRec = new RouteRecorder(poiListener, poiManager,true);
+//		if(walk!=null){
+//			poiRec.setWalk(walk);
+//		}
+//		poiListener.setRecorder(poiRec);
+//		
+		PointOfInterest poi = new PointOfInterest(4.0,52.3);
+		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
+		poiDialog = pv;
 		
-		PositionListener poiListener = new PositionListener();
-		poiListener.setMap(this);
-		
-		RouteRecorder poiRec = new RouteRecorder(poiListener, poiManager,true);
-		if(walk!=null){
-			poiRec.setWalk(walk);
-		}
-		poiListener.setRecorder(poiRec);
-		showDialog();
-		
-		
-//		newPoi.setTitle("A great place to go");
-//		newPoi.setDescription("it is blah blah blah ...");
-//		walk.addLocation(newPoi);
-		/*
-		//for testing only this will be done in another screen/popup
-		ImageHandler image_saver = new ImageHandler(this);
-		PointOfInterest newPoi = new PointOfInterest(1.0,2.0);
-		newPoi.addImage(image_saver.getPhotoFromCamera());
-		newPoi.setTitle("A great place to go");
-		newPoi.setDescription("it is blah blah blah ...");
-		walk.addLocation(newPoi);
-		*/
+
 	}
 	
-	public void addImage(){
-		ImageHandler imageSaver = new ImageHandler(this);
-		PointOfInterest poi = new PointOfInterest(1.0,2.0);
-		poi.addImage(imageSaver.getPhotoFromLibrary());
-	}
+
 	
 	/**
 	* creates and displays a WalkFinishedView.
@@ -148,14 +134,14 @@ public class MapScreen extends GeneralActivity {
 
 		WalkManager manager = new WalkManager(this);
 //		
-		LocationPoint p = new LocationPoint(3,3);
-		PointOfInterest poi = new PointOfInterest(6,7);
-		poi.setDescription("This is a place of interest");
+//		LocationPoint p = new LocationPoint(3,3);
+//		PointOfInterest poi = new PointOfInterest(6,7);
+//		poi.setDescription("This is a place of interest");
 		
-		walk.addLocation(p);
-		walk.addLocation(poi);
+//		walk.addLocation(p);
+//		walk.addLocation(poi);
 //		manager.addWalkModel(walk);
-		manager.uploadWalk(walk);
+//		manager.uploadWalk(walk);
 //		manager.uploadWalk(walk);
 		
 		Intent intent = new Intent(this, MainMenu.class);
@@ -203,34 +189,18 @@ public class MapScreen extends GeneralActivity {
 		
 	}
 	
+	public void addImage(View v){
+		poiDialog.addImage(v);
+	}
 	
-	/*
-	protected void onDestroy(){
-		Toast.makeText(getApplicationContext(), "DESTROYED", Toast.LENGTH_LONG).show();
+	public void takePhoto(View v){
+		poiDialog.takePhoto(v);
 	}
-	*/
+	
 
-
-	public void showDialog() {
-//		LayoutInflater inflater = (LayoutInflater)MapScreen.this.getSystemService(LAYOUT_INFLATER_SERVICE);
-//		View layout = inflater.inflate(R.layout.activity_add_poi_dialog, null);
-//		
-//		DialogClickListener okListener = new DialogClickListener();
-//		okListener.setPointOfInterest(poi);
-//		okListener.setInflaterView(inflater, layout);
-//		
-//		new AlertDialog.Builder(this)
-//	    .setMessage("Enter details for the Point of Interest")
-//	    .setView(layout)
-//	    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-//	        public void onClick(DialogInterface dialog, int which) { 
-//	            // do nothing
-//	        }
-//	     })
-//	     .setPositiveButton(android.R.string.yes, okListener)
-//	     .show();
-		PointOfInterest test = new PointOfInterest(45.0,5.4);
-		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,test);
+	public void showDialog(PointOfInterest poi) {
+		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
+		poiDialog = pv;
 	}
-
+	
 }

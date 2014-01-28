@@ -36,14 +36,28 @@
             android:inputType="textMultiLine"
             android:text="Enter Description" />
 
-        <Button
-            android:id="@+id/button1"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
-            android:drawableTop="@android:drawable/ic_menu_camera"
-            android:text="Take photo"
-            android:onClick = "addImage" />
+            android:layout_marginLeft="45dp" >
+
+            <Button
+                android:id="@+id/take_picture_btn_cam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@android:drawable/ic_menu_camera"
+                android:onClick="takePhoto"
+                android:text="Take photo" />
+
+            <Button
+                android:id="@+id/gallery_btn"
+                android:layout_width="wrap_content"
+                android:drawableTop="@android:drawable/ic_menu_gallery"
+                android:layout_height="wrap_content"
+                android:onClick = "addImage"
+                android:text="Open Gallery" />
+
+        </LinearLayout>
 
         <Gallery
             android:id="@+id/gallery1"
