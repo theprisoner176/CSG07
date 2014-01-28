@@ -41,17 +41,24 @@ if(!isSet($_SESSION['gpadmin'])){
         if (isset($_POST["Longitude"])){
                         $walk_Longitude = mysqli_real_escape_string($con,$_POST['Long']);
         }
-       
+       if (isset($_POST["time"])){
+                        $walk_time = mysqli_real_escape_string($con,$_POST['time']);
+        }
         
         /**
          * Adds the information as new records to the Walks Table
          */
         $query = "INSERT INTO List_of_Walks (id, title, shortDesc, longDesc, hours, distance) VALUES 
         ('$walk_id','$walk_title','$walk_short', '$walk_long', '$walk_hours', '$walk_distance')";
-
+		
+		 $queryLoc = "INSERT INTO Location (latitude, longitude, timestamp) VALUES 
+        ('$walk_Latt','$walk_Longitude','$walk_time')";
         if (mysqli_query($con,$query)){
                 echo "Sent to the Database";
         }
+		if(mysqli_query($con,$queryLoc)){
+			echo "Sent to the Database";
+		}
         else{
                 echo "Could not add data" . mysqli_error($con);
         }
