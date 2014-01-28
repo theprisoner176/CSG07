@@ -2,6 +2,7 @@ package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
+import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.services.PositionListener;
@@ -106,6 +107,14 @@ public class MapScreen extends GeneralActivity {
 		if(walk!=null){
 			poiRec.setWalk(walk);
 		}
+		
+		/*
+		PointOfInterest poi = new PointOfInterest(-4,53);
+		poi.setDescription("qwertyuiosdfgh ");
+		walk.addLocation(poi);
+		ImageHandler image = new ImageHandler(this);
+		image.getPhotoFromLibrary();
+		*/
 
 	}
 
@@ -135,10 +144,10 @@ public class MapScreen extends GeneralActivity {
 	public void uploadWalk(){
 		FileTransferManager manager = new FileTransferManager();
 		manager.uploadWalk(walk);
-		recorder.finishWalk();
-		finish();
-		Intent intent = new Intent(this, MainMenu.class);
-		startActivity(intent);
+		//recorder.finishWalk();
+		//finish();
+		//Intent intent = new Intent(this, MainMenu.class);
+		//startActivity(intent);
 	}
 	
 

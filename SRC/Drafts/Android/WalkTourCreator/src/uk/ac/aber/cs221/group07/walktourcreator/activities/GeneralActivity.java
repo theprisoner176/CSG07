@@ -80,14 +80,11 @@ public abstract class GeneralActivity extends Activity{
 	        	if(newPoi==null){
 	        		return;
 	        	}
-	        	//Bundle bundle = data.getExtras();
 	        	data.getData();
-	        	//Uri uri = (Uri)bundle.get(Intent.EXTRA_STREAM);
-	        	//uri.toString();
+	        	
 	        	File f = new File( getRealPathFromURI(data.getData()));
 	        	
 	        	newPoi.addImage(new ImageInformation(f.getAbsolutePath()));
-	        	//newPoi.addImage(new ImageInformation(uri.toString()));
 	        	
 	            Toast.makeText(this, "Image added to walk:\n" + data.getData(), Toast.LENGTH_LONG).show();
 	        } else {
