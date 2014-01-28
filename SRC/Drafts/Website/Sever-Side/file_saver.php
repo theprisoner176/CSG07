@@ -12,14 +12,14 @@
 				$json = implode($_POST);
                 $json_array = json_decode($json,true);
            			
-			
+				//getting the json values
 				$title = $json_array['title'];
 				$short_desc = $json_array['short_desc'];
 				$long_desc = $json_array['long_desc'];
 				$hours = $json_array['hours'];
 				$distance = $json_array['distance'];
 				$route = $json_array['route'];
-				fwrite($file, $title . "\n" . $short_desc . "\n" . $long_desc . "\n" . $hours . "\n" . $distance . "\n" . $route);
+				
 					
 				$longitude;
 				$latitude;
@@ -43,7 +43,6 @@
 								}
 							}
 						}
-						fwrite($file, "\n" . $loc . " " .  $longitude);
 					}
       
 				fclose($file);
