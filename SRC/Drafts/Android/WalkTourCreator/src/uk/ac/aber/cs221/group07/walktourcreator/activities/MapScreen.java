@@ -101,7 +101,7 @@ public class MapScreen extends GeneralActivity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		/*
+		
 		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
 		PositionListener poiListener = new PositionListener();
@@ -111,19 +111,7 @@ public class MapScreen extends GeneralActivity {
 		if(walk!=null){
 			poiRec.setWalk(walk);
 		}
-		poiListener.setRecorder(poiRec);
-<<<<<<< f5ff96294959c431e23f7eb0d14ee9fb928701de
-		/**/
-		
-		WalkModel walktest = walk;
-		PointOfInterest poi = new PointOfInterest(1.2,2,2);
-		poi.setTitle("test");
-		walk.addLocation(poi);
-		ImageHandler i = new ImageHandler(this); 
-		i.getPhotoFromLibrary();
-		//*/
-=======
->>>>>>> ec42fa5877d4a4e40b8f1a473c44cd306c592e42
+
 	}
 
 	
@@ -136,8 +124,7 @@ public class MapScreen extends GeneralActivity {
 		walkFinished = finished;
 	}
 	
-<<<<<<< f5ff96294959c431e23f7eb0d14ee9fb928701de
-=======
+
 	public void showDialog(PointOfInterest poi) {
 		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
 		poiDialog = pv;
@@ -159,8 +146,7 @@ public class MapScreen extends GeneralActivity {
 		startActivity(intent);
 	}
 	
-	
->>>>>>> ec42fa5877d4a4e40b8f1a473c44cd306c592e42
+
 	/**
 	 * Called whenever location data is gathered
 	 */
@@ -190,14 +176,5 @@ public class MapScreen extends GeneralActivity {
 		poiDialog.takePhoto(v);
 	}
 	
-<<<<<<< f5ff96294959c431e23f7eb0d14ee9fb928701de
-	public void showDialog(PointOfInterest poi) {
-		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
-		poiDialog = pv;
-	}
-=======
-
-	
->>>>>>> ec42fa5877d4a4e40b8f1a473c44cd306c592e42
 	
 }
