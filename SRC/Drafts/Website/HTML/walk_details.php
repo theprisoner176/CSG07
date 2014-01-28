@@ -101,6 +101,69 @@ var contentString = '<div id="content">'+
       title: 'Shrewsbury'
   });
   
+    var myLatLng = new google.maps.LatLng(52.7077, -2.2541);
+  var marker1 = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Shrewsbury'
+  });
+  
+    var myLatLng = new google.maps.LatLng(52.7077, -2.0541);
+  var marker1 = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Shrewsbury'
+  });
+  
+    var myLatLng = new google.maps.LatLng(52.7077, -2.9541);
+  var marker1 = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Shrewsbury'
+  });
+  
+    var myLatLng = new google.maps.LatLng(52.0077, -2.2541);
+  var marker1 = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Shrewsbury'
+  });
+  
+    var myLatLng = new google.maps.LatLng(52.5077, -2.5541);
+  var marker1 = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Shrewsbury'
+  });
+  
+    var myLatLng = new google.maps.LatLng(52.1077, -2.1541);
+  var marker1 = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Shrewsbury'
+  });
+  
+    var myLatLng = new google.maps.LatLng(52.0077, -2.0541);
+  var marker1 = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Shrewsbury'
+  });
+  
+    var myLatLng = new google.maps.LatLng(52.9077, -2.9541);
+  var marker1 = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Shrewsbury'
+  });
+  
+      var myLatLng = new google.maps.LatLng(52.7077, -2.4541);
+  var marker1 = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Shrewsbury'
+  });
+  
     google.maps.event.addListener(marker1, 'click', function() {
     infowindow1.open(map,marker1);
   });
@@ -108,6 +171,16 @@ var contentString = '<div id="content">'+
   var flightPlanCoordinates = [
     new google.maps.LatLng(52.416667, -4.066667),
     new google.maps.LatLng(52.7077, -2.7541),
+    new google.maps.LatLng(52.7077, -2.2541),
+    new google.maps.LatLng(52.7077, -2.0541),
+    new google.maps.LatLng(52.7077, -2.9541),
+    new google.maps.LatLng(52.0077, -2.2541),
+    new google.maps.LatLng(52.5077, -2.5541),
+    new google.maps.LatLng(52.1077, -2.1541),
+    new google.maps.LatLng(52.0077, -2.0541),
+    new google.maps.LatLng(52.9077, -2.9541),
+    new google.maps.LatLng(52.7077, -2.4541),
+    new google.maps.LatLng(52.416667, -4.066667),   
   ];
   
     var flightPath = new google.maps.Polyline({
@@ -126,7 +199,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 </head>
 <body>
-	<a href="Images/myimage.jpg" rel="shadowbox">My Image</a>
+	<a href="Images/myimage.jpg" rel="shadowbox"><img src="Images/myimage.jpg" height="87" width="156" /></a>
 	<header>
 		<h1>Aber Tour</h1>
 	</header>
