@@ -8,11 +8,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import uk.ac.aber.cs221.group07.walktourcreator.model.ImageInformation;
+import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
@@ -58,7 +62,12 @@ public abstract class GeneralActivity extends Activity{
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == CAMERA_ACTIVITY_RESULT_CODE) { //result from camera activity
 	        if (resultCode == RESULT_OK) {	        	
-	        	//walk.getLastPoi().addImage(new ImageInformation(data.getData().toString()));
+	        	PointOfInterest newPoi = walk.getLastPoi();
+	        	if(newPoi==null){
+	        		return;
+	        	}
+	        	File f = new File( getRealPathFromURI(data.getData()));
+	        	newPoi.addImage(new ImageInformation(f.getAbsolutePath()));
 	        	Toast.makeText(this, "Image saved to:\n" + data.getData(), Toast.LENGTH_LONG).show();
 	        } else {
 	            Toast.makeText(this, "Image not saved\n", Toast.LENGTH_LONG).show();
@@ -66,13 +75,39 @@ public abstract class GeneralActivity extends Activity{
 	    }
 		if (requestCode == GALLERY_ACTIVITY_RESULT_CODE) { //result from gallery activity
 	        if (resultCode == RESULT_OK) {
-	        	walk.getLastPoi().addImage(new ImageInformation(data.getData().toString()));
+	        	PointOfInterest newPoi = walk.getLastPoi();
+	        	WalkModel test = walk;
+	        	if(newPoi==null){
+	        		return;
+	        	}
+	        	//Bundle bundle = data.getExtras();
+	        	data.getData();
+	        	//Uri uri = (Uri)bundle.get(Intent.EXTRA_STREAM);
+	        	//uri.toString();
+	        	File f = new File( getRealPathFromURI(data.getData()));
 	        	
-	        	ImageInformation i = new ImageInformation(data.getData().toString());
+	        	newPoi.addImage(new ImageInformation(f.getAbsolutePath()));
+	        	//newPoi.addImage(new ImageInformation(uri.toString()));
+	        	
 	            Toast.makeText(this, "Image added to walk:\n" + data.getData(), Toast.LENGTH_LONG).show();
 	        } else {
 	            Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
 	        }
+	    }
+	}
+	
+	/*
+	 * 
+	 * FROM http://stackoverflow.com/questions/2789276/android-get-real-path-by-uri-getpath 
+	 */
+	private String getRealPathFromURI(Uri contentURI) {
+	    Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+	    if (cursor == null) { // Source is Dropbox or other similar local file path
+	        return contentURI.getPath();
+	    } else { 
+	        cursor.moveToFirst(); 
+	        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA); 
+	        return cursor.getString(idx); 
 	    }
 	}
 }

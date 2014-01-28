@@ -46,8 +46,7 @@ public class MapScreen extends GeneralActivity {
 	
 	/** holds the object that is responsible for tracking the path of the walk*/
 	private RouteRecorder recorder;
-//	 
-//	private WalkModel walk;
+ 
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
 	 * specified in res/layout/activity_map_screen.xml
@@ -61,10 +60,6 @@ public class MapScreen extends GeneralActivity {
 		
 		setUpMapIfNeeded();
 		
-		//get a reference to the intent used to instantiate the class
-		//and get the WalkModel object that was created
-//		Intent intent = getIntent();
-//		walk = (WalkModel) intent.getSerializableExtra("walk");
 		
 		//location manager to get location data
 		LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -116,10 +111,10 @@ public class MapScreen extends GeneralActivity {
 		poiListener.setRecorder(poiRec);
 		/**/
 		
-		WalkModel walktest = walk;
 		PointOfInterest poi = new PointOfInterest(1.2,2,2);
 		poi.setTitle("test");
 		walk.addLocation(poi);
+		
 		ImageHandler i = new ImageHandler(this); 
 		i.getPhotoFromLibrary();
 		//*/

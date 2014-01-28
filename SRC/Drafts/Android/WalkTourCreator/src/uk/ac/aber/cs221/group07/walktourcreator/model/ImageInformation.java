@@ -27,19 +27,8 @@ public class ImageInformation implements Serializable {
 	}
 	
 	/**
-	 * creates the ImageInformation with generated name
-	 */
-	public ImageInformation(){
-		fileName = "ERROR";
-	}
-	
-	public String getFileName(){
-		return fileName;
-	}
-	
-	/**
-	 * open file and returns it as modified UTF-8 (see DataInputStream)
-	 * @return file contents as modified UTF-8
+	 * open file and returns it as Base64
+	 * @return file contents as Base64
 	 */
 	public String getImageAsString(){
 		byte[] fileData = null;
@@ -59,17 +48,4 @@ public class ImageInformation implements Serializable {
         
 		return retval;
 	}
-	
-	public void setFileName(String newFileName){
-		fileName = newFileName;
-	}
-	
-	/**
-	 * delete image from device
-	 */
-	public void deleteImage(){
-		File file = new File(fileName);
-		file.delete();
-	}
-	
 }
