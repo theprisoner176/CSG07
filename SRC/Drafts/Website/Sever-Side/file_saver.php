@@ -8,32 +8,44 @@
         
 
                           
-                $file = fopen('data_file.txt','a+');	
+                $file = fopen('datafile.txt','ab');	
 				$json = implode($_POST);
-				fwrite($file, $json);
                 $json_array = json_decode($json,true);
-                //fwrite($file, print_r($json_array['title']));
-        			foreach($json_array as $result => $val) {
- 						fwrite($file, $result);
- 						foreach($val as $arry){
- 							fwrite($file, $arry->long_desc);
- 						}
-              			//fwrite($file, $json_array[0]['walk'][0]['long_desc']);              			
-      			
-        			
-        		}
-        			
-        		//}
-				//else echo "\$json['results'] is not an array";
-                //fwrite($file, "JSON =" . $post_data . "\n");
-               // $shortDescription=$_POST['shortDesc'];
-               // $longDescription=$_POST['longDesc'];
-               // $photoName=$_POST['photoName'];
-               // $latitude=$_POST['latitude'];
-               // $longitude=$_POST['longitude'];
-                
-
-
+           			
+			
+				$title = $json_array['title'];
+				$short_desc = $json_array['short_desc'];
+				$long_desc = $json_array['long_desc'];
+				$hours = $json_array['hours'];
+				$distance = $json_array['distance'];
+				$route = $json_array['route'];
+				fwrite($file, $title . "\n" . $short_desc . "\n" . $long_desc . "\n" . $hours . "\n" . $distance . "\n" . $route);
+					
+				$longitude;
+				$latitude;
+				$time;
+				$description;
+				$image;
+					//if(var->desc == null
+					foreach($route as $loc){
+					//loop through every location
+						$longitude = $loc['longitude'];
+						$latitude = $loc['latitude'];
+						$time = $loc['time'];
+						if(isSet($loc['description'])){
+							//If description, location is point of interest
+							$description = $loc['description'];
+							if(isSet($loc['images'])){
+							//If there are images decode and rename them
+								foreach($loc['images']as $image){
+									$image = string base64_decode ($image);
+									file_put_contents('newImage.JPG',$image);
+								}
+							}
+						}
+						fwrite($file, "\n" . $loc . " " .  $longitude);
+					}
+      
 				fclose($file);
 
                 //insert post data into tables 
@@ -44,7 +56,6 @@
                 $sql = "INSERT INTO Location values($latitude,$longitude,0)";
                 mysqli_query($walk_conn,$sql);
                 
-                //mysql_query($sql);
 
          mysqli_close($walk_conn);
        }
