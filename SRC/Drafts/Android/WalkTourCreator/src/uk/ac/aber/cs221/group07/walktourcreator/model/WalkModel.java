@@ -12,8 +12,6 @@ import android.content.ContextWrapper;
  */
 public class WalkModel implements Serializable{
 	
-	/**holds and id that is unique on the device, eg another device could have the same id*/
-	private long id;
 	
 	/** holds the name of the walk, is used as an identifier */
 	private String title;
@@ -32,17 +30,19 @@ public class WalkModel implements Serializable{
 	 * @param name is the title of the new walkModel
 	 */
 	public WalkModel(String name){
-		id = System.currentTimeMillis();
 		title= name;
 		path = new Vector<LocationPoint>();
 	}
 	
 	public PointOfInterest getLastPoi(){
-		for(int i=path.size();1>0;i--){
+		PointOfInterest retval = null;
+		for(int i=path.size()-1;1>=0;i--){
 			if(path.get(i) instanceof PointOfInterest){
-				return (PointOfInterest) path.get(i);
+				retval = (PointOfInterest) path.get(i);
+				break;
 			}
 		}
+		return retval;
 	}
 	
 	/**
@@ -50,7 +50,6 @@ public class WalkModel implements Serializable{
 	 * by the WalkManager when loading walk from database.
 	 */
 	public WalkModel(int id,String title,Vector<LocationPoint> path,String shortDesc,String longDesc){
-		this.id = System.currentTimeMillis();
 		this.title= title;
 		this.path = path;
 		this.shortDesc = shortDesc;
@@ -80,7 +79,7 @@ public class WalkModel implements Serializable{
 	 * returns the elapsed time since the walk was started. 
 	 */
 	public double getTimeTaken(){
-		return path.get(path.size()-1).getTime() - path.get(0).getTime();
+		return (path.get(path.size()-1).getTime() - path.get(0).getTime()) / 1 ; //devide by some value
 	}
 	
 	/**
@@ -123,13 +122,5 @@ public class WalkModel implements Serializable{
 	 */
 	public void addLocation(LocationPoint point){
 		path.add(point);
-	}
-	
-	/**
-	 *  not sure if this will be used.
-	 * @return 
-	 */
-	public long getID(){
-		return id;
 	}
 }
