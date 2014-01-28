@@ -61,7 +61,7 @@
 						$image = implode($image);
 						$image = str_replace("\\", "", $image, $count);
 						$image =  base64_decode($image);
-						file_put_contents($c . ".jpg",$image);
+						file_put_contents("images/" . $c . ".jpg",$image);
 						$c++;
 						$sql = "INSERT INTO Photo(photoName)
 						values($photoName)";
