@@ -26,16 +26,6 @@ public class MainMenu extends GeneralActivity {
 	/**
 	 * Starts a new WalkSetupScreen activity, and displays it to the user.
 	 * 
-	 * @param v is the View that is called the method
-	 */
-	public void startMyWalksScreen(View v){
-		Intent intent = new Intent(this, MyWalksScreen.class);
-	    startActivity(intent);
-	}
-	
-	/**
-	 * Starts a new WalkSetupScreen activity, and displays it to the user.
-	 * 
 	 * @param v is the View that is called the method.
 	 */
 	public void startWalkSetupScreen(View v){

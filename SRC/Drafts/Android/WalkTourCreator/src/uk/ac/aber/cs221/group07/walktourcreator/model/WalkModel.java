@@ -37,6 +37,14 @@ public class WalkModel implements Serializable{
 		path = new Vector<LocationPoint>();
 	}
 	
+	public PointOfInterest getLastPoi(){
+		for(int i=path.size();1>0;i--){
+			if(path.get(i) instanceof PointOfInterest){
+				return (PointOfInterest) path.get(i);
+			}
+		}
+	}
+	
 	/**
 	 * creates a WalkModel, with LocationPoints already set, it is used 
 	 * by the WalkManager when loading walk from database.
@@ -54,19 +62,6 @@ public class WalkModel implements Serializable{
 	 */
 	public Vector<LocationPoint> getRoutePath(){
 		return path;
-	}
-	
-	/**
-	 * returns a vector of all the places of interest in the walk. 
-	 */
-	public Vector<PointOfInterest> getPoiList(){
-		Vector<PointOfInterest> poi = new Vector<PointOfInterest>();
-		for(LocationPoint point:getRoutePath()){
-			if(point instanceof PointOfInterest){
-				poi.add((PointOfInterest) point);
-			}
-		}
-		return poi;
 	}
 	
 	

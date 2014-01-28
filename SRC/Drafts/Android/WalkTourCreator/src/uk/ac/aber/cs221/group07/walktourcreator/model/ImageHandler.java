@@ -37,52 +37,19 @@ public class ImageHandler {
 	 * starts the system photo gallery browser, where the user can select an image.
 	 * @return information about the selected image
 	 */
-	public ImageInformation getPhotoFromLibrary(){
+	public void getPhotoFromLibrary(){
 		Intent intent = new Intent();
-		File fileToCopyto = createPhotoFile();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.putExtra("file_destination", fileToCopyto);
         owner.startActivityForResult(Intent.createChooser(intent,"Select Picture"), GeneralActivity.GALLERY_ACTIVITY_RESULT_CODE);
-		return new ImageInformation(fileToCopyto.getAbsolutePath());
 	}
 	
 	/**
 	 * starts a take-picture-intent that saves the taken picture and returns the filename
 	 * @return an image Information object that holds the filename.
 	 */
-	public ImageInformation getPhotoFromCamera(){
-		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		File photoFile = null;   
-		if (takePictureIntent.resolveActivity(owner.getPackageManager()) != null) {
-			photoFile = createPhotoFile();
-			if (photoFile != null) {
-				takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(photoFile));
-				
-				owner.startActivityForResult(takePictureIntent, GeneralActivity.CAMERA_ACTIVITY_RESULT_CODE);
-				return new ImageInformation(photoFile.getAbsolutePath());
-			}
-		}
-		//if some error
-		return null;
-	}
-	
-	/**
-	 * creates an empty file where the new image will be saved, the filename is the time the file was created
-	 * this is because is has to be unique.
-	 * 
-	 * @return the new file
-	 */
-	private File createPhotoFile(){
-		String filename = Long.toString(System.currentTimeMillis());		
-		FileOutputStream fos;
-		try {
-			fos = owner.openFileOutput(filename, Context.MODE_WORLD_WRITEABLE);
-			fos.close();
-				
-		} catch (Exception e) {}				
-		//Get reference to the file
-		return new File(owner.getFilesDir(), filename);
-
+	public void getPhotoFromCamera(){
+		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);				
+		owner.startActivityForResult(takePictureIntent, GeneralActivity.CAMERA_ACTIVITY_RESULT_CODE);
 	}
 }

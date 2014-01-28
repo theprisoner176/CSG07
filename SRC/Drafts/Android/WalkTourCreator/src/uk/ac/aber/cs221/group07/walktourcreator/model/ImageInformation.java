@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.Serializable;
 
 import android.util.Base64;
 
@@ -11,7 +12,7 @@ import android.util.Base64;
  * This class stores information about a single image
  *@author HarryBuckley
  */
-public class ImageInformation {
+public class ImageInformation implements Serializable {
 	
 	/** The name of the actual file, is has to be unique to all other photos stored by the app */
 	private String fileName;
@@ -23,6 +24,13 @@ public class ImageInformation {
 	 */
 	public ImageInformation(String filename){
 		fileName = filename;
+	}
+	
+	/**
+	 * creates the ImageInformation with generated name
+	 */
+	public ImageInformation(){
+		fileName = "ERROR";
 	}
 	
 	public String getFileName(){
@@ -50,6 +58,10 @@ public class ImageInformation {
         catch(Exception exc){ }
         
 		return retval;
+	}
+	
+	public void setFileName(String newFileName){
+		fileName = newFileName;
 	}
 	
 	/**
