@@ -103,7 +103,7 @@ public class MapScreen extends GeneralActivity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		
+		/*
 		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
 		PositionListener poiListener = new PositionListener();
@@ -114,7 +114,7 @@ public class MapScreen extends GeneralActivity {
 			poiRec.setWalk(walk);
 		}
 		poiListener.setRecorder(poiRec);
-		/*
+		/**/
 		
 		WalkModel walktest = walk;
 		PointOfInterest poi = new PointOfInterest(1.2,2,2);
@@ -122,9 +122,8 @@ public class MapScreen extends GeneralActivity {
 		walk.addLocation(poi);
 		ImageHandler i = new ImageHandler(this); 
 		i.getPhotoFromLibrary();
-		*/
+		//*/
 	}
-	
 
 	
 	/**
@@ -146,15 +145,6 @@ public class MapScreen extends GeneralActivity {
 	}
 	
 	/**
-	* creates and displays a PlacesVisitedView.
-	* @param v, is the object that called the method. 
-	*/
-	public void showPlacesVisited(View v){
-		
-	}
-	
-	
-	/**
 	 * Called whenever location data is gathered
 	 */
 	public void updatePosition(LocationPoint loc){
@@ -172,8 +162,7 @@ public class MapScreen extends GeneralActivity {
 	
 	public void newPoi(PointOfInterest poi){
 		LatLng pos = new LatLng(poi.getLatitude(),poi.getLongitude());
-		map.addMarker(new MarkerOptions().position(pos).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-		
+		map.addMarker(new MarkerOptions().position(pos).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));	
 	}
 	
 	public void addImage(View v){
@@ -184,7 +173,6 @@ public class MapScreen extends GeneralActivity {
 		poiDialog.takePhoto(v);
 	}
 	
-
 	public void showDialog(PointOfInterest poi) {
 		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
 		poiDialog = pv;
