@@ -2,6 +2,7 @@ package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
+import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.internal.t;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -101,6 +103,7 @@ public class MapScreen extends GeneralActivity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
+		
 		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
 		PositionListener poiListener = new PositionListener();
@@ -111,6 +114,15 @@ public class MapScreen extends GeneralActivity {
 			poiRec.setWalk(walk);
 		}
 		poiListener.setRecorder(poiRec);
+		/*
+		
+		WalkModel walktest = walk;
+		PointOfInterest poi = new PointOfInterest(1.2,2,2);
+		poi.setTitle("test");
+		walk.addLocation(poi);
+		ImageHandler i = new ImageHandler(this); 
+		i.getPhotoFromLibrary();
+		*/
 	}
 	
 
@@ -124,17 +136,12 @@ public class MapScreen extends GeneralActivity {
 
 		FileTransferManager manager = new FileTransferManager();
 
-		
-//		walk.addLocation(p);
-//		walk.addLocation(poi);
-//		manager.addWalkModel(walk);
-//		manager.uploadWalk(walk);
 		manager.uploadWalk(walk);
 		
-		Intent intent = new Intent(this, MainMenu.class);
-		recorder.finishWalk();
-		finish();
-		startActivity(intent);
+		//Intent intent = new Intent(this, MainMenu.class);
+		//recorder.finishWalk();
+		//finish();
+		//startActivity(intent);
 
 	}
 	

@@ -58,15 +58,15 @@ public abstract class GeneralActivity extends Activity{
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == CAMERA_ACTIVITY_RESULT_CODE) { //result from camera activity
 	        if (resultCode == RESULT_OK) {	        	
-	        	walk.getLastPoi().addImage(new ImageInformation(data.getData().toString()));
-	        	Toast.makeText(this, "Image saved to:\n" + data.getData(), Toast.LENGTH_LONG).show();
+	        	//walk.getLastPoi().addImage(new ImageInformation(data.getData().toString()));
+	        	//Toast.makeText(this, "Image saved to:\n" + data.getData(), Toast.LENGTH_LONG).show();
 	        } else {
 	            Toast.makeText(this, "Image not saved\n", Toast.LENGTH_LONG).show();
 	        }
 	    }
 		if (requestCode == GALLERY_ACTIVITY_RESULT_CODE) { //result from gallery activity
 	        if (resultCode == RESULT_OK) {
-	        	walk.getLastPoi().addImage(new ImageInformation(data.getData().toString()));
+	        	//walk.getLastPoi().addImage(new ImageInformation(data.getData().toString()));
 	            Toast.makeText(this, "Image added to walk:\n" + data.getData(), Toast.LENGTH_LONG).show();
 	        } else {
 	            Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
