@@ -23,7 +23,7 @@ public class WalkModel implements Serializable{
 	private String shortDesc;
 	
 	/** stores the vector of LocationPoints that make up the walk*/
-	public Vector<LocationPoint> path;//just for testing, will be private
+	private Vector<LocationPoint> path;//just for testing, will be private
 	
 	/**
 	 * creates a new walking model with the title that is passed

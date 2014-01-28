@@ -1,13 +1,11 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import uk.ac.aber.cs221.group07.walktourcreator.activities.GeneralActivity;
 
-import android.app.Activity;
-import android.content.Context;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -49,14 +47,26 @@ public class ImageHandler {
 	 * @return an image Information object that holds the filename.
 	 */
 	public void getPhotoFromCamera(){
-		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);				
+		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);	
+		File temp = createFile();
+		owner.temp=temp.getAbsolutePath();
+		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(temp));
 		owner.startActivityForResult(takePictureIntent, GeneralActivity.CAMERA_ACTIVITY_RESULT_CODE);
 	}
 	
 	/**
-	 * 
-	 * 
+	 * creates the file that the camera will save the taken picture to. 
+	 * @return a newly created file
 	 */
-	
+	private File createFile(){
+		
+		File file = new File(Environment.getExternalStorageDirectory(),
+				Long.toString(System.currentTimeMillis())+".jpeg");
+		try {
+			file.createNewFile();
+			
+		} catch (IOException e) { }
+		return file;
+	}
 	
 }
