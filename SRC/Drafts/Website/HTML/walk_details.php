@@ -64,8 +64,8 @@
 							$lat = array();
 							$long = array();
 							while ($value = mysqli_fetch_array($database->get_result())){
-										$lat[] = foo;
-										$long[] = foo;
+										$lat[] = 52.416667;
+										$long[] = -4.066667;
 							}
 							$database->close_connection();										
 						?>
@@ -81,14 +81,15 @@
 						var map = new google.maps.Map(document.getElementById('map-canvas'),
 								mapOptions);
 						
-						var contentString = <?php?>'<div id="content">'+'<h1 id="firstHeading" class="firstHeading"></h1>'+
+						var contentString = '<div id="content">'+'<h1 id="firstHeading" class="firstHeading"></h1>'+
 						'<div id="bodyContent">'+'<p>short desc </p>'+'</div>'+'</div>';
 	
 						var infowindow = new google.maps.InfoWindow({
 							content: contentString
 						});
-
-						var myLatLng = new google.maps.LatLng(52.416667, -4.066667);
+						for (i = 0; i < lat.length; i++){
+							var myLatLng = new google.maps.LatLng(lat[i], lng[i]);
+						}
 						var marker = new google.maps.Marker({
 							position: myLatLng,
 							map: map,
