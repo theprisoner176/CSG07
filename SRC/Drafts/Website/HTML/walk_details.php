@@ -56,10 +56,23 @@
 								echo "<br/>";
 								echo "This is the distance for the walk " . $walk['distance'];
 							}
+							
+							
+							$query = "SELECT latitude, longitude FROM Location";
+							$database->prepare_query($query);
+							$database->send_query($database->get_query());
+							$lat = array();
+							$long = array();
+							while ($value = mysqli_fetch_array($database->get_result())){
+										$lat[] = foo;
+										$long[] = foo;
+							}
 							$database->close_connection();										
 						?>
-						 <script>
+						 <script type="text/javascript">
 						var map;
+						var lat = <?php echo json_encode($lat); ?>;
+						var lng = <?php echo json_encode($long); ?>;
 						function initialize() {
 						var mapOptions = {
 							zoom: 8,
