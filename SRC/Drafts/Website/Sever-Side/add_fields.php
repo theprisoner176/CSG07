@@ -35,10 +35,10 @@ if(!isSet($_SESSION['gpadmin'])){
         if (isset($_POST["distance"])){
                         $walk_distance = mysqli_real_escape_string($con,$_POST['distance']);
         }
-        if (isset($_POST["Latt"])){
+        if (isset($_POST["latt"])){
                         $walk_Latt = mysqli_real_escape_string($con,$_POST['latt']);     
         }
-        if (isset($_POST["Longitude"])){
+        if (isset($_POST["long"])){
                         $walk_Longitude = mysqli_real_escape_string($con,$_POST['Long']);
         }
        if (isset($_POST["time"])){

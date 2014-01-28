@@ -52,4 +52,11 @@ public class ImageHandler {
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);				
 		owner.startActivityForResult(takePictureIntent, GeneralActivity.CAMERA_ACTIVITY_RESULT_CODE);
 	}
+	
+	/**
+	 * 
+	 * 
+	 */
+	
+	
 }
