@@ -35,7 +35,7 @@ public abstract class GeneralActivity extends Activity{
 	protected static int foregroundColor = Color.BLUE;
 	
 	/**The walk that is being */
-	protected WalkModel walk;
+	protected static WalkModel walk;
 	
 	/** is called automatically on creations */
 	@Override

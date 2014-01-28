@@ -44,8 +44,8 @@ public class MapScreen extends GeneralActivity {
 	
 	/** holds the object that is responsible for tracking the path of the walk*/
 	private RouteRecorder recorder;
-	 
-	 
+//	 
+//	private WalkModel walk;
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
 	 * specified in res/layout/activity_map_screen.xml
