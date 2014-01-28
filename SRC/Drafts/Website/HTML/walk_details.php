@@ -87,11 +87,12 @@
 						var infowindow = new google.maps.InfoWindow({
 							content: contentString
 						});
+						var myLatLng = new Array();
 						for (i = 0; i < lat.length; i++){
-							var myLatLng = new google.maps.LatLng(lat[i], lng[i]);
+							myLatLng[i] = new google.maps.LatLng(lat[i], lng[i]);
 						}
 						var marker = new google.maps.Marker({
-							position: myLatLng,
+							position: myLatLng[1],
 							map: map,
 							title: 'Aberystwyth'
 						});
