@@ -105,20 +105,20 @@ public class MapScreen extends GeneralActivity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-//		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-//		
-//		PositionListener poiListener = new PositionListener();
-//		poiListener.setMap(this);
-//		
-//		RouteRecorder poiRec = new RouteRecorder(poiListener, poiManager,true);
-//		if(walk!=null){
-//			poiRec.setWalk(walk);
-//		}
-//		poiListener.setRecorder(poiRec);
-//		
-		PointOfInterest poi = new PointOfInterest(4.0,52.3);
-		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
-		poiDialog = pv;
+		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		
+		PositionListener poiListener = new PositionListener();
+		poiListener.setMap(this);
+		
+		RouteRecorder poiRec = new RouteRecorder(poiListener, poiManager,true);
+		if(walk!=null){
+			poiRec.setWalk(walk);
+		}
+		poiListener.setRecorder(poiRec);
+		
+//		PointOfInterest poi = new PointOfInterest(4.0,52.3);
+//		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
+//		poiDialog = pv;
 		
 
 	}
@@ -133,16 +133,13 @@ public class MapScreen extends GeneralActivity {
 		//test, will perhaps be moved elsewhere
 
 		WalkManager manager = new WalkManager(this);
-//		
-//		LocationPoint p = new LocationPoint(3,3);
-//		PointOfInterest poi = new PointOfInterest(6,7);
-//		poi.setDescription("This is a place of interest");
+
 		
 //		walk.addLocation(p);
 //		walk.addLocation(poi);
 //		manager.addWalkModel(walk);
 //		manager.uploadWalk(walk);
-//		manager.uploadWalk(walk);
+		manager.uploadWalk(walk);
 		
 		Intent intent = new Intent(this, MainMenu.class);
 		recorder.finishWalk();
