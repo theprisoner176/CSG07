@@ -48,13 +48,11 @@ public class WalkSetupScreen extends GeneralActivity {
 		 */
 		
 		//if input is fine
-		WalkModel walk = new WalkModel(title);
+		walk = new WalkModel(title);
 		walk.setShortDescription(short_desc);
 		walk.setLongDescription(long_desc);
 		//go to map screen and pass it the newly created walk
 		Intent intent = new Intent(this, MapScreen.class);
-		
-		intent.putExtra("walk", walk);
-	    startActivity(intent);
+		startActivity(intent);
 	}
 }
