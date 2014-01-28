@@ -218,9 +218,8 @@ containing a value of this type.
         public static final int action_settings=0x7f05001d;
         public static final int add_point_of_interest=0x7f05000f;
         public static final int btn_close_popup=0x7f05001c;
-        public static final int button1=0x7f05000d;
-        public static final int button2=0x7f050011;
         public static final int button3=0x7f050010;
+        public static final int cancel_walk_btn=0x7f050011;
         public static final int gallery1=0x7f050009;
         public static final int gallery_btn=0x7f050008;
         public static final int hybrid=0x7f050004;
@@ -244,6 +243,7 @@ containing a value of this type.
         public static final int textView1=0x7f050015;
         public static final int title_input=0x7f050019;
         public static final int txtView=0x7f05001b;
+        public static final int upload_btn=0x7f05000d;
         public static final int view_previous_walks=0x7f05000b;
     }
     public static final class integer {
@@ -257,6 +257,7 @@ containing a value of this type.
         public static final int activity_options_screen=0x7f030004;
         public static final int activity_walk_setup_screen=0x7f030005;
         public static final int popup_finish_walk=0x7f030006;
+        public static final int walk_finished_dialog=0x7f030007;
     }
     public static final class menu {
         public static final int add_poi_dialog=0x7f0a0000;
