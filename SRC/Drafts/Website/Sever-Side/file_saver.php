@@ -8,7 +8,7 @@
         
 
                           
-                $file = fopen('datafile.txt','ab');	
+              //  $file = fopen('datafile.txt','ab');	
 				$json = implode($_POST);
                 $json_array = json_decode($json,true);
            			
@@ -19,8 +19,13 @@
 				$hours = $json_array['hours'];
 				$distance = $json_array['distance'];
 				$route = $json_array['route'];
-				
+				//fwrite($file, $title . "\n" . $short_desc . "\n" . $long_desc . "\n" . $hours . "\n" . $distance . "\n" . $route);
 					
+				//add data to table
+				$sql = "INSERT INTO List_of_Walks
+				(title, shortDesc, longDesc, hours, distance)
+				VALUES($title, $short_desc,$long_desc,$hours,$distance)"; 
+				
 				$longitude;
 				$latitude;
 				$time;
@@ -32,28 +37,36 @@
 						$longitude = $loc['longitude'];
 						$latitude = $loc['latitude'];
 						$time = $loc['time'];
+						$sql = "INSERT INTO Location values
+						(latitude, longitude, timestamp)
+						($latitude,$longitude, $time)";
+						mysqli_query($walk_conn,$sql);
 						if(isSet($loc['description'])){
 							//If description, location is point of interest
 							$description = $loc['description'];
 							if(isSet($loc['images'])){
 							//If there are images decode and rename them
 								foreach($loc['images']as $image){
-									$image = string base64_decode ($image);
-									file_put_contents('newImage.JPG',$image);
+									//$image = string base64_decode($image);
+									//file_put_contents('newImage.JPG',$image);
+									$sql = "INSERT INTO Photo(photoName)
+									values($photoName)";
+									mysqli_query($walk_conn,$sql);
 								}
 							}
 						}
+					//	fwrite($file, "\n" . $loc . " " .  $longitude);
 					}
       
-				fclose($file);
+				//fclose($file);
 
                 //insert post data into tables 
-                $sql = "INSERT INTO List_of_Walks values($shortDescription,$longDescription,0)"; 
+                
                 mysqli_query($walk_conn,$sql);            
-                $sql = "INSERT INTO Photo values($photoName,0)";
-                mysqli_query($walk_conn,$sql);
-                $sql = "INSERT INTO Location values($latitude,$longitude,0)";
-                mysqli_query($walk_conn,$sql);
+                
+               
+                
+				
                 
 
          mysqli_close($walk_conn);
