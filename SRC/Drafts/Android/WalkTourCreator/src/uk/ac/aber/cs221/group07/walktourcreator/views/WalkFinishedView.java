@@ -1,9 +1,13 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
-import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.activities.GeneralActivity;
+import uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
+import android.R;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -12,32 +16,36 @@ import android.view.View;
  * @author HarryBuckley
  *
  */
-public class WalkFinishedView {
+public class WalkFinishedView implements DialogInterface.OnClickListener{
+	private WalkModel walk;
+	private MapScreen map;
 	
-	/**
-	 * displays a screen displaying
-	 * a summary of the finished walk, and
-	 * shows various options to the user regarding the WalkModel.
-	 * 
-	 * @param walk, the walk that has just been finished
-	 * @param owner, activity that owns this popup. 
-	 */
-	public WalkFinishedView(WalkModel walk,GeneralActivity owner ){
-		//super(owner);
-		LayoutInflater layoutInflater = (LayoutInflater) owner.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
-	    View popupView = layoutInflater.inflate(R.layout.popup_finish_walk, null);  
-		//super.setContentView(popupView);
+	public WalkFinishedView(GeneralActivity context, int viewLayout, WalkModel currentWalk,MapScreen gMap) {
+		
+		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View layout = inflater.inflate(viewLayout, null);
+		
+		new AlertDialog.Builder(context)
+	    .setView(layout)
+	    .setPositiveButton(android.R.string.yes, this)
+	    .setNegativeButton(android.R.string.no, this)
+	    .show();
+		
+		walk = currentWalk;
+		map = gMap;
 	}
-	
-	/**
-	 * open a PoiInfoView
-	 * @param The parameter v, is the object that called the method. 
-	 */
-	public void uploadWalk(View v){
-		//WalkManager manager = new WalkManager(owner);
-		//manager.uploadWalk(walk);
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		if(which == DialogInterface.BUTTON_POSITIVE){
+			map.uploadWalk();
+		}else if(which == DialogInterface.BUTTON_NEGATIVE){
+			map.cancelWalk();
+		}
 		
 	}
+
+
 }
 
 

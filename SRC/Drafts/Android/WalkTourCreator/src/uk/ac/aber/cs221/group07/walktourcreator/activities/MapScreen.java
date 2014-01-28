@@ -2,13 +2,12 @@ package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
-import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
-import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.services.PositionListener;
 import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
 import uk.ac.aber.cs221.group07.walktourcreator.views.PoiDialogView;
+import uk.ac.aber.cs221.group07.walktourcreator.views.WalkFinishedView;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
@@ -16,7 +15,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.internal.t;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,11 +41,11 @@ public class MapScreen extends GeneralActivity {
 	private TextView mMessageView;
 	private Marker currentPosition;
 	private PoiDialogView poiDialog;
+	private WalkFinishedView walkFinished;
 	
 	/** holds the object that is responsible for tracking the path of the walk*/
 	private RouteRecorder recorder;
-//	 
-//	private WalkModel walk;
+
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
 	 * specified in res/layout/activity_map_screen.xml
@@ -114,6 +112,7 @@ public class MapScreen extends GeneralActivity {
 			poiRec.setWalk(walk);
 		}
 		poiListener.setRecorder(poiRec);
+<<<<<<< f5ff96294959c431e23f7eb0d14ee9fb928701de
 		/**/
 		
 		WalkModel walktest = walk;
@@ -123,6 +122,8 @@ public class MapScreen extends GeneralActivity {
 		ImageHandler i = new ImageHandler(this); 
 		i.getPhotoFromLibrary();
 		//*/
+=======
+>>>>>>> ec42fa5877d4a4e40b8f1a473c44cd306c592e42
 	}
 
 	
@@ -131,19 +132,35 @@ public class MapScreen extends GeneralActivity {
 	* @param v, is the object that called the method.
 	*/
 	public void finishWalk(View v){
-		//test, will perhaps be moved elsewhere
-
-		FileTransferManager manager = new FileTransferManager();
-
-		manager.uploadWalk(walk);
-		
-		//Intent intent = new Intent(this, MainMenu.class);
-		//recorder.finishWalk();
-		//finish();
-		//startActivity(intent);
-
+		WalkFinishedView finished = new WalkFinishedView(this,R.layout.walk_finished_dialog, walk,this);
+		walkFinished = finished;
 	}
 	
+<<<<<<< f5ff96294959c431e23f7eb0d14ee9fb928701de
+=======
+	public void showDialog(PointOfInterest poi) {
+		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
+		poiDialog = pv;
+	}
+	
+	public void cancelWalk(){
+		recorder.finishWalk();
+		finish();
+		Intent intent = new Intent(this, MainMenu.class);
+		startActivity(intent);
+	}
+	
+	public void uploadWalk(){
+		FileTransferManager manager = new FileTransferManager();
+		manager.uploadWalk(walk);
+		recorder.finishWalk();
+		finish();
+		Intent intent = new Intent(this, MainMenu.class);
+		startActivity(intent);
+	}
+	
+	
+>>>>>>> ec42fa5877d4a4e40b8f1a473c44cd306c592e42
 	/**
 	 * Called whenever location data is gathered
 	 */
@@ -173,9 +190,14 @@ public class MapScreen extends GeneralActivity {
 		poiDialog.takePhoto(v);
 	}
 	
+<<<<<<< f5ff96294959c431e23f7eb0d14ee9fb928701de
 	public void showDialog(PointOfInterest poi) {
 		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
 		poiDialog = pv;
 	}
+=======
+
+	
+>>>>>>> ec42fa5877d4a4e40b8f1a473c44cd306c592e42
 	
 }

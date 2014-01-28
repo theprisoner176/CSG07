@@ -79,7 +79,15 @@ public class WalkModel implements Serializable{
 	 * returns the elapsed time since the walk was started. 
 	 */
 	public double getTimeTaken(){
+<<<<<<< f5ff96294959c431e23f7eb0d14ee9fb928701de
 		return (path.get(path.size()-1).getTime() - path.get(0).getTime()) / 1 ; //devide by some value
+=======
+		if(path.size()==0){
+			return 0;
+		}else{
+		return path.get(path.size()-1).getTime() - path.get(0).getTime();
+		}
+>>>>>>> ec42fa5877d4a4e40b8f1a473c44cd306c592e42
 	}
 	
 	/**

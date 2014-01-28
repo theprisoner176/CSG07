@@ -31,7 +31,9 @@ public class PoiDialogView extends DialogView{
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
-		setPointInfo();
+		if(which == DialogInterface.BUTTON_POSITIVE){
+			setPointInfo();
+		}
 	}
 	
 	public void setPointOfInterest(PointOfInterest point){

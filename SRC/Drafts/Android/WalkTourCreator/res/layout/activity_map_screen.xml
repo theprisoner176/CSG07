@@ -11,7 +11,7 @@
     
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/upload_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/button3"
-        android:layout_toRightOf="@+id/button2"
+        android:layout_toRightOf="@+id/cancel_walk_btn"
         android:onClick="addPOI"
         android:text="@string/add_point_of_interest" />
 
@@ -47,16 +47,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/map"
-        android:layout_alignLeft="@+id/button1"
+        android:layout_alignLeft="@+id/upload_btn"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/cancel_walk_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignLeft="@+id/button1"
+        android:layout_alignBottom="@+id/upload_btn"
+        android:layout_alignLeft="@+id/upload_btn"
         android:text="Button" />
 
 </RelativeLayout>
