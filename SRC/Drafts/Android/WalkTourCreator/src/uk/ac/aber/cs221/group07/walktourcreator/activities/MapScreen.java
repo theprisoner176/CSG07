@@ -1,9 +1,9 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
+import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
-import uk.ac.aber.cs221.group07.walktourcreator.model.WalkManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.services.PositionListener;
 import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
@@ -44,10 +44,6 @@ public class MapScreen extends GeneralActivity {
 	
 	/** holds the object that is responsible for tracking the path of the walk*/
 	private RouteRecorder recorder;
-	
-	/** stores the walk that the user is currently on.*/
-	 private WalkModel walk;
-	
 	 
 	 
 	/**
@@ -65,8 +61,8 @@ public class MapScreen extends GeneralActivity {
 		
 		//get a reference to the intent used to instantiate the class
 		//and get the WalkModel object that was created
-		Intent intent = getIntent();
-		walk = (WalkModel) intent.getSerializableExtra("walk");
+//		Intent intent = getIntent();
+//		walk = (WalkModel) intent.getSerializableExtra("walk");
 		
 		//location manager to get location data
 		LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -115,12 +111,6 @@ public class MapScreen extends GeneralActivity {
 			poiRec.setWalk(walk);
 		}
 		poiListener.setRecorder(poiRec);
-		
-//		PointOfInterest poi = new PointOfInterest(4.0,52.3);
-//		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
-//		poiDialog = pv;
-		
-
 	}
 	
 
@@ -132,7 +122,7 @@ public class MapScreen extends GeneralActivity {
 	public void finishWalk(View v){
 		//test, will perhaps be moved elsewhere
 
-		WalkManager manager = new WalkManager(this);
+		FileTransferManager manager = new FileTransferManager();
 
 		
 //		walk.addLocation(p);
@@ -145,11 +135,6 @@ public class MapScreen extends GeneralActivity {
 		recorder.finishWalk();
 		finish();
 		startActivity(intent);
-		
-		
-		//test will perhaps be moved elsewhere
-		
-
 
 	}
 	
@@ -176,8 +161,6 @@ public class MapScreen extends GeneralActivity {
 		}
 		//put marker to show current user location
 		currentPosition = map.addMarker(new MarkerOptions().position(pos));
-		String str =  "added point"+loc.getLatitude()+";"+loc.getLongitude();
-		//Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
 	}
 	
 	public void newPoi(PointOfInterest poi){
