@@ -62,14 +62,16 @@
 								echo "<br/>";
 								echo "This is the distance for the walk " . $walk['distance'];
 							}
-							$query = "SELECT latitude, longitude FROM Location";
+							$query = "SELECT l.latitude, l.longitude, lw.title FROM Location l INNER JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
 							$database->prepare_query($query);
 							$database->send_query($database->get_query());
 							$lat = array();
 							$long = array();
+							$title = array ();
 							while ($value = mysqli_fetch_array($database->get_result())){
 										$lat[] = $value['latitude'];
 										$long[] = $value['longitude'];
+										$title[] = $value['longitude'];
 							}
 							$database->close_connection();										
 						?>
@@ -79,6 +81,7 @@
 						var lat = <?php echo json_encode($lat); ?>;
 						//sets up the array of long values from the php long array
 						var lng = <?php echo json_encode($long); ?>;
+						var title = <?php echo json_encode($title); ?>;
 						function initialize() {
 						var mapOptions = {
 							zoom: 8,
@@ -107,7 +110,7 @@
 								map: map
 							});
 							//adds a listener to each of the marker items
-							popupInfoWindow(map, infowindow, "<h4> Title </h4> <br/> <p> Stufdsfdsfdsfsff</p>", POI);
+							popupInfoWindow(map, infowindow, "<h4> title[j] </h4> <br/> <p> Stufdsfdsfdsfsff</p>", POI);
 						
 						}  
 						function popupInfoWindow(map, infowindow, insideMarkerText, POI) {
