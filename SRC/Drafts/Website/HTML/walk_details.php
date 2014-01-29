@@ -26,6 +26,7 @@
       }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMaDwxzucsIfiT1sYyFKWIvDljXOWSeM0&sensor=false"></script>
+    <!-- Lightbox to display images, http://shadowbox-js.com/, used un the Non-commercial Licence agreement -->
     <link rel="stylesheet" type="text/css" href="shadowbox-3.0.3/shadowbox.css">
         <script type="text/javascript" src="shadowbox-3.0.3/shadowbox.js"></script>
         <script type="text/javascript">
