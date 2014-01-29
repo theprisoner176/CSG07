@@ -1,6 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.services;
 
-import uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
@@ -32,7 +32,7 @@ public class RouteRecorder extends Service{
 	private PositionListener posListener;
 	
 	/** The map screen.*/
-	private MapScreen gMap;
+	private WalkScreen walkScreen;
 	
 	public boolean poiRec = false;
 	
@@ -89,9 +89,7 @@ public class RouteRecorder extends Service{
 	
 	private void monitorMovement(){
 		Location l = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-		System.out.println(l);
 		walk.addLocation(new LocationPoint(l.getLongitude(),l.getLatitude()));
-		
 	}
 	
 	@Override

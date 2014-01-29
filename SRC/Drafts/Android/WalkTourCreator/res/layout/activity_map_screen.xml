@@ -6,57 +6,29 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MapScreen" >
+    tools:context=".WalkScreen" >
 
-    
-
-    <Button
-        android:id="@+id/upload_btn"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="@string/options_popup" />
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <Button
-        android:id="@+id/add_point_of_interest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/button3"
-        android:layout_toRightOf="@+id/cancel_walk_btn"
-        android:onClick="addPOI"
-        android:text="@string/add_point_of_interest" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/add_point_of_interest"
         android:layout_alignParentRight="true"
-        android:onClick="finishWalk"
-        android:text="@string/play_pause" />
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/map_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/map"
-        android:layout_alignLeft="@+id/upload_btn"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" />
+        <Button
+            android:id="@+id/add_point_of_interest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="85dp"
+            android:onClick="addPOI"
+            android:text="@string/add_point_of_interest" />
 
-    <Button
-        android:id="@+id/cancel_walk_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/upload_btn"
-        android:layout_alignLeft="@+id/upload_btn"
-        android:text="Button" />
+        <Button
+            android:id="@+id/finish_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="finishWalk"
+            android:text="@string/play_pause" />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -1,6 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.services;
 
-import uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import android.location.Location;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class PositionListener implements LocationListener {
 	
-	private MapScreen map;
+	private WalkScreen walkScreen;
 	private RouteRecorder recorder;
 	
 	@Override
@@ -21,19 +21,17 @@ public class PositionListener implements LocationListener {
 		//send it to the recorder which saves it in the WalkModel
 		if(recorder.poiRec==false){
 			//update map camera to new position
-			map.updatePosition(pos);
 			recorder.newLocation(pos);
 		}else if(recorder.poiRec == true){
 			PointOfInterest poi = new PointOfInterest(loc.getLatitude(),loc.getLongitude());
-			map.newPoi(poi);
-			map.showDialog(poi);
+			walkScreen.showDialog(poi);
 			recorder.savePoi(poi);
 		}
 		
 	}
 	
-	public void setMap(MapScreen gMap){
-		map = gMap;
+	public void setWalk(WalkScreen walk){
+		walkScreen = walk;
 	}
 	
 	public void setRecorder(RouteRecorder rec){

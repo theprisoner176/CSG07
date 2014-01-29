@@ -37,13 +37,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * This class is responsible for displaying the map screen, and reacting to button presses.
  * @author HarryBuckley
  */
-public class MapScreen extends Activity {
-	
-	/** the initial starting point that is displayed on the map*/
-	public final LatLng LOCATION_START = new LatLng(52.416204,-4.065419);
-	
-	/** holds the map object that is displayed in the screen */
-	private GoogleMap map;
+public class WalkScreen extends Activity {
 	 
 	public static int CAMERA_ACTIVITY_RESULT_CODE = 1984;
 	public static int GALLERY_ACTIVITY_RESULT_CODE = 1993;
@@ -74,7 +68,7 @@ public class MapScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map_screen);
 		
-		setUpMapIfNeeded();
+		//setUpMapIfNeeded();
 		
         walk = (WalkModel) getIntent().getSerializableExtra("walk");
 		
@@ -83,7 +77,7 @@ public class MapScreen extends Activity {
 		
 		//position listener used to process action when location data is gathered
 		PositionListener posListener = new PositionListener();
-		posListener.setMap(this);
+		posListener.setWalk(this);
 		
 		//create recorder and pass listener and manager
 		recorder = new RouteRecorder(posListener,manager);
@@ -91,23 +85,6 @@ public class MapScreen extends Activity {
 		//give control of the map
 		recorder.setWalk(walk);
 		posListener.setRecorder(recorder);
-	}
-	
-
-	
-	/**
-	 * Created the map if it is not already created
-	 */
-	private void setUpMapIfNeeded() {
-		// Do a null check to confirm that we have not already instantiated the map.
-	    if (map == null) {
-	        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-	        // Check if we were successful in obtaining the map.
-	        if (map != null) {
-	            // The Map is verified. It is now safe to manipulate the map.
-
-	        }
-	    }
 	}
 	
 	/**
@@ -166,28 +143,6 @@ public class MapScreen extends Activity {
 		//finish();
 		//Intent intent = new Intent(this, MainMenu.class);
 		//startActivity(intent);
-	}
-	
-
-	/**
-	 * Called whenever location data is gathered
-	 */
-	public void updatePosition(LocationPoint loc){
-		//Takes the lat and lng of the LocationPoint and creates a LatLng object
-		LatLng pos = new LatLng(loc.getLatitude(),loc.getLongitude());
-		//Focus camera on user location
-		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(pos,17);
-		map.animateCamera(update);
-		if(currentPosition!=null){
-			currentPosition.remove();
-		}
-		//put marker to show current user location
-		currentPosition = map.addMarker(new MarkerOptions().position(pos));
-	}
-	
-	public void newPoi(PointOfInterest poi){
-		LatLng pos = new LatLng(poi.getLatitude(),poi.getLongitude());
-		map.addMarker(new MarkerOptions().position(pos).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));	
 	}
 	
 	public void addImage(View v){

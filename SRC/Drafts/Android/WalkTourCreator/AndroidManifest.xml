@@ -62,7 +62,7 @@
             android:label="@string/title_activity_my_walks_screen" >
         </activity>
         <activity
-            android:name="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen"
+            android:name="uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen"
             android:label="@string/title_activity_map_screen" >
         </activity>
         <activity
@@ -72,7 +72,7 @@
         <activity
             android:name="uk.ac.aber.cs221.group07.walktourcreator.AddPoiScreen"
             android:label="@string/title_activity_add_poi_screen"
-            android:parentActivityName="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen"
+            android:parentActivityName="uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen"
             android:theme="@android:style/Theme.Holo.Dialog" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -81,7 +81,7 @@
         <activity
             android:name="uk.ac.aber.cs221.group07.walktourcreator.AddPoiDialog"
             android:label="@string/title_activity_add_poi_dialog"
-            android:parentActivityName="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen" >
+            android:parentActivityName="uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen" />

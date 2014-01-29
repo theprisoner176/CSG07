@@ -54,7 +54,7 @@ public class WalkSetupScreen extends Activity {
 		walk.setLongDescription(long_desc);
 		
 		//go to map screen and pass it the newly created walk
-		Intent intent = new Intent(this, MapScreen.class);
+		Intent intent = new Intent(this, WalkScreen.class);
 		intent.putExtra("walk", walk);
 		startActivity(intent);
 	}

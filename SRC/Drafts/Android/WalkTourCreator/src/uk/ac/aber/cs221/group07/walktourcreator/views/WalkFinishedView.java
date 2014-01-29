@@ -1,6 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
-import uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import android.R;
@@ -17,9 +17,9 @@ import android.view.View;
  */
 public class WalkFinishedView implements DialogInterface.OnClickListener{
 	private WalkModel walk;
-	private MapScreen map;
+	private WalkScreen map;
 	
-	public WalkFinishedView(MapScreen context, int viewLayout, WalkModel currentWalk,MapScreen gMap) {
+	public WalkFinishedView(WalkScreen context, int viewLayout, WalkModel currentWalk,WalkScreen gMap) {
 		
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(viewLayout, null);
