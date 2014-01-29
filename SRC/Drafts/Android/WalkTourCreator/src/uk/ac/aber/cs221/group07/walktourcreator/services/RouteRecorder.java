@@ -84,21 +84,28 @@ public class RouteRecorder extends Service{
 	public void finishWalk(){
 		locationManager.removeUpdates(posListener);
 		locationManager = null;
+		
 	}
-	
-	
-	private void monitorMovement(){
-		Location l = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-		walk.addLocation(new LocationPoint(l.getLongitude(),l.getLatitude()));
-	}
-	
+
 	@Override
 	public IBinder onBind(Intent arg0) {
-		walk = new WalkModel("test");//string will be from bundled info from intent
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 1, posListener);
-		monitorMovement();
+		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+//	private void monitorMovement(){
+//		Location l = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//		walk.addLocation(new LocationPoint(l.getLongitude(),l.getLatitude()));
+//	}
+//	
+//	@Override
+//	public IBinder onBind(Intent arg0) {
+//		walk = new WalkModel("test");//string will be from bundled info from intent
+//		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 1, posListener);
+//		monitorMovement();
+//		return null;
+//	}
 
 	
 

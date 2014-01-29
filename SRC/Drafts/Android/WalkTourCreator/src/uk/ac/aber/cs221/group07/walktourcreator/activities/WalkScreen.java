@@ -125,13 +125,14 @@ public class WalkScreen extends Activity {
 	
 
 	public void showDialog(PointOfInterest poi) {
-		PoiDialogView pv = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
-		poiDialog = pv;
+		PoiDialogView poiAdd = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
+		poiDialog = poiAdd;
 	}
 	
 	public void cancelWalk(){
 		recorder.finishWalk();
 		finish();
+		stopService(new Intent(this,RouteRecorder.class)); 
 		Intent intent = new Intent(this, MainMenu.class);
 		startActivity(intent);
 	}

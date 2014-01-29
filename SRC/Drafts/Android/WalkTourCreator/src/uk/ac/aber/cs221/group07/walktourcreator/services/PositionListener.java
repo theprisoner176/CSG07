@@ -22,6 +22,9 @@ public class PositionListener implements LocationListener {
 		if(recorder.poiRec==false){
 			//update map camera to new position
 			recorder.newLocation(pos);
+//			String text = "Added " +pos.getLongitude() +";"+pos.getLatitude();
+//			Toast toast = Toast.makeText(walkScreen.getApplicationContext(), text, Toast.LENGTH_LONG);
+//			toast.show();
 		}else if(recorder.poiRec == true){
 			PointOfInterest poi = new PointOfInterest(loc.getLatitude(),loc.getLongitude());
 			walkScreen.showDialog(poi);

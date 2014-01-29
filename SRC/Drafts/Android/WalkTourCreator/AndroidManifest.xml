@@ -86,6 +86,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen" />
         </activity>
+        <service 
+            android:name = "uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder"
+            />
     </application>
 
 </manifest>
