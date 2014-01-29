@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * This class is responsible for displaying the walk setup screen, and reacting to button presses
@@ -33,6 +34,7 @@ public class WalkSetupScreen extends Activity {
 	* @param v is the View that called this method
 	*/
 	public void startWalk(View v){
+		String validationErrorMsg=null;
 		//get input from text fields
 		String title = ((EditText) findViewById(R.id.title_input)).getText().toString();
 		String short_desc =  ((EditText) findViewById(R.id.short_description_input)).getText().toString();
@@ -42,16 +44,24 @@ public class WalkSetupScreen extends Activity {
 		((EditText) findViewById(R.id.short_description_input)).getText().clear();
 		((EditText) findViewById(R.id.long_description_input)).getText().clear();
 		
+		
+		
 		/*
 		 * ADD SOME VALIDATION OF INPUT, 
 		 * WILL NEED TO ADD SOME, ERROR OUTPUT TELLING THE USER 
 		 * WHAT TO DO IF INVALID DATA IS ADDED
 		 */
 		
+		if(validationErrorMsg!=null){
+			Toast.makeText(this, validationErrorMsg, Toast.LENGTH_LONG).show();
+		}
+		
 		//if input is fine
-		WalkModel walk = new WalkModel(title);
+		WalkModel walk = new WalkModel();
+		walk.setTitle(title);
 		walk.setShortDescription(short_desc);
 		walk.setLongDescription(long_desc);
+		
 		
 		//go to map screen and pass it the newly created walk
 		Intent intent = new Intent(this, WalkScreen.class);
