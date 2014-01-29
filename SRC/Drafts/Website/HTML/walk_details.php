@@ -11,8 +11,12 @@
         height: 85%;
         margin: 0px;
         padding: 0px;
-       .gm-style-iw{ overflow: hidden;};
+       .gm-style-iw{ overflow: hidden; !important;};
       }
+      #map-canvas {
+		width:50%;
+		
+	}
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMaDwxzucsIfiT1sYyFKWIvDljXOWSeM0&sensor=false"></script>
     <link rel="stylesheet" type="text/css" href="shadowbox-3.0.3/shadowbox.css">
@@ -64,8 +68,8 @@
 							$lat = array();
 							$long = array();
 							while ($value = mysqli_fetch_array($database->get_result())){
-										$lat[] = 52.416667;
-										$long[] = -4.066667;
+										$lat[] = $value['latitude'];
+										$long[] = $value['longitude'];
 							}
 							$database->close_connection();										
 						?>
@@ -86,31 +90,36 @@
 						//this creates a new popup window when we click on a marker.
 						var infowindow = new google.maps.InfoWindow();
 						//An array to store the Lat and Long values
-						var myLatLng = new Array();
+						var latLngValues = new Array();
 						//var marker = new Array();
 						for (i = 0; i < lat.length; i++){
 							//populates the array with the correct google maps co-ordinates.
-							myLatLng[i] = new google.maps.LatLng(lat[i], lng[i]);
+							latLngValues[i] = new google.maps.LatLng(lat[i], lng[i]);
 						}
 						// Reference http://stackoverflow.com/questions/11467070/how-to-set-a-popup-on-markers-with-google-maps-api for moving it 
-						// inside the function to allow to 
-						for (j = 0;j < myLatLng.length; j++){	
+						// inside the function to allow to. Based on the code above, changed to map with our application- Renamed methods to make it 
+						// more readable.
+						var markers = [];
+						for (j = 0;j < latLngValues.length; j++){	
 							//sets a new marker
-							var marker = new google.maps.Marker({
+							var POI = new google.maps.Marker({
 								//sets the position to be the co-ords from the loop above
-								position: myLatLng[j],
+								position: latLngValues[j],
 								map: map
 							});
 							//adds a listener to each of the marker items
-							google.maps.event.addListener(marker, 'click', function() {
-								//sets a standard message TODO: GRAB SOME PHP
-								infowindow.setContent("<h4> Title </h4> <br/> <p> Stufdsfdsfdsfsff</p>");
-								//opens the info window on the marker on the map
-								infowindow.open(map,marker);
-							});
-							
+							popupInfoWindow(map, infowindow, "<h4> Title </h4> <br/> <p> Stufdsfdsfdsfsff</p>", POI);
+
 						}  
-						var flightPlanCoordinates = [
+						function popupInfoWindow(map, infowindow, insideMarkerText, POI) {
+								google.maps.event.addListener(POI, 'click', function() {
+								//sets a standard message TODO: GRAB SOME PHP
+								infowindow.setContent(insideMarkerText);
+								//opens the info window on the marker on the map
+								infowindow.open(map,POI);
+							});
+							}
+							var flightPlanCoordinates = [
 							new google.maps.LatLng(52.416667, -4.066667),
 							new google.maps.LatLng(52.7077, -2.7541),   
 						];
