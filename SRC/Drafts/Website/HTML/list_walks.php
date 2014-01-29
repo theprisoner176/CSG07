@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<title>List of walks</title>
-	<link rel="stylesheet" href="style_new.css" media="screen" />
+	<link rel="stylesheet" href="../CSS/style.css" media="screen" />
 </head>
 <body>
 	<header>
