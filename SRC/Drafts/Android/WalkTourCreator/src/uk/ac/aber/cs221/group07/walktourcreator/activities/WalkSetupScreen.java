@@ -34,7 +34,7 @@ public class WalkSetupScreen extends Activity {
 	* @param v is the View that called this method
 	*/
 	public void startWalk(View v){
-		String validationErrorMsg=null;
+		StringBuilder validationErrorMsg=new StringBuilder();
 		//get input from text fields
 		String title = ((EditText) findViewById(R.id.title_input)).getText().toString();
 		String short_desc =  ((EditText) findViewById(R.id.short_description_input)).getText().toString();
@@ -52,8 +52,16 @@ public class WalkSetupScreen extends Activity {
 		 * WHAT TO DO IF INVALID DATA IS ADDED
 		 */
 		
-		if(validationErrorMsg!=null){
+		if(WalkModel.isValidTitle(title))
+			validationErrorMsg.append("A title must contains no white spaces\n");
+		if(WalkModel.isValidShortDesc(short_desc))
+			validationErrorMsg.append("Description has to be under 100 characters\n");
+		if(WalkModel.isValidLongDesc(long_desc))
+			validationErrorMsg.append("Detailed Description has to be under 1000 characters\n\n");
+		
+		if(validationErrorMsg.length()!=0){
 			Toast.makeText(this, validationErrorMsg, Toast.LENGTH_LONG).show();
+			return;
 		}
 		
 		//if input is fine

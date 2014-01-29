@@ -5,8 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main_menu">MainMenu</string>
-    <string name="title_activity_options_screen">OptionsScreen</string>
-    <string name="title_activity_my_walks_screen">MyWalksScreen</string>
     <string name="title_activity_map_screen">MapScreen</string>
     <string name="title_activity_walk_setup_screen">WalkSetupScreen</string>
 
@@ -31,23 +29,10 @@
     <string name="add_point_of_interest">Add POI</string>
     <string name="options_popup">Options</string>
     <string name="play_pause">Finish</string>
-    <!-- Login Screen -->
-    <string name="login_button">Login</string>
-    <string name="register_button">Register</string>
-    <string name="username_hint">Username or email</string>
-    <string name="password_hint">Password</string>
-
+    
     <!-- Walk set up -->
-    <string name="title">title(Optional)</string>
-    <string name="long_description">description(Optional)</string>
-    <string name="short_description">short Description(Optional)</string>
-    <!-- Options screen values -->
-    <string name="change_background_color">Change Screen Color</string>
-    <string name="other">Other</string>
-    <string name="title_activity_login_screen">LoginScreen</string>
-    <string name="title_activity_add_poi_screen">AddPoiScreen</string>
-    <string name="test_dialog">Dialog test</string>
-    <string name="done">Done</string>
-    <string name="title_activity_add_poi_dialog">AddPoiDialog</string>
+    <string name="title">title</string>
+    <string name="long_description">Detailed Description</string>
+    <string name="short_description">Description</string>
 
 </resources>

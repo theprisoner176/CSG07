@@ -8,9 +8,7 @@ import java.util.Date;
  * @author HarryBuckley
  */
 public class LocationPoint {
-
 	
-
 	/** holds the distance (east-west) from Greenwich) */
 	protected double longitude;
 	
