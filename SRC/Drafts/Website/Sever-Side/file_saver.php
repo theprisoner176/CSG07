@@ -14,6 +14,7 @@
 				   
 		$file = fopen('datafile.txt','ab');	
 		$json = implode($post);
+		//header('Content-Type: application/json');
 		$json_array = json_decode($json,true);
 //	}
 	
@@ -52,8 +53,9 @@
 			if(isSet($loc['description'])){
 				//If description, location is point of interest
 				$description = $loc['description'];
-				$sql = "INSERT INTO Place_description(description, locationId)
-						values('$description', '$locID')";
+				$name = $loc['title'];
+				$sql = "INSERT INTO Place_description(description, locationId, name)
+						values('$description', '$locID', '$name')";
 				mysqli_query($walk_conn,$sql);
 				$placeId = mysqli_insert_id($walk_conn);
 				if(isSet($loc['images'])){
@@ -80,6 +82,7 @@
 		init($walk_conn, $file, $post);
 		readWalk($walk_conn, $json_array, $route, $file);
 		readLocation($route, $file);*/
+		fwrite($file, print_r($_POST));
 		fclose($file);
 		mysqli_close($walk_conn);
 	//}

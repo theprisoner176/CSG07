@@ -57,7 +57,8 @@ function createListOfWalksTable($con){
 			id INT NOT NULL AUTO_INCREMENT,
 			PRIMARY KEY(id),
 			locationId INT NOT NULL,
-			description VARCHAR (100) NOT NULL, 
+			name VARCHAR (100) NOT NULL,
+			description VARCHAR (500) NOT NULL, 
 			FOREIGN KEY (locationId) REFERENCES Location(id)
 		)";
 		if (mysqli_query($con,$sql)){
@@ -77,6 +78,7 @@ function createListOfWalksTable($con){
 			placeId INT NOT NULL,
 			photoName VARCHAR (100) NOT NULL,
 			FOREIGN KEY (placeId) REFERENCES Place_description(id)
+			
 		)";
 		if (mysqli_query($con,$sql)){
 			echo "<p>Table Photos created successfully</p>";
