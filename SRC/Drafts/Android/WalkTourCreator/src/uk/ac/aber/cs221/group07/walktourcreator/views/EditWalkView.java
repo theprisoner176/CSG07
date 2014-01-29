@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,28 +20,29 @@ public class EditWalkView extends DialogView{
 	public EditWalkView(WalkScreen context, int viewLayout,WalkModel w) {
 		super(context, viewLayout);
 		inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layout = inflater.inflate(viewLayout, null); 
+		//layout = inflater.inflate(viewLayout, null); 
+		this.layout = this.getLayout();
 		walk = w;
 	}
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
-		
+		editWalk();
 	}
 	
 	public void editWalk(){
-		TextView walkTitle = (TextView)layout.findViewById(R.id.edit_walk_title);
+		EditText walkTitle = (EditText)layout.findViewById(R.id.edit_walk_title);
 		TextView shortDesc = (TextView)layout.findViewById(R.id.edit_walk_short_description);
 		TextView longDesc = (TextView)layout.findViewById(R.id.edit_walk_long_description);
-		if(!WalkModel.isValidTitle(walkTitle.toString())){
+		if(!WalkModel.isValidTitle(walkTitle.getText().toString())){
 			Toast.makeText(activity,"A title must contains no white spaces\nAnd Must not be empty",
 					Toast.LENGTH_LONG).show();
 		}
-		else if(!WalkModel.isValidShortDesc(shortDesc.toString())){
+		else if(!WalkModel.isValidShortDesc(shortDesc.getText().toString())){
 			Toast.makeText(activity,"Description has to be under 100 characters\nAnd Must not be empty",
 					Toast.LENGTH_LONG).show();
 		}
-		else if(!WalkModel.isValidLongDesc(longDesc.toString())){
+		else if(!WalkModel.isValidLongDesc(longDesc.getText().toString())){
 			Toast.makeText(activity,"Detailed Description has to be under 1000 characters\nAnd Must not be empty",
 					Toast.LENGTH_LONG).show();
 		}

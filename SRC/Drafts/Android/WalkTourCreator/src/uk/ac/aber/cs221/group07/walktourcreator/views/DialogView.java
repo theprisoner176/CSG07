@@ -11,10 +11,11 @@ import android.view.View;
 public abstract class DialogView implements DialogInterface.OnClickListener{
 
 	protected WalkScreen activity;
-	
+	protected View layout;
 	public DialogView(WalkScreen context, int viewLayout){
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(viewLayout, null);
+		this.layout = layout;
 		activity = context;
 		
 		new AlertDialog.Builder(context)
@@ -27,5 +28,8 @@ public abstract class DialogView implements DialogInterface.OnClickListener{
 	@Override
 	public abstract void onClick(DialogInterface dialog, int which);
 	
+	public View getLayout(){
+		return layout;
+	}
 	
 }

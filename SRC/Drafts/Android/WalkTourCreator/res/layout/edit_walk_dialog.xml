@@ -17,7 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Edit title of walk" >
+            android:hint="Edit title of walk"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName" >
 
             <requestFocus />
         </EditText>
@@ -27,7 +29,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Edit short description" />
+            android:hint="Edit short description"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/edit_walk_long_description"
@@ -36,6 +40,7 @@
             android:layout_weight="0.71"
             android:ems="10"
             android:hint="Edit long description"
+            android:imeOptions="actionDone"
             android:inputType="textMultiLine" />
 
     </LinearLayout>
