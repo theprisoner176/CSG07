@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <title>List of walks</title>
-       <link rel="stylesheet" href="../CSS/style.css" media="screen" />
+       <link rel="stylesheet" href="style.css" media="screen" />
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">  
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMaDwxzucsIfiT1sYyFKWIvDljXOWSeM0&sensor=false"></script>
@@ -15,7 +15,6 @@
    
 </head>
 <body>
-        <!--<a href="Images/myimage.jpg" rel="shadowbox"><img src="Images/myimage.jpg" height="87" width="156" /></a>-->
         <header>
                 <h1>Aber Tour</h1>
         </header>
@@ -79,13 +78,22 @@
                                                         $lat = array();
                                                         $long = array();
                                                         $title = array ();
-
+														$shortDesc = array();
+														$longDesc = array();
                                                         while ($value = mysqli_fetch_array($database->get_result())){
                                                                                 $lat[] = $value['latitude'];
                                                                                 $long[] = $value['longitude'];
-                                                                                $title[] = $value['title'];
+                                                                                $title = $value['title'];
+                                                                                //$shortDesc[] = $value['shortDesc'];
+																				//$longDesc[] = $value['longDesc'];                                                                                
                                                         }
-                                                      
+                                                        $query = "SELECT p.name, p.description FROM Place_description p JOIN Location l ON (p.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
+                                                        $database->prepare_query($query);
+                                                        $database->send_query($database->get_query());
+                                                        while ($result = mysqli_fetch_array($database->get_result())){
+																	$title = $result['name'];
+																	$shortDesc[] = $result['description'];
+														}                                                      
                                                         $database->close_connection();                                                                                
                                                 ?>
                                  <script type="text/javascript">
@@ -95,6 +103,8 @@
                                                 //sets up the array of long values from the php long array
                                                 var lng = <?php echo json_encode($long); ?>;
                                                 var title = <?php echo json_encode($title); ?>;
+                                                var shortDesc = <?php echo json_encode($shortDesc); ?>;
+                                                ///var longDesc = <?php echo json_encode($longDesc); ?>;
                                                 function initialize() {
                                                 var mapOptions = {
                                                         zoom: 8,
@@ -123,7 +133,7 @@
                                                                 map: map
                                                         });
                                                         //adds a listener to each of the marker items
-                                                        popupInfoWindow(map, infowindow, "<h4>"+title[j]+"</h4> <br/> <p> Stufdsfdsfdsfsff</p>", POI);
+                                                        popupInfoWindow(map, infowindow, "<h4>"+title+"</h4>"+"<p>"+shortDesc[j]+"</p>", POI);
                                                 
                                                 }  
                                                 function popupInfoWindow(map, infowindow, insideMarkerText, POI) {
