@@ -119,11 +119,9 @@
 							});
 							}
 						//TODO	
-						var flightPlanCoordinates = [
-							latLngValues[j],  
-						];
+						
 						var flightPath = new google.maps.Polyline({
-							path: flightPlanCoordinates,
+							path: latLngValues,
 							geodesic: true,
 							strokeColor: '#FF0000',
 							strokeOpacity: 1.0,
