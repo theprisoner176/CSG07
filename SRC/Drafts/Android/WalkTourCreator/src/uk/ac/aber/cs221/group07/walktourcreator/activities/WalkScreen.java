@@ -55,7 +55,7 @@ public class WalkScreen extends Activity {
 	}
 	
 	public void runOnInitialCreate(){
-		if(walk==null||recorder==null){
+		if(walk==null){
 			walk = (WalkModel) getIntent().getSerializableExtra("walk");
 			//location manager to get location data
 			LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
