@@ -98,8 +98,7 @@
 						}
 						// Reference http://stackoverflow.com/questions/11467070/how-to-set-a-popup-on-markers-with-google-maps-api for moving it 
 						// inside the function to allow to. Based on the code above, changed to map with our application- Renamed methods to make it 
-						// more readable.
-						var markers = [];
+						// more readable, but code is based on the link above.
 						for (j = 0;j < latLngValues.length; j++){	
 							//sets a new marker
 							var POI = new google.maps.Marker({
@@ -109,7 +108,7 @@
 							});
 							//adds a listener to each of the marker items
 							popupInfoWindow(map, infowindow, "<h4> Title </h4> <br/> <p> Stufdsfdsfdsfsff</p>", POI);
-
+						
 						}  
 						function popupInfoWindow(map, infowindow, insideMarkerText, POI) {
 								google.maps.event.addListener(POI, 'click', function() {
@@ -119,11 +118,10 @@
 								infowindow.open(map,POI);
 							});
 							}
-							var flightPlanCoordinates = [
-							new google.maps.LatLng(52.416667, -4.066667),
-							new google.maps.LatLng(52.7077, -2.7541),   
+						//TODO	
+						var flightPlanCoordinates = [
+							latLngValues[j],  
 						];
-  
 						var flightPath = new google.maps.Polyline({
 							path: flightPlanCoordinates,
 							geodesic: true,
