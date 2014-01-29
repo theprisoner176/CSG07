@@ -2,63 +2,62 @@ package uk.ac.aber.cs221.group07.walktourcreator.tests;
 
 import static org.junit.Assert.*;
 
+import java.util.Vector;
+
+import org.junit.Before;
 import org.junit.Test;
 
+import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
+import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
+import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
+
 public class WalkModelTest {
-
-	@Test
-	public void testWalkModelString() {
-		fail("Not yet implemented");
+	
+	WalkModel wm;
+	PointOfInterest poi;
+		
+	@Before
+	public void init(){
+		//wm = new WalkModel();
 	}
-
+	
 	@Test
 	public void testGetLastPoi() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testWalkModelIntStringVectorOfLocationPointStringString() {
-		fail("Not yet implemented");
+		poi = new PointOfInterest(100,100);
+		assertSame(poi ,wm.getLastPoi());
 	}
 
 	@Test
 	public void testGetRoutePath() {
-		fail("Not yet implemented");
+		Vector<LocationPoint> testPath;
+		//assertEquals(testPath, wm.getRoutePath());
 	}
 
 	@Test
 	public void testGetDistance() {
-		fail("Not yet implemented");
+		double testDistance = 0;
+		assertEquals(testDistance, wm.getDistance(), 5);
 	}
 
 	@Test
 	public void testGetTimeTaken() {
-		fail("Not yet implemented");
+		double testTime = 0;
+		assertEquals(testTime, wm.getTimeTaken(), 5);
 	}
 
 	@Test
 	public void testGetTitle() {
+		String title = "title";
+		assertEquals(title, wm.getTitle());
+	}
+
+	@Test
+	public void testShortDescription() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetShortDescription() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetShortDescription() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetLongDescription() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetLongDescription() {
-		fail("Not yet implemented");
+	public void testlongDescription() {
 	}
 
 	@Test
