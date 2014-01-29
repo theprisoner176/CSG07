@@ -115,14 +115,13 @@ public class WalkModel implements Serializable{
 	
 	public static boolean isValidTitle(String title){
 		return title.length()<=MAX_TITLE_LENGTH &&
-				Pattern.compile("\\s").matcher(title).find()
+				!Pattern.compile("\\s").matcher(title).find()
 				&&title.length()>0;
 	}
 	public static boolean isValidLongDesc(String desc){
 		return desc.length()<=MAX_LONG_DESC_LENGTH&&desc.length()>0;
 	}
 	public static boolean isValidShortDesc(String desc){
-		
 		return desc.length()<=MAX_SHRT_DESC_LENGTH && desc.length()>0;
 	}
 	

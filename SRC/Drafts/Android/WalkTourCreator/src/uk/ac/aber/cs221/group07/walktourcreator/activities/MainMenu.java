@@ -1,6 +1,5 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
-//import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import android.os.Bundle;
 import android.app.Activity;
@@ -32,5 +31,6 @@ public class MainMenu extends Activity{
 	public void startWalkSetupScreen(View v){
 		Intent intent = new Intent(this, WalkSetupScreen.class);
 	    startActivity(intent);
+	    finish();
 	}
 }

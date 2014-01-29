@@ -34,46 +34,36 @@ public class WalkSetupScreen extends Activity {
 	* @param v is the View that called this method
 	*/
 	public void startWalk(View v){
-		StringBuilder validationErrorMsg=new StringBuilder();
 		//get input from text fields
 		String title = ((EditText) findViewById(R.id.title_input)).getText().toString();
 		String short_desc =  ((EditText) findViewById(R.id.short_description_input)).getText().toString();
 		String long_desc =  ((EditText) findViewById(R.id.long_description_input)).getText().toString();
 		//clear text boxes
-		((EditText) findViewById(R.id.title_input)).getText().clear();
-		((EditText) findViewById(R.id.short_description_input)).getText().clear();
-		((EditText) findViewById(R.id.long_description_input)).getText().clear();
 		
 		
 		
-		/*
-		 * ADD SOME VALIDATION OF INPUT, 
-		 * WILL NEED TO ADD SOME, ERROR OUTPUT TELLING THE USER 
-		 * WHAT TO DO IF INVALID DATA IS ADDED
-		 */
-		
-		if(WalkModel.isValidTitle(title))
-			validationErrorMsg.append("A title must contains no white spaces\n");
-		if(WalkModel.isValidShortDesc(short_desc))
-			validationErrorMsg.append("Description has to be under 100 characters\n");
-		if(WalkModel.isValidLongDesc(long_desc))
-			validationErrorMsg.append("Detailed Description has to be under 1000 characters\n\n");
-		
-		if(validationErrorMsg.length()!=0){
-			Toast.makeText(this, validationErrorMsg, Toast.LENGTH_LONG).show();
-			return;
+		if(!WalkModel.isValidTitle(title)){
+			Toast.makeText(this,"A title must contains no white spaces\nAnd Must not be empty",
+					Toast.LENGTH_LONG).show();
 		}
-		
-		//if input is fine
-		WalkModel walk = new WalkModel();
-		walk.setTitle(title);
-		walk.setShortDescription(short_desc);
-		walk.setLongDescription(long_desc);
-		
-		
-		//go to map screen and pass it the newly created walk
-		Intent intent = new Intent(this, WalkScreen.class);
-		intent.putExtra("walk", walk);
-		startActivity(intent);
+		else if(!WalkModel.isValidShortDesc(short_desc)){
+			Toast.makeText(this,"Description has to be under 100 characters\nAnd Must not be empty",
+					Toast.LENGTH_LONG).show();
+		}
+		else if(!WalkModel.isValidLongDesc(long_desc)){
+			Toast.makeText(this,"Detailed Description has to be under 1000 characters\nAnd Must not be empty",
+					Toast.LENGTH_LONG).show();
+		}
+		else{
+			WalkModel walk = new WalkModel();
+			walk.setTitle(title);
+			walk.setShortDescription(short_desc);
+			walk.setLongDescription(long_desc);
+			//go to map screen and pass it the newly created walk
+			Intent intent = new Intent(this, WalkScreen.class);
+			intent.putExtra("walk", walk);
+			startActivity(intent);
+			finish();
+		}
 	}
 }

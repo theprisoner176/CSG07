@@ -19,6 +19,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,17 +34,14 @@ public class WalkScreen extends Activity {
 	public static int GALLERY_ACTIVITY_RESULT_CODE = 1993;
 	
 	/**The walk that is being */
-	protected static WalkModel walk;
+	private static WalkModel walk;
 	
 	/**SHOULD   BE IMPROVED JUST USED NOW TO MAKE IT WORK*/
 	public static String temp;
 	
-	private TextView mMessageView;
-	private PoiDialogView poiDialog;
-	private WalkFinishedView walkFinished;
-	
 	/** holds the object that is responsible for tracking the path of the walk*/
 	private RouteRecorder recorder;
+	
 	
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
@@ -55,9 +53,7 @@ public class WalkScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map_screen);
-		
-		//setUpMapIfNeeded();
-		
+			
         walk = (WalkModel) getIntent().getSerializableExtra("walk");
 		
 		//location manager to get location data
@@ -73,6 +69,8 @@ public class WalkScreen extends Activity {
 		//give control of the map
 		recorder.setWalk(walk);
 		posListener.setRecorder(recorder);
+		
+		Toast.makeText(this,"Walk Started.\n",Toast.LENGTH_LONG).show();
 	}
 	
 	/**
@@ -90,15 +88,14 @@ public class WalkScreen extends Activity {
 		if(walk!=null){
 			poiRec.setWalk(walk);
 		}
-		
 		/*/
-		PointOfInterest poi = new PointOfInterest(-4,53);
-		poi.setDescription("qwertyuiosdfgh ");
-		walk.addLocation(poi);
+		PointOfInterest poi = new  PointOfInterest(12,12);
+		poi.setDescription("long desc.......");
+		poi.setTitle("title titile");
 		ImageHandler image = new ImageHandler(this);
 		image.getPhotoFromCamera();
+		walk.addLocation(poi);
 		//*/
-
 	}
 
 	
@@ -107,14 +104,12 @@ public class WalkScreen extends Activity {
 	* @param v, is the object that called the method.
 	*/
 	public void finishWalk(View v){
-		WalkFinishedView finished = new WalkFinishedView(this,R.layout.walk_finished_dialog, walk,this);
-		walkFinished = finished;
+		new WalkFinishedView(this,R.layout.walk_finished_dialog, walk,this);
 	}
 	
 
 	public void showDialog(PointOfInterest poi) {
-		PoiDialogView poiAdd = new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
-		poiDialog = poiAdd;
+		new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
 	}
 	
 	public void cancelWalk(){
@@ -134,13 +129,6 @@ public class WalkScreen extends Activity {
 		//startActivity(intent);
 	}
 	
-	public void addImage(View v){
-		poiDialog.addImage(v);
-	}
-	
-	public void takePhoto(View v){
-		poiDialog.takePhoto(v);
-	}
 	/**
 	 * called automatically when the current activity is returned to after requesting a result.
 	 * here it is used to add the a picture (from the camera or gallery) to the walk.
@@ -149,6 +137,9 @@ public class WalkScreen extends Activity {
 		if (requestCode == CAMERA_ACTIVITY_RESULT_CODE) { //result from camera activity
 	        if (resultCode == RESULT_OK) {	        	
 	        	PointOfInterest newPoi = walk.getLastPoi(); 
+	        	if(newPoi==null){
+	        		return;
+	        	}	
 	            newPoi.addImage(new ImageInformation(temp));
 	        	Toast.makeText(this, "Image added to walk\n", Toast.LENGTH_LONG).show();
 	        } else {
@@ -169,6 +160,15 @@ public class WalkScreen extends Activity {
 	        }
 	    }
 	}
+	
+	public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+        	finishWalk(null);
+            return true;
+        }
+        return false;
+    }
+	
 	
 	/*
 	 * FROM http://stackoverflow.com/questions/2789276/android-get-real-path-by-uri-getpath 
