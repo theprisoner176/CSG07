@@ -1,11 +1,5 @@
 package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import uk.ac.aber.cs221.group07.walktourcreator.model.ImageInformation;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
@@ -17,7 +11,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Toast;
 
 /**
@@ -25,7 +18,6 @@ import android.widget.Toast;
  * used by all screens that are displayed to the user 
  * 
  * @author HarryBuckley
- *
  */
 public abstract class GeneralActivity extends Activity{
 	
@@ -35,11 +27,11 @@ public abstract class GeneralActivity extends Activity{
 	/** stores the background color used by all GeneralActivitys*/
 	protected static int backgroundColor = Color.BLUE;
 	
-	/** stores the foreground color used by all GeneralActivitys*/
-	protected static int foregroundColor = Color.BLUE;
-	
 	/**The walk that is being */
 	protected static WalkModel walk;
+	
+	/**SHOULD BE IMPROVED JUST USED NOW TO MAKE IT WORK*/
+	public static String temp;
 	
 	/** is called automatically on creations */
 	@Override
@@ -59,16 +51,16 @@ public abstract class GeneralActivity extends Activity{
 		this.getWindow().getDecorView().setBackgroundColor(backgroundColor);
 	}
 	
+	/**
+	 * called automatically when the current activity is returned to after requesting a result.
+	 * here it is used to add the a picture (from the camera or gallery) to the walk.
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == CAMERA_ACTIVITY_RESULT_CODE) { //result from camera activity
 	        if (resultCode == RESULT_OK) {	        	
-	        	PointOfInterest newPoi = walk.getLastPoi();
-	        	if(newPoi==null){
-	        		return;
-	        	}
-	        	File f = new File( getRealPathFromURI(data.getData()));
-	        	newPoi.addImage(new ImageInformation(f.getAbsolutePath()));
-	        	Toast.makeText(this, "Image saved to:\n" + data.getData(), Toast.LENGTH_LONG).show();
+	        	PointOfInterest newPoi = walk.getLastPoi(); 
+	            newPoi.addImage(new ImageInformation(temp));
+	        	Toast.makeText(this, "Image added to walk\n", Toast.LENGTH_LONG).show();
 	        } else {
 	            Toast.makeText(this, "Image not saved\n", Toast.LENGTH_LONG).show();
 	        }
@@ -76,17 +68,12 @@ public abstract class GeneralActivity extends Activity{
 		if (requestCode == GALLERY_ACTIVITY_RESULT_CODE) { //result from gallery activity
 	        if (resultCode == RESULT_OK) {
 	        	PointOfInterest newPoi = walk.getLastPoi();
-	        	WalkModel test = walk;
 	        	if(newPoi==null){
 	        		return;
-	        	}
-	        	data.getData();
+	        	}	      
+	        	newPoi.addImage(new ImageInformation(getRealPathFromURI(data.getData())));
 	        	
-	        	File f = new File( getRealPathFromURI(data.getData()));
-	        	
-	        	newPoi.addImage(new ImageInformation(f.getAbsolutePath()));
-	        	
-	            Toast.makeText(this, "Image added to walk:\n" + data.getData(), Toast.LENGTH_LONG).show();
+	            Toast.makeText(this, "Image added to walk\n", Toast.LENGTH_LONG).show();
 	        } else {
 	            Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
 	        }
@@ -94,7 +81,6 @@ public abstract class GeneralActivity extends Activity{
 	}
 	
 	/*
-	 * 
 	 * FROM http://stackoverflow.com/questions/2789276/android-get-real-path-by-uri-getpath 
 	 */
 	private String getRealPathFromURI(Uri contentURI) {

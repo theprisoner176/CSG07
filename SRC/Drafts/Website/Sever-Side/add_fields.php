@@ -39,7 +39,7 @@ if(!isSet($_SESSION['gpadmin'])){
                         $walk_Latt = mysqli_real_escape_string($con,$_POST['latt']);     
         }
         if (isset($_POST["long"])){
-                        $walk_Longitude = mysqli_real_escape_string($con,$_POST['Long']);
+                        $walk_Longitude = mysqli_real_escape_string($con,$_POST['long']);
         }
        if (isset($_POST["time"])){
                         $walk_time = mysqli_real_escape_string($con,$_POST['time']);

@@ -5,12 +5,18 @@
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css" media="screen" />
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">  
+    <!-- REFERENCE http://stackoverflow.com/questions/7769765/why-is-a-scroll-bar-coming-out-in-my-maps-infowindow-in-chrome-->
 	  <style>
      html, body , #map-canvas {
         height: 85%;
         margin: 0px;
-        padding: 0px
+        padding: 0px;
+       .gm-style-iw{ overflow: hidden; !important;};
       }
+      #map-canvas {
+		width:50%;
+		
+	}
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMaDwxzucsIfiT1sYyFKWIvDljXOWSeM0&sensor=false"></script>
     <link rel="stylesheet" type="text/css" href="shadowbox-3.0.3/shadowbox.css">
@@ -56,63 +62,66 @@
 								echo "<br/>";
 								echo "This is the distance for the walk " . $walk['distance'];
 							}
-							
-							
 							$query = "SELECT latitude, longitude FROM Location";
 							$database->prepare_query($query);
 							$database->send_query($database->get_query());
 							$lat = array();
 							$long = array();
 							while ($value = mysqli_fetch_array($database->get_result())){
-										$lat[] = foo;
-										$long[] = foo;
+										$lat[] = $value['latitude'];
+										$long[] = $value['longitude'];
 							}
 							$database->close_connection();										
 						?>
-						 <script type="text/javascript">
+				 <script type="text/javascript">
 						var map;
+						//sets up the array of lat values from the php array
 						var lat = <?php echo json_encode($lat); ?>;
+						//sets up the array of long values from the php long array
 						var lng = <?php echo json_encode($long); ?>;
 						function initialize() {
 						var mapOptions = {
 							zoom: 8,
 							center: new google.maps.LatLng(52.416667, -4.066667)
 						};
+						//assigns the instance of map to the map canvas id element we use.
 						var map = new google.maps.Map(document.getElementById('map-canvas'),
 								mapOptions);
+						//this creates a new popup window when we click on a marker.
+						var infowindow = new google.maps.InfoWindow();
+						//An array to store the Lat and Long values
+						var latLngValues = new Array();
+						//var marker = new Array();
+						for (i = 0; i < lat.length; i++){
+							//populates the array with the correct google maps co-ordinates.
+							latLngValues[i] = new google.maps.LatLng(lat[i], lng[i]);
+						}
+						// Reference http://stackoverflow.com/questions/11467070/how-to-set-a-popup-on-markers-with-google-maps-api for moving it 
+						// inside the function to allow to. Based on the code above, changed to map with our application- Renamed methods to make it 
+						// more readable, but code is based on the link above.
+						for (j = 0;j < latLngValues.length; j++){	
+							//sets a new marker
+							var POI = new google.maps.Marker({
+								//sets the position to be the co-ords from the loop above
+								position: latLngValues[j],
+								map: map
+							});
+							//adds a listener to each of the marker items
+							popupInfoWindow(map, infowindow, "<h4> Title </h4> <br/> <p> Stufdsfdsfdsfsff</p>", POI);
 						
-						var contentString = <?php?>'<div id="content">'+'<h1 id="firstHeading" class="firstHeading"></h1>'+
-						'<div id="bodyContent">'+'<p>short desc </p>'+'</div>'+'</div>';
-	
-						var infowindow = new google.maps.InfoWindow({
-							content: contentString
-						});
-
-						var myLatLng = new google.maps.LatLng(52.416667, -4.066667);
-						var marker = new google.maps.Marker({
-							position: myLatLng,
-							map: map,
-							title: 'Aberystwyth'
-						});
-  
-						google.maps.event.addListener(marker, 'click', function() {
-								infowindow.open(map,marker);
-						});
-
-						var myLatLng = new google.maps.LatLng(52.7077, -2.7541);
-						var marker = new google.maps.Marker({
-								position: myLatLng,
-								map: map,
-								title: 'Shrewsbury'
-						});
-  
-						var flightPlanCoordinates = [
-							new google.maps.LatLng(52.416667, -4.066667),
-							new google.maps.LatLng(52.7077, -2.7541),   
-						];
-  
+						}  
+						function popupInfoWindow(map, infowindow, insideMarkerText, POI) {
+								google.maps.event.addListener(POI, 'click', function() {
+								//sets a standard message TODO: GRAB SOME PHP
+								infowindow.setContent(insideMarkerText);
+								//opens the info window on the marker on the map
+								infowindow.open(map,POI);
+							});
+							}
+						//TODO	
+						
 						var flightPath = new google.maps.Polyline({
-							path: flightPlanCoordinates,
+							path: latLngValues,
 							geodesic: true,
 							strokeColor: '#FF0000',
 							strokeOpacity: 1.0,
@@ -122,6 +131,6 @@
 						flightPath.setMap(map);
 						}
 						google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+				</script>
 </body>
 </html>

@@ -46,6 +46,7 @@ public class MapScreen extends GeneralActivity {
 	
 	/** holds the object that is responsible for tracking the path of the walk*/
 	private RouteRecorder recorder;
+	
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
 	 * specified in res/layout/activity_map_screen.xml
@@ -97,7 +98,7 @@ public class MapScreen extends GeneralActivity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		
+		//*
 		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
 		PositionListener poiListener = new PositionListener();
@@ -108,13 +109,13 @@ public class MapScreen extends GeneralActivity {
 			poiRec.setWalk(walk);
 		}
 		
-		/*
+		/*/
 		PointOfInterest poi = new PointOfInterest(-4,53);
 		poi.setDescription("qwertyuiosdfgh ");
 		walk.addLocation(poi);
 		ImageHandler image = new ImageHandler(this);
-		image.getPhotoFromLibrary();
-		*/
+		image.getPhotoFromCamera();
+		//*/
 
 	}
 
