@@ -18,7 +18,7 @@ if (mysqli_connect_errno()){
 			walkID INT,
 			latitude FLOAT,
 			longitude FLOAT,
-			timestamp FLOAT
+			timestamp FLOAT,
 			FOREIGN KEY (walkID) REFERENCES List_of_Walks(id)
 		)";
 		if (mysqli_query($con,$sql)){
@@ -75,7 +75,7 @@ function createListOfWalksTable($con){
 			id INT NOT NULL AUTO_INCREMENT,
 			PRIMARY KEY(id),
 			placeId INT NOT NULL,
-			photoName VARCHAR (100) NOT NULL
+			photoName VARCHAR (100) NOT NULL,
 			FOREIGN KEY (placeId) REFERENCES Place_description(id)
 		)";
 		if (mysqli_query($con,$sql)){
