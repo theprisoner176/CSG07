@@ -2,29 +2,9 @@
 <html lang="en">
 <head>
         <title>List of walks</title>
-        <link rel="stylesheet" type="text/css" href="../CSS/style.css" media="screen" />
+       <link rel="stylesheet" href="../CSS/style.css" media="screen" />
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">  
-    <!-- REFERENCE http://stackoverflow.com/questions/7769765/why-is-a-scroll-bar-coming-out-in-my-maps-infowindow-in-chrome-->
-          <style>
-     html, body , #map-canvas {
-        height: 85%;
-        margin: 0px;
-        padding: 0px;
-       .gm-style-iw{ overflow: hidden; !important;};
-      }
-      #map-canvas {
-                width:50%;
-                
-        }
-    #imagedisplay {
-      width: 530px;
-      }
-      #thumb {
-      padding: 5px;
-      float: left;
-      }
-    </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMaDwxzucsIfiT1sYyFKWIvDljXOWSeM0&sensor=false"></script>
     <!-- Lightbox to display images, http://shadowbox-js.com/, used un the Non-commercial Licence agreement -->
     <link rel="stylesheet" type="text/css" href="shadowbox-3.0.3/shadowbox.css">
@@ -46,6 +26,7 @@
                 </ul>
         </nav>
         <section id="intro"></section>
+			<div id="container">
                 <div id="map-canvas"></div>        
                                                 <?php
                                                         include "database_layer.php";
@@ -167,11 +148,6 @@
                                                 }
                                                 google.maps.event.addDomListener(window, 'load', initialize);
                                 </script>
-
-<?php
-//while ($i <= 5) {
-
-//}
-?>
+					</div>
 </body>
 </html>
