@@ -27,21 +27,19 @@ public class FileTransferManager{
 	//private final static String dataServer = "http://users.aber.ac.uk/mda/csgp07/file_saver.php";
 			
 	/**
-	* makes a connection to data server and
-	* uploads all files belonging to the given
-	* file, the return values will be zero if
-	* the method succeeded without problems.
+	* makes a connection to data server and uploads all files belonging to the given
+	* file, the return values will be zero if the method succeeded without problems.
 	* 
 	* @param walk, the walk that is to be uploaded.
 	*/
 	public int uploadWalk(WalkModel walk){		
-		//create a new thread for each upload
+		//creates a new thread for each upload
 		new Uploader(walk).start();
 		return 0;
 	}
 	
 	/**
-	 * packages  all the walk model data up into a json object
+	 * packages all the walk model data up into a json object
 	 * 
 	 * @param data, the walk that is to be uploaded.
 	 * @return the walk encoded into a json object.
@@ -56,25 +54,10 @@ public class FileTransferManager{
 			walkData.put("hours"		, data.getTimeTaken());
 			walkData.put("distance"		, data.getDistance());
 			//add all location points
-			walkData.put("route", packageRoute(data.getRoutePath()));
+			walkData.put("route", packagepathData(data.getRoutePath()));
 					
 		}catch (JSONException e){ }
 		return walkData;
-	}
-	
-	/**
-	 * packages the route into a JSONArray.
-	 * 
-	 * @param route, a vector containing all the points a long the walk.
-	 * @return a JSON Array containing all the point along the walk
-	 * @throws JSONException
-	 */
-	private static JSONArray packageRoute(Vector<LocationPoint> route) throws JSONException{
-		JSONArray routeData = new JSONArray();
-		for(LocationPoint point: route){
-			routeData.put(packagepathData(point));
-		}
-		return routeData;
 	}
 	
 	/**
@@ -84,23 +67,27 @@ public class FileTransferManager{
 	 * @return the encoded point.
 	 * @throws JSONException
 	 */
-	private static JSONObject packagepathData(LocationPoint point) throws JSONException{
-		JSONObject location = new JSONObject();
-		location.put("longitude", point.getLongitude());
-		location.put("latitude", point.getLatitude());
-		location.put("time", point.getTime());
-		if(point instanceof PointOfInterest){
-			location.put("description",((PointOfInterest)point).getDescription());
-			location.put("title",((PointOfInterest)point).getTitle());
-			JSONArray images = new JSONArray();
-			for(ImageInformation image:((PointOfInterest)point).getImages()){
-				JSONObject jsonImage = new JSONObject();
-				jsonImage.put("file_data",image.getImageAsString());
-				images.put(jsonImage);
+	private static JSONArray packagepathData(Vector<LocationPoint> route) throws JSONException{
+		JSONArray routeData = new JSONArray();
+		for(LocationPoint point: route){
+		
+			JSONObject location = new JSONObject();
+			location.put("longitude", point.getLongitude());
+			location.put("latitude", point.getLatitude());
+			location.put("time", point.getTime());
+			if(point instanceof PointOfInterest){
+				location.put("description",((PointOfInterest)point).getDescription());
+				location.put("title",((PointOfInterest)point).getTitle());
+				JSONArray images = new JSONArray();
+				for(ImageInformation image:((PointOfInterest)point).getImages()){
+					JSONObject jsonImage = new JSONObject();
+					jsonImage.put("file_data",image.getImageAsString());
+					images.put(jsonImage);
+				}
+				location.put("images",images);
 			}
-			location.put("images",images);
 		}
-		return location;
+		return routeData;
 	}
 	
 	/**

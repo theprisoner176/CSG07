@@ -4,7 +4,6 @@ import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.ImageInformation;
-import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.services.PositionListener;
@@ -21,7 +20,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -30,8 +28,6 @@ import android.widget.Toast;
  */
 public class WalkScreen extends Activity {
 	 
-	public static int CAMERA_ACTIVITY_RESULT_CODE = 1984;
-	public static int GALLERY_ACTIVITY_RESULT_CODE = 1993;
 	
 	/**The walk that is being */
 	private static WalkModel walk;
@@ -134,31 +130,18 @@ public class WalkScreen extends Activity {
 	 * here it is used to add the a picture (from the camera or gallery) to the walk.
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == CAMERA_ACTIVITY_RESULT_CODE) { //result from camera activity
-	        if (resultCode == RESULT_OK) {	        	
-	        	PointOfInterest newPoi = walk.getLastPoi(); 
-	        	if(newPoi==null){
-	        		return;
-	        	}	
-	            newPoi.addImage(new ImageInformation(temp));
-	        	Toast.makeText(this, "Image added to walk\n", Toast.LENGTH_LONG).show();
-	        } else {
-	            Toast.makeText(this, "Image not saved\n", Toast.LENGTH_LONG).show();
-	        }
-	    }
-		if (requestCode == GALLERY_ACTIVITY_RESULT_CODE) { //result from gallery activity
-	        if (resultCode == RESULT_OK) {
-	        	PointOfInterest newPoi = walk.getLastPoi();
-	        	if(newPoi==null){
-	        		return;
-	        	}	      
-	        	newPoi.addImage(new ImageInformation(getRealPathFromURI(data.getData())));
-	        	
-	            Toast.makeText(this, "Image added to walk\n", Toast.LENGTH_LONG).show();
-	        } else {
-	            Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
-	        }
-	    }
+		if (resultCode == RESULT_OK) {
+			PointOfInterest newPoi = walk.getLastPoi(); 
+        	if(newPoi==null)
+        		return;
+        	else if(requestCode == ImageHandler.CAMERA_ACTIVITY_RESULT_CODE)
+				newPoi.addImage(new ImageInformation(temp));
+			else
+				newPoi.addImage(new ImageInformation(getRealPathFromURI(data.getData())));
+  
+        	Toast.makeText(this, "Image added to walk\n", Toast.LENGTH_LONG).show();
+		}
+		Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
 	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event){

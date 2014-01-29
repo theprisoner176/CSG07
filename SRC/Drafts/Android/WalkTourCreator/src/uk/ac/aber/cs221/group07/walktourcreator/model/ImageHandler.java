@@ -20,6 +20,9 @@ import android.provider.MediaStore;
  */
 public class ImageHandler {
 	
+	public static int CAMERA_ACTIVITY_RESULT_CODE = 1984;
+	public static int GALLERY_ACTIVITY_RESULT_CODE = 1993;
+	
 	/**the activity that initialized the camera/gallery access*/ 
 	private WalkScreen owner;
 
@@ -39,7 +42,7 @@ public class ImageHandler {
 		Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        owner.startActivityForResult(Intent.createChooser(intent,"Select Picture"), WalkScreen.GALLERY_ACTIVITY_RESULT_CODE);
+        owner.startActivityForResult(Intent.createChooser(intent,"Select Picture"), GALLERY_ACTIVITY_RESULT_CODE);
 	}
 	
 	/**
@@ -51,7 +54,7 @@ public class ImageHandler {
 		File temp = createFile();
 		owner.temp=temp.getAbsolutePath();
 		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(temp));
-		owner.startActivityForResult(takePictureIntent, WalkScreen.CAMERA_ACTIVITY_RESULT_CODE);
+		owner.startActivityForResult(takePictureIntent, CAMERA_ACTIVITY_RESULT_CODE);
 	}
 	
 	/**
