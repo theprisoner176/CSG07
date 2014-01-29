@@ -3,7 +3,7 @@ package uk.ac.aber.cs221.group07.walktourcreator.model;
 import java.io.File;
 import java.io.IOException;
 
-import uk.ac.aber.cs221.group07.walktourcreator.activities.GeneralActivity;
+import uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -21,13 +21,13 @@ import android.provider.MediaStore;
 public class ImageHandler {
 	
 	/**the activity that initialized the camera/gallery access*/ 
-	private GeneralActivity owner;
+	private MapScreen owner;
 
 	/**
 	 * creates a new ImageHandler object
 	 * @param owner the activity that initialized the object
 	 */
-	public ImageHandler(GeneralActivity owner){
+	public ImageHandler(MapScreen owner){
 		this.owner = owner;
 	}
 	
@@ -39,7 +39,7 @@ public class ImageHandler {
 		Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        owner.startActivityForResult(Intent.createChooser(intent,"Select Picture"), GeneralActivity.GALLERY_ACTIVITY_RESULT_CODE);
+        owner.startActivityForResult(Intent.createChooser(intent,"Select Picture"), MapScreen.GALLERY_ACTIVITY_RESULT_CODE);
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class ImageHandler {
 		File temp = createFile();
 		owner.temp=temp.getAbsolutePath();
 		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(temp));
-		owner.startActivityForResult(takePictureIntent, GeneralActivity.CAMERA_ACTIVITY_RESULT_CODE);
+		owner.startActivityForResult(takePictureIntent, MapScreen.CAMERA_ACTIVITY_RESULT_CODE);
 	}
 	
 	/**

@@ -110,6 +110,9 @@ public class FileTransferManager{
 	private static void post(JSONObject pakagedData) {
 	    HttpClient httpclient = new DefaultHttpClient();
 	    HttpPost post = new HttpPost(dataServer);
+	    post.setHeader("Content-Type", "application/json");
+	    post.setHeader("Accept", "application/json");
+	    //post.setContentType("application/json");
 	    try {
 	    	//add walk data to message	    	
 	        List<NameValuePair> dataPairs = new Vector<NameValuePair>();

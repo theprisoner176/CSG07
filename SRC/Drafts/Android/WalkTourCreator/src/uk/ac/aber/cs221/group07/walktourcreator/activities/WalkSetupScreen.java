@@ -2,6 +2,7 @@ package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,7 @@ import android.widget.EditText;
  * This class is responsible for displaying the walk setup screen, and reacting to button presses
  * @author HarryBuckley
  */
-public class WalkSetupScreen extends GeneralActivity {
+public class WalkSetupScreen extends Activity {
 
 	/**
 	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
@@ -48,11 +49,13 @@ public class WalkSetupScreen extends GeneralActivity {
 		 */
 		
 		//if input is fine
-		walk = new WalkModel(title);
+		WalkModel walk = new WalkModel(title);
 		walk.setShortDescription(short_desc);
 		walk.setLongDescription(long_desc);
+		
 		//go to map screen and pass it the newly created walk
 		Intent intent = new Intent(this, MapScreen.class);
+		intent.putExtra("walk", walk);
 		startActivity(intent);
 	}
 }

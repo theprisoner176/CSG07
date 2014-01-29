@@ -17,13 +17,4 @@
         android:onClick="startWalkSetupScreen"
         android:text="@string/start_new_walk" />
 
-    <Button
-        android:id="@+id/open_options_screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/start_new_walk"
-        android:layout_centerHorizontal="true"
-        android:onClick="startOptionsScreen"
-        android:text="@string/open_options_screen" />
-
 </RelativeLayout>

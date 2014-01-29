@@ -1,7 +1,7 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
-import uk.ac.aber.cs221.group07.walktourcreator.activities.GeneralActivity;
+import uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import android.content.Context;
@@ -16,10 +16,10 @@ public class PoiDialogView extends DialogView{
 	private LayoutInflater inflater;
 	private View view;
 	private ImageHandler imageSaver;
-	private GeneralActivity activity;
+	private MapScreen activity;
 
 	
-	public PoiDialogView(GeneralActivity context,int viewLayout, PointOfInterest poi) {
+	public PoiDialogView(MapScreen context,int viewLayout, PointOfInterest poi) {
 			super(context,viewLayout);
 			LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View layout = inflater.inflate(viewLayout, null);

@@ -1,6 +1,5 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
-import uk.ac.aber.cs221.group07.walktourcreator.activities.GeneralActivity;
 import uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
@@ -20,7 +19,7 @@ public class WalkFinishedView implements DialogInterface.OnClickListener{
 	private WalkModel walk;
 	private MapScreen map;
 	
-	public WalkFinishedView(GeneralActivity context, int viewLayout, WalkModel currentWalk,MapScreen gMap) {
+	public WalkFinishedView(MapScreen context, int viewLayout, WalkModel currentWalk,MapScreen gMap) {
 		
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(viewLayout, null);
