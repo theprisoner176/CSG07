@@ -35,7 +35,7 @@ public class WalkScreen extends Activity {
 	/**The walk that is being */
 	protected static WalkModel walk;
 	
-	/**SHOULD BE IMPROVED JUST USED NOW TO MAKE IT WORK*/
+	/**SHOULD   BE IMPROVED JUST USED NOW TO MAKE IT WORK*/
 	public static String temp;
 	
 	private TextView mMessageView;
