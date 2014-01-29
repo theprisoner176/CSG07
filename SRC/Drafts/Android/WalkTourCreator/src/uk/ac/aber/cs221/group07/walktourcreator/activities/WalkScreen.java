@@ -80,11 +80,11 @@ public class WalkScreen extends Activity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		/*
+		//*
 		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
 		PositionListener poiListener = new PositionListener();
-		poiListener.setMap(this);
+		poiListener.setWalk(this);
 		
 		RouteRecorder poiRec = new RouteRecorder(poiListener, poiManager,true);
 		if(walk!=null){
