@@ -7,7 +7,7 @@ session_start();
  $con=mysqli_connect("db.dcs.aber.ac.uk","csadmgp07","c54admgp07","csgp07_13_14");
 
 if (mysqli_connect_errno()){
-   	   echo "Failed to connect to MySQL: " . mysqli_connect_error();
+   	   echo "Failed to connect to MySQL: " . mysqli_connect_error($con);
 }
 
  function createLocationTable($con){ 

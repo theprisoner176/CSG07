@@ -17,7 +17,7 @@ function deleteLocationTable($con){
 		echo "Table Location deleted successfully\n";
 	}
 	else{
-		echo "Could Not Delete Location Table" . mysqli_error();
+		echo "Could Not Delete Location Table" . mysqli_error($con);
 	}
 }
 
@@ -27,7 +27,7 @@ function deleteListOfWalksTable($con){
 		echo "Table List of Walks deleted successfully\n";
 	}
 	else{
-		echo "Could Not List of Walks Location Table" . mysqli_error();
+		echo "Could Not List of Walks Location Table" . mysqli_error($con);
 	}	
 }
 
@@ -37,7 +37,7 @@ function deletePlaceDescriptionTable($con){
 		echo "Table Place Description deleted successfully\n";
 	}
 	else{
-		echo "Could Not Delete Place Description Table" . mysqli_error();
+		echo "Could Not Delete Place Description Table" . mysqli_error($con);
 	}
 }
 
@@ -47,16 +47,15 @@ function deletePhotoTable($con){
 		echo "Table Photo deleted successfully\n";
 	}
 	else{
-		echo "Could Not Delete Photo Table" . mysqli_error();
+		echo "Could Not Delete Photo Table" . mysqli_error($con);
 	}	
 }
 
 if(isSet($_POST["table_delete"])){
 	
-
-			deleteLocationTable($con);
-
 			deleteListOfWalksTable($con);
+			
+			deleteLocationTable($con);
 
 			deletePlaceDescriptionTable($con);
 
