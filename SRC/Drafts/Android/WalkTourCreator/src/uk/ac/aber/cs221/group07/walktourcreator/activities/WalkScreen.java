@@ -73,7 +73,7 @@ public class WalkScreen extends Activity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		/*
+		//*
 		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
 		PositionListener poiListener = new PositionListener();
