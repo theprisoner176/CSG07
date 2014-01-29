@@ -10,7 +10,7 @@
 	$walk_conn;
 	$post = $_POST;
 	//function init($walk_conn, $file, $post){
-		$walk_conn=mysqli_connect("db.dcs.aber.ac.uk","csadmgp07","c54admgp07","csgp07_13_14") or die("Cannot Connect");
+		$walk_conn=mysqli_connect("db.dcs.aber.ac.uk","csadmgp07","c54admgp07","csgp07_13_14");// or die("Cannot Connect");
 				   
 		$file = fopen('datafile.txt','ab');	
 		$json = implode($post);
@@ -27,13 +27,14 @@
 		$route = $json_array['route'];
 		
 		
-		//write($file, $title . "\n" . $short_desc . "\n" . $long_desc . "\n" . $hours . "\n" . $distance . "\n" . $route);
+		fwrite($file, $title . "\n" . $short_desc . "\n" . $long_desc . "\n" . $hours . "\n" . $distance . "\n" . $route);
 			
 		//add data to table
 		$sql = "INSERT INTO List_of_Walks
 		(title, shortDesc, longDesc, hours, distance)
-		VALUES($title, $short_desc,$long_desc,$hours,$distance)"; 
+		VALUES('$title', '$short_desc', '$long_desc', '$hours', '$distance')"; 
 		mysqli_query($walk_conn,$sql);
+		$walkID = mysqli_insert_id($walk_conn);
 	//}
 	
 	//function readLocation($route, $file){
@@ -43,43 +44,45 @@
 			$latitude = $loc['latitude'];
 			$time = $loc['time'];
 			
-			$sql = "INSERT INTO Location values
-			(latitude, longitude, timestamp)
-			($latitude,$longitude, $time)";
+			$sql = "INSERT INTO Location(walkID, latitude, longitude, timestamp)	
+			VALUES('$walkID', '$latitude','$longitude', '$time')";
 			mysqli_query($walk_conn,$sql);
-			
+			$locID = mysqli_insert_id($walk_conn);
 			
 			if(isSet($loc['description'])){
 				//If description, location is point of interest
 				$description = $loc['description'];
-				$sql = "INSERT INTO Photo(description)
-						values($description)";
+				$sql = "INSERT INTO Place_description(description, locationId)
+						values('$description', '$locID')";
+				mysqli_query($walk_conn,$sql);
+				$placeId = mysqli_insert_id($walk_conn);
 				if(isSet($loc['images'])){
-				$c = 0;
+				$photoCount = 0;
 				//If there are images decode and rename them
 					foreach($loc['images']as $image){
 						$image = implode($image);
 						$image = str_replace("\\", "", $image, $count);
 						$image =  base64_decode($image);
-						file_put_contents("images/" . $c . ".jpg",$image);
-						$c++;
-						$sql = "INSERT INTO Photo(photoName)
-						values($photoName)";
+						$photoName = $walkID . "_" . $locID . "_" . $placeId . "_" . $photoCount;
+						file_put_contents("images/".$photoName . ".jpg",$image);
+						$photoCount++;
+						$sql = "INSERT INTO Photo(photoName, placeId)
+						values('$photoName', '$placeId')";
 						mysqli_query($walk_conn,$sql);
 					}
 				}
 			}
-		fwrite($file, "\n" . $loc . " " .  $longitude);
+		fwrite($file, "\n" . $loc . " " . $latitude .  " " . $longitude);
 		}
 	//}
 	
 	/*function readJson($post, $walk_conn, $json_array, $route, $file){
 		init($walk_conn, $file, $post);
 		readWalk($walk_conn, $json_array, $route, $file);
-		readLocation($route, $file);
+		readLocation($route, $file);*/
 		fclose($file);
 		mysqli_close($walk_conn);
-	}*/
+	//}
 	
 	//readJson($_POST, $walk_conn, $json_array, $route, $file);
    }
