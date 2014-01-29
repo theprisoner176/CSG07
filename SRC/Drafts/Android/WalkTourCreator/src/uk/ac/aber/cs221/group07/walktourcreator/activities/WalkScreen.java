@@ -154,7 +154,7 @@ public class WalkScreen extends Activity {
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK){
-        	finishWalk(null);
+        	cancelWalk(null);
             return true;
         }
         return false;
