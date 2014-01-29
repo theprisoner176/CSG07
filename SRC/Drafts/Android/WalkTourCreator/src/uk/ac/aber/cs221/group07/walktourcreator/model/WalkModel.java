@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
  */
 public class WalkModel implements Serializable{
 	
-	private static final int MAX_LONG_DESC_LENGTH = 100;
-	private static int MAX_SHRT_DESC_LENGTH = 999;
+	private static final int MAX_LONG_DESC_LENGTH = 999;
+	private static int MAX_SHRT_DESC_LENGTH = 100;
 	private static int MAX_TITLE_LENGTH = 100;
 	
 	
@@ -103,7 +103,7 @@ public class WalkModel implements Serializable{
 		}
 		return total;
 	}
-	
+		
 	/**  returns the elapsed time since the walk was started. */
 	public double getTimeTaken(){
 		if(path.size()==0){
