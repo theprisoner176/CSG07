@@ -2,12 +2,13 @@ package uk.ac.aber.cs221.group07.walktourcreator.activities;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
-import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.ImageInformation;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.services.PositionListener;
 import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
+import uk.ac.aber.cs221.group07.walktourcreator.views.CancelWalkView;
+import uk.ac.aber.cs221.group07.walktourcreator.views.EditWalkView;
 import uk.ac.aber.cs221.group07.walktourcreator.views.PoiDialogView;
 import uk.ac.aber.cs221.group07.walktourcreator.views.WalkFinishedView;
 import android.app.Activity;
@@ -36,7 +37,7 @@ public class WalkScreen extends Activity {
 	public static String temp;
 	
 	/** holds the object that is responsible for tracking the path of the walk*/
-	private RouteRecorder recorder;
+	public RouteRecorder recorder;
 	
 	
 	/**
@@ -108,12 +109,13 @@ public class WalkScreen extends Activity {
 		new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
 	}
 	
-	public void cancelWalk(){
-		recorder.finishWalk();
-		finish();
-		stopService(new Intent(this,RouteRecorder.class)); 
-		Intent intent = new Intent(this, MainMenu.class);
-		startActivity(intent);
+	public void editWalkDialog(View v){
+		new EditWalkView(this,R.layout.edit_walk_dialog,walk);
+	}
+	
+	public void cancelWalk(View v){
+		new CancelWalkView(this, R.layout.cancel_walk_dialog,this);
+		
 	}
 	
 	public void uploadWalk(){

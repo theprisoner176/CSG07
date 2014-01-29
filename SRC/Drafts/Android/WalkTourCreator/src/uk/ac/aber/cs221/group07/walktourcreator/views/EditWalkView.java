@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EditWalkView extends DialogView{
 
@@ -31,9 +32,23 @@ public class EditWalkView extends DialogView{
 		TextView walkTitle = (TextView)layout.findViewById(R.id.edit_walk_title);
 		TextView shortDesc = (TextView)layout.findViewById(R.id.edit_walk_short_description);
 		TextView longDesc = (TextView)layout.findViewById(R.id.edit_walk_long_description);
+		if(!WalkModel.isValidTitle(walkTitle.toString())){
+			Toast.makeText(activity,"A title must contains no white spaces\nAnd Must not be empty",
+					Toast.LENGTH_LONG).show();
+		}
+		else if(!WalkModel.isValidShortDesc(shortDesc.toString())){
+			Toast.makeText(activity,"Description has to be under 100 characters\nAnd Must not be empty",
+					Toast.LENGTH_LONG).show();
+		}
+		else if(!WalkModel.isValidLongDesc(longDesc.toString())){
+			Toast.makeText(activity,"Detailed Description has to be under 1000 characters\nAnd Must not be empty",
+					Toast.LENGTH_LONG).show();
+		}
+		else{
 		walk.setTitle(walkTitle.toString());
 		walk.setShortDescription(shortDesc.toString());
 		walk.setLongDescription(longDesc.toString());
+		}
 	}
 
 }

@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_margin="5dp"
-            android:text="Do you want to upload the walk? (Cancel will delete the walk!)"
+            android:text="Do you want to end walk and upload it to the server? "
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </RelativeLayout>

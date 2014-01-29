@@ -41,7 +41,8 @@
             android:id="@+id/walk_cancel_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel Walk" />
+            android:text="Cancel Walk"
+            android:onClick="cancelWalk" />
 
     </LinearLayout>
 
