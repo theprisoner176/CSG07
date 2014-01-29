@@ -51,23 +51,21 @@ public class WalkScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map_screen);
-			
-        walk = (WalkModel) getIntent().getSerializableExtra("walk");
-		
+		runOnInitialCreate();
+	}
+	
+	public void runOnInitialCreate(){
+		if(walk!=null||recorder!=null){
+			return;
+		}
+		walk = (WalkModel) getIntent().getSerializableExtra("walk");
 		//location manager to get location data
 		LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-		
-		//position listener used to process action when location data is gathered
 		PositionListener posListener = new PositionListener();
 		posListener.setWalk(this);
-		
-		//create recorder and pass listener and manager
 		recorder = new RouteRecorder(posListener,manager);
-		
-		//give control of the map
 		recorder.setWalk(walk);
 		posListener.setRecorder(recorder);
-		
 		Toast.makeText(this,"Walk Started.\n",Toast.LENGTH_LONG).show();
 	}
 	

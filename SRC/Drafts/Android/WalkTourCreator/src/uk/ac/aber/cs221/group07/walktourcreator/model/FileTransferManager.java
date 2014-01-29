@@ -33,7 +33,6 @@ public class FileTransferManager{
 	* @param walk, the walk that is to be uploaded.
 	*/
 	public int uploadWalk(WalkModel walk){		
-		//creates a new thread for each upload
 		new Uploader(walk).start();
 		return 0;
 	}

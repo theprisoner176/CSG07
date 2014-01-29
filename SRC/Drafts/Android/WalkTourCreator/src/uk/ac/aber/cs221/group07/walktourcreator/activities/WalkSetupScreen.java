@@ -38,9 +38,6 @@ public class WalkSetupScreen extends Activity {
 		String title = ((EditText) findViewById(R.id.title_input)).getText().toString();
 		String short_desc =  ((EditText) findViewById(R.id.short_description_input)).getText().toString();
 		String long_desc =  ((EditText) findViewById(R.id.long_description_input)).getText().toString();
-		//clear text boxes
-		
-		
 		
 		if(!WalkModel.isValidTitle(title)){
 			Toast.makeText(this,"A title must contains no white spaces\nAnd Must not be empty",
