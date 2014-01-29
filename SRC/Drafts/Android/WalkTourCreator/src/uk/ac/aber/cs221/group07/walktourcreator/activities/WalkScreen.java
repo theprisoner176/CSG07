@@ -112,7 +112,7 @@ public class WalkScreen extends Activity {
 	}
 	
 	public void cancelWalk(View v){
-		new CancelWalkView(this, R.layout.cancel_walk_dialog,this);
+		new CancelWalkView(this, R.layout.cancel_walk_dialog);
 		
 	}
 	
