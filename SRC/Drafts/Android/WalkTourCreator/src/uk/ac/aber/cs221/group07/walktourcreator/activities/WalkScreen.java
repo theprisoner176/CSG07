@@ -23,16 +23,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.LocationClient;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 /**
  * This class is responsible for displaying the map screen, and reacting to button presses.
  * @author HarryBuckley
@@ -48,9 +38,7 @@ public class WalkScreen extends Activity {
 	/**SHOULD BE IMPROVED JUST USED NOW TO MAKE IT WORK*/
 	public static String temp;
 	
-	private LocationClient mLocationClient;
 	private TextView mMessageView;
-	private Marker currentPosition;
 	private PoiDialogView poiDialog;
 	private WalkFinishedView walkFinished;
 	

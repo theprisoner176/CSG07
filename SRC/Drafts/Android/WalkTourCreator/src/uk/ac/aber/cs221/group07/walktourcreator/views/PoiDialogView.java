@@ -54,7 +54,7 @@ public class PoiDialogView extends DialogView{
 	}
 	
 	public void setPointInfo(){
-		inflater.inflate(R.layout.activity_add_poi_dialog, null);
+		//inflater.inflate(R.layout.activity_add_poi_dialog, null);
 		TextView poiTitle = (TextView)view.findViewById(R.id.poi_title);
 		TextView poiDescription = (TextView)view.findViewById(R.id.poi_description);
 		poi.setTitle(poiTitle.toString());

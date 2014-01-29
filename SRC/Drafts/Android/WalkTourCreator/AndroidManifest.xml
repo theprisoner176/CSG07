@@ -37,9 +37,6 @@
         android:permission="android.permission.ACCESS_FINE_LOCATION"
         android:theme="@android:style/Theme.Black" >
         <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCJefWrZ6yg7t2AvOK5geEhHPFp4Ttbq3A" />
 
@@ -54,37 +51,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="uk.ac.aber.cs221.group07.walktourcreator.activities.OptionsScreen"
-            android:label="@string/title_activity_options_screen" >
-        </activity>
-        <activity
-            android:name="uk.ac.aber.cs221.group07.walktourcreator.activities.MyWalksScreen"
-            android:label="@string/title_activity_my_walks_screen" >
-        </activity>
-        <activity
             android:name="uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen"
             android:label="@string/title_activity_map_screen" >
         </activity>
         <activity
             android:name="uk.ac.aber.cs221.group07.walktourcreator.activities.WalkSetupScreen"
             android:label="@string/title_activity_walk_setup_screen" >
-        </activity>
-        <activity
-            android:name="uk.ac.aber.cs221.group07.walktourcreator.AddPoiScreen"
-            android:label="@string/title_activity_add_poi_screen"
-            android:parentActivityName="uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen"
-            android:theme="@android:style/Theme.Holo.Dialog" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen" />
-        </activity>
-        <activity
-            android:name="uk.ac.aber.cs221.group07.walktourcreator.AddPoiDialog"
-            android:label="@string/title_activity_add_poi_dialog"
-            android:parentActivityName="uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.ac.aber.cs221.group07.walktourcreator.activities.MapScreen" />
         </activity>
         <service 
             android:name = "uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder"
