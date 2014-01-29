@@ -32,8 +32,8 @@ public class EditWalkView extends DialogView{
 	
 	public void editWalk(){
 		EditText walkTitle = (EditText)layout.findViewById(R.id.edit_walk_title);
-		TextView shortDesc = (TextView)layout.findViewById(R.id.edit_walk_short_description);
-		TextView longDesc = (TextView)layout.findViewById(R.id.edit_walk_long_description);
+		EditText shortDesc = (EditText)layout.findViewById(R.id.edit_walk_short_description);
+		EditText longDesc = (EditText)layout.findViewById(R.id.edit_walk_long_description);
 		if(!WalkModel.isValidTitle(walkTitle.getText().toString())){
 			Toast.makeText(activity,"A title must contains no white spaces\nAnd Must not be empty",
 					Toast.LENGTH_LONG).show();
