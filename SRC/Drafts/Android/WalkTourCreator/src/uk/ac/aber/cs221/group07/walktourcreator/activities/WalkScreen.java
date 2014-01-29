@@ -93,6 +93,14 @@ public class WalkScreen extends Activity {
 		//*/
 	}
 
+	public void getFromGallery(){
+		ImageHandler image = new ImageHandler(this);
+		image.getPhotoFromLibrary();
+	}
+	public void getFromCamera(){
+		ImageHandler image = new ImageHandler(this);
+		image.getPhotoFromCamera();
+	}
 	
 	/**
 	* creates and displays a WalkFinishedView.
