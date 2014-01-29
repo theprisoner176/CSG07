@@ -46,13 +46,15 @@ public class WalkModelTest {
 	}
 	
 	@Test
-	public void testSetTitle() {
-		assertTrue("correct", wm.setTitle("title"));
-	}
-	
-	@Test
-	public void testGetTitle() {
-		String title = "title";
+	public void testTitle() {
+		String title = "";
+		String title2 = "title";
+		String title3 = "a long title a long title a long title a long title a long title a long title a long title a long title a long title a long title";
+		
+		assertFalse("failed, too short", wm.setTitle(title));
+		assertTrue("correct", wm.setTitle(title2));
+		assertFalse("failed, too long", wm.setTitle(title3));
+		
 		assertEquals(title, wm.getTitle());
 	}
 
@@ -62,10 +64,12 @@ public class WalkModelTest {
 		String testString2 = "test string";
 		String testString3 = "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest";
 		String testString4 = "A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail A really long string that is supposed to fail";		
+		
 		assertFalse("failed, too short", wm.setShortDescription(testString));
 		assertTrue("correct", wm.setShortDescription(testString2));
 		assertFalse("failed, too long", wm.setShortDescription(testString3));
 		assertFalse("failed, too long", wm.setShortDescription(testString4));
+		
 		assertEquals(testString2, wm.getShortDescription());
 	}
 
