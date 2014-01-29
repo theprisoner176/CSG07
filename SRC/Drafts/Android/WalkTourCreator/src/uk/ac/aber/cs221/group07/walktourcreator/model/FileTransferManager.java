@@ -108,6 +108,8 @@ public class FileTransferManager{
 	      	post.setEntity(new UrlEncodedFormEntity(dataPairs));
 	        //send message
 	        HttpResponse response = httpclient.execute(post);
+	        //response.
+	        //response.
 	        
 	        //do something to check the response
 	    } catch (IOException e) { }

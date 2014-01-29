@@ -26,7 +26,7 @@ public class PoiDialogView extends DialogView{
 			activity = context;
 			this.setPointOfInterest(poi);
 			this.setInflaterView(inflater, layout);
-			imageSaver = new ImageHandler(activity);
+			//imageSaver = new ImageHandler(activity);
 	}
 
 	@Override
@@ -41,11 +41,13 @@ public class PoiDialogView extends DialogView{
 	}
 	
 	public void addImage(View v){
-		imageSaver.getPhotoFromLibrary();
+		//imageSaver.getPhotoFromLibrary();
+		activity.getFromGallery();
 	}
 	
 	public void takePhoto(View v){
-		imageSaver.getPhotoFromCamera();
+		//imageSaver.getPhotoFromCamera();
+		activity.getFromCamera();
 	}
 	
 	public void setInflaterView(LayoutInflater inf,View v){

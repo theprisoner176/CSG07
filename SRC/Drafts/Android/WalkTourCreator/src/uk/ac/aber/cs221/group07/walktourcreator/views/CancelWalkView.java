@@ -10,9 +10,9 @@ public class CancelWalkView extends DialogView{
 	
 	private WalkScreen walk;
 	
-	public CancelWalkView(WalkScreen context, int viewLayout,WalkScreen w) {
+	public CancelWalkView(WalkScreen context, int viewLayout) {
 		super(context, viewLayout);
-		walk = w;
+		walk = context;
 	}
 
 	@Override
