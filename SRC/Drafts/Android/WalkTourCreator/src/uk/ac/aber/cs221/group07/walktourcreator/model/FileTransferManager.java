@@ -85,6 +85,7 @@ public class FileTransferManager{
 				}
 				location.put("images",images);
 			}
+			routeData.put(location);
 		}
 		return routeData;
 	}
@@ -97,7 +98,7 @@ public class FileTransferManager{
 	    HttpClient httpclient = new DefaultHttpClient();
 	    HttpPost post = new HttpPost(dataServer);
 	    post.setHeader("Content-Type", "application/json");
-	    post.setHeader("Accept", "application/json");
+	    //post.setHeader("Accept", "application/json");
 	    //post.setContentType("application/json");
 	    try {
 	    	//add walk data to message	    	

@@ -55,18 +55,17 @@ public class WalkScreen extends Activity {
 	}
 	
 	public void runOnInitialCreate(){
-		if(walk!=null||recorder!=null){
-			return;
+		if(walk==null||recorder==null){
+			walk = (WalkModel) getIntent().getSerializableExtra("walk");
+			//location manager to get location data
+			LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+			PositionListener posListener = new PositionListener();
+			posListener.setWalk(this);
+			recorder = new RouteRecorder(posListener,manager);
+			recorder.setWalk(walk);
+			posListener.setRecorder(recorder);
+			Toast.makeText(this,"Walk Started.\n",Toast.LENGTH_LONG).show();
 		}
-		walk = (WalkModel) getIntent().getSerializableExtra("walk");
-		//location manager to get location data
-		LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-		PositionListener posListener = new PositionListener();
-		posListener.setWalk(this);
-		recorder = new RouteRecorder(posListener,manager);
-		recorder.setWalk(walk);
-		posListener.setRecorder(recorder);
-		Toast.makeText(this,"Walk Started.\n",Toast.LENGTH_LONG).show();
 	}
 	
 	/**
@@ -74,7 +73,7 @@ public class WalkScreen extends Activity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		//*
+		/*
 		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		
 		PositionListener poiListener = new PositionListener();
@@ -88,8 +87,8 @@ public class WalkScreen extends Activity {
 		PointOfInterest poi = new  PointOfInterest(12,12);
 		poi.setDescription("long desc.......");
 		poi.setTitle("title titile");
-		ImageHandler image = new ImageHandler(this);
-		image.getPhotoFromCamera();
+		//ImageHandler image = new ImageHandler(this);
+		//image.getPhotoFromCamera();
 		walk.addLocation(poi);
 		//*/
 	}
