@@ -24,11 +24,25 @@
             android:text="@string/add_point_of_interest" />
 
         <Button
+            android:id="@+id/edit_walk_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Walk" 
+            android:onClick="editWalkDialog"/>
+
+        <Button
             android:id="@+id/finish_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="finishWalk"
             android:text="@string/play_pause" />
+
+        <Button
+            android:id="@+id/walk_cancel_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel Walk" />
+
     </LinearLayout>
 
 </RelativeLayout>
