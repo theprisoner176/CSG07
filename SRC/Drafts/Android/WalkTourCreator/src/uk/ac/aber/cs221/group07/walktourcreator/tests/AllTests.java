@@ -4,52 +4,71 @@ import static org.junit.Assert.*;
 import java.util.Vector;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
 
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 
 
+<<<<<<< HEAD
+=======
+/**
+ * This class is responsible for conducting JUnit tests, mostly for the methods from WalkModel class, 
+ * but there is also a test for one method from LocationPoint class.
+ * @author Maciek Dobrzanski
+ */
+>>>>>>> 68cbad17cd9a1048c8764873170cd0bda45abc0f
 public class AllTests {
 	
 	WalkModel wm;
-	PointOfInterest poi;
-	LocationPoint lp;
 		
 	@Before
 	public void init(){
 		wm = new WalkModel();
 	}
 	
+	/**
+	 * Checks if the object returned by the getLastPoi method is the same as the test object.. 
+	 */
 	@Test
 	public void testGetLastPoi() {
-		lp = new LocationPoint(100,100);
-		poi = new PointOfInterest(lp);
+		LocationPoint lp = new LocationPoint(100,100);
+		PointOfInterest poi = new PointOfInterest(lp);
 		wm.addLocation(poi);
 		assertSame(poi ,wm.getLastPoi());
 	}
 
+	/**
+	 * Checks if the vector returned by the getRoutePath method is the same as the test vector.
+	 */
 	@Test
 	public void testGetRoutePath() {
 		Vector<LocationPoint> testPath = new Vector<LocationPoint>();
 		assertEquals(testPath, wm.getRoutePath());
 	}
 
+	/**
+	 * Checks if the total distance of the walk is returned properly.
+	 */
 	@Test
 	public void testGetDistance() {
 		double testDistance = 0;
-		assertEquals(testDistance, wm.getDistance(), 5);
+		assertEquals(testDistance, wm.getDistance(), 0);
 	}
-
+	
+	/**
+	 * Checks if the duration of the walk is returned properly.
+	 */
 	@Test
 	public void testGetTimeTaken() {
 		double testTime = 0;
-		assertEquals(testTime, wm.getTimeTaken(), 5);
+		assertEquals(testTime, wm.getTimeTaken(), 0);
 	}
 	
+	/**
+	 * Checks if it is possible to set certain strings as a title and if 
+	 * the title that was set is returned properly by getTitle method
+	 */
 	@Test
 	public void testTitle() {
 		String title = "";
@@ -65,6 +84,10 @@ public class AllTests {
 		
 	}
 
+	/**
+	 * Checks if it is possible to set certain strings as a short description and if 
+	 * the short description that was set is returned properly by getShortDescription method
+	 */
 	@Test
 	public void testShortDescription() {
 		String testString = "";
@@ -81,6 +104,10 @@ public class AllTests {
 		assertEquals(testString2, wm.getShortDescription());
 	}
 
+	/**
+	 * Checks if it is possible to set certain strings as a long description and if 
+	 * the long description that was set is returned properly by getLongDescription method
+	 */
 	@Test
 	public void testlongDescription() {
 		String testString = "";
@@ -95,28 +122,56 @@ public class AllTests {
 		assertEquals(testString2, wm.getLongDescription());
 	}
 
+	/**
+	 * Checks if the location added to the vector is saved there properly.
+	 */
 	@Test
 	public void testAddLocation() {
-		lp = new LocationPoint(100,100);
-		poi = new PointOfInterest(lp);
+		LocationPoint lp = new LocationPoint(100,100);
 		Vector<LocationPoint> testPath = new Vector<LocationPoint>();
 		testPath.add(lp);
-		///	wm.addLocation(poi);
 		assertEquals(1, testPath.size());
 	}
 	
+	/**
+	 * Checks if the long description that was is not too short and does not exceed
+	 * the maximum amount of characters.
+	 */
 	@Test
 	public void testIsValidTitle() {
 		assertTrue("correct", WalkModel.isValidTitle("title"));
 	}
 	
+	/**
+	 * Checks if the long description that was is not too short and does not exceed
+	 * the maximum amount of characters.
+	 */
 	@Test
 	public void testIsValidLongDesc() {
 		assertTrue("correct", WalkModel.isValidLongDesc("Long Description"));
 	}
 	
+	/**
+	 * Checks if the short description that was is not too short and does not exceed
+	 * the maximum amount of characters.
+	 */
 	@Test
 	public void testIsValidShortDesc() {
 		assertTrue("correct", WalkModel.isValidShortDesc("Short Description"));
 	}
+	
+	/**
+	 * Checks if the distance between two points on the map is calculated properly.
+	 */
+	@Test
+	public void testDistBetween() {
+		LocationPoint lp = new LocationPoint(52.413, -4.081); //Aberystwyth coordinates according to http://www.geobytes.com/CityDistance.htm?d&pt_1=UKWAABER&pt_2=UKWACARD
+		LocationPoint lp2 = new LocationPoint(51.481, -3.174); //Cardiff coordinates according to http://www.geobytes.com/CityDistance.htm?d&pt_1=UKWAABER&pt_2=UKWACARD
+		LocationPoint lp3 = new LocationPoint(-12.05, -77.05); //Lima (Peru) coordinates according to http://www.geobytes.com/CityDistance.htm?d&pt_1=UKWAABER&pt_2=PELILIMA
+		
+		//the tolerance used for the distances is 1% of the expected distance between the cities
+		assertEquals(120, LocationPoint.distBetween(lp, lp2), 1.2);
+		assertEquals(9957, LocationPoint.distBetween(lp, lp3), 99.57); 
+	}
+	
 }
