@@ -16,6 +16,7 @@
             android:id="@+id/edit_walk_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:ems="10"
             android:hint="Edit title of walk"
             android:imeOptions="actionNext"
@@ -27,6 +28,7 @@
         <EditText
             android:id="@+id/edit_walk_short_description"
             android:layout_width="match_parent"
+            android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Edit short description"
@@ -37,6 +39,7 @@
             android:id="@+id/edit_walk_long_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:layout_weight="0.71"
             android:ems="10"
             android:hint="Edit long description"

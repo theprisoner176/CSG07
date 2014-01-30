@@ -21,6 +21,7 @@
             android:id="@+id/poi_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:ems="10"
             android:hint="Enter Title"
              >
@@ -32,6 +33,7 @@
             android:id="@+id/poi_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:ems="10"
             android:hint="Enter Description"
             android:inputType="textMultiLine" />
