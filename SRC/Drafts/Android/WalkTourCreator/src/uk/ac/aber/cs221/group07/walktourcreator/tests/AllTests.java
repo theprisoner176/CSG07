@@ -60,15 +60,7 @@ public class AllTests {
 		assertEquals(testDistance, wm.getDistance(), 0);
 	}
 	
-	/**
-	 * Checks if the duration of the walk is returned properly.
-	 */
-	@Test
-	public void testGetTimeTaken() {
-		double testTime = 0;
-		assertEquals(testTime, wm.getTimeTaken(), 0);
-	}
-	
+
 	/**
 	 * Checks if it is possible to set certain strings as a title and if 
 	 * the title that was set is returned properly by getTitle method
