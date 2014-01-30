@@ -7,6 +7,7 @@ import android.content.Intent;
 
 
 /**
+ * Displays a popup if the GPS is not activated and asks the user to enable it
  * 
  * @author HarryBuckley
  * @author Martin Zokov
@@ -18,8 +19,11 @@ import android.content.Intent;
  */
 public class GpsCheckDialog implements DialogInterface.OnClickListener{
 	
+	/** Reference to the activity that created the popup*/
 	private WalkScreen activity;
 	
+	/** Constructor for the popup.
+	 * @param context the activity that created the popup*/
 	 public GpsCheckDialog(WalkScreen context) {
 		  activity = context;
 		  new AlertDialog.Builder(context)
@@ -29,6 +33,9 @@ public class GpsCheckDialog implements DialogInterface.OnClickListener{
 		    .show();
 		}
 
+	 /** Implementation of the listener's onClick method. If the OK button is pressed,
+	  * creates a new activity which shows the GPS settings on the device so that the user can 
+	  * swich it on*/
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		if(which == DialogInterface.BUTTON_POSITIVE){

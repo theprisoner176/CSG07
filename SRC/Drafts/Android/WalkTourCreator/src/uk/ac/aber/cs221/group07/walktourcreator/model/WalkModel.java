@@ -1,5 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
+import java.io.Serializable;
 import java.util.Vector;
 /**
  * stores all information about a single walk
@@ -12,7 +13,7 @@ import java.util.Vector;
  * Copyright (c) 2013 Aberystwyth University.
  * All rights reserved.
  */
-public class WalkModel{
+public class WalkModel implements Serializable{
 	
 	/** holds the name of the walk, is used as an identifier */
 	private String title;

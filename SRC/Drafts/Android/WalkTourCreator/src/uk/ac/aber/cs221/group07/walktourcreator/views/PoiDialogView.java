@@ -24,9 +24,7 @@ import android.widget.Toast;
  * Copyright (c) 2013 Aberystwyth University.
  * All rights reserved.
  */
- * @author HarryBuckley
- *
- */
+
 public class PoiDialogView extends DialogView{
 
 	private LayoutInflater inflater;

@@ -13,6 +13,8 @@ import android.widget.EditText;
 
 /**
  * 
+ * Dialog which is displayed when the walk is finished
+ * 
  * @author HarryBuckley
  * @author Martin Zokov
  * @since 0.1
@@ -20,12 +22,23 @@ import android.widget.EditText;
  * 
  * Copyright (c) 2013 Aberystwyth University.
  * All rights reserved.
+ * Dialog which is displayed when the walk is finished
+ *
  */
 public class WalkFinishedView implements DialogInterface.OnClickListener{
+	/** Reference to the current walk*/
 	private WalkModel walk;
-	private WalkScreen map;
+	/** Reference to the activity that created the popup*/
+	private WalkScreen activity;
 	
-	public WalkFinishedView(WalkScreen context, int viewLayout, WalkModel currentWalk,WalkScreen gMap) {
+	//public WalkFinishedView(WalkScreen context, int viewLayout, WalkModel currentWalk,WalkScreen gMap) {
+	/** Constructor for the popup.
+	 * @param context the activity that created the popup
+	 * @param viewLayout id of the layout that will be used
+	 * @param currentwalk the current walk object
+	 * @param walkScreen the current walk screen*/
+	public WalkFinishedView(WalkScreen context, int viewLayout, WalkModel currentWalk,WalkScreen walkScreen) {
+		
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(viewLayout, null);
 		
@@ -39,13 +52,15 @@ public class WalkFinishedView implements DialogInterface.OnClickListener{
 	    .show();
 		
 		walk = currentWalk;
-		map = gMap;
+		activity = walkScreen;
 	}
-
+	
+	/** Implementation of the listener's onClick method. If the user presses OK,
+	 * the walk is uploaded to the server*/
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		if(which == DialogInterface.BUTTON_POSITIVE){
-			map.uploadWalk();
+			activity.uploadWalk();
 		}
 		
 	}
