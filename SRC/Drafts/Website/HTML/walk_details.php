@@ -17,165 +17,172 @@
 </head>
 <body>
         <header>
-                <h1>Aber Tour</h1>
+                <h1>
+					<?php
+						include "database_layer.php";
+						///creates a new instance of the database walk option
+						$database = new DatabaseWalk();
+						$database->connect();
+						$walk = $database->santise_item($_GET['walk']);
+						$walk_id = $database->santise_item($_GET['walk_id']);
+						echo "<h2>" .  $walk. "</h2>"; 
+					?>
+				</h1>
         </header>
         <nav>
                 <ul>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="index.php">Home</a></li>
                         <li><a href="list_walks.php">List Walks</a></li>
                 </ul>
         </nav>
         <div id="container">
-				<div id = "sideBarleft">
-						<div id = "descriptionBox">
-							<p> this is were the description will go</p>
-						</div>
-				</div>		
-        <section id="intro"></section>
-				<div id="container">
-                <div id="map-canvas"></div>        
-                                                <?php
-                                                        include "database_layer.php";
-                                                        ///creates a new instance of the database walk option
-                                                        $database = new DatabaseWalk();
-                                                        $database->connect();
-                                                        $walk = $database->santise_item($_GET['walk']);
-                                                        $walk_id = $database->santise_item($_GET['walk_id']);
-                                                        echo "<h2>" .  $walk. "</h2>";        
-                                                        $query = "SELECT * from List_of_Walks WHERE title='$walk' AND id='$walk_id'";
-                                                        $database->prepare_query($query);
-                                                        //sends the query
-                                                        $database->send_query($database->get_query());
-                                                        //outputs the results
-                                                        // An option to make it OO with having a class called Walk, and in here creating a new Walk...to which would be outputted in the same way
-                                                        while ($walk = mysqli_fetch_array($database->get_result())){
-                                                                echo "this is the short desc " . $walk['shortDesc'];
-                                                                echo "<br/>";
-                                                                echo "This is the long walk for the walk " .  $walk['longDesc'];
-                                                                echo "<br/>";
-                                                                echo "this is the time taken for the walk ". $walk['hours'];
-                                                                echo "<br/>";
-                                                                echo "This is the distance for the walk " . $walk['distance'];
-                                                                echo "<br/>";
-                                                        }
-                                                        $query = "SELECT p.photoName FROM Photo p JOIN Place_description pd on(pd.id = p.placeId) JOIN Location l ON (pd.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
-                                                        $database->prepare_query($query);
-                                                        $database->send_query($database->get_query());                                                      
-                                                        $imageid = array();
-                                                        //$imageid[] = $database($_GET['photoName']);
-                                                        //echo $database->get_result();
-                                                        while ($value = mysqli_fetch_array($database->get_result())) {
-															$imageid[] = $value['photoName'];
-														
-                                                        }
-                                                        echo "number of Images " . count($imageid);
-                                                        for ($i = 0; $i < count($imageid); $i++){
-                                                        		echo "<div id='imagedisplay'>";	
-																echo "<div id='thumb'>";
-																echo "<a href='http://users.aber.ac.uk/mda/csgp07/images/".$imageid[$i].".jpg'rel='shadowbox'><img src='http://users.aber.ac.uk/mda/csgp07/images/".$imageid[$i].".jpg' height='87' width='156' ></img></a>";
-																echo "</div>";
-																echo "</div>";
-														}
-													
-                                                        
-                                                        
-                                                        $query = "SELECT l.latitude, l.longitude FROM Location l JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
-                                                        $database->prepare_query($query);
-                                                        $database->send_query($database->get_query());
-                                                        $lat = array();
-                                                        $long = array();
-                                                        $title = array ();
-                                                        $name = array();
-														$shortDesc = array();
-														$longDesc = array();
-                                                        while ($value = mysqli_fetch_array($database->get_result())){
-                                                                                $lat[] = $value['latitude'];
-                                                                                $long[] = $value['longitude'];
-                                                                                                                                                             
-                                                        }
-                                                        $query = "SELECT p.name, p.description FROM Place_description p JOIN Location l ON (p.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
-                                                        $database->prepare_query($query);
-                                                        $database->send_query($database->get_query());
-                                                        while ($result = mysqli_fetch_array($database->get_result())){
-																	$title[] = $result['name'];
-																	$shortDesc[] = $result['description'];
-														}      
-														//echo count($title);                                                
-                                                        $database->close_connection();                                                                                
-                                                ?>
-                                 <script type="text/javascript">
-                                                var map;
-                                                //sets up the array of lat values from the php array
-                                                var lat = <?php echo json_encode($lat); ?>;
-                                                //sets up the array of long values from the php long array
-                                                var lng = <?php echo json_encode($long); ?>;
-                                                var title = <?php echo json_encode($title); ?>;
-                                                var shortDesc = <?php echo json_encode($shortDesc); ?>;
-                                                var img = <?php echo json_encode($imageid); ?>;
-                                                //var name = <?php echo json_encode($name); ?>;
-                                                function initialize() {
-                                                var mapOptions = {
-                                                        zoom: 8,
-                                                        center: new google.maps.LatLng(lng[0], lat[0])
-                                                };
-                                                //assigns the instance of map to the map canvas id element we use.
-                                                var map = new google.maps.Map(document.getElementById('map-canvas'),
-                                                                mapOptions);
-                                                //this creates a new popup window when we click on a marker.
-                                                var infowindow = new google.maps.InfoWindow();
-                                                //An array to store the Lat and Long values
-                                                var latLngValues = new Array();
-                                                //var marker = new Array();
-                                                for (i = 0; i < lat.length; i++){
-                                                        //populates the array with the correct google maps co-ordinates.
-                                                        latLngValues[i] = new google.maps.LatLng(lng[i], lat[i]);
-                                                }
-                                                // Reference http://stackoverflow.com/questions/11467070/how-to-set-a-popup-on-markers-with-google-maps-api for moving it 
-                                                // inside the function to allow to. Based on the code above, changed to map with our application- Renamed methods to make it 
-                                                // more readable, but code is based on the link above.
-                                                for (j = 0;j < latLngValues.length; j++){
-													    //document.write(title[j].length);
-                                                        //sets a new marker
-															if (title[j] != null){
-																var POI = new google.maps.Marker({
-																	//sets the position to be the co-ords from the loop above
-																	position: latLngValues[j],
-																	map: map
-																});
-															}
-													//adds a listener to each of the marker items
-                                                     popupInfoWindow(map, infowindow, "<h4>"+title[j]+"</h4>"+"<p>"+shortDesc[j]+"</p>"+img[j], POI);
-                                                
-                                                }  
-                                                function popupInfoWindow(map, infowindow, insideMarkerText, POI) {
-                                                                google.maps.event.addListener(POI, 'click', function() {
-                                                                //sets a standard message TODO: GRAB SOME PHP
-                                                                infowindow.setContent(insideMarkerText);
-                                                                //opens the info window on the marker on the map
-                                                                infowindow.open(map,POI);
-                                                        });
-                                                        }
-                                                
-                                                //TODO        
-                                                
-                                                var flightPath = new google.maps.Polyline({
-                                                        path: latLngValues,
-                                                        geodesic: true,
-                                                        strokeColor: '#FF0000',
-                                                        strokeOpacity: 1.0,
-                                                        strokeWeight: 2
-                                                });
+				       
+					<?php
+						       
+						$query = "SELECT * from List_of_Walks WHERE title='$walk' AND id='$walk_id'";
+						$database->prepare_query($query);
+						//sends the query
+						$database->send_query($database->get_query());
+						//outputs the results
+						// An option to make it OO with having a class called Walk, and in here creating a new Walk...to which would be outputted in the same way
+					
+					echo '<div id = "sideBarleft">';
+							while ($walk = mysqli_fetch_array($database->get_result())){
+							echo "this is the short desc " . $walk['shortDesc'];
+							echo "<br/>";
+							echo "This is the long walk for the walk " .  $walk['longDesc'];
+							echo "<br/>";
+							echo "this is the time taken for the walk ". $walk['hours'];
+							echo "<br/>";
+							echo "This is the distance for the walk " . $walk['distance'];
+							echo "<br/>";
+						}
+						echo '</div>';
+						$query = "SELECT p.photoName FROM Photo p JOIN Place_description pd on(pd.id = p.placeId) JOIN Location l ON (pd.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
+						$database->prepare_query($query);
+						$database->send_query($database->get_query());                                                      
+						$imageid = array();
+						//$imageid[] = $database($_GET['photoName']);
+						//echo $database->get_result();
+						
+					
+						
+						
+						$query = "SELECT l.latitude, l.longitude FROM Location l JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
+						$database->prepare_query($query);
+						$database->send_query($database->get_query());
+						$lat = array();
+						$long = array();
+						$title = array ();
+						$name = array();
+						$shortDesc = array();
+						$longDesc = array();
+						while ($value = mysqli_fetch_array($database->get_result())){
+							$lat[] = $value['latitude'];
+							$long[] = $value['longitude'];
+																															 
+						}
+						$query = "SELECT p.name, p.description FROM Place_description p JOIN Location l ON (p.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
+						$database->prepare_query($query);
+						$database->send_query($database->get_query());
+						while ($result = mysqli_fetch_array($database->get_result())){
+							$title[] = $result['name'];
+							$shortDesc[] = $result['description'];
+						}      
+						//echo count($title);                                                
+						                                                                                
+					?>
+				<div id="map-canvas"> 
+					 <script type="text/javascript">
+						var map;
+						//sets up the array of lat values from the php array
+						var lat = <?php echo json_encode($lat); ?>;
+						//sets up the array of long values from the php long array
+						var lng = <?php echo json_encode($long); ?>;
+						var title = <?php echo json_encode($title); ?>;
+						var shortDesc = <?php echo json_encode($shortDesc); ?>;
+						var img = <?php echo json_encode($imageid); ?>;
+						//var name = <?php echo json_encode($name); ?>;
+						function initialize() {
+						var mapOptions = {
+							zoom: 15,
+							center: new google.maps.LatLng(lng[0], lat[0])
+						};
+						//assigns the instance of map to the map canvas id element we use.
+						var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+						//this creates a new popup window when we click on a marker.
+						var infowindow = new google.maps.InfoWindow();
+						//An array to store the Lat and Long values
+						var latLngValues = new Array();
+						//var marker = new Array();
+						for (i = 0; i < lat.length; i++){
+							//populates the array with the correct google maps co-ordinates.
+							latLngValues[i] = new google.maps.LatLng(lng[i], lat[i]);
+						}
+						// Reference http://stackoverflow.com/questions/11467070/how-to-set-a-popup-on-markers-with-google-maps-api for moving it 
+						// inside the function to allow to. Based on the code above, changed to map with our application- Renamed methods to make it 
+						// more readable, but code is based on the link above.
+						for (j = 0;j < latLngValues.length; j++){
+						  
+							//sets a new marker
+								if (title[j] != null){
+									var POI = new google.maps.Marker({
+										//sets the position to be the co-ords from the loop above
+										position: latLngValues[j],
+										map: map
+									});
+									for (l = 0; l < img.length; l++){
+										popupInfoWindow(map, infowindow, "<h4>"+title[j]+"</h4>"+"<p>"+shortDesc[j]+"</p>"+"<img src='http://users.aber.ac.uk/mda/csgp07/images/"+img[j]+".jpg' height='87' width='156' ></img>", POI);
+									}
+								}
+						//adds a listener to each of the marker items
+							
 
-                                                flightPath.setMap(map);
-                                                }
-                                                google.maps.event.addDomListener(window, 'load', initialize);
-                                </script>
+						}  
+						function popupInfoWindow(map, infowindow, insideMarkerText, POI) {
+									google.maps.event.addListener(POI, 'click', function() {
+									//sets a standard message TODO: GRAB SOME PHP
+									infowindow.setContent(insideMarkerText);
+									//opens the info window on the marker on the map
+									infowindow.open(map,POI);
+							});
+						}
+						
+						//TODO        
+						
+						var flightPath = new google.maps.Polyline({
+								path: latLngValues,
+								geodesic: true,
+								strokeColor: '#FF0000',
+								strokeOpacity: 1.0,
+								strokeWeight: 2
+						});
+
+						flightPath.setMap(map);
+						}
+						google.maps.event.addDomListener(window, 'load', initialize);
+					</script>
+				</div>
+				<div id = "sideBarRight">
+					<div id = "PictureTable">
+						<?php
+							while ($value = mysqli_fetch_array($database->get_result())) {
+								$imageid[] = $value['photoName'];
+							
+							}
+							echo "number of Images " . count($imageid);
+							for ($i = 0; $i < count($imageid); $i++){
+								echo "<div id='imagedisplay'>";	
+									echo "<div id='thumb'>";
+										echo "<a href='http://users.aber.ac.uk/mda/csgp07/images/".$imageid[$i].".jpg'rel='shadowbox'><img src='http://users.aber.ac.uk/mda/csgp07/images/".$imageid[$i].".jpg' height='87' width='156' ></img></a>";
+									echo "</div>";
+								echo "</div>";
+							}
+							$database->close_connection();
+						?>
 					</div>
-						<div id = "sideBarRight">
-						<div id = "PictureTable">
-							<p>  Your Photos! </p>
-						</div>
-						 </div>
+				</div>
+		</div>				
 	</div> 
 </body>
 </html>
