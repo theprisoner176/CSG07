@@ -1,6 +1,5 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
-import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
 import android.app.AlertDialog;
 import android.content.Context;

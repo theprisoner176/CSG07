@@ -82,6 +82,10 @@ public class WalkScreen extends Activity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
+		if(v==null){
+			poiDialog.show();
+			return;
+		}
 		LocationPoint point =  new LocationPoint(10,10);
 		
 		//used to test without gps location.

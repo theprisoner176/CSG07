@@ -35,13 +35,15 @@ public class PoiDialogView extends DialogView{
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
-		if(which == DialogInterface.BUTTON_POSITIVE)
+		if(which == DialogInterface.BUTTON_POSITIVE){
 			setPointInfo();
-		else
+		}
+		else{
 			activity.nextPoi=null;
+			Toast.makeText(activity,"Place was not added\n",Toast.LENGTH_LONG).show();
+		}
 			
 	}
-	
 	
 	public void setInflaterView(LayoutInflater inf,View v){
 		inflater = inf;
@@ -55,8 +57,8 @@ public class PoiDialogView extends DialogView{
 		activity.nextPoi.setTitle(poiTitle);
 		activity.nextPoi.setDescription(poiDescription);
 		
-		if(activity.nextPoi.getTitle().length()!=0&&
-				activity.nextPoi.getTitle().length()!=0){
+		if(poiTitle.length()!=0&&
+				poiDescription.length()!=0){
 			activity.addPoi();
 			return;
 		}
