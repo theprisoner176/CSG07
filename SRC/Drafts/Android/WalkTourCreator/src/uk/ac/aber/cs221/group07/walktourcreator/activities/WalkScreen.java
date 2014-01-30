@@ -10,12 +10,11 @@ import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
 import uk.ac.aber.cs221.group07.walktourcreator.views.CancelWalkView;
 import uk.ac.aber.cs221.group07.walktourcreator.views.EditWalkView;
+import uk.ac.aber.cs221.group07.walktourcreator.views.GpsCheckDialog;
 import uk.ac.aber.cs221.group07.walktourcreator.views.PoiDialogView;
 import uk.ac.aber.cs221.group07.walktourcreator.views.WalkFinishedView;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.location.LocationManager;
@@ -67,7 +66,7 @@ public class WalkScreen extends Activity {
 			//location manager to get location data
 			LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 			if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
-		        buildAlertMessageNoGps();
+		        new GpsCheckDialog(this);
 		    }
 			recorder = new RouteRecorder(this,walk,manager);
 		}
@@ -181,21 +180,4 @@ public class WalkScreen extends Activity {
 	}
     
 
-  private void buildAlertMessageNoGps() {
-    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
-           .setCancelable(false)
-           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                   startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-               }
-           })
-           .setNegativeButton("No", new DialogInterface.OnClickListener() {
-               public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                    dialog.cancel();
-               }
-           });
-    final AlertDialog alert = builder.create();
-    alert.show();
-}
 }
