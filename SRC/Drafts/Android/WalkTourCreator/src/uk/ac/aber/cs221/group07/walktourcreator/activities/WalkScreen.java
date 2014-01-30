@@ -76,10 +76,12 @@ public class WalkScreen extends Activity {
 			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
 			return;
 		}
-		PointOfInterest poi = new  PointOfInterest(point.getLatitude(),point.getLongitude());
-		showDialog(poi);
-		walk.addLocation(poi);
+		//PointOfInterest poi = new  PointOfInterest(point.getLatitude(),point.getLongitude());
+		new PoiDialogView(this,R.layout.activity_add_poi_dialog,point,walk);
+		//walk.addLocation(poi);
 	}
+	
+	
 
 	public void getFromGallery(){
 		ImageHandler image = new ImageHandler(this);
@@ -98,11 +100,6 @@ public class WalkScreen extends Activity {
 		new WalkFinishedView(this,R.layout.walk_finished_dialog, walk,this);
 	}
 	
-
-	public void showDialog(PointOfInterest poi) {
-		new PoiDialogView(this,R.layout.activity_add_poi_dialog,poi);
-	}
-	
 	public void editWalkDialog(View v){
 		new EditWalkView(this,R.layout.edit_walk_dialog,walk);
 	}
@@ -113,12 +110,7 @@ public class WalkScreen extends Activity {
 	}
 	
 	public void uploadWalk(){
-		FileTransferManager manager = new FileTransferManager();
-		manager.uploadWalk(walk);
-		//recorder.finishWalk();
-		//finish();
-		//Intent intent = new Intent(this, MainMenu.class);
-		//startActivity(intent);
+		new FileTransferManager(this,walk);
 	}
 	
 	/**

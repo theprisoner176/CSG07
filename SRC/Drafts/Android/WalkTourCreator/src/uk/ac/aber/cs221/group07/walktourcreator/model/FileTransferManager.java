@@ -11,10 +11,15 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.content.Intent;
+
+import uk.ac.aber.cs221.group07.walktourcreator.activities.MainMenu;
+import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
 
 /**
  * Handles the encoding and uploading of walk data.
@@ -25,17 +30,19 @@ public class FileTransferManager{
 
 	//private final static String dataServer = "http://users.aber.ac.uk/hfb1/this.php";
 	private final static String dataServer = "http://users.aber.ac.uk/mda/csgp07/file_saver.php";
-			
+	
+	
 	/**
 	* makes a connection to data server and uploads all files belonging to the given
 	* file, the return values will be zero if the method succeeded without problems.
 	* 
 	* @param walk, the walk that is to be uploaded.
 	*/
-	public int uploadWalk(WalkModel walk){		
-		new Uploader(walk).start();
-		return 0;
+
+	public FileTransferManager(WalkScreen screen, WalkModel w){
+		new Uploader(screen,w).start();
 	}
+
 	
 	/**
 	 * packages all the walk model data up into a json object
@@ -94,7 +101,7 @@ public class FileTransferManager{
 	 * sends the JSON data to the dataserver.
 	 * @param pakagedData the data to be sent.
 	 */
-	private static void post(JSONObject pakagedData) {
+	private static int post(JSONObject pakagedData) {
 	    HttpClient httpclient = new DefaultHttpClient();
 	    HttpPost post = new HttpPost(dataServer);
 	    try {
@@ -113,6 +120,7 @@ public class FileTransferManager{
 	        
 	        //do something to check the response
 	    } catch (IOException e) { }
+	    return 1;
 	} 
 	
 	/**
@@ -122,14 +130,23 @@ public class FileTransferManager{
 		/**holds the walk to be encoded, then uploaded*/
 		private WalkModel data;
 		
+		private WalkScreen walk;
+		
 		/**set the walk data*/
-		public Uploader(WalkModel walk){
+		public Uploader(WalkScreen screen,WalkModel walk){
 			data = walk;
 		}
 		
 		/** start process of upload*/
 		public void run(){
-			post(packageData(data));
+			if(post(packageData(data)) == 1){
+				walk.finish();
+				walk.recorder.finishWalk();
+				walk.finish();
+				walk.stopService(new Intent(walk,RouteRecorder.class)); 
+				Intent intent = new Intent(walk, MainMenu.class);
+				walk.startActivity(intent);
+			}
 		}
 	}
 }

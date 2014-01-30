@@ -3,43 +3,44 @@ package uk.ac.aber.cs221.group07.walktourcreator.views;
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
+import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
+import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 
 public class PoiDialogView extends DialogView{
 
-	private PointOfInterest poi;
+	private LocationPoint poi;
 	private LayoutInflater inflater;
 	private View view;
 	private ImageHandler imageSaver;
 	private WalkScreen activity;
+	private WalkModel walk;
 
 	
-	public PoiDialogView(WalkScreen context,int viewLayout, PointOfInterest poi) {
+	public PoiDialogView(WalkScreen context,int viewLayout, LocationPoint point,WalkModel w) {
 			super(context,viewLayout);
-			LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			View layout = inflater.inflate(viewLayout, null);
+			walk = w;
 			activity = context;
-			this.setPointOfInterest(poi);
+			poi = point;
 			this.setInflaterView(inflater, layout);
 			//imageSaver = new ImageHandler(activity);
+			
 	}
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		if(which == DialogInterface.BUTTON_POSITIVE){
 			setPointInfo();
+		}else if(which == DialogInterface.BUTTON_NEGATIVE){
+			
 		}
 	}
-	
-	public void setPointOfInterest(PointOfInterest point){
-		poi = point;
-	}
-	
+
 	public void addImage(View v){
 		//imageSaver.getPhotoFromLibrary();
 		activity.getFromGallery();
@@ -56,11 +57,12 @@ public class PoiDialogView extends DialogView{
 	}
 	
 	public void setPointInfo(){
-		inflater.inflate(R.layout.activity_add_poi_dialog, null);
-		TextView poiTitle = (TextView)view.findViewById(R.id.poi_title);
-		TextView poiDescription = (TextView)view.findViewById(R.id.poi_description);
-		poi.setTitle(poiTitle.toString());
-		poi.setDescription(poiDescription.toString());
+		PointOfInterest newPoi= new PointOfInterest(poi);
+		String poiTitle = ((EditText)view.findViewById(R.id.poi_title)).getText().toString();
+		String poiDescription = ((EditText)view.findViewById(R.id.poi_description)).getText().toString();
+		newPoi.setTitle(poiTitle);
+		newPoi.setDescription(poiDescription);
+		walk.addLocation(newPoi);
 	}
 }
 
