@@ -76,9 +76,7 @@ public class WalkScreen extends Activity {
 			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
 			return;
 		}
-		//PointOfInterest poi = new  PointOfInterest(point.getLatitude(),point.getLongitude());
 		new PoiDialogView(this,R.layout.activity_add_poi_dialog,point,walk);
-		//walk.addLocation(poi);
 	}
 	
 	
