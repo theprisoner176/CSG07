@@ -39,15 +39,15 @@ public class WalkSetupScreen extends Activity {
 		String short_desc =  ((EditText) findViewById(R.id.short_description_input)).getText().toString();
 		String long_desc =  ((EditText) findViewById(R.id.long_description_input)).getText().toString();
 		
-		if(!WalkModel.isValidTitle(title)){
+		if(title.length()==0){
 			Toast.makeText(this,"A title must contains no white spaces\nAnd Must not be empty",
 					Toast.LENGTH_LONG).show();
 		}
-		else if(!WalkModel.isValidShortDesc(short_desc)){
+		else if(short_desc.length()==0){
 			Toast.makeText(this,"Description has to be under 100 characters\nAnd Must not be empty",
 					Toast.LENGTH_LONG).show();
 		}
-		else if(!WalkModel.isValidLongDesc(long_desc)){
+		else if(long_desc.length()==0){
 			Toast.makeText(this,"Detailed Description has to be under 1000 characters\nAnd Must not be empty",
 					Toast.LENGTH_LONG).show();
 		}

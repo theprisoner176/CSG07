@@ -66,7 +66,7 @@ public class WalkScreen extends Activity {
 		if(recorder==null){
 			//location manager to get location data
 			LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-			if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) )
+			if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ))
 		        new GpsCheckDialog(this);
 		    
 			recorder = new RouteRecorder(this,walk,manager);
@@ -140,6 +140,7 @@ public class WalkScreen extends Activity {
 	public void addPoi(){
 		if(nextPoi!=null)
 			walk.addLocation(nextPoi);
+		nextPoi=null;
 	}
 	
 	
@@ -191,6 +192,7 @@ public class WalkScreen extends Activity {
 		else{
 			Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
 		}
+		new PoiDialogView(this,R.layout.activity_add_poi_dialog,null,walk);
 	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event){
