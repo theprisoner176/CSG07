@@ -21,16 +21,8 @@ public class PointOfInterest extends LocationPoint{
  	 * creates a PointOfInterest, at position x,y.
      * The time is set automatically
 	 */
-	public PointOfInterest(double lat,double lng){
-		super(lat,lng);
-	}
-	
-	/**
-	* creates a PointOfInterest, at position x,y.
-	* The time is also explicitly defined, this is
-	* used when creating a PointOfInterest from a database entry. */
-	public PointOfInterest(double x,double y,long time){
-		super(x,y,time);
+	public PointOfInterest(LocationPoint point){
+		super(point.latitude,point.longitude);
 	}
 	
 	/**
