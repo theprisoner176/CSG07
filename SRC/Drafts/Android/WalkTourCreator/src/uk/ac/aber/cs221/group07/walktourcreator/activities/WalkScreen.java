@@ -116,6 +116,12 @@ public class WalkScreen extends Activity {
 		new WalkFinishedView(this,R.layout.walk_finished_dialog, walk,this);
 	}
 	
+	public void returnToStart(){
+		Intent intent = new Intent(this, MainMenu.class);
+	    startActivity(intent);
+	    finish();
+	}
+	
 	public void editWalkDialog(View v){
 		new EditWalkView(this,R.layout.edit_walk_dialog,walk);
 	}
