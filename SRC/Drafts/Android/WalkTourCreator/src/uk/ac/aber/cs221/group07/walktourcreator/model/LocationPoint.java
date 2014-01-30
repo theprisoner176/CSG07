@@ -66,8 +66,9 @@ public class LocationPoint {
 	
 	/**
 	 * works out the distance between two 
-	 * @param point1 the Location the you want the know the distance to
-	 * @return the distance between itself and the given Location
+	 * @param point is the first location
+	 * @param point1 is the second location
+	 * @return the distance between the two locations in kilometers
 	 */
 	
 	 //A distance between two points given latitude and longitude function found on:
