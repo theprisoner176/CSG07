@@ -5,7 +5,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>List of walks</title>
-	<link rel="stylesheet" href="../CSS/style.css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" media="screen" />
+	<link rel="stylesheet" href="css/walk_list.css" media="screen" />
 </head>
 <body>
 	<header>
@@ -29,43 +30,50 @@
 		<aside>
 			<section>	
 				<?php
-				include "database_layer.php";
-				///creates a new instance of the database walk option
-				$database = new DatabaseWalk();
-				//connects to the database
-				$database->connect();
-				//some Query
-				$query ="SELECT * from List_of_Walks";
-				//checks against SQL injection
-				$database->prepare_query($query);
-				//sends the query
-				$database->send_query($database->get_query());
-				//outputs the results
-				// An option to make it OO with having a class called Walk, and in here creating a new Walk...to which would be outputted in the same way
-				$database_count = new DatabaseWalk();
-				$database_count->connect();
-				while ($walk = mysqli_fetch_array($database->get_result())){
-					 $query = "SELECT * from Location l INNER JOIN Place_description d on l.id = d.locationID";
-					 $database_count->prepare_query($query);
-					 $database_count->send_query($database_count->get_query());
-					 $count = mysqli_fetch_array($database_count->get_result());
-					 $title = $walk["title"];
-					 $walkIDA = $walk["id"];
-					 $wTitle = $walk["title"];
-					 $wShortDesc = $walk["shortDesc"];
-						echo <<<EOT
-						<div class="walk">
-							<br/>
-							<p>
-								<a href='walk_details.php?walk=$title&amp;walk_id=$walkIDA'>$wTitle </a>
+					include "database_layer.php";
+					///creates a new instance of the database walk option
+					$database = new DatabaseWalk();
+					//connects to the database
+					$database->connect();
+					//some Query
+					$query ="SELECT * from List_of_Walks";
+					//checks against SQL injection
+					$database->prepare_query($query);
+					//sends the query
+					$database->send_query($database->get_query());
+					//outputs the results
+					// An option to make it OO with having a class called Walk, and in here creating a new Walk...to which would be outputted in the same way
+					$database_count = new DatabaseWalk();
+					$database_count->connect();
+					echo "<div id='allwalks'>";
+					while ($walk = mysqli_fetch_array($database->get_result())){
+					
+						 $query = "SELECT * from Location l INNER JOIN Place_description d on l.id = d.locationID";
+						 $database_count->prepare_query($query);
+						 $database_count->send_query($database_count->get_query());
+						 $count = mysqli_fetch_array($database_count->get_result());
+						 $title = $walk["title"];
+						 $walkIDA = $walk["id"];
+						 $wTitle = $walk["title"];
+						 $wShortDesc = $walk["shortDesc"];
+							echo <<<EOT
+						
+						<div id="container">
+							<div class="walk">
 								<br/>
-								Short Desc:  $wShortDesc;
-							</p>
+								<p>
+									<a href='walk_details.php?walk=$title&amp;walk_id=$walkIDA'>$wTitle </a>
+									<br/>
+									<div class="walk" id="box">
+										Short Desc:  $wShortDesc;
+									</div>
+								</p>
+							</div>
 						</div>
 EOT;
-						
-				}
-				$database->close_connection();
+							
+					}
+					$database->close_connection();
 				?>
 			</section>
 		</aside>
