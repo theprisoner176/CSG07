@@ -40,11 +40,8 @@ public class WalkModel implements Serializable{
 		return title;
 	}
 	
-	public boolean setTitle(String newTitle){
-		boolean valid = isValidTitle(newTitle);
-		if(valid)
-			title =newTitle;
-		return valid;
+	public void setTitle(String newTitle){
+		title =newTitle;
 	}
 	
 	/** returns a short description of the walk */
@@ -53,11 +50,8 @@ public class WalkModel implements Serializable{
 	}
 	
 	/** set the short description of the walk.*/
-	public boolean setShortDescription(String newShortDesc){
-		boolean valid = isValidShortDesc(newShortDesc);
-		if(valid)
-			shortDesc =newShortDesc;
-		return valid;
+	public void setShortDescription(String newShortDesc){
+		shortDesc =newShortDesc;
 	}
 	
 	/** returns a long description of the walk.*/
@@ -66,11 +60,8 @@ public class WalkModel implements Serializable{
 	}
 	
 	/** set the long description for the walk.*/
-	public boolean setLongDescription(String newLongDesc){
-		boolean valid = isValidLongDesc(newLongDesc);
-		if(valid)
-			longDesc =newLongDesc;
-		return valid;
+	public void setLongDescription(String newLongDesc){
+		longDesc =newLongDesc;
 	}
 	
 	/**returns a vector of all the LocationPoint in the walk. Including PointsOfInterests*/
@@ -112,17 +103,4 @@ public class WalkModel implements Serializable{
 			return path.get(path.size()-1).getTime() - path.get(0).getTime();
 		}
 	}
-	
-	public static boolean isValidTitle(String title){
-		return title.length()<=MAX_TITLE_LENGTH &&
-				!Pattern.compile("\\s").matcher(title).find()
-				&&title.length()>0;
-	}
-	public static boolean isValidLongDesc(String desc){
-		return desc.length()<=MAX_LONG_DESC_LENGTH&&desc.length()>0;
-	}
-	public static boolean isValidShortDesc(String desc){
-		return desc.length()<=MAX_SHRT_DESC_LENGTH && desc.length()>0;
-	}
-	
 }

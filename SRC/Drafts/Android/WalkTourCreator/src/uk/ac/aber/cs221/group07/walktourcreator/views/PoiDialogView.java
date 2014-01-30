@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 public class PoiDialogView extends DialogView{
 
-	private LocationPoint point;
 	private LayoutInflater inflater;
 	private View view;
 	private WalkScreen activity;
@@ -24,15 +23,24 @@ public class PoiDialogView extends DialogView{
 	public PoiDialogView(WalkScreen context,int viewLayout, LocationPoint point,WalkModel w) {
 			super(context,viewLayout);
 			activity = context;
-			this.point = point;
 			this.setInflaterView(inflater, layout);
-			activity.nextPoi= new PointOfInterest(point);
+			
+			if(activity.nextPoi==null){
+				activity.nextPoi= new PointOfInterest(point);
+			}
+			else{
+				((EditText)view.findViewById(R.id.poi_title)).setText(activity.nextPoi.getTitle());
+				((EditText)view.findViewById(R.id.poi_description)).setText(activity.nextPoi.getDescription());
+			}
+			
 	}
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		if(which == DialogInterface.BUTTON_POSITIVE)
 			setPointInfo();
+		else
+			activity.nextPoi=null;
 			
 	}
 	
@@ -42,18 +50,22 @@ public class PoiDialogView extends DialogView{
 		view = v;
 	}
 	
-	public void setPointInfo(){		
-		String poiTitle = ((EditText)view.findViewById(R.id.poi_title)).getText().toString();
-		String poiDescription = ((EditText)view.findViewById(R.id.poi_description)).getText().toString();
-		if(poiTitle.length()!=0&&poiDescription.length()!=0){
-			activity.nextPoi.setTitle(poiTitle);
-			activity.nextPoi.setDescription(poiDescription);
+	public void setPointInfo(){
+		putDataInPoi();
+		if(activity.nextPoi.getTitle().length()!=0&&
+				activity.nextPoi.getTitle().length()!=0){
 			activity.addPoi();
 			return;
 		}
 		Toast.makeText(activity,"Place was not added,\nPlace must have a title and description",Toast.LENGTH_LONG).show();
-		activity.nextPoi=null;
+		activity.addPOI(null);
 		
+	}
+	public void putDataInPoi(){
+		String poiTitle = ((EditText)view.findViewById(R.id.poi_title)).getText().toString();
+		String poiDescription = ((EditText)view.findViewById(R.id.poi_description)).getText().toString();
+		activity.nextPoi.setTitle(poiTitle);
+		activity.nextPoi.setDescription(poiDescription);
 	}
 }
 
