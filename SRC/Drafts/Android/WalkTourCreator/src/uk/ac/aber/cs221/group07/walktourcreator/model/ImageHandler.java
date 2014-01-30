@@ -15,8 +15,10 @@ import android.provider.MediaStore;
  * Handles interaction with the system camera and photo gallery access,
  * and saves the resulting image
  * 
- * @author Harry Buckley
- *
+ * @author HarryBuckley
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
  */
 public class ImageHandler {
 	

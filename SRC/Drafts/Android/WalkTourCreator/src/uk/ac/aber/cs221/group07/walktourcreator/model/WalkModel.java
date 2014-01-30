@@ -3,7 +3,14 @@ package uk.ac.aber.cs221.group07.walktourcreator.model;
 import java.util.Vector;
 /**
  * stores all information about a single walk
- * @author Harry Buckley, Martin Zokov
+ * 
+ * @author HarryBuckley
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
+ * 
+ * Copyright (c) 2013 Aberystwyth University.
+ * All rights reserved.
  */
 public class WalkModel{
 	

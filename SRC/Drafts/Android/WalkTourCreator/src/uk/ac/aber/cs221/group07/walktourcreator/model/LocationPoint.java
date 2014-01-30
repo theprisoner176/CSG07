@@ -5,7 +5,14 @@ import java.util.Date;
 
 /**
  * This class stores a map position and records the time at which is was taken
+ * 
  * @author HarryBuckley
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
+ * 
+ * Copyright (c) 2013 Aberystwyth University.
+ * All rights reserved.
  */
 public class LocationPoint {
 	

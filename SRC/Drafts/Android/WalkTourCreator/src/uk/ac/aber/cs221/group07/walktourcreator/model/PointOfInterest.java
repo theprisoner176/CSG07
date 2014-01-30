@@ -4,7 +4,14 @@ import java.util.Vector;
 
 /**
  * Stores information about a place of interest 
+ * 
  * @author HarryBuckley
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
+ * 
+ * Copyright (c) 2013 Aberystwyth University.
+ * All rights reserved.
  */
 public class PointOfInterest extends LocationPoint{
 

@@ -9,20 +9,28 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
 /**
  * 
  * @author HarryBuckley
- *
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
+ * 
+ * Copyright (c) 2013 Aberystwyth University.
+ * All rights reserved.
  */
 public class WalkFinishedView implements DialogInterface.OnClickListener{
 	private WalkModel walk;
 	private WalkScreen map;
 	
 	public WalkFinishedView(WalkScreen context, int viewLayout, WalkModel currentWalk,WalkScreen gMap) {
-		
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(viewLayout, null);
+		
+		//this.layout = this.getLayout();
+		//((TextView)layout.findViewById(R.id.textView1)).getText().toString();
 		
 		new AlertDialog.Builder(context)
 	    .setView(layout)

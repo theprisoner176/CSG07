@@ -9,7 +9,15 @@ import android.view.View;
 
 /** An abstract class to easily create different popup screens which can be customzied.
  * Implements the OnClickListener interface to repsond to key presses.
- * @author Martin Zokov, Harry Buckley*/
+ * 
+ * @author HarryBuckley
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
+ * 
+ * Copyright (c) 2013 Aberystwyth University.
+ * All rights reserved.
+ */
 public abstract class DialogView implements DialogInterface.OnClickListener{
 	
 	/** A reference to the activity (WalkScreen) that created the popup*/

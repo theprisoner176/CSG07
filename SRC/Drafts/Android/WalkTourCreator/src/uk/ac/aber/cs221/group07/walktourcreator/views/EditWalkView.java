@@ -10,6 +10,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/** 
+ * @author HarryBuckley
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
+ * 
+ * Copyright (c) 2013 Aberystwyth University.
+ * All rights reserved.
+ */
 public class EditWalkView extends DialogView{
 
 	private WalkModel walk;
@@ -34,12 +43,12 @@ public class EditWalkView extends DialogView{
 		String shortDesc = ((EditText)layout.findViewById(R.id.edit_walk_short_description)).getText().toString();
 		String longDesc = ((EditText)layout.findViewById(R.id.edit_walk_long_description)).getText().toString();
 		
-		//changes title if a valig one has been entered
+		//changes title if a valid one has been entered
 		if(walkTitle.length()==0); //do nothing
 		else
 			walk.setTitle(walkTitle);
 		
-		//changes shot description if a valig one has been entered
+		//changes shot description if a valid one has been entered
 		if(shortDesc.length()==0);//do nothing
 		else
 			walk.setShortDescription(shortDesc); //set new description

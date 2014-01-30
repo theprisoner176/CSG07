@@ -5,6 +5,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+
+/**
+ * 
+ * @author HarryBuckley
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
+ * 
+ * Copyright (c) 2013 Aberystwyth University.
+ * All rights reserved.
+ */
 public class GpsCheckDialog implements DialogInterface.OnClickListener{
 	
 	private WalkScreen activity;

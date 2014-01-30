@@ -11,7 +11,14 @@ import android.widget.Toast;
 
 /**
  * This class is responsible for displaying the walk setup screen which sets the title and descriptions for a walk
- * @author Harry Buckley, Martin Zokov
+ * 
+ * @author HarryBuckley
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
+ * 
+ * Copyright (c) 2013 Aberystwyth University.
+ * All rights reserved.
  */
 public class WalkSetupScreen extends Activity {
 

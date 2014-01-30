@@ -13,6 +13,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
+/**
+ * 
+ * @author HarryBuckley
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
+ * 
+ * Copyright (c) 2013 Aberystwyth University.
+ * All rights reserved.
+ */
+ * @author HarryBuckley
+ *
+ */
 public class PoiDialogView extends DialogView{
 
 	private LayoutInflater inflater;

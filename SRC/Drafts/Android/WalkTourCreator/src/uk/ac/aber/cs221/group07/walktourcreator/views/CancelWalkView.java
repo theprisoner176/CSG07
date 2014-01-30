@@ -6,7 +6,17 @@ import uk.ac.aber.cs221.group07.walktourcreator.activities.MainMenu;
 import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
 
-/** Class */
+/** 
+ * 
+ * 
+ * @author HarryBuckley
+ * @author Martin Zokov
+ * @since 0.1
+ * @version 0.1
+ * 
+ * Copyright (c) 2013 Aberystwyth University.
+ * All rights reserved.
+ */
 public class CancelWalkView extends DialogView{
 	
 	private WalkScreen walk;
