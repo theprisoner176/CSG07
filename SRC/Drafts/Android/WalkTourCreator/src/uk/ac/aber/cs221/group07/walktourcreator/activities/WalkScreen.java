@@ -4,6 +4,7 @@ import uk.ac.aber.cs221.group07.walktourcreator.R;
 import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.ImageInformation;
+import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import uk.ac.aber.cs221.group07.walktourcreator.services.PositionListener;
@@ -34,7 +35,7 @@ public class WalkScreen extends Activity {
 	/**The walk that is being */
 	private static WalkModel walk;
 	
-	/**SHOULD   BE IMPROVED JUST USED NOW TO MAKE IT WORK*/
+	/**SHOULD BE IMPROVED JUST USED NOW TO MAKE IT WORK*/
 	public static String temp;
 	
 	/** holds the object that is responsible for tracking the path of the walk*/
@@ -57,14 +58,11 @@ public class WalkScreen extends Activity {
 	public void runOnInitialCreate(){
 		if(walk==null){
 			walk = (WalkModel) getIntent().getSerializableExtra("walk");
+		}
+		if(recorder==null){
 			//location manager to get location data
 			LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-			PositionListener posListener = new PositionListener();
-			posListener.setWalk(this);
-			recorder = new RouteRecorder(posListener,manager);
-			recorder.setWalk(walk);
-			posListener.setRecorder(recorder);
-			Toast.makeText(this,"Walk Started.\n",Toast.LENGTH_LONG).show();
+			recorder = new RouteRecorder(this,walk,manager);
 		}
 	}
 	
@@ -73,24 +71,14 @@ public class WalkScreen extends Activity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		//*
-		LocationManager poiManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-		
-		PositionListener poiListener = new PositionListener();
-		poiListener.setWalk(this);
-		
-		RouteRecorder poiRec = new RouteRecorder(poiListener, poiManager,true);
-		if(walk!=null){
-			poiRec.setWalk(walk);
+		LocationPoint point =  recorder.getLastKnownPosition();
+		if(point==null){
+			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
+			return;
 		}
-		/*/
-		PointOfInterest poi = new  PointOfInterest(12,12);
-		poi.setDescription("long desc.......");
-		poi.setTitle("title titile");
-		//ImageHandler image = new ImageHandler(this);
-		//image.getPhotoFromCamera();
+		PointOfInterest poi = new  PointOfInterest(point.getLatitude(),point.getLongitude());
+		showDialog(poi);
 		walk.addLocation(poi);
-		//*/
 	}
 
 	public void getFromGallery(){

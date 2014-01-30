@@ -31,25 +31,25 @@ public class EditWalkView extends DialogView{
 	}
 	
 	public void editWalk(){
-		EditText walkTitle = (EditText)layout.findViewById(R.id.edit_walk_title);
-		EditText shortDesc = (EditText)layout.findViewById(R.id.edit_walk_short_description);
-		EditText longDesc = (EditText)layout.findViewById(R.id.edit_walk_long_description);
-		if(!WalkModel.isValidTitle(walkTitle.getText().toString())){
+		String walkTitle = ((EditText)layout.findViewById(R.id.edit_walk_title)).getText().toString();
+		String shortDesc = ((EditText)layout.findViewById(R.id.edit_walk_short_description)).getText().toString();
+		String longDesc = ((EditText)layout.findViewById(R.id.edit_walk_long_description)).getText().toString();
+		if(!WalkModel.isValidTitle(walkTitle)){
 			Toast.makeText(activity,"A title must contains no white spaces\nAnd Must not be empty",
 					Toast.LENGTH_LONG).show();
 		}
-		else if(!WalkModel.isValidShortDesc(shortDesc.getText().toString())){
+		else if(!WalkModel.isValidShortDesc(shortDesc)){
 			Toast.makeText(activity,"Description has to be under 100 characters\nAnd Must not be empty",
 					Toast.LENGTH_LONG).show();
 		}
-		else if(!WalkModel.isValidLongDesc(longDesc.getText().toString())){
+		else if(!WalkModel.isValidLongDesc(longDesc)){
 			Toast.makeText(activity,"Detailed Description has to be under 1000 characters\nAnd Must not be empty",
 					Toast.LENGTH_LONG).show();
 		}
 		else{
-		walk.setTitle(walkTitle.toString());
-		walk.setShortDescription(shortDesc.toString());
-		walk.setLongDescription(longDesc.toString());
+		walk.setTitle(walkTitle);
+		walk.setShortDescription(shortDesc);
+		walk.setLongDescription(longDesc);
 		}
 	}
 
