@@ -29,7 +29,7 @@
         <EditText
             android:id="@+id/edit_walk_short_description"
             android:layout_width="match_parent"
-            android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ "
+            android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ,./\() "
             android:layout_height="wrap_content"
             android:maxLength="99"
             android:ems="10"
@@ -41,7 +41,7 @@
             android:id="@+id/edit_walk_long_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ "
+            android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ,./\() "
             android:layout_weight="0.71"
             android:maxLength="1000"
             android:ems="10"
