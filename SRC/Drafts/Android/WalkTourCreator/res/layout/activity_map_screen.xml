@@ -28,8 +28,8 @@
             android:id="@+id/edit_walk_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit Walk" 
-            android:onClick="editWalkDialog"/>
+            android:onClick="editWalkDialog"
+            android:text="@string/walk_screen_edit_walk" />
 
         <Button
             android:id="@+id/finish_btn"
@@ -42,8 +42,8 @@
             android:id="@+id/walk_cancel_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel Walk"
-            android:onClick="cancelWalk" />
+            android:onClick="cancelWalk"
+            android:text="@string/walk_screen_cancel" />
 
     </LinearLayout>
 
