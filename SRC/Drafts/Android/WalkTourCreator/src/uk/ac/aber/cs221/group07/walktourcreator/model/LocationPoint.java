@@ -74,7 +74,7 @@ public class LocationPoint {
 	 //A distance between two points given latitude and longitude function found on:
 	 //http://stackoverflow.com/questions/837872/calculate-distance-in-meters-when-you-know-longitude-and-latitude-in-java
 	
-	 public static double distFrom(LocationPoint point, LocationPoint point2) {
+	 public static double distBetween(LocationPoint point, LocationPoint point2) {
 		    double earthRadius = 3958.75;
 		    double dLat = Math.toRadians(point2.latitude-point.latitude);
 		    double dLng = Math.toRadians(point2.longitude-point.longitude);

@@ -71,7 +71,11 @@ public class WalkScreen extends Activity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
+		//LocationPoint point =  recorder.getLastKnownPosition();
+		
+		//used to test without gps location.
 		LocationPoint point =  recorder.getLastKnownPosition();
+		
 		if(point==null){
 			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
 			return;

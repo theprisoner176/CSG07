@@ -41,16 +41,6 @@ public class PoiDialogView extends DialogView{
 		}
 	}
 
-	public void addImage(View v){
-		//imageSaver.getPhotoFromLibrary();
-		activity.getFromGallery();
-	}
-	
-	public void takePhoto(View v){
-		//imageSaver.getPhotoFromCamera();
-		activity.getFromCamera();
-	}
-	
 	public void setInflaterView(LayoutInflater inf,View v){
 		inflater = inf;
 		view = v;

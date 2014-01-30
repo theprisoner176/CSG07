@@ -99,7 +99,8 @@ public class WalkModel implements Serializable{
 	public double getDistance(){
 		double total =0;
 		for(int i=0;i<path.size()-1;i++){
-			total += path.get(i).distanceTo(path.get(i+1));
+			//total += path.get(i).distanceTo(path.get(i+1));
+			total +=  LocationPoint.distBetween(path.get(i),path.get(i+1));
 		}
 		return total;
 	}
