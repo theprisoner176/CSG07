@@ -21,6 +21,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.MediaStore.MediaColumns;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -176,6 +177,7 @@ public class WalkScreen extends Activity {
 	 * called automatically when the current activity is returned to after requesting a result.
 	 * here it is used to add the a picture (from the camera or gallery) to the walk.
 	 */
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
         	if(nextPoi==null)
@@ -193,6 +195,7 @@ public class WalkScreen extends Activity {
 		poiDialog.show();
 	}
 	
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK){
         	cancelWalk(null);
@@ -211,7 +214,7 @@ public class WalkScreen extends Activity {
 	        return contentURI.getPath();
 	    } else { 
 	        cursor.moveToFirst(); 
-	        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA); 
+	        int idx = cursor.getColumnIndex(MediaColumns.DATA); 
 	        return cursor.getString(idx); 
 	    }
 	}

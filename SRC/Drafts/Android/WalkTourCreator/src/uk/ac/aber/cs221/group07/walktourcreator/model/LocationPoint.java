@@ -1,7 +1,5 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
-import java.util.Date;
-
 
 /**
  * This class stores a map position and records the time at which is was taken

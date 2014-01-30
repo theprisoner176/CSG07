@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -16,11 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Intent;
-
-import uk.ac.aber.cs221.group07.walktourcreator.activities.MainMenu;
 import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
-import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
 
 /**
  * Handles the encoding and uploading of walk data.
@@ -161,6 +156,7 @@ public class FileTransferManager{
 		}
 		
 		/** start process of upload and quit to main menu*/
+		@Override
 		public void run(){
 			boolean statusCode = post(packageData(data),walk);
 			walk.returnToStart(statusCode);

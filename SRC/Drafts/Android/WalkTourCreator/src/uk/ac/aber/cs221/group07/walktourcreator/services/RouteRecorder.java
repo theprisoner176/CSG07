@@ -2,10 +2,8 @@ package uk.ac.aber.cs221.group07.walktourcreator.services;
 
 import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
-import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.IBinder;

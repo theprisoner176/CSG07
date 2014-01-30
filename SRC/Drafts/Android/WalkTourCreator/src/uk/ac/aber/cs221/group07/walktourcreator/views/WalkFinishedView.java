@@ -1,15 +1,12 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
 import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
-import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
-import android.R;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 
 /**
  * 
@@ -22,8 +19,6 @@ import android.widget.EditText;
  * 
  * Copyright (c) 2013 Aberystwyth University.
  * All rights reserved.
- * Dialog which is displayed when the walk is finished
- *
  */
 public class WalkFinishedView implements DialogInterface.OnClickListener{
 	/** Reference to the current walk*/

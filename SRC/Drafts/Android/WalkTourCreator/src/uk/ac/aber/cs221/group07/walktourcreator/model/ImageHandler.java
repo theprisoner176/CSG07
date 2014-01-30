@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -59,7 +58,7 @@ public class ImageHandler {
 	public void getPhotoFromCamera(){
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);	
 		File temp = createFile();
-		owner.temp=temp.getAbsolutePath();
+		WalkScreen.temp=temp.getAbsolutePath();
 		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(temp));
 		owner.startActivityForResult(takePictureIntent, CAMERA_ACTIVITY_RESULT_CODE);
 	}

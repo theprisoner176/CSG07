@@ -1,10 +1,7 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import uk.ac.aber.cs221.group07.walktourcreator.activities.MainMenu;
 import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
-import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
 
 /** 
  * Popup class with a message warning that the walk will be deleted if the user cancels it

@@ -69,6 +69,7 @@ public class PointOfInterest extends LocationPoint{
 	/**
 	 * returns the longitude, the north/south distance from the equator.
 	 */
+	@Override
 	public double getLongitude(){
 		return longitude;
 	}
@@ -76,6 +77,7 @@ public class PointOfInterest extends LocationPoint{
 	/**
 	 * returns the latitude, the north/south distance from the equator.
 	 */
+	@Override
 	public double getLatitude(){
 		return latitude;
 	}
