@@ -36,7 +36,8 @@ public class WalkScreen extends Activity {
 	/**The walk that is being */
 	private static WalkModel walk;
 	
-	public PointOfInterest newtPoi;
+	/**SHOULD BE IMPROVED JUST USED NOW TO MAKE IT WORK*/
+	public PointOfInterest nextPoi;
 	
 	/**SHOULD BE IMPROVED JUST USED NOW TO MAKE IT WORK*/
 	public static String temp;
@@ -92,7 +93,6 @@ public class WalkScreen extends Activity {
 		new PoiDialogView(this,R.layout.activity_add_poi_dialog,point,walk);
 	}
 	
-	
 
 	public void getFromGallery(View v){
 		ImageHandler image = new ImageHandler(this);
@@ -103,8 +103,10 @@ public class WalkScreen extends Activity {
 		image.getPhotoFromCamera();
 	}
 	
-	public void addPoi(PointOfInterest poi){
-		walk.addLocation(poi);
+	
+	public void addPoi(){
+		if(nextPoi!=null)
+			walk.addLocation(nextPoi);
 	}
 	
 	
@@ -141,13 +143,12 @@ public class WalkScreen extends Activity {
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
-			PointOfInterest newPoi = walk.getLastPoi(); 
-        	if(newPoi==null)
+        	if(nextPoi==null)
         		return;
         	else if(requestCode == ImageHandler.CAMERA_ACTIVITY_RESULT_CODE)
-				newPoi.addImage(new ImageInformation(temp));
+        		nextPoi.addImage(new ImageInformation(temp));
         	else if(requestCode == ImageHandler.GALLERY_ACTIVITY_RESULT_CODE)
-				newPoi.addImage(new ImageInformation(getRealPathFromURI(data.getData())));
+        		nextPoi.addImage(new ImageInformation(getRealPathFromURI(data.getData())));
   
         	Toast.makeText(this, "Image added to Location\n", Toast.LENGTH_LONG).show();
 		}

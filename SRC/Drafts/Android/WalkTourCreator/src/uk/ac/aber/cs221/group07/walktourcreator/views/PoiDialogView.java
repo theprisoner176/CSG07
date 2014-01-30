@@ -17,7 +17,6 @@ public class PoiDialogView extends DialogView{
 	private LocationPoint point;
 	private LayoutInflater inflater;
 	private View view;
-	private ImageHandler imageSaver;
 	private WalkScreen activity;
 	private WalkModel walk;
 
@@ -48,14 +47,14 @@ public class PoiDialogView extends DialogView{
 	}
 	
 	public void setPointInfo(){
-		PointOfInterest newPoi= new PointOfInterest(point);
+		activity.nextPoi= new PointOfInterest(point);
 		
 		String poiTitle = ((EditText)view.findViewById(R.id.poi_title)).getText().toString();
 		String poiDescription = ((EditText)view.findViewById(R.id.poi_description)).getText().toString();
 		
-		newPoi.setTitle(poiTitle);
-		newPoi.setDescription(poiDescription);
-		walk.addLocation(newPoi);
+		activity.nextPoi.setTitle(poiTitle);
+		activity.nextPoi.setDescription(poiDescription);
+		activity.addPoi();
 	}
 }
 
