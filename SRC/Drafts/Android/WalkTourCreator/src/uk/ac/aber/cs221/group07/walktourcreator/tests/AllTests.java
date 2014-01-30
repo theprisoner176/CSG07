@@ -10,14 +10,11 @@ import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 
 
-<<<<<<< HEAD
-=======
 /**
  * This class is responsible for conducting JUnit tests, mostly for the methods from WalkModel class, 
  * but there is also a test for one method from LocationPoint class.
  * @author Maciek Dobrzanski
  */
->>>>>>> 68cbad17cd9a1048c8764873170cd0bda45abc0f
 public class AllTests {
 	
 	WalkModel wm;
