@@ -26,7 +26,7 @@
                 </ul>
         </nav>
         <div id="homeImage">
-        <img src="../images/myimage.jpg" alt="bad weather conditions at Aberystwyth" />
+        <img src="../images/myimage.jpg" alt="Home Logo" />
         </div>
         
         </body>
