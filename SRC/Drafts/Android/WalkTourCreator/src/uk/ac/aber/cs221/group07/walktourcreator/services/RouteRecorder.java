@@ -65,9 +65,10 @@ public class RouteRecorder extends Service{
 		if(getLastKnownPosition()==null){
 			Toast.makeText(screen,"GPS Signal has been found\nRecording has began\n",Toast.LENGTH_LONG).show();
 		}
-		else if(LocationPoint.distBetween(getLastKnownPosition(),loc)>0.05){
+		/*else if(LocationPoint.distBetween(getLastKnownPosition(),loc)>0.05){
 			walk.addLocation(loc);
-		}
+		}*/
+		walk.addLocation(loc);
 		setLastKnownPosition(loc);
 	}
 

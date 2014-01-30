@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -30,6 +31,9 @@ public class FileTransferManager{
 
 	//private final static String dataServer = "http://users.aber.ac.uk/hfb1/this.php";
 	private final static String dataServer = "http://users.aber.ac.uk/mda/csgp07/file_saver.php";
+	
+	public final static int UPLOAD_SUCCESS = 210;
+	public final static int UPLOAD_ERROR   = 537;
 	
 	
 	/**
@@ -102,25 +106,25 @@ public class FileTransferManager{
 	 * @param pakagedData the data to be sent.
 	 */
 	private static int post(JSONObject pakagedData) {
-	    HttpClient httpclient = new DefaultHttpClient();
+	    int status = 0;
+		HttpClient httpclient = new DefaultHttpClient();
 	    HttpPost post = new HttpPost(dataServer);
 	    try {
 	    	//add walk data to message	    	
 	        List<NameValuePair> dataPairs = new Vector<NameValuePair>();
-	        
 	        dataPairs.add(new BasicNameValuePair("JSON",pakagedData.toString()));
 	        
-	        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(dataPairs);
-	        entity.setContentType("application/json");
+	        //UrlEncodedFormEntity entity = new UrlEncodedFormEntity(dataPairs);
+	        //entity.setContentType("application/json");
 	      	post.setEntity(new UrlEncodedFormEntity(dataPairs));
 	        //send message
 	        HttpResponse response = httpclient.execute(post);
-	        //response.
-	        //response.
+	        
+	        status = response.getStatusLine().getStatusCode();
 	        
 	        //do something to check the response
 	    } catch (IOException e) { }
-	    return 1;
+	    return status;
 	} 
 	
 	/**
@@ -140,9 +144,9 @@ public class FileTransferManager{
 		
 		/** start process of upload*/
 		public void run(){
-			if(post(packageData(data)) == 1){
-				walk.returnToStart();
-			}
+			int statusCode = post(packageData(data));
+			walk.returnToStart(statusCode);
+
 		}
 	}
 }

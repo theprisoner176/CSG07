@@ -22,7 +22,7 @@ public class GpsCheckDialog implements DialogInterface.OnClickListener{
 		if(which == DialogInterface.BUTTON_POSITIVE){
 			 activity.startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 		}else if(which == DialogInterface.BUTTON_NEGATIVE){
-			activity.returnToStart();
+			activity.returnToStart(0);
 		}
 	}
 	

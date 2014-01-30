@@ -46,8 +46,8 @@ public class WalkScreen extends Activity {
 	
 	
 	/**
-	 * This method is called automatically when the activity is created, all it does is starts sets the layout as 
-	 * specified in res/layout/activity_map_screen.xml
+	 * This method is called automatically when the activity is created, all it
+	 *  does is starts sets the layout as specified in res/layout/activity_map_screen.xml
 	 * 
 	 * @param savedInstanceState is not used in this case
 	 */
@@ -55,19 +55,20 @@ public class WalkScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map_screen);
-		runOnInitialCreate();
+		setupIfNeeded();
 	}
 	
-	public void runOnInitialCreate(){
+	
+	public void setupIfNeeded(){
 		if(walk==null){
 			walk = (WalkModel) getIntent().getSerializableExtra("walk");
 		}
 		if(recorder==null){
 			//location manager to get location data
 			LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-			if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+			if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) )
 		        new GpsCheckDialog(this);
-		    }
+		    
 			recorder = new RouteRecorder(this,walk,manager);
 		}
 	}
@@ -77,8 +78,6 @@ public class WalkScreen extends Activity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		
-		
 		//LocationPoint point =  new LocationPoint(10,10);
 		
 		//used to test without gps location.
@@ -92,22 +91,6 @@ public class WalkScreen extends Activity {
 		new PoiDialogView(this,R.layout.activity_add_poi_dialog,point,walk);
 	}
 	
-
-	public void getFromGallery(View v){
-		ImageHandler image = new ImageHandler(this);
-		image.getPhotoFromLibrary();
-	}
-	public void getFromCamera(View v){
-		ImageHandler image = new ImageHandler(this);
-		image.getPhotoFromCamera();
-	}
-	
-	
-	public void addPoi(){
-		if(nextPoi!=null)
-			walk.addLocation(nextPoi);
-	}
-	
 	
 	/**
 	* creates and displays a WalkFinishedView.
@@ -117,23 +100,66 @@ public class WalkScreen extends Activity {
 		new WalkFinishedView(this,R.layout.walk_finished_dialog, walk,this);
 	}
 	
-	public void returnToStart(){
-		Intent intent = new Intent(this, MainMenu.class);
-	    startActivity(intent);
-	    finish();
-	}
-	
+	/**
+	* creates and displays a EditWalkView.
+	* @param v, is the object that called the method.
+	*/
 	public void editWalkDialog(View v){
 		new EditWalkView(this,R.layout.edit_walk_dialog,walk);
 	}
 	
+	/**
+	* creates and displays a CancelWalkView.
+	* @param v, is the object that called the method.
+	*/
 	public void cancelWalk(View v){
 		new CancelWalkView(this, R.layout.cancel_walk_dialog);
-		
 	}
+	
+	
+	public void getFromGallery(View v){
+		ImageHandler image = new ImageHandler(this);
+		image.getPhotoFromLibrary();
+	}
+	public void getFromCamera(View v){
+		ImageHandler image = new ImageHandler(this);
+		image.getPhotoFromCamera();
+	}
+	
+	public void addPoi(){
+		if(nextPoi!=null)
+			walk.addLocation(nextPoi);
+	}
+	
 	
 	public void uploadWalk(){
 		new FileTransferManager(this,walk);
+	}
+	
+	
+	public void returnToStart(int statusCode){
+		
+		/*Toast.makeText(this,"Walk successfull uploaded",Toast.LENGTH_LONG).show();
+		Intent intent2 = new Intent(this, MainMenu.class);
+	    startActivity(intent2);
+		
+		/*switch(statusCode){
+		case 0:
+			Toast.makeText(this,"Walk canceled",Toast.LENGTH_LONG).show();
+			Intent intent = new Intent(this, MainMenu.class);
+			startActivity(intent);
+			break;
+		case FileTransferManager.UPLOAD_SUCCESS:
+			Toast.makeText(this,"Walk successfull uploaded",Toast.LENGTH_LONG).show();
+			Intent intent2 = new Intent(this, MainMenu.class);
+		    startActivity(intent2);
+			break;
+		case FileTransferManager.UPLOAD_ERROR:
+			Toast.makeText(this,"Walk failed to upload",Toast.LENGTH_LONG).show();
+			break;
+		default: //unkown error
+			
+		}*/
 	}
 	
 	/**

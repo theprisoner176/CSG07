@@ -13,7 +13,7 @@ import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 
 
-public class WalkModelTest {
+public class AllTests {
 	
 	WalkModel wm;
 	PointOfInterest poi;

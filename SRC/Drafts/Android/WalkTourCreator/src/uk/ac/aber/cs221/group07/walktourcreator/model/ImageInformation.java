@@ -35,9 +35,9 @@ public class ImageInformation implements Serializable {
 		String retval = null;
         try {
         	File f = new File(fileName);
-        	           
+        	     
         	fileData = new byte[(int) f.length()];
-                   
+            
         	BufferedInputStream buf = new BufferedInputStream(new FileInputStream(f));
         	buf.read(fileData, 0, fileData.length);
         	buf.close();
