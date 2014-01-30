@@ -51,14 +51,14 @@
                                                                 echo "This is the distance for the walk " . $walk['distance'];
                                                                 echo "<br/>";
                                                         }
-                                                        $query = "SELECT photoName FROM Photo";
+                                                        $query = "SELECT p.photoName FROM Photo p JOIN Place_description pd on(pd.id = p.placeId) JOIN Place_description p_d JOIN Location l ON (p_d.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
                                                         $database->prepare_query($query);
                                                         $database->send_query($database->get_query());                                                      
                                                         $imageid = array();
                                                         //$imageid[] = $database($_GET['photoName']);
                                                         //echo $database->get_result();
                                                         while ($value = mysqli_fetch_array($database->get_result())) {
-														$imageid[] = $value['photoName'];
+															$imageid[] = $value['photoName'];
 														
                                                         }
                                                         	
@@ -104,7 +104,7 @@
                                                 var lng = <?php echo json_encode($long); ?>;
                                                 var title = <?php echo json_encode($title); ?>;
                                                 var shortDesc = <?php echo json_encode($shortDesc); ?>;
-                                                ///var longDesc = <?php echo json_encode($longDesc); ?>;
+                                                var img = <?php echo json_encode($imageid); ?>;
                                                 function initialize() {
                                                 var mapOptions = {
                                                         zoom: 8,
@@ -133,7 +133,7 @@
                                                                 map: map
                                                         });
                                                         //adds a listener to each of the marker items
-                                                        popupInfoWindow(map, infowindow, "<h4>"+title+"</h4>"+"<p>"+shortDesc[j]+"</p>", POI);
+                                                        popupInfoWindow(map, infowindow, "<h4>"+title+"</h4>"+"<p>"+shortDesc[j]+"</p>"+img[j], POI);
                                                 
                                                 }  
                                                 function popupInfoWindow(map, infowindow, insideMarkerText, POI) {
