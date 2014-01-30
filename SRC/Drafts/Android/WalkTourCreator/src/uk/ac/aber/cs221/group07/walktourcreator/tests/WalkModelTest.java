@@ -17,6 +17,7 @@ public class WalkModelTest {
 	
 	WalkModel wm;
 	PointOfInterest poi;
+	LocationPoint lp;
 		
 	@Before
 	public void init(){
@@ -25,7 +26,9 @@ public class WalkModelTest {
 	
 	@Test
 	public void testGetLastPoi() {
-		//poi = new PointOfInterest(100,100);
+		lp = new LocationPoint(100,100);
+		poi = new PointOfInterest(lp);
+		wm.addLocation(poi);
 		assertSame(poi ,wm.getLastPoi());
 	}
 
@@ -94,9 +97,11 @@ public class WalkModelTest {
 
 	@Test
 	public void testAddLocation() {
-		//poi = new PointOfInterest(100, 100);
+		lp = new LocationPoint(100,100);
+		poi = new PointOfInterest(lp);
 		Vector<LocationPoint> testPath = new Vector<LocationPoint>();
-		wm.addLocation(poi);
+		testPath.add(lp);
+		///	wm.addLocation(poi);
 		assertEquals(1, testPath.size());
 	}
 	

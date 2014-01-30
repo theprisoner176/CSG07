@@ -66,16 +66,25 @@ public class LocationPoint {
 	
 	/**
 	 * works out the distance between two 
-	 * @param point the Location the you want the know the distance to
+	 * @param point1 the Location the you want the know the distance to
 	 * @return the distance between itself and the given Location
 	 */
-	public double distanceTo(LocationPoint point){
-		//the following function works for a 2D plane
-		// I think is should be different for the globe
-		double tempX;
-		double tempY;
-		tempX = longitude-point.longitude;
-		tempY = latitude-point.longitude;
-		return Math.sqrt(tempX*tempX+tempY*tempY);
-	}
+	
+	 //A distance between two points given latitude and longitude function found on:
+	 //http://stackoverflow.com/questions/837872/calculate-distance-in-meters-when-you-know-longitude-and-latitude-in-java
+	
+	 public static float distFrom(LocationPoint point, LocationPoint point2) {
+		    double earthRadius = 3958.75;
+		    double dLat = Math.toRadians(point2.latitude-point.latitude);
+		    double dLng = Math.toRadians(point2.longitude-point.longitude);
+		    double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+		               Math.cos(Math.toRadians(point.latitude)) * Math.cos(Math.toRadians(point2.latitude)) *
+		               Math.sin(dLng/2) * Math.sin(dLng/2);
+		    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		    double dist = earthRadius * c;
+
+		    int meterConversion = 1609;
+
+		    return (float) (dist * meterConversion);
+	 }
 }
