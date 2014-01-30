@@ -35,6 +35,8 @@ public class WalkScreen extends Activity {
 	/**The walk that is being */
 	private static WalkModel walk;
 	
+	public PointOfInterest newtPoi;
+	
 	/**SHOULD BE IMPROVED JUST USED NOW TO MAKE IT WORK*/
 	public static String temp;
 	
@@ -73,10 +75,10 @@ public class WalkScreen extends Activity {
 	public void addPOI(View v){
 		
 		
-		LocationPoint point =  new LocationPoint(10,10);
+		//LocationPoint point =  new LocationPoint(10,10);
 		
 		//used to test without gps location.
-		//LocationPoint point =  recorder.getLastKnownPosition();
+		LocationPoint point =  recorder.getLastKnownPosition();
 		
 		if(point==null){
 			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
@@ -96,6 +98,11 @@ public class WalkScreen extends Activity {
 		ImageHandler image = new ImageHandler(this);
 		image.getPhotoFromCamera();
 	}
+	
+	public void addPoi(PointOfInterest poi){
+		walk.addLocation(poi);
+	}
+	
 	
 	/**
 	* creates and displays a WalkFinishedView.
@@ -129,12 +136,14 @@ public class WalkScreen extends Activity {
         		return;
         	else if(requestCode == ImageHandler.CAMERA_ACTIVITY_RESULT_CODE)
 				newPoi.addImage(new ImageInformation(temp));
-			else
+        	else if(requestCode == ImageHandler.GALLERY_ACTIVITY_RESULT_CODE)
 				newPoi.addImage(new ImageInformation(getRealPathFromURI(data.getData())));
   
-        	Toast.makeText(this, "Image added to walk\n", Toast.LENGTH_LONG).show();
+        	Toast.makeText(this, "Image added to Location\n", Toast.LENGTH_LONG).show();
 		}
-		Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
+		else{
+			Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event){
