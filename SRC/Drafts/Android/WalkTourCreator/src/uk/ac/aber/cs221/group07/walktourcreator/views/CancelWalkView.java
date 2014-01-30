@@ -23,10 +23,6 @@ public class CancelWalkView extends DialogView{
 	}
 	
 	public void deleteWalk(){
-		walk.recorder.finishWalk();
-		walk.finish();
-		walk.stopService(new Intent(walk,RouteRecorder.class)); 
-		Intent intent = new Intent(walk, MainMenu.class);
-		walk.startActivity(intent);
+		walk.returnToStart();
 	}
 }

@@ -105,9 +105,14 @@ public class FileTransferManager{
 	 * sends the JSON data to the dataserver.
 	 * @param pakagedData the data to be sent.
 	 */
+<<<<<<< 01b7dea4872739e481760e37ff4c1e5a7abb462a
 	private static int post(JSONObject pakagedData) {
 	    int status = 0;
 		HttpClient httpclient = new DefaultHttpClient();
+=======
+	private static int post(JSONObject pakagedData,WalkScreen walk) {
+	    HttpClient httpclient = new DefaultHttpClient();
+>>>>>>> dd11a9d637f8a258ba5858d36706452f50f8d636
 	    HttpPost post = new HttpPost(dataServer);
 	    try {
 	    	//add walk data to message	    	
@@ -124,7 +129,12 @@ public class FileTransferManager{
 	        
 	        //do something to check the response
 	    } catch (IOException e) { }
+<<<<<<< 01b7dea4872739e481760e37ff4c1e5a7abb462a
 	    return status;
+=======
+	    walk.returnToStart();
+	    return 1;
+>>>>>>> dd11a9d637f8a258ba5858d36706452f50f8d636
 	} 
 	
 	/**
@@ -144,9 +154,13 @@ public class FileTransferManager{
 		
 		/** start process of upload*/
 		public void run(){
+<<<<<<< 01b7dea4872739e481760e37ff4c1e5a7abb462a
 			int statusCode = post(packageData(data));
 			walk.returnToStart(statusCode);
 
+=======
+			post(packageData(data),walk);
+>>>>>>> dd11a9d637f8a258ba5858d36706452f50f8d636
 		}
 	}
 }
