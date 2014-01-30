@@ -27,6 +27,7 @@ public class PoiDialogView extends DialogView{
 			activity = context;
 			this.point = point;
 			this.setInflaterView(inflater, layout);
+			activity.nextPoi= new PointOfInterest(point);
 			//imageSaver = new ImageHandler(activity);
 			
 	}
@@ -46,9 +47,7 @@ public class PoiDialogView extends DialogView{
 		view = v;
 	}
 	
-	public void setPointInfo(){
-		activity.nextPoi= new PointOfInterest(point);
-		
+	public void setPointInfo(){		
 		String poiTitle = ((EditText)view.findViewById(R.id.poi_title)).getText().toString();
 		String poiDescription = ((EditText)view.findViewById(R.id.poi_description)).getText().toString();
 		
