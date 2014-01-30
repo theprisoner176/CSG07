@@ -10,11 +10,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/** The popup that is shown when the walk is being edited*/
 public class EditWalkView extends DialogView{
-
+	
+	/** Reference to the current walk's object*/
 	private WalkModel walk;
+	/** Reference to the view which needs to be shown*/
 	private View layout;
 	
+	/** Constructor for the popup.
+	 * @param context the activity that created the popup
+	 * @param viewLayout the id of the layout that will be displayed
+	 * @param w the current walk object*/
 	public EditWalkView(WalkScreen context, int viewLayout,WalkModel w) {
 		super(context, viewLayout);
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -22,13 +29,16 @@ public class EditWalkView extends DialogView{
 		this.layout = this.getLayout();
 		walk = w;
 	}
-
+	
+	/** Implementation of the listener's onClick method*/
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		if(which == DialogInterface.BUTTON_POSITIVE)
 			editWalk();
 	}
 	
+	/** Called if the OK button is pressed. Gets the text from the EditText fields on the screen
+	 * and sets the walk's title, short and long description*/
 	public void editWalk(){
 		String walkTitle = ((EditText)layout.findViewById(R.id.edit_walk_title)).getText().toString();
 		String shortDesc = ((EditText)layout.findViewById(R.id.edit_walk_short_description)).getText().toString();
