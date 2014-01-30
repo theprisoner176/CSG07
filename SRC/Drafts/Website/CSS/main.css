@@ -1,7 +1,6 @@
 html, body {
         /*background-color:#E8e8e8;*/
-        height: 100%;
-    	width: 100%;
+
         /*background-image: url('Background.jpg');
         background-repeat: no-repeat;
         background-size: 100%;*/
@@ -20,10 +19,10 @@ html, body {
 header{
         text-align: right;
         font-family: Arial, Geneva, sans-serif;
-        font-size: 40px;
+        font-size: 20px;
         color: white; 
         /*background-image: url('Aber.jpg');*/
-        margin: 10px;        
+        margin-right: 10px;        
         border-bottom: 2px dashed green;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
@@ -86,3 +85,7 @@ nav a:hover {
     color: green;
     /*background-color: black;*/
 }
+
+#homeImage {
+	margin-left: 33%;
+}​

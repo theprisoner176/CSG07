@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
@@ -15,7 +14,6 @@
 	<nav>
 		<ul>
 			<li><a href="index.php">Home</a></li>
-			<li><a href="#walk">View List of Walks</a></li>
 		</ul>
 	</nav>
 	<section id="intro"></section>
@@ -65,7 +63,7 @@
 									<a href='walk_details.php?walk=$title&amp;walk_id=$walkIDA'>$wTitle </a>
 									<br/>
 									<div class="walk" id="box">
-										Short Desc:  $wShortDesc;
+										  $wShortDesc
 									</div>
 								</p>
 							</div>
