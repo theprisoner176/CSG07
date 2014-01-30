@@ -44,13 +44,8 @@ public class WalkScreen extends Activity {
 	/** holds the object that is responsible for tracking the path of the walk*/
 	public RouteRecorder recorder;
 	
+	private PoiDialogView poiDialog;
 	
-	//pop ups //change null to point 
-	private PoiDialogView poiDialog;;
-	//private CancelWalkView cancelDialog =  new CancelWalkView(this, R.layout.cancel_walk_dialog);
-	
-	//private EditWalkView editDialog = new EditWalkView(this,R.layout.edit_walk_dialog,walk);
-	//private WalkFinishedView walkFinishedDialog =new WalkFinishedView(this,R.layout.walk_finished_dialog, walk,this);
 	/**
 	 * This method is called automatically when the activity is created, all it
 	 *  does is starts sets the layout as specified in res/layout/activity_map_screen.xml
@@ -63,7 +58,6 @@ public class WalkScreen extends Activity {
 		setContentView(R.layout.activity_map_screen);
 		setupIfNeeded();
 	}
-	
 	
 	public void setupIfNeeded(){
 		if(walk==null)
@@ -148,8 +142,10 @@ public class WalkScreen extends Activity {
 	
 	
 	public void addPoi(){
-		if(nextPoi!=null)
+		if(nextPoi!=null){
 			walk.addLocation(nextPoi);
+			Toast.makeText(this,"Place of Interest "+nextPoi.getTitle()+"\n has been added",Toast.LENGTH_LONG).show();
+		}
 		nextPoi=null;
 	}
 	
