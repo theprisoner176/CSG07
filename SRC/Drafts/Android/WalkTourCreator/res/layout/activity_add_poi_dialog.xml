@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableTop="@android:drawable/ic_menu_camera"
-                android:onClick="takePhoto"
+                android:onClick="getFromCamera"
                 android:text="Take photo" />
 
             <Button
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:drawableTop="@android:drawable/ic_menu_gallery"
                 android:layout_height="wrap_content"
-                android:onClick = "addImage"
+                android:onClick = "getFromGallery"
                 android:text="Open Gallery" />
 
         </LinearLayout>

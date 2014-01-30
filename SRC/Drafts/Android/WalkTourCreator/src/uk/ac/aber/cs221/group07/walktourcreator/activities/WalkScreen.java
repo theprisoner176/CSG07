@@ -72,6 +72,7 @@ public class WalkScreen extends Activity {
 	 */
 	public void addPOI(View v){
 		//LocationPoint point =  recorder.getLastKnownPosition();
+<<<<<<< c98dda53440aeb89bf6aae400ca65075ba33c980
 		
 		//used to test without gps location.
 		LocationPoint point =  recorder.getLastKnownPosition();
@@ -81,15 +82,24 @@ public class WalkScreen extends Activity {
 			return;
 		}
 		new PoiDialogView(this,R.layout.activity_add_poi_dialog,point,walk);
+=======
+		LocationPoint point = new LocationPoint(1,2);
+		if(point==null){
+			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
+			return;
+		}	
+		new PoiDialogView(this,R.layout.activity_add_poi_dialog,point,walk);
+		//this.getFromCamera();
+>>>>>>> 814f6a9087b690e419458b2acd998097477d9ca5
 	}
 	
 	
 
-	public void getFromGallery(){
+	public void getFromGallery(View v){
 		ImageHandler image = new ImageHandler(this);
 		image.getPhotoFromLibrary();
 	}
-	public void getFromCamera(){
+	public void getFromCamera(View v){
 		ImageHandler image = new ImageHandler(this);
 		image.getPhotoFromCamera();
 	}
