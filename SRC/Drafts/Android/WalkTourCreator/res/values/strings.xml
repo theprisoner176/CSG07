@@ -31,8 +31,17 @@
     <string name="play_pause">Finish</string>
     
     <!-- Walk set up -->
-    <string name="title">title</string>
+    <string name="title">Title</string>
     <string name="long_description">Detailed Description</string>
     <string name="short_description">Description</string>
+    <string name="poi_take_photo">Take photo</string>
+    <string name="poi_open_gallery">Open Gallery</string>
+    <string name="poi_edit_title_field">Enter Title</string>
+    <string name="poi_enter_description_field">Enter Description</string>
+    <string name="walk_screen_edit_walk">Edit Walk</string>
+    <string name="walk_screen_cancel">Cancel Walk</string>
+    <string name="edit_walk_title">Edit title of walk</string>
+    <string name="edit_walk_description">Edit short description</string>
+    <string name="edit_walk_long_description">Edit long description</string>
 
 </resources>

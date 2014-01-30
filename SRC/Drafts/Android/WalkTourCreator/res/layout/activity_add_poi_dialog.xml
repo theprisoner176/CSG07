@@ -23,8 +23,7 @@
             android:layout_height="wrap_content"
             android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:ems="10"
-            android:hint="Enter Title"
-             >
+            android:hint="@string/poi_edit_title_field" >
 
             <requestFocus />
         </EditText>
@@ -34,10 +33,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ "
-            android:maxLength="1000"
             android:ems="10"
-            android:hint="Enter Description"
-            android:inputType="textMultiLine" />
+            android:hint="@string/poi_enter_description_field"
+            android:inputType="textMultiLine"
+            android:maxLength="1000" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -50,15 +49,15 @@
                 android:layout_height="wrap_content"
                 android:drawableTop="@android:drawable/ic_menu_camera"
                 android:onClick="getFromCamera"
-                android:text="Take photo" />
+                android:text="@string/poi_take_photo" />
 
             <Button
                 android:id="@+id/gallery_btn"
                 android:layout_width="wrap_content"
-                android:drawableTop="@android:drawable/ic_menu_gallery"
                 android:layout_height="wrap_content"
-                android:onClick = "getFromGallery"
-                android:text="Open Gallery" />
+                android:drawableTop="@android:drawable/ic_menu_gallery"
+                android:onClick="getFromGallery"
+                android:text="@string/poi_open_gallery" />
 
         </LinearLayout>
 
