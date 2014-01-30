@@ -32,8 +32,7 @@ public class FileTransferManager{
 	//private final static String dataServer = "http://users.aber.ac.uk/hfb1/this.php";
 	private final static String dataServer = "http://users.aber.ac.uk/mda/csgp07/file_saver.php";
 	
-	public final static int UPLOAD_SUCCESS = 210;
-	public final static int UPLOAD_ERROR   = 537;
+	private final static int UPLOAD_SUCCESS = 200;
 	
 	
 	/**
@@ -44,6 +43,7 @@ public class FileTransferManager{
 	*/
 
 	public FileTransferManager(WalkScreen screen, WalkModel w){
+		System.gc();
 		new Uploader(screen,w).start();
 	}
 
@@ -106,8 +106,8 @@ public class FileTransferManager{
 	 * @param pakagedData the data to be sent.
 	 */
 
-	private static int post(JSONObject pakagedData,WalkScreen walk) {
-	int status = 0;
+	private static boolean post(JSONObject pakagedData,WalkScreen walk) {
+		boolean status = false;
 		HttpClient httpclient = new DefaultHttpClient();
 	    HttpPost post = new HttpPost(dataServer);
 	    try {
@@ -121,13 +121,12 @@ public class FileTransferManager{
 	        //send message
 	        HttpResponse response = httpclient.execute(post);
 	        
-	        status = response.getStatusLine().getStatusCode();
+	        status = response.getStatusLine().getStatusCode()==UPLOAD_SUCCESS;
 	        
-	        //do something to check the response
 	    } catch (IOException e) { }
 
-	    walk.returnToStart();
-	    return 1;
+	    //walk.returnToStart();
+	    return status;
 	} 
 	
 	/**
@@ -147,7 +146,7 @@ public class FileTransferManager{
 		
 		/** start process of upload*/
 		public void run(){
-			int statusCode = post(packageData(data),walk);
+			boolean statusCode = post(packageData(data),walk);
 			walk.returnToStart(statusCode);
 
 		}

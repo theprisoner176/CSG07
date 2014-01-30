@@ -23,6 +23,6 @@ public class CancelWalkView extends DialogView{
 	}
 	
 	public void deleteWalk(){
-		walk.returnToStart();
+		walk.returnToStart(true);
 	}
 }

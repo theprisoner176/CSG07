@@ -117,14 +117,7 @@ public class WalkScreen extends Activity {
 	* @param v, is the object that called the method.
 	*/
 
-	public void returnToStart(){
-		if(recorder != null){
-			recorder.finishWalk();
-		}
-		Intent intent = new Intent(this, MainMenu.class);
-	    startActivity(intent);
-	    finish();
-	}
+
 
 	public void editWalkDialog(View v){
 		new EditWalkView(this,R.layout.edit_walk_dialog,walk).show();
@@ -162,33 +155,18 @@ public class WalkScreen extends Activity {
 	
 	
 	public void uploadWalk(){
+		Toast.makeText(this,"Upload has Started, it may take a while",Toast.LENGTH_LONG).show();
 		new FileTransferManager(this,walk);
 	}
 	
 	
-	public void returnToStart(int statusCode){
-		
-		/*Toast.makeText(this,"Walk successfull uploaded",Toast.LENGTH_LONG).show();
-		Intent intent2 = new Intent(this, MainMenu.class);
-	    startActivity(intent2);
-		
-		/*switch(statusCode){
-		case 0:
-			Toast.makeText(this,"Walk canceled",Toast.LENGTH_LONG).show();
-			Intent intent = new Intent(this, MainMenu.class);
-			startActivity(intent);
-			break;
-		case FileTransferManager.UPLOAD_SUCCESS:
-			Toast.makeText(this,"Walk successfull uploaded",Toast.LENGTH_LONG).show();
-			Intent intent2 = new Intent(this, MainMenu.class);
-		    startActivity(intent2);
-			break;
-		case FileTransferManager.UPLOAD_ERROR:
-			Toast.makeText(this,"Walk failed to upload",Toast.LENGTH_LONG).show();
-			break;
-		default: //unkown error
-			
-		}*/
+	public void returnToStart(boolean status){
+		if(recorder != null){
+			recorder.finishWalk();
+		}
+		Intent intent = new Intent(this, MainMenu.class);
+	    startActivity(intent);
+	    finish();
 	}
 	
 	/**

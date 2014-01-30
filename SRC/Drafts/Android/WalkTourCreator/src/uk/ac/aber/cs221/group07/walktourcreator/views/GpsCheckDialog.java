@@ -9,7 +9,7 @@ public class GpsCheckDialog implements DialogInterface.OnClickListener{
 	
 	private WalkScreen activity;
 	
-	  public GpsCheckDialog(WalkScreen context) {
+	 public GpsCheckDialog(WalkScreen context) {
 		  activity = context;
 		  new AlertDialog.Builder(context)
 		  .setTitle("Your GPS appears to be switched off. Switch it on?")
@@ -23,7 +23,7 @@ public class GpsCheckDialog implements DialogInterface.OnClickListener{
 		if(which == DialogInterface.BUTTON_POSITIVE){
 			 activity.startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 		}else if(which == DialogInterface.BUTTON_NEGATIVE){
-			activity.returnToStart(0);
+			activity.returnToStart(true);
 		}
 	}
 	
