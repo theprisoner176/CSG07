@@ -1,6 +1,9 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>List of walks</title>
 	<link rel="stylesheet" href="../CSS/style.css" media="screen" />
 </head>
@@ -46,12 +49,21 @@
 					 $database_count->prepare_query($query);
 					 $database_count->send_query($database_count->get_query());
 					 $count = mysqli_fetch_array($database_count->get_result());
-						echo "<div class='walk'>";
-						echo "<br/>";
-						echo "<a href=walk_details.php?walk=".$walk["title"]."&amp;walk_id=".$walk["id"].">" . $walk["title"] . "</a>";
-						echo "<br/>";
-						echo "Short Desc:" . $walk["shortDesc"];
-						echo "</div>";
+					 $title = $walk["title"];
+					 $walkIDA = $walk["id"];
+					 $wTitle = $walk["title"];
+					 $wShortDesc = $walk["shortDesc"];
+						echo <<<EOT
+						<div class="walk">
+							<br/>
+							<p>
+								<a href='walk_details.php?walk=$title&amp;walk_id=$walkIDA'>$wTitle </a>
+								<br/>
+								Short Desc:  $wShortDesc;
+							</p>
+						</div>
+EOT;
+						
 				}
 				$database->close_connection();
 				?>
