@@ -5,6 +5,11 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 
+/**
+ * A listener class which reacts to gathered location data.
+ * @author Martin Zokov, Harry Buckley
+ *
+ */
 public class PositionListener implements LocationListener {
 	
 	private RouteRecorder recorder;

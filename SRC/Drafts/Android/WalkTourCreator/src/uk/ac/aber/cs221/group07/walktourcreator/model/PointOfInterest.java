@@ -48,6 +48,8 @@ public class PointOfInterest extends LocationPoint{
 		description = desc;
 	}
 	
+	/** gets the title of the POI
+	 * @return String the title of the walk*/
 	public String getTitle(){
 		return title;
 	}
@@ -57,6 +59,9 @@ public class PointOfInterest extends LocationPoint{
 		this.title = title;
 	}
 	
+	/**
+	 * returns the longitude, the north/south distance from the equator.
+	 */
 	public double getLongitude(){
 		return longitude;
 	}

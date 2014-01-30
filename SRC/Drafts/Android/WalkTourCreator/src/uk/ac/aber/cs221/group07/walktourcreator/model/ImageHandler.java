@@ -15,19 +15,21 @@ import android.provider.MediaStore;
  * Handles interaction with the system camera and photo gallery access,
  * and saves the resulting image
  * 
- * @author HarryBuckley
+ * @author Harry Buckley
  *
  */
 public class ImageHandler {
 	
+	/** Result code for getting a photo from the camera */
 	public static int CAMERA_ACTIVITY_RESULT_CODE = 1984;
+	/** Result code for getting a phoyo from the gallery*/
 	public static int GALLERY_ACTIVITY_RESULT_CODE = 1993;
 	
 	/**the activity that initialized the camera/gallery access*/ 
 	private WalkScreen owner;
 
 	/**
-	 * creates a new ImageHandler object
+	 * Creates a new ImageHandler object
 	 * @param owner the activity that initialized the object
 	 */
 	public ImageHandler(WalkScreen owner){
@@ -35,7 +37,7 @@ public class ImageHandler {
 	}
 	
 	/**
-	 * starts the system photo gallery browser, where the user can select an image.
+	 * Starts the system photo gallery browser, where the user can select an image.
 	 * @return information about the selected image
 	 */
 	public void getPhotoFromLibrary(){
@@ -46,7 +48,7 @@ public class ImageHandler {
 	}
 	
 	/**
-	 * starts a take-picture-intent that saves the taken picture and returns the filename
+	 * Starts a take-picture-intent that saves the taken picture and returns the filename
 	 * @return an image Information object that holds the filename.
 	 */
 	public void getPhotoFromCamera(){
@@ -58,7 +60,7 @@ public class ImageHandler {
 	}
 	
 	/**
-	 * creates the file that the camera will save the taken picture to. 
+	 * Creates the file that the camera will save the taken picture to. 
 	 * @return a newly created file
 	 */
 	private File createFile(){

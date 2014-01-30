@@ -35,7 +35,6 @@ public class LocationPoint {
 	*  @param lat the longitude position
 	*  @param lng the latitude position
 	*  @param time, the time in milliseconds that this point was reached
-	*  @param id, used to to identify this point uniquely 
 	*/
 	public LocationPoint(double lat,double lng,long time){
 		this.time = time;

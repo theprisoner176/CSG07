@@ -1,10 +1,8 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
 import java.io.BufferedInputStream;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.Serializable;
 
 import android.util.Base64;
 
@@ -12,13 +10,13 @@ import android.util.Base64;
  * This class stores information about a single image
  *@author HarryBuckley
  */
-public class ImageInformation implements Serializable {
+public class ImageInformation {
 	
 	/** The name of the actual file, is has to be unique to all other photos stored by the app */
 	private String fileName;
 	
 	/**
-	 * creates the ImageInformation and set name
+	 * Creates the ImageInformation and set name
 	 * 
 	 * @param name the name of the new photo
 	 */
@@ -27,7 +25,7 @@ public class ImageInformation implements Serializable {
 	}
 	
 	/**
-	 * open file and returns it as Base64
+	 * Open file and returns it as Base64
 	 * @return file contents as Base64
 	 */
 	public String getImageAsString(){

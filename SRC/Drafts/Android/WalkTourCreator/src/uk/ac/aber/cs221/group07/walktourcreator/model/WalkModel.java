@@ -1,35 +1,26 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
-import java.io.Serializable;
 import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 /**
  * stores all information about a single walk
- * @author HarryBuckley
+ * @author Harry Buckley, Martin Zokov
  */
-public class WalkModel implements Serializable{
-	
-	private static final int MAX_LONG_DESC_LENGTH = 999;
-	private static int MAX_SHRT_DESC_LENGTH = 100;
-	private static int MAX_TITLE_LENGTH = 100;
-	
+public class WalkModel{
 	
 	/** holds the name of the walk, is used as an identifier */
 	private String title;
 	
-	/** store a long description of the walk, it is limited to X characters */
+	/** store a long description of the walk, it is limited to 1000 characters */
 	private String longDesc;
 	
-	/** store a short description of the walk, it is limited to X characters */
+	/** store a short description of the walk, it is limited to 100 characters */
 	private String shortDesc;
 	
 	/** stores the vector of LocationPoints that make up the walk*/
 	private Vector<LocationPoint> path;
 	
 	/**
-	 * creates a new walking model with the title that is passed
-	 * @param name is the title of the new walkModel
+	 * Creates a new walking model with the title that is passed
 	 */
 	public WalkModel(){
 		path = new Vector<LocationPoint>();
@@ -40,6 +31,9 @@ public class WalkModel implements Serializable{
 		return title;
 	}
 	
+	/** Sets the name of the walk
+	 * @param the new name of the walk
+	 * */
 	public void setTitle(String newTitle){
 		title =newTitle;
 	}
@@ -68,12 +62,14 @@ public class WalkModel implements Serializable{
 	public Vector<LocationPoint> getRoutePath(){
 		return path;
 	}
+	
 	/**adds a LocationPoint to the walk. */
 	public void addLocation(LocationPoint point){
 		path.add(point);
 	}
 	
-	
+	/** Gets the last point of interest
+	 * @return PointOfInterest object*/
 	public PointOfInterest getLastPoi(){
 		PointOfInterest retval = null;
 		for(int i=path.size()-1;1>=0;i--){
@@ -84,7 +80,6 @@ public class WalkModel implements Serializable{
 		}
 		return retval;
 	}
-	
 	
     /** returns the running total of km traveled. */
 	public double getDistance(){

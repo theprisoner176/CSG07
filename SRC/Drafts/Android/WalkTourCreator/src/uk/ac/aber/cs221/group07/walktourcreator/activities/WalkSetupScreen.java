@@ -10,8 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * This class is responsible for displaying the walk setup screen, and reacting to button presses
- * @author HarryBuckley
+ * This class is responsible for displaying the walk setup screen which sets the title and descriptions for a walk
+ * @author Harry Buckley, Martin Zokov
  */
 public class WalkSetupScreen extends Activity {
 
@@ -28,8 +28,8 @@ public class WalkSetupScreen extends Activity {
 	}
 
 	/**
-	* Starts a new MapScreen activity, and displays it to the user. The detail that the user has input,
-	* are passed to the new activity.
+	* Starts a new WalkScreen activity, displays it to the user and starts recording GPS data.
+	* The details that the user has input, are passed to the new activity.
 
 	* @param v is the View that called this method
 	*/
