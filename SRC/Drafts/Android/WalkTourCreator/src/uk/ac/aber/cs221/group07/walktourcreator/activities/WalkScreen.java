@@ -71,26 +71,16 @@ public class WalkScreen extends Activity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		//LocationPoint point =  recorder.getLastKnownPosition();
-<<<<<<< c98dda53440aeb89bf6aae400ca65075ba33c980
 		
 		//used to test without gps location.
+		//LocationPoint point = new LocationPoint(1,2);
+		
 		LocationPoint point =  recorder.getLastKnownPosition();
 		
 		if(point==null){
 			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
 			return;
 		}
-		new PoiDialogView(this,R.layout.activity_add_poi_dialog,point,walk);
-=======
-		LocationPoint point = new LocationPoint(1,2);
-		if(point==null){
-			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
-			return;
-		}	
-		new PoiDialogView(this,R.layout.activity_add_poi_dialog,point,walk);
-		//this.getFromCamera();
->>>>>>> 814f6a9087b690e419458b2acd998097477d9ca5
 	}
 	
 	
