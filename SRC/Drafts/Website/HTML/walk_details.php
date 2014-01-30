@@ -51,7 +51,7 @@
                                                                 echo "This is the distance for the walk " . $walk['distance'];
                                                                 echo "<br/>";
                                                         }
-                                                        $query = "SELECT p.photoName FROM Photo p JOIN Place_description pd on(pd.id = p.placeId) JOIN Place_description p_d JOIN Location l ON (p_d.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
+                                                        $query = "SELECT p.photoName FROM Photo p JOIN Place_description pd on(pd.id = p.placeId) JOIN Location l ON (pd.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
                                                         $database->prepare_query($query);
                                                         $database->send_query($database->get_query());                                                      
                                                         $imageid = array();
