@@ -80,10 +80,10 @@ public class WalkScreen extends Activity {
 			poiDialog.show();
 			return;
 		}
-		LocationPoint point =  new LocationPoint(10,10);
+		//LocationPoint point =  new LocationPoint(10,10);
 		
 		//used to test without gps location.
-		//LocationPoint point =  recorder.getLastKnownPosition();
+		LocationPoint point =  recorder.getLastKnownPosition();
 		
 		if(point==null){
 			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
