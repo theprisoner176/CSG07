@@ -72,15 +72,18 @@ public class WalkScreen extends Activity {
 	 */
 	public void addPOI(View v){
 		
-		//used to test without gps location.
-		//LocationPoint point = new LocationPoint(1,2);
 		
-		LocationPoint point =  recorder.getLastKnownPosition();
+		LocationPoint point =  new LocationPoint(10,10);
+		
+		//used to test without gps location.
+		//LocationPoint point =  recorder.getLastKnownPosition();
 		
 		if(point==null){
 			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
 			return;
 		}
+		
+		new PoiDialogView(this,R.layout.activity_add_poi_dialog,point,walk);
 	}
 	
 	

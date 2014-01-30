@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 public class PoiDialogView extends DialogView{
 
-	private LocationPoint poi;
+	private LocationPoint point;
 	private LayoutInflater inflater;
 	private View view;
 	private ImageHandler imageSaver;
@@ -26,7 +26,7 @@ public class PoiDialogView extends DialogView{
 			super(context,viewLayout);
 			walk = w;
 			activity = context;
-			poi = point;
+			this.point = point;
 			this.setInflaterView(inflater, layout);
 			//imageSaver = new ImageHandler(activity);
 			
@@ -48,9 +48,11 @@ public class PoiDialogView extends DialogView{
 	}
 	
 	public void setPointInfo(){
-		PointOfInterest newPoi= new PointOfInterest(poi);
+		PointOfInterest newPoi= new PointOfInterest(point);
+		
 		String poiTitle = ((EditText)view.findViewById(R.id.poi_title)).getText().toString();
 		String poiDescription = ((EditText)view.findViewById(R.id.poi_description)).getText().toString();
+		
 		newPoi.setTitle(poiTitle);
 		newPoi.setDescription(poiDescription);
 		walk.addLocation(newPoi);
