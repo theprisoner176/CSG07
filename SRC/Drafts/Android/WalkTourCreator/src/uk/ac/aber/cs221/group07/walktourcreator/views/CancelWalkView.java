@@ -6,6 +6,7 @@ import uk.ac.aber.cs221.group07.walktourcreator.activities.MainMenu;
 import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
 
+/** Class */
 public class CancelWalkView extends DialogView{
 	
 	private WalkScreen walk;

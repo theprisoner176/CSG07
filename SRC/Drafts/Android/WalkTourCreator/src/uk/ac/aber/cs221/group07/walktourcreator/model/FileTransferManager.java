@@ -29,22 +29,19 @@ import uk.ac.aber.cs221.group07.walktourcreator.services.RouteRecorder;
  */
 public class FileTransferManager{
 	
-<<<<<<< Updated upstream
+	/**
+	 * Value for success of an upload
+	 */
 	private final static int UPLOAD_SUCCESS = 200;
-=======
 	/**
 	 * The URL of the server to which data is sent
 	 */
 	private final static String dataServer = "http://users.aber.ac.uk/mda/csgp07/file_saver.php";
-	/**
-	 * Value for success of an upload
-	 */
-	public final static int UPLOAD_SUCCESS = 210;
+
 	/**
 	 * Value for error during an upload
 	 */
 	public final static int UPLOAD_ERROR   = 537;
->>>>>>> Stashed changes
 	
 	
 	/**
@@ -138,12 +135,8 @@ public class FileTransferManager{
 	        
 	    } catch (IOException e) { }
 
-<<<<<<< Updated upstream
 	    //walk.returnToStart();
 	    return status;
-=======
-	    return 1;
->>>>>>> Stashed changes
 	} 
 	
 	/**
