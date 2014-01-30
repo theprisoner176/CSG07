@@ -100,12 +100,12 @@ public class WalkScreen extends Activity {
 		new WalkFinishedView(this,R.layout.walk_finished_dialog, walk,this);
 	}
 	
-<<<<<<< 01b7dea4872739e481760e37ff4c1e5a7abb462a
+
 	/**
 	* creates and displays a EditWalkView.
 	* @param v, is the object that called the method.
 	*/
-=======
+
 	public void returnToStart(){
 		if(recorder != null){
 			recorder.finishWalk();
@@ -114,8 +114,7 @@ public class WalkScreen extends Activity {
 	    startActivity(intent);
 	    finish();
 	}
-	
->>>>>>> dd11a9d637f8a258ba5858d36706452f50f8d636
+
 	public void editWalkDialog(View v){
 		new EditWalkView(this,R.layout.edit_walk_dialog,walk);
 	}
