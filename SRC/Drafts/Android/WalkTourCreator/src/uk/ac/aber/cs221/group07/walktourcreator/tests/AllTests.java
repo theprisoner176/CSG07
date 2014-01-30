@@ -49,7 +49,14 @@ public class AllTests {
 	 */
 	@Test
 	public void testGetDistance() {
-		double testDistance = 0;
+		LocationPoint lp = new LocationPoint(52.413, -4.081); //Aberystwyth coordinates according to http://www.geobytes.com/CityDistance.htm?d&pt_1=UKWAABER&pt_2=UKWACARD
+		LocationPoint lp2 = new LocationPoint(51.481, -3.174); //Cardiff coordinates according to http://www.geobytes.com/CityDistance.htm?d&pt_1=UKWAABER&pt_2=UKWACARD
+		LocationPoint lp3 = new LocationPoint(-12.05, -77.05); //Lima (Peru) coordinates according to http://www.geobytes.com/CityDistance.htm?d&pt_1=UKWAABER&pt_2=PELILIMA
+		double testDistance = LocationPoint.distBetween(lp, lp2) + LocationPoint.distBetween(lp2, lp3);
+		wm.addLocation(lp);
+		wm.addLocation(lp2);
+		wm.addLocation(lp3);
+		
 		assertEquals(testDistance, wm.getDistance(), 0);
 	}
 	
