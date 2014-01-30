@@ -3,6 +3,7 @@
 <head>
         <title>List of walks</title>
        <link rel="stylesheet" href="style.css" media="screen" />
+              <link rel="stylesheet" href="main.css" media="screen" />
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">  
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMaDwxzucsIfiT1sYyFKWIvDljXOWSeM0&sensor=false"></script>
@@ -24,8 +25,18 @@
                         <li><a href="list_walks.php">List Walks</a></li>
                 </ul>
         </nav>
+        
+        
+        <div id="container">
+        
+					<div id = "sideBarleft">
+						<div id = "descriptionBox">
+							<p> this is were the description will go</p>
+						</div>
+						</div>				
+        
         <section id="intro"></section>
-			<div id="container">
+                        <div id="container">
                 <div id="map-canvas"></div>        
                                                 <?php
                                                         include "database_layer.php";
@@ -58,18 +69,18 @@
                                                         //$imageid[] = $database($_GET['photoName']);
                                                         //echo $database->get_result();
                                                         while ($value = mysqli_fetch_array($database->get_result())) {
-															$imageid[] = $value['photoName'];
-														
+                                                                                                                        $imageid[] = $value['photoName'];
+                                                                                                                
                                                         }
-                                                        	
+                                                                
                                                         for ($i = 0; $i < count($imageid); $i++){
-                                                        		echo "<div id='imagedisplay'>";	
-																echo "<div id='thumb'>";
-																echo "<a href='http://users.aber.ac.uk/mda/csgp07/images/".$imageid[$i].".jpg'rel='shadowbox'><img src='http://users.aber.ac.uk/mda/csgp07/images/".$imageid[$i].".jpg' height='87' width='156' ></img></a>";
-																echo "</div>";
-																echo "</div>";
-														}
-													
+                                                                        echo "<div id='imagedisplay'>";        
+                                                                                                                                echo "<div id='thumb'>";
+                                                                                                                                echo "<a href='http://users.aber.ac.uk/mda/csgp07/images/".$imageid[$i].".jpg'rel='shadowbox'><img src='http://users.aber.ac.uk/mda/csgp07/images/".$imageid[$i].".jpg' height='87' width='156' ></img></a>";
+                                                                                                                                echo "</div>";
+                                                                                                                                echo "</div>";
+                                                                                                                }
+                                                                                                        
                                                         
                                                         
                                                         $query = "SELECT l.latitude, l.longitude, lw.title FROM Location l INNER JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
@@ -78,22 +89,22 @@
                                                         $lat = array();
                                                         $long = array();
                                                         $title = array ();
-														$shortDesc = array();
-														$longDesc = array();
+                                                                                                                $shortDesc = array();
+                                                                                                                $longDesc = array();
                                                         while ($value = mysqli_fetch_array($database->get_result())){
                                                                                 $lat[] = $value['latitude'];
                                                                                 $long[] = $value['longitude'];
                                                                                 $title = $value['title'];
                                                                                 //$shortDesc[] = $value['shortDesc'];
-																				//$longDesc[] = $value['longDesc'];                                                                                
+                                                                                                                                                                //$longDesc[] = $value['longDesc'];                                                                                
                                                         }
                                                         $query = "SELECT p.name, p.description FROM Place_description p JOIN Location l ON (p.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
                                                         $database->prepare_query($query);
                                                         $database->send_query($database->get_query());
                                                         while ($result = mysqli_fetch_array($database->get_result())){
-																	$title = $result['name'];
-																	$shortDesc[] = $result['description'];
-														}                                                      
+                                                                                                                                        $title = $result['name'];
+                                                                                                                                        $shortDesc[] = $result['description'];
+                                                                                                                }                                                      
                                                         $database->close_connection();                                                                                
                                                 ?>
                                  <script type="text/javascript">
@@ -158,6 +169,13 @@
                                                 }
                                                 google.maps.event.addDomListener(window, 'load', initialize);
                                 </script>
-					</div>
+                                        </div>
+                                     							
+					<div id = "sideBarRight">
+						<div id = "PictureTable">
+							<p>  Your Photos! </p>
+						</div>
+						 </div>
+	</div> 
 </body>
 </html>
