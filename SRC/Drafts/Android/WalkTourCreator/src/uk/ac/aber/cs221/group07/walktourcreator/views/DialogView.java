@@ -12,17 +12,29 @@ public abstract class DialogView implements DialogInterface.OnClickListener{
 
 	protected WalkScreen activity;
 	protected View layout;
+	protected AlertDialog dialog;
+	
+	
 	public DialogView(WalkScreen context, int viewLayout){
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(viewLayout, null);
 		this.layout = layout;
 		activity = context;
 		
-		new AlertDialog.Builder(context)
+		dialog = new AlertDialog.Builder(context)
 	    .setView(layout)
 	    .setPositiveButton(android.R.string.yes, this)
 	    .setNegativeButton(android.R.string.no, this)
-	    .show();
+	    .create();
+		
+		
+	}
+	public void show(){
+		dialog.show();
+	}
+	
+	public void dismiss(){
+		dialog.dismiss();
 	}
 	
 	@Override

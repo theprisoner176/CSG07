@@ -30,28 +30,30 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int earth=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f090012;
-        public static final int add_point_of_interest=0x7f090006;
-        public static final int edit_walk_btn=0x7f090007;
-        public static final int edit_walk_long_description=0x7f090011;
-        public static final int edit_walk_short_description=0x7f090010;
-        public static final int edit_walk_title=0x7f09000f;
-        public static final int finish_btn=0x7f090008;
+        public static final int action_settings=0x7f090013;
+        public static final int add_point_of_interest=0x7f090007;
+        public static final int edit_walk_btn=0x7f090008;
+        public static final int edit_walk_long_description=0x7f090012;
+        public static final int edit_walk_short_description=0x7f090011;
+        public static final int edit_walk_title=0x7f090010;
+        public static final int finish_btn=0x7f090009;
         public static final int gallery1=0x7f090004;
         public static final int gallery_btn=0x7f090003;
-        public static final int long_description_input=0x7f09000c;
+        public static final int linearLayout1=0x7f090006;
+        public static final int long_description_input=0x7f09000d;
         public static final int poi_description=0x7f090001;
         public static final int poi_title=0x7f090000;
-        public static final int short_description_input=0x7f09000d;
+        public static final int short_description_input=0x7f09000e;
         public static final int start_new_walk=0x7f090005;
-        public static final int submit=0x7f09000b;
+        public static final int submit=0x7f09000c;
         public static final int take_picture_btn_cam=0x7f090002;
-        public static final int textView1=0x7f09000a;
-        public static final int title_input=0x7f09000e;
-        public static final int walk_cancel_btn=0x7f090009;
+        public static final int textView1=0x7f09000b;
+        public static final int title_input=0x7f09000f;
+        public static final int walk_cancel_btn=0x7f09000a;
     }
     public static final class layout {
         public static final int activity_add_poi_dialog=0x7f030000;
@@ -60,8 +62,7 @@ public final class R {
         public static final int activity_walk_setup_screen=0x7f030003;
         public static final int cancel_walk_dialog=0x7f030004;
         public static final int edit_walk_dialog=0x7f030005;
-        public static final int main_screen=0x7f030006;
-        public static final int walk_finished_dialog=0x7f030007;
+        public static final int walk_finished_dialog=0x7f030006;
     }
     public static final class menu {
         public static final int add_poi_dialog=0x7f080000;

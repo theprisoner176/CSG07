@@ -45,6 +45,12 @@ public class WalkScreen extends Activity {
 	public RouteRecorder recorder;
 	
 	
+	//pop ups //change null to point 
+	private PoiDialogView poiDialog;;
+	//private CancelWalkView cancelDialog =  new CancelWalkView(this, R.layout.cancel_walk_dialog);
+	
+	//private EditWalkView editDialog = new EditWalkView(this,R.layout.edit_walk_dialog,walk);
+	//private WalkFinishedView walkFinishedDialog =new WalkFinishedView(this,R.layout.walk_finished_dialog, walk,this);
 	/**
 	 * This method is called automatically when the activity is created, all it
 	 *  does is starts sets the layout as specified in res/layout/activity_map_screen.xml
@@ -60,15 +66,13 @@ public class WalkScreen extends Activity {
 	
 	
 	public void setupIfNeeded(){
-		if(walk==null){
+		if(walk==null)
 			walk = (WalkModel) getIntent().getSerializableExtra("walk");
-		}
 		if(recorder==null){
 			//location manager to get location data
 			LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 			if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ))
 		        new GpsCheckDialog(this);
-		    
 			recorder = new RouteRecorder(this,walk,manager);
 		}
 	}
@@ -78,17 +82,19 @@ public class WalkScreen extends Activity {
 	 * @param v, is the object that called the method.
 	 */
 	public void addPOI(View v){
-		//LocationPoint point =  new LocationPoint(10,10);
+		LocationPoint point =  new LocationPoint(10,10);
 		
 		//used to test without gps location.
-		LocationPoint point =  recorder.getLastKnownPosition();
+		//LocationPoint point =  recorder.getLastKnownPosition();
 		
 		if(point==null){
 			Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
 			return;
 		}
-		
-		new PoiDialogView(this,R.layout.activity_add_poi_dialog,point,walk);
+		if(poiDialog==null||nextPoi==null){
+			poiDialog = new PoiDialogView(this,R.layout.activity_add_poi_dialog,point);
+		}
+		poiDialog.show();
 	}
 	
 	
@@ -97,6 +103,7 @@ public class WalkScreen extends Activity {
 	* @param v, is the object that called the method.
 	*/
 	public void finishWalk(View v){
+		//walkFinishedDialog.show();
 		new WalkFinishedView(this,R.layout.walk_finished_dialog, walk,this);
 	}
 	
@@ -116,7 +123,7 @@ public class WalkScreen extends Activity {
 	}
 
 	public void editWalkDialog(View v){
-		new EditWalkView(this,R.layout.edit_walk_dialog,walk);
+		new EditWalkView(this,R.layout.edit_walk_dialog,walk).show();
 	}
 	
 	/**
@@ -124,18 +131,24 @@ public class WalkScreen extends Activity {
 	* @param v, is the object that called the method.
 	*/
 	public void cancelWalk(View v){
-		new CancelWalkView(this, R.layout.cancel_walk_dialog);
+		new CancelWalkView(this, R.layout.cancel_walk_dialog).show();
 	}
 	
 	
 	public void getFromGallery(View v){
 		ImageHandler image = new ImageHandler(this);
 		image.getPhotoFromLibrary();
+		poiDialog.dismiss();
+		
 	}
+	
+	
 	public void getFromCamera(View v){
 		ImageHandler image = new ImageHandler(this);
 		image.getPhotoFromCamera();
+		poiDialog.dismiss();
 	}
+	
 	
 	public void addPoi(){
 		if(nextPoi!=null)
@@ -192,7 +205,7 @@ public class WalkScreen extends Activity {
 		else{
 			Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
 		}
-		new PoiDialogView(this,R.layout.activity_add_poi_dialog,null,walk);
+		poiDialog.show();
 	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event){

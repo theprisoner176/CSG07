@@ -20,19 +20,17 @@ public class PoiDialogView extends DialogView{
 	private WalkScreen activity;
 
 	
-	public PoiDialogView(WalkScreen context,int viewLayout, LocationPoint point,WalkModel w) {
-			super(context,viewLayout);
-			activity = context;
-			this.setInflaterView(inflater, layout);
-			
-			if(activity.nextPoi==null){
-				activity.nextPoi= new PointOfInterest(point);
-			}
-			else{
-				((EditText)view.findViewById(R.id.poi_title)).setText(activity.nextPoi.getTitle());
-				((EditText)view.findViewById(R.id.poi_description)).setText(activity.nextPoi.getDescription());
-			}
-			
+	public PoiDialogView(WalkScreen context,int viewLayout, LocationPoint point) {
+		super(context,viewLayout);
+		activity = context;
+		this.setInflaterView(inflater, layout);
+		if(activity.nextPoi==null){
+			activity.nextPoi= new PointOfInterest(point);
+		}
+		else{
+			((EditText)view.findViewById(R.id.poi_title)).setText(activity.nextPoi.getTitle());
+			((EditText)view.findViewById(R.id.poi_description)).setText(activity.nextPoi.getDescription());
+		}
 	}
 
 	@Override
@@ -51,7 +49,12 @@ public class PoiDialogView extends DialogView{
 	}
 	
 	public void setPointInfo(){
-		putDataInPoi();
+		String poiTitle = ((EditText)view.findViewById(R.id.poi_title)).getText().toString();
+		String poiDescription = ((EditText)view.findViewById(R.id.poi_description)).getText().toString();
+		
+		activity.nextPoi.setTitle(poiTitle);
+		activity.nextPoi.setDescription(poiDescription);
+		
 		if(activity.nextPoi.getTitle().length()!=0&&
 				activity.nextPoi.getTitle().length()!=0){
 			activity.addPoi();
@@ -60,12 +63,6 @@ public class PoiDialogView extends DialogView{
 		Toast.makeText(activity,"Place was not added,\nPlace must have a title and description",Toast.LENGTH_LONG).show();
 		activity.addPOI(null);
 		
-	}
-	public void putDataInPoi(){
-		String poiTitle = ((EditText)view.findViewById(R.id.poi_title)).getText().toString();
-		String poiDescription = ((EditText)view.findViewById(R.id.poi_description)).getText().toString();
-		activity.nextPoi.setTitle(poiTitle);
-		activity.nextPoi.setDescription(poiDescription);
 	}
 }
 
