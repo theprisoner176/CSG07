@@ -69,7 +69,7 @@ public class LocationPoint {
 	 * @param point the Location the you want the know the distance to
 	 * @return the distance between itself and the given Location
 	 */
-	protected double distanceTo(LocationPoint point){
+	public double distanceTo(LocationPoint point){
 		//the following function works for a 2D plane
 		// I think is should be different for the globe
 		double tempX;

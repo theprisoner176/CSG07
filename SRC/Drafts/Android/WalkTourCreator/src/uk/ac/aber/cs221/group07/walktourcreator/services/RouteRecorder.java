@@ -56,13 +56,6 @@ public class RouteRecorder extends Service{
 		return LastKnownPosition;
 	}
 	
-	/**
-	 * adds a PointOfInterest to the recorded path. 
-	 */
-	public void savePoi(PointOfInterest poi){	
-		walk.addLocation(poi);
-		this.finishWalk();
-	}
 	
 	/**
 	 * saves the location in the WalkModel object
@@ -70,10 +63,12 @@ public class RouteRecorder extends Service{
 	 */
 	public void newLocation(LocationPoint loc){
 		if(getLastKnownPosition()==null){
-			Toast.makeText(screen,"GPS Signal has been found\n",Toast.LENGTH_LONG).show();
+			Toast.makeText(screen,"GPS Signal has been found\nRecording has began\n",Toast.LENGTH_LONG).show();
+		}
+		else if(getLastKnownPosition().distanceTo(loc)>0.1){
+			walk.addLocation(loc);
 		}
 		setLastKnownPosition(loc);
-		walk.addLocation(loc);
 	}
 
 	/**
