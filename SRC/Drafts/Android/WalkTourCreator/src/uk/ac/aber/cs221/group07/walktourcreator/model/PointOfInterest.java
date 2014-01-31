@@ -40,17 +40,23 @@ public class PointOfInterest extends LocationPoint {
       images.add(newImage);
    }
 
-   /** returns all the images associated with this point. */
+   /**
+    *  @return all the images associated with this point. 
+    */
    public Vector<ImageInformation> getImages() {
       return images;
    }
 
-   /** returns the description of this place. */
+   /** 
+    * @return the description of this place. 
+    */
    public String getDescription() {
       return description;
    }
 
-   /** sets the description of this point. */
+   /** 
+    * @param desc, sets the description of this point.
+    */
    public void setDescription(String desc) {
       description = desc;
    }
@@ -64,24 +70,12 @@ public class PointOfInterest extends LocationPoint {
       return title;
    }
 
-   /** sets the title of this point. */
+   /** sets the title of this point.
+    * 
+    * @param title, new title
+    */
    public void setTitle(String title) {
       this.title = title;
    }
 
-   /**
-    * returns the longitude, the north/south distance from the equator.
-    */
-   @Override
-   public double getLongitude() {
-      return longitude;
-   }
-
-   /**
-    * returns the latitude, the north/south distance from the equator.
-    */
-   @Override
-   public double getLatitude() {
-      return latitude;
-   }
 }

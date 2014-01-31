@@ -34,7 +34,9 @@ public class WalkModel implements Serializable {
       path = new Vector<LocationPoint>();
    }
 
-   /** returns the name of the walk. */
+   /**
+    *  @return the name of the walk.
+    */
    public String getTitle() {
       return title;
    }
@@ -42,61 +44,57 @@ public class WalkModel implements Serializable {
    /**
     * Sets the name of the walk
     * 
-    * @param the
-    *           new name of the walk
+    * @param the new name of the walk.
     * */
    public void setTitle(String newTitle) {
       title = newTitle;
    }
 
-   /** returns a short description of the walk */
+   /**
+    *  @return a short description of the walk 
+    */
    public String getShortDescription() {
       return shortDesc;
    }
 
-   /** set the short description of the walk. */
+   /**
+    * @param newShortDesc,set the short description of the walk. 
+    */
    public void setShortDescription(String newShortDesc) {
       shortDesc = newShortDesc;
    }
 
-   /** returns a long description of the walk. */
+   /** 
+    * @return a long description of the walk.
+    */
    public String getLongDescription() {
       return longDesc;
    }
 
-   /** set the long description for the walk. */
+   /**
+    *  @param newShortDesc,set the long description for the walk.
+    */
    public void setLongDescription(String newLongDesc) {
       longDesc = newLongDesc;
    }
 
    /**
-    * returns a vector of all the LocationPoint in the walk. Including
+    * @return a vector of all the LocationPoint in the walk. Including
     * PointsOfInterests
     */
    public Vector<LocationPoint> getRoutePath() {
       return path;
    }
 
-   /** adds a LocationPoint to the walk. */
+   /** 
+    * adds a LocationPoint to the walk. 
+    * 
+    * @param point, the location you want to add
+    */
    public void addLocation(LocationPoint point) {
       path.add(point);
    }
 
-   /**
-    * Gets the last point of interest
-    * 
-    * @return PointOfInterest object
-    */
-   public PointOfInterest getLastPoi() {
-      PointOfInterest retval = null;
-      for (int i = path.size() - 1; 1 >= 0; i--) {
-         if (path.get(i) instanceof PointOfInterest) {
-            retval = (PointOfInterest) path.get(i);
-            break;
-         }
-      }
-      return retval;
-   }
 
    /**
     * works out the total distance traveled along the walk.

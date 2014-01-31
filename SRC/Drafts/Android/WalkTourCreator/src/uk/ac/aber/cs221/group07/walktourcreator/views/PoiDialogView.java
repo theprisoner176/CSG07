@@ -22,6 +22,9 @@ import android.widget.Toast;
 
 public class PoiDialogView extends DialogView {
 
+   /**
+    * holds the inflator used to create the view from the xml file
+    */
    private LayoutInflater inflater;
    private View view;
    private WalkScreen activity;

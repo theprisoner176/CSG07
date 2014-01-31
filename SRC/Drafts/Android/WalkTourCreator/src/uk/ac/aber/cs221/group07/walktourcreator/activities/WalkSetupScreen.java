@@ -51,6 +51,7 @@ public class WalkSetupScreen extends Activity {
       String long_desc = ((EditText) findViewById(R.id.long_description_input))
             .getText().toString();
 
+      //if any of the fields are empty then fail and display message
       if (title.length() == 0) {
          Toast.makeText(this,
                "A title must contains no white spaces\nAnd Must not be empty",
@@ -66,12 +67,14 @@ public class WalkSetupScreen extends Activity {
                "Detailed Description has to be under 1000 characters\nAnd Must not be empty",
                Toast.LENGTH_LONG).show();
       } else {
+         
+         //create and set values in a walk.
          WalkModel walk = new WalkModel();
          walk.setTitle(title);
          walk.setShortDescription(short_desc);
          walk.setLongDescription(long_desc);
          
-         // go to map screen and pass it the newly created walk
+         // go to walk screen and pass it the newly created walk
          Intent intent = new Intent(this, WalkScreen.class);
          intent.putExtra("walk", walk);
          startActivity(intent);

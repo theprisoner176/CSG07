@@ -29,14 +29,10 @@ import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
  */
 public class FileTransferManager {
 
-   /**
-    * Value for success of an upload
-    */
+   /** Value for success of an upload */
    private final static int UPLOAD_SUCCESS = 200;
   
-   /**
-    * The URL of the server to which data is sent
-    */
+   /** The URL of the server to which data is sent */
    private final static String dataServer = "http://users.aber.ac.uk/mda/csgp07/file_saver.php";
 
    /**
@@ -48,6 +44,8 @@ public class FileTransferManager {
     * @param w, the current walk's object
     */
    public FileTransferManager(WalkScreen screen, WalkModel w) {
+      //request system to run garbage collector,
+      //as the upload can be very big in memory
       System.gc();
       new Uploader(screen, w).start();
    }
@@ -58,7 +56,7 @@ public class FileTransferManager {
     * @param data, the walk that is to be uploaded.
     * @return the walk encoded into a json object.
     */
-   private static JSONObject packageData(WalkModel data) {
+   private JSONObject packageData(WalkModel data) {
       JSONObject walkData = new JSONObject();
       try {
          // add walk data
@@ -82,7 +80,7 @@ public class FileTransferManager {
     * @return the route as a JSONArray
     * @throws JSONException
     */
-   private static JSONArray packagepathData(Vector<LocationPoint> route)
+   private JSONArray packagepathData(Vector<LocationPoint> route)
          throws JSONException {
       JSONArray routeData = new JSONArray();
       for (LocationPoint point : route) {
@@ -112,8 +110,10 @@ public class FileTransferManager {
     * Sends the data as a POST message to the server
     * 
     * @param pakagedData the data to be sent.
+    * @param walk, is the actual walk that will be posted/uploaded
+    * @return a boolean status, true if upload succeeded.
     */
-   private static boolean post(JSONObject pakagedData, WalkScreen walk) {
+   private boolean post(JSONObject pakagedData, WalkScreen walk) {
       boolean status = false;
       HttpClient httpclient = new DefaultHttpClient();
       HttpPost post = new HttpPost(dataServer);
@@ -125,7 +125,7 @@ public class FileTransferManager {
          post.setEntity(new UrlEncodedFormEntity(dataPairs));
          // send message
          HttpResponse response = httpclient.execute(post);
-
+         
          status = response.getStatusLine().getStatusCode() == UPLOAD_SUCCESS;
 
       } catch (IOException e) {

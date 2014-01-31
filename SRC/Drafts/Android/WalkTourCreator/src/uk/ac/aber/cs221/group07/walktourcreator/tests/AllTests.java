@@ -28,17 +28,6 @@ public class AllTests {
       wm = new WalkModel();
    }
 
-   /**
-    * Checks if the object returned by the getLastPoi method is the same as the
-    * test object..
-    */
-   @Test
-   public void testGetLastPoi() {
-      LocationPoint lp = new LocationPoint(100, 100);
-      PointOfInterest poi = new PointOfInterest(lp);
-      wm.addLocation(poi);
-      assertSame(poi, wm.getLastPoi());
-   }
 
    /**
     * Checks if the vector returned by the getRoutePath method is the same as

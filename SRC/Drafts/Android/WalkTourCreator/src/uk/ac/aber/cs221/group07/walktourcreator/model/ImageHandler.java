@@ -42,7 +42,7 @@ public class ImageHandler {
 
    /**
     * Starts the system photo gallery browser, where the user can select an
-    * image.
+    * image.then will return to the 'owner'
     */
    public void getPhotoFromLibrary() {
       Intent intent = new Intent();
@@ -54,8 +54,8 @@ public class ImageHandler {
    }
 
    /**
-    * Starts a take-picture-intent that saves the taken picture and returns the
-    * filename
+    * Starts a take-picture-intent that saves the taken picture and passes the
+    * filename to 'owner'
     */
    public void getPhotoFromCamera() {
       Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -68,6 +68,7 @@ public class ImageHandler {
 
    /**
     * Creates the file that the camera will save the taken picture to.
+    * The filename is just the current system time in milliseconds.
     * 
     * @return a newly created file used to save the new photo
     */

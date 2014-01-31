@@ -22,26 +22,13 @@ public class LocationPoint {
    private long time;
 
    /**
-    * creates new LoactionPoint
-    * 
-    * @param lat
-    *           the longitude position
-    * @param lng
-    *           the latitude position
-    */
-   public LocationPoint(double lat, double lng) {
-      this(lat, lng, System.currentTimeMillis());
-   }
-
-   /**
-    * creates a LocationPoint, used to recreate a point stored in the database.
+    * creates new LoactionPoint at the given location.
     * 
     * @param lat the longitude position
     * @param lng the latitude position
-    * @param time, the time in milliseconds that this point was reached
     */
-   public LocationPoint(double lat, double lng, long time) {
-      this.time = time;
+   public LocationPoint(double lat, double lng) {
+      this.time = System.currentTimeMillis();
       this.latitude = lat;
       this.longitude = lng;
    }
@@ -68,18 +55,18 @@ public class LocationPoint {
    }
 
    /**
-    * works out the distance between two
+    * works out the distance between two locations.
     * 
     * @param point is the first location
     * @param point1 is the second location
     * @return the distance between the two locations in kilometers
     */
-
-   // A distance between two points given latitude and longitude function found
-   // on:
-   // http://stackoverflow.com/questions/837872/calculate-distance-in-meters-when-you-know-longitude-and-latitude-in-java
-
    public static double distBetween(LocationPoint point, LocationPoint point2) {
+      // A distance between two points given latitude and longitude function found
+      // on:
+      // http://stackoverflow.com/questions/837872/
+      //calculate-distance-in-meters-when-you-know-longitude-and-latitude-in-java
+
       double earthRadius = 3958.75;
       double dLat = Math.toRadians(point2.latitude - point.latitude);
       double dLng = Math.toRadians(point2.longitude - point.longitude);

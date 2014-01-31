@@ -48,7 +48,7 @@ public class WalkScreen extends Activity {
    public static String temp;
 
    /** holds the object that is responsible for tracking the path of the walk */
-   public RouteRecorder recorder;
+   private RouteRecorder recorder;
 
    /**Holds a reference to the add poi pop up window */
    private PoiDialogView poiDialog;
@@ -116,11 +116,10 @@ public class WalkScreen extends Activity {
    }
 
    /**
-    * creates and displays a EditWalkView.
+    * creates and displays an EditWalkView.
     * 
     * @param v, is the object that called the method.
     */
-
    public void editWalkDialog(View v) {
       new EditWalkView(this, R.layout.edit_walk_dialog, walk).show();
    }
@@ -135,10 +134,11 @@ public class WalkScreen extends Activity {
    }
 
    /**
+    * uses an ImageHandler to start a gallery intent
     * 
     * @param v, is the object that called the method.
     */
-   public void getFromGallery(View v) {
+   public void addImageToPoiFromGallery(View v) {
       ImageHandler image = new ImageHandler(this);
       image.getPhotoFromLibrary();
       poiDialog.dismiss();
@@ -146,17 +146,18 @@ public class WalkScreen extends Activity {
    }
 
    /**
+    *  uses an ImageHandler to start a camera intent
     * 
     * @param v, is the object that called the method.
     */
-   public void getFromCamera(View v) {
+   public void addImageToPoiFromCamera(View v) {
       ImageHandler image = new ImageHandler(this);
       image.getPhotoFromCamera();
       poiDialog.dismiss();
    }
 
    /**
-    * called by PoiDialogView to add poi to the walkModel
+    * called by PoiDialogView, used to add poi to the walkModel
     */
    public void addPoi() {
       if (nextPoi != null) {
@@ -182,7 +183,7 @@ public class WalkScreen extends Activity {
     * returns the user to the start screen, is called either after the upload has
     * finished or when the user cancels the walk.
     * 
-    * @param status,
+    * @param status, holds the status of the upload.
     */
    public void returnToStart(boolean status) {
       if (recorder != null) {
@@ -195,8 +196,11 @@ public class WalkScreen extends Activity {
 
    /**
     * called automatically when the current activity is returned to after
-    * requesting a result. here it is used to add the a picture (from the camera
-    * or gallery) to the walk.
+    * requesting a result from another activity. here it is used to add the
+    * a picture (from the camera or gallery) to the walk.
+    * 
+    * @param requestCode, is the number that was given the started activity on startup.
+    * @param resultCode, holds a status code from the Activity that was started.
     */
    @Override
    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -218,8 +222,11 @@ public class WalkScreen extends Activity {
    }
 
    /**
-    * overides the default behavior of the back/up button and maps it to 
+    * overrides the default behavior of the back/up button and maps it to 
     * open a cancel walk dialog instead.
+    * 
+    * @param keyCode, used to identify the pressed button.
+    * @param event, not used but required by android. (can be null)
     */
    @Override
    public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -230,12 +237,16 @@ public class WalkScreen extends Activity {
       return false;
    }
 
-   /*
-    * FROM
-    * http://stackoverflow.com/questions/2789276/android-get-real-path-by-uri
-    * -getpath
+   /**
+    * converts a Uri into an absolute filepath.
+    *  
+    * @param contentURI the uri that the you want the absolute path of.
+    * @return the filepath for the given Uri
     */
    private String getRealPathFromURI(Uri contentURI) {
+      //FROM
+      //http://stackoverflow.com/questions/2789276/android-get-real-path-by-uri
+      //getpath
       Cursor cursor = getContentResolver().query(contentURI, null, null, null,
             null);
       if (cursor == null) { // Source is Dropbox or other similar local file

@@ -20,7 +20,7 @@ public class ImageInformation {
 
    /**
     * The name of the actual file, is has to be unique to all other photos
-    * stored by the app
+    * stored in the phones gallery.
     */
    private String fileName;
 
@@ -34,7 +34,7 @@ public class ImageInformation {
    }
 
    /**
-    * Open file and returns it as Base64
+    * Open file and returns it as Base64 string.
     * 
     * @return file contents as Base64
     */
@@ -45,13 +45,14 @@ public class ImageInformation {
          File f = new File(fileName);
 
          fileData = new byte[(int) f.length()];
-
+         
+         //reads in file
          BufferedInputStream buf = new BufferedInputStream(new FileInputStream(
                f));
          buf.read(fileData, 0, fileData.length);
          buf.close();
+         //converts to base64
          retval = Base64.encodeToString(fileData, Base64.NO_WRAP);
-         // retval = new String(fileData, "UTF-8");
       } catch (Exception exc) {
       }
 

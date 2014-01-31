@@ -18,16 +18,14 @@ import android.os.Bundle;
 public class PositionListener implements LocationListener {
 
    /**
-    * A reference to the recorder in order to add the location information to a
-    * walk
+    * A reference to the recorder in order to add the location information to a walk
     */
    private RouteRecorder recorder;
 
    /**
-    * Constructor for the listener class
+    * creates a positionListener that will be attached to a locationManager,
     * 
-    * @param RouteRecorder
-    *           the recorder for the current walk
+    * @param RouteRecorder the recorder for the current walk.
     */
    public PositionListener(RouteRecorder rec) {
       recorder = rec;
@@ -36,8 +34,7 @@ public class PositionListener implements LocationListener {
    /**
     * Method that is called automatically each time a location is received
     * 
-    * @param Location
-    *           the location that needs to be added
+    * @param Location the location that needs to be added
     */
    @Override
    public void onLocationChanged(Location loc) {
