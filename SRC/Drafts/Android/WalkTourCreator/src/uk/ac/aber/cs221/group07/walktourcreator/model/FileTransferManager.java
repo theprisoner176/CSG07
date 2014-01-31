@@ -1,5 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.model;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
@@ -14,6 +15,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.os.Environment;
 
 import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
 
@@ -34,7 +37,7 @@ public class FileTransferManager {
   
    /** The URL of the server to which data is sent */
    private final static String dataServer = "http://users.aber.ac.uk/mda/csgp07/file_saver.php";
-
+   
    /**
     * makes a connection to data server and uploads all files belonging to the
     * given file, the return values will be zero if the method succeeded without
@@ -133,6 +136,7 @@ public class FileTransferManager {
       
       return status;
    }
+
 
    /**
     * An inner class that keeps the upload working in a separate thread.

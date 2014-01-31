@@ -89,22 +89,26 @@ public class WalkScreen extends Activity {
     * 
     * @param v, is the object that called the method.
     */
-   public void addPOI(View v) {
-      // used to test without gps location.
-      // LocationPoint point = new LocationPoint(10,10);
-      
-      LocationPoint point = recorder.getLastKnownPosition();
+   public void addPOI(View v){
+      if(v==null&&nextPoi!=null){
+          poiDialog = new PoiDialogView(this,R.layout.activity_add_poi_dialog,null);
+          poiDialog.show();
+          return;
+      }
+      //LocationPoint point =  new LocationPoint(10,10);
 
-      if (point == null) {
-         Toast.makeText(this, "Waiting for GPS\n", Toast.LENGTH_LONG).show();
-         return;
+      //used to test without gps location.
+      LocationPoint point =  recorder.getLastKnownPosition();
+
+      if(point==null){
+          Toast.makeText(this,"Waiting for GPS\n",Toast.LENGTH_LONG).show();
+          return;
       }
-      if (poiDialog == null || nextPoi == null) {
-         poiDialog = new PoiDialogView(this, R.layout.activity_add_poi_dialog,
-               point);
+      else if(poiDialog==null||nextPoi==null){
+          poiDialog = new PoiDialogView(this,R.layout.activity_add_poi_dialog,point);
+          poiDialog.show();
       }
-      poiDialog.show();
-   }
+  }
 
    /**
     * creates and displays a WalkFinishedView.
@@ -218,6 +222,7 @@ public class WalkScreen extends Activity {
       } else {
          Toast.makeText(this, "Image not added\n", Toast.LENGTH_LONG).show();
       }
+      poiDialog = new PoiDialogView(this,R.layout.activity_add_poi_dialog,null);
       poiDialog.show();
    }
 
