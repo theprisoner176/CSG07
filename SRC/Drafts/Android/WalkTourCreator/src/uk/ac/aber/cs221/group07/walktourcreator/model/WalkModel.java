@@ -98,7 +98,11 @@ public class WalkModel implements Serializable {
       return retval;
    }
 
-   /** returns the running total of km traveled. */
+   /**
+    * works out the total distance traveled along the walk.
+    * 
+    * @return the running total of km traveled. 
+    */
    public double getDistance() {
       double total = 0;
       for (int i = 0; i < path.size() - 1; i++) {
@@ -107,7 +111,11 @@ public class WalkModel implements Serializable {
       return total;
    }
 
-   /** returns the elapsed time since the walk was started. */
+   /** 
+    * works out the total time taken.
+    * 
+    * @return the elapsed time since the walk was started
+    */
    public double getTimeTaken() {
       if (path.size() == 0) {
          return 0;

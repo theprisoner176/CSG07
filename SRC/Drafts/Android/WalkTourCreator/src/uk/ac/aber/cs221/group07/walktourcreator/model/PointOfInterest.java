@@ -34,8 +34,7 @@ public class PointOfInterest extends LocationPoint {
    /**
     * adds reference to an image to the poi.
     * 
-    * @param newImage
-    *           ,is the image that is to be added
+    * @param newImage,is the image that is to be added
     */
    public void addImage(ImageInformation newImage) {
       images.add(newImage);

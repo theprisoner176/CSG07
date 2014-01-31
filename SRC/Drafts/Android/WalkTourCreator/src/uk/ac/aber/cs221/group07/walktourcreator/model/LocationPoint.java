@@ -70,10 +70,8 @@ public class LocationPoint {
    /**
     * works out the distance between two
     * 
-    * @param point
-    *           is the first location
-    * @param point1
-    *           is the second location
+    * @param point is the first location
+    * @param point1 is the second location
     * @return the distance between the two locations in kilometers
     */
 

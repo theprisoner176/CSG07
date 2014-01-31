@@ -41,7 +41,7 @@ public class WalkScreen extends Activity {
    /** The walk that is being */
    private static WalkModel walk;
 
-   /** SHOULD BE IMPROVED JUST USED NOW TO MAKE IT WORK */
+   /** used to share the next/current poi with the PoiDialogView */
    public PointOfInterest nextPoi;
 
    /** SHOULD BE IMPROVED JUST USED NOW TO MAKE IT WORK */
@@ -50,6 +50,7 @@ public class WalkScreen extends Activity {
    /** holds the object that is responsible for tracking the path of the walk */
    public RouteRecorder recorder;
 
+   /**Holds a reference to the add poi pop up window */
    private PoiDialogView poiDialog;
 
    /**
@@ -57,8 +58,7 @@ public class WalkScreen extends Activity {
     * does is starts sets the layout as specified in
     * res/layout/activity_map_screen.xml
     * 
-    * @param savedInstanceState
-    *           is not used in this case
+    * @param savedInstanceState is not used in this case
     */
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,11 @@ public class WalkScreen extends Activity {
       setupIfNeeded();
    }
 
-   public void setupIfNeeded() {
+   /**
+    * method, called onCreate, if certain values are null then they will be initialized
+    * else they'll be remain unchanged.
+    */
+   private void setupIfNeeded() {
       if (walk == null)
          walk = (WalkModel) getIntent().getSerializableExtra("walk");
       if (recorder == null) {
@@ -83,17 +87,12 @@ public class WalkScreen extends Activity {
    /**
     * creates and displays a AddPoiView.
     * 
-    * @param v
-    *           , is the object that called the method.
+    * @param v, is the object that called the method.
     */
    public void addPOI(View v) {
-      if (v == null) {
-         poiDialog.show();
-         return;
-      }
-      // LocationPoint point = new LocationPoint(10,10);
-
       // used to test without gps location.
+      // LocationPoint point = new LocationPoint(10,10);
+      
       LocationPoint point = recorder.getLastKnownPosition();
 
       if (point == null) {
@@ -110,19 +109,16 @@ public class WalkScreen extends Activity {
    /**
     * creates and displays a WalkFinishedView.
     * 
-    * @param v
-    *           , is the object that called the method.
+    * @param v, is the object that called the method.
     */
    public void finishWalk(View v) {
-      // walkFinishedDialog.show();
       new WalkFinishedView(this, R.layout.walk_finished_dialog, walk, this);
    }
 
    /**
     * creates and displays a EditWalkView.
     * 
-    * @param v
-    *           , is the object that called the method.
+    * @param v, is the object that called the method.
     */
 
    public void editWalkDialog(View v) {
@@ -132,13 +128,16 @@ public class WalkScreen extends Activity {
    /**
     * creates and displays a CancelWalkView.
     * 
-    * @param v
-    *           , is the object that called the method.
+    * @param v, is the object that called the method.
     */
    public void cancelWalk(View v) {
       new CancelWalkView(this, R.layout.cancel_walk_dialog).show();
    }
 
+   /**
+    * 
+    * @param v, is the object that called the method.
+    */
    public void getFromGallery(View v) {
       ImageHandler image = new ImageHandler(this);
       image.getPhotoFromLibrary();
@@ -146,12 +145,19 @@ public class WalkScreen extends Activity {
 
    }
 
+   /**
+    * 
+    * @param v, is the object that called the method.
+    */
    public void getFromCamera(View v) {
       ImageHandler image = new ImageHandler(this);
       image.getPhotoFromCamera();
       poiDialog.dismiss();
    }
 
+   /**
+    * called by PoiDialogView to add poi to the walkModel
+    */
    public void addPoi() {
       if (nextPoi != null) {
          walk.addLocation(nextPoi);
@@ -162,12 +168,22 @@ public class WalkScreen extends Activity {
       nextPoi = null;
    }
 
+   /**
+    * starts the FileTransferManager, that will upload the walkModel to server.
+    * and will display message to user saying that the upload has started
+    */
    public void uploadWalk() {
       Toast.makeText(this, "Upload has Started, it may take a while",
             Toast.LENGTH_LONG).show();
       new FileTransferManager(this, walk);
    }
 
+   /**
+    * returns the user to the start screen, is called either after the upload has
+    * finished or when the user cancels the walk.
+    * 
+    * @param status,
+    */
    public void returnToStart(boolean status) {
       if (recorder != null) {
          recorder.finishWalk();
@@ -201,6 +217,10 @@ public class WalkScreen extends Activity {
       poiDialog.show();
    }
 
+   /**
+    * overides the default behavior of the back/up button and maps it to 
+    * open a cancel walk dialog instead.
+    */
    @Override
    public boolean onKeyDown(int keyCode, KeyEvent event) {
       if (keyCode == KeyEvent.KEYCODE_BACK) {
