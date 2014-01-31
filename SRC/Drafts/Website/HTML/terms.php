@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>List of walks</title>
+        <title>Terms and conditions</title>
 
     <link rel="stylesheet" href="../css/main.css" media="screen" />
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -23,18 +23,20 @@
                 <ul>
                         <li><a href="index.php">Home</a></li>
                         <li><a href="list_walks.php">List Walks</a></li>
-                        <li><a href="terms.php">Terms & Conditions</a></li>
                 </ul>
         </nav>
+          
         <div id="homeImage">
-                    
-
+         <h2>Terms and conditions</h2>
+         <p> This is the property of Aberystwyth university and used for a group project. (group7) </p>
         
-        <p> Hello and welcome to Aber Tour Website page.  This website was created by Mosopefoluwa David Adejumo, Ryan Gouldsmith, Harry Flynn Buckley, Zack Lott, Mark Radcliffe Pitman, Jack Alexander Reeve Mark, Alexander Smith, Martin Vasilev Zokov, Maciej Wojciech Dobrzanski.</p>
-        <p> This website is linked with the andriod apoplication Walk tour. It allows you to take pictures on your designated walk, add a description and a title this picture. Once you have done this you can check the website to see your pictures, and the route on the map you have taken out. With this it will also show your point of interests on the map, and the picture that was taken there. </li>       
-       	<p> Please download our application and let everyone else enjoy your walk</p>
+		<p>I confirm that:</p>
+
+<p>This submission is a group work, except where clearly indicated.</p>
+<p>I understand that there are penalties for plagiarism, which can lead to loss of marks or even worse, stopping your degree.</p>
+<p>I have read the sections on unfair practice in the Students' Examinations Handbook and I have read from this <a class="link" href="http://www.aber.ac.uk/en/is/regulations/www/ "> site</a></p>
+<p>I understand and agree to abide by the University's regulations governing these issues.</p>
         </div>
-    
-    
+        
         </body>
 </html>

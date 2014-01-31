@@ -87,5 +87,9 @@ nav a:hover {
 }
 
 #homeImage {
-	margin-left: 33%;
+	margin-left: 25%;
+	margin-right: 25%;
+	color: white;
+	font-size: 20px;
+	padding: 10px	;
 }​

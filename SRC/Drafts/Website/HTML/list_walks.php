@@ -4,8 +4,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>List of walks</title>
-	<link rel="stylesheet" href="css/main.css" media="screen" />
-	<link rel="stylesheet" href="css/walk_list.css" media="screen" />
+	<link rel="stylesheet" href="../css/main.css" media="screen" />
+	<link rel="stylesheet" href="../css/walk_list.css" media="screen" />
 </head>
 <body>
 	<header>

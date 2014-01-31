@@ -16,7 +16,7 @@ div#container{
 
 
 .walk, p{
-        color:#ffffff;
+        color:#black;
 }
 
 /**
@@ -25,7 +25,7 @@ div#container{
 */
 
 div#map-details{    
-		overflow:hidden;    
+		/*overflow:hidden;  */  
         color: white;         
         width: 50%;
 		margin-right: auto;
@@ -44,7 +44,7 @@ div#map-details{
 
 
 .gm-style-iw{ 
-		overflow: hidden !important; 
+		/*overflow: hidden !important; */
 }
 
 
@@ -73,7 +73,7 @@ div#map-details{
 	font-family: Arial, Geneva, sans-serif;
 	font-size: 16px;
 	color: white;
-	
+	vertical-align:top;
 	width: 25%; 	
   	background-color:#53595F;
   	border:1px solid white;

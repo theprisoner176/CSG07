@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
         <title>List of walks</title>
-       <link rel="stylesheet" href="css/style.css" media="screen" />
-        <link rel="stylesheet" href="css/main.css" media="screen" />
+       <link rel="stylesheet" href="../css/style.css" media="screen" />
+        <link rel="stylesheet" href="../css/main.css" media="screen" />
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">  
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMaDwxzucsIfiT1sYyFKWIvDljXOWSeM0&sensor=false"></script>
