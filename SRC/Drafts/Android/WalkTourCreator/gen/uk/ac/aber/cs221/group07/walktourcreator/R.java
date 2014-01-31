@@ -80,6 +80,9 @@ public final class R {
          */
         public static final int cancel=0x7f060006;
         public static final int delete=0x7f060007;
+        public static final int edit_walk_description=0x7f06001e;
+        public static final int edit_walk_long_description=0x7f06001f;
+        public static final int edit_walk_title=0x7f06001d;
         public static final int hello_world=0x7f060002;
         public static final int instructions=0x7f06000c;
         public static final int long_description=0x7f060015;
@@ -88,6 +91,10 @@ public final class R {
         public static final int open_options_screen=0x7f06000e;
         public static final int options_popup=0x7f060012;
         public static final int play_pause=0x7f060013;
+        public static final int poi_edit_title_field=0x7f060019;
+        public static final int poi_enter_description_field=0x7f06001a;
+        public static final int poi_open_gallery=0x7f060018;
+        public static final int poi_take_photo=0x7f060017;
         public static final int short_description=0x7f060016;
         /**  Main Menu values 
          */
@@ -100,6 +107,8 @@ public final class R {
         public static final int title_activity_map_screen=0x7f060004;
         public static final int title_activity_walk_setup_screen=0x7f060005;
         public static final int view_previous_walks=0x7f06000f;
+        public static final int walk_screen_cancel=0x7f06001c;
+        public static final int walk_screen_edit_walk=0x7f06001b;
         /**  Start Screen values 
          */
         public static final int welcome_message=0x7f06000a;
