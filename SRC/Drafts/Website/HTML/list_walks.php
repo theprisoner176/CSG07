@@ -44,6 +44,7 @@
 					$database_count = new DatabaseWalk();
 					$database_count->connect();
 					echo "<div id='allwalks'>";
+					//list all the walks in the database
 					while ($walk = mysqli_fetch_array($database->get_result())){
 					
 						 $query = "SELECT * from Location l INNER JOIN Place_description d on l.id = d.locationID";

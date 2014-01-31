@@ -58,7 +58,7 @@
 							echo "<br/>";
 						}
 						echo '</div>';
-						
+						//get longitude and latitude
 						$query = "SELECT l.latitude, l.longitude FROM Location l JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
 						$database->prepare_query($query);
 						$database->send_query($database->get_query());
@@ -146,6 +146,7 @@
 										position: latLngValues[j],
 										map: map
 									});
+									//get all images from the database
 									var images = "";
 									for (l = 0; l < img.length; l++){
 										if( imgPlaceID[l]==descID[j] ){
@@ -187,7 +188,7 @@
 					<div id = "PictureTable">
 EOF;
 							
-							
+							//display all images in the side bar
 							echo "number of Images " . count($imageid);
 							for ($i = 0; $i < count($imageid); $i++){
 								echo "<div id='imagedisplay'>";	

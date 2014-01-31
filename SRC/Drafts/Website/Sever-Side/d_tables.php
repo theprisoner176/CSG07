@@ -10,7 +10,9 @@ $con=mysqli_connect("db.dcs.aber.ac.uk","csadmgp07","c54admgp07","csgp07_13_14")
 if(! $con ){
   die('Could not connect: ' . mysqli_error());
 }
-
+/**Deletes the location table
+*@param $con The database connection
+*/
 function deleteLocationTable($con){
 	$sql = "DROP TABLE IF EXISTS csgp07_13_14 . Location";
 	if(mysqli_query($con, $sql)){
@@ -20,7 +22,9 @@ function deleteLocationTable($con){
 		echo "Could Not Delete Location Table" . mysqli_error($con);
 	}
 }
-
+/**Deletes the List_of_Walks table
+*@param $con The database connection
+*/
 function deleteListOfWalksTable($con){
 	$sql = "DROP TABLE IF EXISTS csgp07_13_14 . List_of_Walks";
 	if(mysqli_query($con, $sql)){
@@ -30,7 +34,9 @@ function deleteListOfWalksTable($con){
 		echo "Could Not List of Walks Location Table" . mysqli_error($con);
 	}	
 }
-
+/**Deletes the Place_description table
+*@param $con The database connection
+*/
 function deletePlaceDescriptionTable($con){
 	$sql = "DROP TABLE IF EXISTS csgp07_13_14 . Place_description";
 	if(mysqli_query($con, $sql)){
@@ -40,7 +46,9 @@ function deletePlaceDescriptionTable($con){
 		echo "Could Not Delete Place Description Table" . mysqli_error($con);
 	}
 }
-
+/**Deletes the Photos table
+*@param $con The database connection
+*/
 function deletePhotoTable($con){
 	$sql = "DROP TABLE IF EXISTS csgp07_13_14 . Photo";
 	if(mysqli_query($con, $sql)){

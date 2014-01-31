@@ -9,7 +9,10 @@ session_start();
 if (mysqli_connect_errno()){
    	   echo "Failed to connect to MySQL: " . mysqli_connect_error($con);
 }
-
+ /**
+ *Creates all the table for Location and sets ID from List_of_Walks tables as the foreign key of walkID
+*@param $con The database connection 
+ */
  function createLocationTable($con){ 
  
 		$sql="CREATE TABLE Location(
@@ -29,7 +32,10 @@ if (mysqli_connect_errno()){
 		}
 
  }
-
+ /**
+ *Creates all the table for List_of_Walks
+*@param $con The database connection 
+ */
 function createListOfWalksTable($con){
 
 		$sql="CREATE TABLE List_of_Walks(
@@ -50,7 +56,10 @@ function createListOfWalksTable($con){
 		}
 
  }
- 
+  /**
+ *Creates all the table for Place_description and sets ID from Location tables as the foreign key of locationId
+*@param $con The database connection 
+ */
  function createPlaceDescriptionTable($con){
 
 		$sql="CREATE TABLE Place_description(
@@ -69,7 +78,10 @@ function createListOfWalksTable($con){
 		}
 	  
  }
- 
+ /**
+ *Creates all the table for Photos and sets ID from Place_description tables as the foreign key of placeId
+*@param $con The database connection 
+ */
  function createPhotoTable($con){
 
 		$sql="CREATE TABLE Photo(
