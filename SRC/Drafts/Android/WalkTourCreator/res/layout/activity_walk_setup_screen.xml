@@ -76,7 +76,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:maxLength="100"
-            android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:layout_below="@+id/textView1"
             android:ems="10"
             android:inputType="textPersonName"

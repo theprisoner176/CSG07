@@ -36,12 +36,9 @@ public class LocationPoint {
    /**
     * creates a LocationPoint, used to recreate a point stored in the database.
     * 
-    * @param lat
-    *           the longitude position
-    * @param lng
-    *           the latitude position
-    * @param time
-    *           , the time in milliseconds that this point was reached
+    * @param lat the longitude position
+    * @param lng the latitude position
+    * @param time, the time in milliseconds that this point was reached
     */
    public LocationPoint(double lat, double lng, long time) {
       this.time = time;

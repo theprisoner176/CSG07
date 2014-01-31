@@ -34,8 +34,7 @@ public class ImageHandler {
    /**
     * Creates a new ImageHandler object
     * 
-    * @param owner
-    *           the activity that initialized the object
+    * @param owner, the activity that initialized the object
     */
    public ImageHandler(WalkScreen owner) {
       this.owner = owner;
@@ -44,8 +43,6 @@ public class ImageHandler {
    /**
     * Starts the system photo gallery browser, where the user can select an
     * image.
-    * 
-    * @return information about the selected image
     */
    public void getPhotoFromLibrary() {
       Intent intent = new Intent();
@@ -59,8 +56,6 @@ public class ImageHandler {
    /**
     * Starts a take-picture-intent that saves the taken picture and returns the
     * filename
-    * 
-    * @return an image Information object that holds the filename.
     */
    public void getPhotoFromCamera() {
       Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -74,7 +69,7 @@ public class ImageHandler {
    /**
     * Creates the file that the camera will save the taken picture to.
     * 
-    * @return a newly created file
+    * @return a newly created file used to save the new photo
     */
    private File createFile() {
 

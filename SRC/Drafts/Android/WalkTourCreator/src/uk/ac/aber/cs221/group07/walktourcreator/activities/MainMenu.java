@@ -8,7 +8,7 @@ import android.view.View;
 
 /**
  * This class is responsible for displaying the main menu screen, and reacting
- * to button presses
+ * to button presses. It is the first screen that is presented to the user.
  * 
  * @author HarryBuckley
  * @author Martin Zokov
@@ -24,8 +24,7 @@ public class MainMenu extends Activity {
     * does is starts sets the layout as specified in
     * res/layout/activity_main_menu.xml
     * 
-    * @param savedInstanceState
-    *           , is not used in this case
+    * @param savedInstanceState, is not used in this case
     */
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +36,7 @@ public class MainMenu extends Activity {
     * Starts a new WalkSetupScreen activity, and displays it to the user. It is
     * called when the user presses the start walk button.
     * 
-    * @param v
-    *           is the View that is called the method.
+    * @param v is the View that is called the method.
     */
    public void startWalkSetupScreen(View v) {
       Intent intent = new Intent(this, WalkSetupScreen.class);

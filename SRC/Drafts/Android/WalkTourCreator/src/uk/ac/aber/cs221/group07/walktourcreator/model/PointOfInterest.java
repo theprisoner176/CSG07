@@ -25,6 +25,7 @@ public class PointOfInterest extends LocationPoint {
 
    /**
     * creates a PointOfInterest, at position x,y. The time is set automatically
+    * @param point, contains the location where this poi is.
     */
    public PointOfInterest(LocationPoint point) {
       super(point.latitude, point.longitude);

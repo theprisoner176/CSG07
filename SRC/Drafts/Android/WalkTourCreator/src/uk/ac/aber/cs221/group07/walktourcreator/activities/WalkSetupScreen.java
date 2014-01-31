@@ -27,8 +27,7 @@ public class WalkSetupScreen extends Activity {
     * does is starts sets the layout as specified in
     * res/layout/activity_walk_setup_screen.xml
     * 
-    * @param savedInstanceState
-    *           is not used.
+    * @param savedInstanceState is not used.
     */
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +40,7 @@ public class WalkSetupScreen extends Activity {
     * recording GPS data. The details that the user has input, are passed to the
     * new activity.
     * 
-    * @param v
-    *           is the View that called this method
+    * @param v  is the View that called this method
     */
    public void startWalk(View v) {
       // get input from text fields
@@ -72,6 +70,7 @@ public class WalkSetupScreen extends Activity {
          walk.setTitle(title);
          walk.setShortDescription(short_desc);
          walk.setLongDescription(long_desc);
+         
          // go to map screen and pass it the newly created walk
          Intent intent = new Intent(this, WalkScreen.class);
          intent.putExtra("walk", walk);

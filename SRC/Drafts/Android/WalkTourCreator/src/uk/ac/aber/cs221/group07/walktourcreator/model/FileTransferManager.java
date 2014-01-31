@@ -33,27 +33,20 @@ public class FileTransferManager {
     * Value for success of an upload
     */
    private final static int UPLOAD_SUCCESS = 200;
+  
    /**
     * The URL of the server to which data is sent
     */
    private final static String dataServer = "http://users.aber.ac.uk/mda/csgp07/file_saver.php";
 
    /**
-    * Value for error during an upload
-    */
-   public final static int UPLOAD_ERROR = 537;
-
-   /**
     * makes a connection to data server and uploads all files belonging to the
     * given file, the return values will be zero if the method succeeded without
     * problems.
     * 
-    * @param screen
-    *           , the walk screen of the current walk.
-    * @param w
-    *           , the current walk's object
+    * @param screen, the walk screen of the current walk.
+    * @param w, the current walk's object
     */
-
    public FileTransferManager(WalkScreen screen, WalkModel w) {
       System.gc();
       new Uploader(screen, w).start();
@@ -62,8 +55,7 @@ public class FileTransferManager {
    /**
     * Packages all the WalkModel as a JSON object
     * 
-    * @param data
-    *           , the walk that is to be uploaded.
+    * @param data, the walk that is to be uploaded.
     * @return the walk encoded into a json object.
     */
    private static JSONObject packageData(WalkModel data) {
@@ -86,8 +78,7 @@ public class FileTransferManager {
    /**
     * Packages the whole route as a JSON object
     * 
-    * @param route
-    *           that is being recorded
+    * @param route that is being recorded
     * @return the route as a JSONArray
     * @throws JSONException
     */
@@ -120,10 +111,8 @@ public class FileTransferManager {
    /**
     * Sends the data as a POST message to the server
     * 
-    * @param pakagedData
-    *           the data to be sent.
+    * @param pakagedData the data to be sent.
     */
-
    private static boolean post(JSONObject pakagedData, WalkScreen walk) {
       boolean status = false;
       HttpClient httpclient = new DefaultHttpClient();
@@ -133,8 +122,6 @@ public class FileTransferManager {
          List<NameValuePair> dataPairs = new Vector<NameValuePair>();
          dataPairs.add(new BasicNameValuePair("JSON", pakagedData.toString()));
 
-         // UrlEncodedFormEntity entity = new UrlEncodedFormEntity(dataPairs);
-         // entity.setContentType("application/json");
          post.setEntity(new UrlEncodedFormEntity(dataPairs));
          // send message
          HttpResponse response = httpclient.execute(post);
@@ -143,8 +130,7 @@ public class FileTransferManager {
 
       } catch (IOException e) {
       }
-
-      // walk.returnToStart();
+      
       return status;
    }
 
