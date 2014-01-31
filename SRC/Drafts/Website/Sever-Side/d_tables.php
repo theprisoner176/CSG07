@@ -53,11 +53,6 @@ function deletePhotoTable($con){
 
 if(isSet($_POST["table_delete"])){
 	
-			
-			
-
-			
-
 			deletePhotoTable($con);	
 			deletePlaceDescriptionTable($con);
 			deleteLocationTable($con);

@@ -58,15 +58,6 @@
 							echo "<br/>";
 						}
 						echo '</div>';
-						$query = "SELECT p.photoName FROM Photo p JOIN Place_description pd on(pd.id = p.placeId) JOIN Location l ON (pd.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
-						$database->prepare_query($query);
-						$database->send_query($database->get_query());                                                      
-						$imageid = array();
-						//$imageid[] = $database($_GET['photoName']);
-						//echo $database->get_result();
-						
-					
-						
 						
 						$query = "SELECT l.latitude, l.longitude FROM Location l JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
 						$database->prepare_query($query);
@@ -77,32 +68,56 @@
 						$name = array();
 						$shortDesc = array();
 						$longDesc = array();
+						$placeId = array();
 						while ($value = mysqli_fetch_array($database->get_result())){
 							$lat[] = $value['latitude'];
 							$long[] = $value['longitude'];
 																															 
 						}
-						$query = "SELECT p.name, p.description FROM Place_description p JOIN Location l ON (p.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
+						$query = "SELECT p.name, p.description, p.id FROM Place_description p JOIN Location l ON (p.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
 						$database->prepare_query($query);
 						$database->send_query($database->get_query());
 						while ($result = mysqli_fetch_array($database->get_result())){
 							$title[] = $result['name'];
 							$shortDesc[] = $result['description'];
+							$placeId[] = $result['id'];
 						}      
-						//echo count($title);                                                
-						                                                                                
-					?>
+	
+						$query = "SELECT p.photoName, p.placeId FROM Photo p JOIN Place_description pd on(pd.id = p.placeId) JOIN Location l ON (pd.locationID = l.id) JOIN List_of_Walks lw ON (lw.id = l.walkID) WHERE l.walkID='$walk_id'";
+						$database->prepare_query($query);
+						$database->send_query($database->get_query());                                                      
+						$imageid = array();
+						$placeIdImage = array();
+						while ($value = mysqli_fetch_array($database->get_result())) {
+							$imageid[] = $value['photoName'];
+							$placeIdImage[] = $value['placeId'];
+						}
+					
+						//Initialized for EOF JavaScript below
+						$latJ = json_encode($lat);
+						$lngJ = json_encode($long);
+						$titleJ = json_encode($title);
+						$shortDescJ = json_encode($shortDesc);
+						$imgJ = json_encode($imageid);
+						$imgPID = json_encode($placeIdImage);
+						$nameJ = json_encode($name);
+						$placeIdJ = json_encode($placeId);
+						
+					echo <<<EOF
 				<div id="map-canvas"> 
 					 <script type="text/javascript">
+
 						var map;
 						//sets up the array of lat values from the php array
-						var lat = <?php echo json_encode($lat); ?>;
+						var lat = $latJ;
 						//sets up the array of long values from the php long array
-						var lng = <?php echo json_encode($long); ?>;
-						var title = <?php echo json_encode($title); ?>;
-						var shortDesc = <?php echo json_encode($shortDesc); ?>;
-						var img = <?php echo json_encode($imageid); ?>;
-						//var name = <?php echo json_encode($name); ?>;
+						var lng = $lngJ;
+						var title = $titleJ;
+						var shortDesc = $shortDescJ;
+						var img = $imgJ;
+						var imgPlaceID = $imgPID;
+						var descID = $placeIdJ;
+						//var name = $nameJ;
 						function initialize() {
 						var mapOptions = {
 							zoom: 15,
@@ -131,9 +146,14 @@
 										position: latLngValues[j],
 										map: map
 									});
+									var images = "";
 									for (l = 0; l < img.length; l++){
-										popupInfoWindow(map, infowindow, "<h4>"+title[j]+"</h4>"+"<p>"+shortDesc[j]+"</p>"+"<img src='http://users.aber.ac.uk/mda/csgp07/images/"+img[j]+".jpg' height='87' width='156' ></img>", POI);
+										if( imgPlaceID[l]==descID[j] ){
+											images +="<img src='http://users.aber.ac.uk/mda/csgp07/images/"+img[l]+".jpg' height='87' width='156' ></img>";
+										}
 									}
+									popupInfoWindow(map, infowindow, "<h4>"+title[j]+"</h4>"+"<p>"+shortDesc[j]+"</p>"+images, POI);
+									
 								}
 						//adds a listener to each of the marker items
 							
@@ -165,11 +185,9 @@
 				</div>
 				<div id = "sideBarRight">
 					<div id = "PictureTable">
-						<?php
-							while ($value = mysqli_fetch_array($database->get_result())) {
-								$imageid[] = $value['photoName'];
+EOF;
 							
-							}
+							
 							echo "number of Images " . count($imageid);
 							for ($i = 0; $i < count($imageid); $i++){
 								echo "<div id='imagedisplay'>";	

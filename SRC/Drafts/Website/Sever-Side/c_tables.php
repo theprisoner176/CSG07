@@ -35,9 +35,9 @@ function createListOfWalksTable($con){
 		$sql="CREATE TABLE List_of_Walks(
 			id INT NOT NULL AUTO_INCREMENT,
 			PRIMARY KEY(id),
-			title VARCHAR (30) NOT NULL,
+			title VARCHAR (100) NOT NULL,
 			shortDesc VARCHAR (100) NOT NULL,
-			longDesc VARCHAR (500),
+			longDesc VARCHAR (1000),
 			hours FLOAT,
 			distance FLOAT
 			
