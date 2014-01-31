@@ -16,7 +16,7 @@ import android.widget.Toast;
  * @author Martin Zokov
  * @since 0.1
  * @version 0.1
- * 
+ * @(#)RouteRecorder.java 0.1 2014-01-31
  *          Copyright (c) 2013 Aberystwyth University. All rights reserved.
  */
 public class RouteRecorder extends Service {
@@ -32,9 +32,11 @@ public class RouteRecorder extends Service {
 
    /** PositionListener to process new location data. */
    private PositionListener posListener;
-
+   
+   /** The last known position of the user*/
    private LocationPoint LastKnownPosition = null;
-
+   
+   /** The current walk's screen*/
    private WalkScreen screen;
 
    /**
@@ -43,8 +45,6 @@ public class RouteRecorder extends Service {
     */
    public RouteRecorder(WalkScreen screen, WalkModel walk,
          LocationManager manager) {
-      // locationManager = (LocationManager)
-      // this.getSystemService(Context.LOCATION_SERVICE);
       this.screen = screen;
       this.walk = walk;
       locationManager = manager;
@@ -52,11 +52,16 @@ public class RouteRecorder extends Service {
       locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
             frequencyOfRecorder, 0, posListener);
    }
-
+   
+   /** sets the last known position
+    * @param newPoint the last known position*/
    private void setLastKnownPosition(LocationPoint newPoint) {
       LastKnownPosition = newPoint;
    }
 
+   /** Gets the last known position
+    * @return LocationPoint object
+    * */
    public LocationPoint getLastKnownPosition() {
       return LastKnownPosition;
    }

@@ -16,7 +16,7 @@ import android.widget.EditText;
  * @author Martin Zokov
  * @since 0.1
  * @version 0.1
- * 
+ * @(#)EditWalkView.java 0.1 2014-01-31
  *          Copyright (c) 2013 Aberystwyth University. All rights reserved.
  */
 public class EditWalkView extends DialogView {
@@ -45,7 +45,10 @@ public class EditWalkView extends DialogView {
       walk = w;
    }
 
-   /** Implementation of the listener's onClick method */
+   /** Implementation of the listener's onClick method 
+    * @param dialog the dialog that is shown
+    * @param which the id of the button that is pressed
+    * */
    @Override
    public void onClick(DialogInterface dialog, int which) {
       if (which == DialogInterface.BUTTON_POSITIVE)

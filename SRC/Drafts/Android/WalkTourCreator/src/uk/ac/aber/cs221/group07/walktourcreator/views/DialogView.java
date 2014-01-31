@@ -16,7 +16,7 @@ import android.view.View;
  * @author Martin Zokov
  * @since 0.1
  * @version 0.1
- * 
+ * @(#)DialogView.java 0.1 2014-01-31
  *          Copyright (c) 2013 Aberystwyth University. All rights reserved.
  */
 public abstract class DialogView implements DialogInterface.OnClickListener {
@@ -62,6 +62,8 @@ public abstract class DialogView implements DialogInterface.OnClickListener {
    /**
     * The onClick method that is called each time a button in the popup is
     * pressed
+    * @param dialog the dialog that is shown
+    * @param which the id of the button that is pressed
     */
    @Override
    public abstract void onClick(DialogInterface dialog, int which);

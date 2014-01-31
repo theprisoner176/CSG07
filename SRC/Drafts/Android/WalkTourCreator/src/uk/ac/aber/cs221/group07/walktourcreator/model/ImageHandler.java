@@ -17,7 +17,7 @@ import android.provider.MediaStore;
  * @author Martin Zokov
  * @since 0.1
  * @version 0.1
- * 
+ * @(#)ImageHandler.java 0.1 2014-01-31
  *          Copyright (c) 2013 Aberystwyth University. All rights reserved.
  */
 public class ImageHandler {

@@ -16,7 +16,7 @@ import android.view.View;
  * @author Martin Zokov
  * @since 0.1
  * @version 0.1
- * 
+ * @(#)WalkFinishedView.java 0.1 2014-01-31
  *          Copyright (c) 2013 Aberystwyth University. All rights reserved.
  */
 public class WalkFinishedView implements DialogInterface.OnClickListener {
@@ -25,8 +25,6 @@ public class WalkFinishedView implements DialogInterface.OnClickListener {
    /** Reference to the activity that created the popup */
    private WalkScreen activity;
 
-   // public WalkFinishedView(WalkScreen context, int viewLayout, WalkModel
-   // currentWalk,WalkScreen gMap) {
    /**
     * Constructor for the popup.
     * 
@@ -45,9 +43,6 @@ public class WalkFinishedView implements DialogInterface.OnClickListener {
       LayoutInflater inflater = (LayoutInflater) context
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       View layout = inflater.inflate(viewLayout, null);
-
-      // this.layout = this.getLayout();
-      // ((TextView)layout.findViewById(R.id.textView1)).getText().toString();
 
       new AlertDialog.Builder(context).setView(layout)
             .setPositiveButton(android.R.string.yes, this)
