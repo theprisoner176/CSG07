@@ -59,7 +59,7 @@ public class FileTransferManager {
     * @param data, the walk that is to be uploaded.
     * @return the walk encoded into a json object.
     */
-   private JSONObject packageData(WalkModel data) {
+   private static JSONObject packageData(WalkModel data) {
       JSONObject walkData = new JSONObject();
       try {
          // add walk data
@@ -83,7 +83,7 @@ public class FileTransferManager {
     * @return the route as a JSONArray
     * @throws JSONException
     */
-   private JSONArray packagepathData(Vector<LocationPoint> route)
+   private static JSONArray packagepathData(Vector<LocationPoint> route)
          throws JSONException {
       JSONArray routeData = new JSONArray();
       for (LocationPoint point : route) {
@@ -116,7 +116,7 @@ public class FileTransferManager {
     * @param walk, is the actual walk that will be posted/uploaded
     * @return a boolean status, true if upload succeeded.
     */
-   private boolean post(JSONObject pakagedData, WalkScreen walk) {
+   private static boolean post(JSONObject pakagedData, WalkScreen walk) {
       boolean status = false;
       HttpClient httpclient = new DefaultHttpClient();
       HttpPost post = new HttpPost(dataServer);
