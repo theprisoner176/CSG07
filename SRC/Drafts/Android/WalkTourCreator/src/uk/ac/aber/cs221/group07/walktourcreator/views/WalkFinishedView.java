@@ -17,50 +17,56 @@ import android.view.View;
  * @since 0.1
  * @version 0.1
  * 
- * Copyright (c) 2013 Aberystwyth University.
- * All rights reserved.
+ *          Copyright (c) 2013 Aberystwyth University. All rights reserved.
  */
-public class WalkFinishedView implements DialogInterface.OnClickListener{
-	/** Reference to the current walk*/
-	private WalkModel walk;
-	/** Reference to the activity that created the popup*/
-	private WalkScreen activity;
-	
-	//public WalkFinishedView(WalkScreen context, int viewLayout, WalkModel currentWalk,WalkScreen gMap) {
-	/** Constructor for the popup.
-	 * @param context the activity that created the popup
-	 * @param viewLayout id of the layout that will be used
-	 * @param currentwalk the current walk object
-	 * @param walkScreen the current walk screen*/
-	public WalkFinishedView(WalkScreen context, int viewLayout, WalkModel currentWalk,WalkScreen walkScreen) {
-		
-		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View layout = inflater.inflate(viewLayout, null);
-		
-		//this.layout = this.getLayout();
-		//((TextView)layout.findViewById(R.id.textView1)).getText().toString();
-		
-		new AlertDialog.Builder(context)
-	    .setView(layout)
-	    .setPositiveButton(android.R.string.yes, this)
-	    .setNegativeButton(android.R.string.no, this)
-	    .show();
-		
-		walk = currentWalk;
-		activity = walkScreen;
-	}
-	
-	/** Implementation of the listener's onClick method. If the user presses OK,
-	 * the walk is uploaded to the server*/
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		if(which == DialogInterface.BUTTON_POSITIVE){
-			activity.uploadWalk();
-		}
-		
-	}
+public class WalkFinishedView implements DialogInterface.OnClickListener {
+   /** Reference to the current walk */
+   private WalkModel walk;
+   /** Reference to the activity that created the popup */
+   private WalkScreen activity;
 
+   // public WalkFinishedView(WalkScreen context, int viewLayout, WalkModel
+   // currentWalk,WalkScreen gMap) {
+   /**
+    * Constructor for the popup.
+    * 
+    * @param context
+    *           the activity that created the popup
+    * @param viewLayout
+    *           id of the layout that will be used
+    * @param currentwalk
+    *           the current walk object
+    * @param walkScreen
+    *           the current walk screen
+    */
+   public WalkFinishedView(WalkScreen context, int viewLayout,
+         WalkModel currentWalk, WalkScreen walkScreen) {
+
+      LayoutInflater inflater = (LayoutInflater) context
+            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      View layout = inflater.inflate(viewLayout, null);
+
+      // this.layout = this.getLayout();
+      // ((TextView)layout.findViewById(R.id.textView1)).getText().toString();
+
+      new AlertDialog.Builder(context).setView(layout)
+            .setPositiveButton(android.R.string.yes, this)
+            .setNegativeButton(android.R.string.no, this).show();
+
+      walk = currentWalk;
+      activity = walkScreen;
+   }
+
+   /**
+    * Implementation of the listener's onClick method. If the user presses OK,
+    * the walk is uploaded to the server
+    */
+   @Override
+   public void onClick(DialogInterface dialog, int which) {
+      if (which == DialogInterface.BUTTON_POSITIVE) {
+         activity.uploadWalk();
+      }
+
+   }
 
 }
-
-

@@ -13,39 +13,54 @@ import android.os.Bundle;
  * @since 0.1
  * @version 0.1
  * 
- * Copyright (c) 2013 Aberystwyth University.
- * All rights reserved.
+ *          Copyright (c) 2013 Aberystwyth University. All rights reserved.
  */
 public class PositionListener implements LocationListener {
-	
-	/** A reference to the recorder in order to add the location information to a walk*/
-	private RouteRecorder recorder;
-	
-	/** Constructor for the listener class
-	 * @param RouteRecorder the recorder for the current walk*/
-	public PositionListener(RouteRecorder rec){
-		recorder = rec;
-	}
-	
-	/** Method that is called automatically each time a location is received
-	 * @param Location the location that needs to be added*/
-	@Override
-	public void onLocationChanged(Location loc) {
-		//Create a LocationPoint and set lat and lng to the recieved location
-		LocationPoint pos = new LocationPoint(loc.getLongitude(),loc.getLatitude());
-		
-		//send it to the recorder which saves it in the WalkModel
-		recorder.newLocation(pos);
-	}
 
-	
-	/**needed is class implements LocationListener but not used*/
-	@Override
-	public void onProviderDisabled(String arg0) {}
-	/**needed is class implements LocationListener but not used*/
-	@Override
-	public void onProviderEnabled(String arg0) {}
-	/**needed is class implements LocationListener but not used*/
-	@Override
-	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {}
+   /**
+    * A reference to the recorder in order to add the location information to a
+    * walk
+    */
+   private RouteRecorder recorder;
+
+   /**
+    * Constructor for the listener class
+    * 
+    * @param RouteRecorder
+    *           the recorder for the current walk
+    */
+   public PositionListener(RouteRecorder rec) {
+      recorder = rec;
+   }
+
+   /**
+    * Method that is called automatically each time a location is received
+    * 
+    * @param Location
+    *           the location that needs to be added
+    */
+   @Override
+   public void onLocationChanged(Location loc) {
+      // Create a LocationPoint and set lat and lng to the recieved location
+      LocationPoint pos = new LocationPoint(loc.getLongitude(),
+            loc.getLatitude());
+
+      // send it to the recorder which saves it in the WalkModel
+      recorder.newLocation(pos);
+   }
+
+   /** needed is class implements LocationListener but not used */
+   @Override
+   public void onProviderDisabled(String arg0) {
+   }
+
+   /** needed is class implements LocationListener but not used */
+   @Override
+   public void onProviderEnabled(String arg0) {
+   }
+
+   /** needed is class implements LocationListener but not used */
+   @Override
+   public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+   }
 }
