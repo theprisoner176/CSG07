@@ -48,7 +48,7 @@ public abstract class DialogView implements DialogInterface.OnClickListener {
             .setPositiveButton(android.R.string.yes, this)
             .setNegativeButton(android.R.string.no, this).create();
    }
-
+   
    /** Displays the popup */
    public void show() {
       dialog.show();
