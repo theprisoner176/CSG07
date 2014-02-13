@@ -1,0 +1,242 @@
+\documentclass[12pt, portrait]{article}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx, multirow}
+\usepackage{amsmath, array}
+\usepackage{fancyheadings, lastpage}
+\usepackage{pdflscape ,anyfontsize}
+\usepackage{longtable}
+\renewcommand{\refname}{}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Group Project 07 – Final Report}
+\rhead{(Draft) -Version 1.1}
+\lfoot{Aberystwyth University / Computer Science}
+\cfoot{}
+\rfoot{\thepage{}  of  \pageref{LastPage}}
+\begin{document}
+\pagestyle{fancy}
+\begin{flushleft}
+\rule[0.5cm]{13.8cm}{0.02cm}
+\end{flushleft}
+{\fontsize{20}{20}\selectfont \textbf {\centerline{Group Project 07 Final Report}}}
+\begin{flushleft}
+\rule[0.5cm]{13.8cm}{0.01cm}
+\end{flushleft}
+
+\begin{tabular}{ l l }
+
+\\ \multirow{1}{*}{\textit{Authors: }} & Mosopefoluwa David Adejumo \\  & Ryan Gouldsmith \\
+& Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
+\\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_FR\_01 \\
+\\ \multirow{1}{*}{\textit{Date} } & \today \\
+\\ \multirow{1}{*}{\textit{Version}} & 1.1 \\ 
+\\ \multirow{1}{*}{\textit{Status}} & Draft \\
+
+\end{tabular}
+
+
+\vspace{3.2cm}
+\hfill\begin{minipage}{\dimexpr\textwidth-0.3cm}
+Department of Computer Science \\
+Aberystwyth University \\
+Aberystwyth \\
+Ceredigion\\
+SY23 3DB \\
+Copyright \small{\copyright}\\ Aberystwyth University 2013
+\end{minipage}
+\newpage
+\tableofcontents{}
+\newpage
+\section{INTRODUCTION}
+\subsection{Purpose}
+This document displays how the project will be completed and any risks involved.  It outlines the requirements specified by the client as a series of documents.
+\subsection{Scope}
+This document should be read by all members of the group. It contains a list of tasks, the schedule and risks involved in the project. It also details what the application and server will be required to do.
+\subsection{Objective}
+\begin{itemize}
+\item List the platforms to be used for the project
+\item Provide a task schedule for the project 
+\item Provide a description of how the application and website will be used.
+\item Provide a list of risks and how to reduce their effects
+\item Provide an idea of the UI for the Android application and the website
+\item Provide a description of how the application and website can be navigated
+\end{itemize}
+\newpage
+\section{THE END-OF-PROJECT REPORT}
+\subsection{Management}
+The program satisfied most of the basic requirements. On the website, all the requirements were met and the user is able to view walks and their associated information including images, points of interest and the path of a walk. However on the Android, while the user is able to upload and record walks as well as edit the name of the walk and its descriptions, the Android application had a bug where it would crash after uploading a walk instead of returning to the home screen. This bug was identified before submission, however, a fix was found after the submission deadline, and thus not implemented in the final product. Users were also unable to edit or remove individual points of interest once created and thus to remove a point of interest, the walk had to be restarted. 
+\\\\
+There was also heavy feature creep much of which was removed from the final product. The feature creep resulted in time wasted on features that were cut. One main issue was displaying a map on the Android this was going to be used to display points of interest and allow editing of points of interest, but was cut due to difficulties in implementation. There was also an issue where the development on the website stagnated. This lack of progress led to the website being off schedule. Extra work was performed by the QA Manager to bring us back on schedule. A third issue was issues with decoding the JSON data on the server. To allow us to see what data was being sent, we created a log file and used it to assist in the coding of the decoder. Images were also converted to a string and decoded using base64.
+\\\\
+Overall, the team performed well, however the lack of progress on the web team caused issues late in development and the tasks had to be reorganized. The Android programmers performed exceptionally well, remaining on schedule. However, the manager spent times focusing on several areas particularly during coding week and so several members would occasionally cease to do work, having not been assigned a task. There were issues with Github not tracking the number of commits made by members, despite showing these commits in the log.
+\newpage
+\subsection{History}
+At the start of the project, the group were all required to produce reports of all work performed during the week which was usually a summary of the blog. These reports were submitted to the project manager to ensure the project remained on schedule. Planning began immediately and the project manager made several revisions to the Gantt chart and one of the members requested a change of roles which was included in the Gantt chart. 
+\\\\
+The project plan was produced during a meeting in which all members suggested the initial design of the system and their understanding of the requirements. MDA typed the document and used images created by MWD5 and JAR39. Subsequent documents were produced as a contributed effort where different members worked on their specialized areas. I.e the web programmers worked on the website aspect of the design specification, while the android programmers worked on the Android aspect. The class diagram was produced by HFB1 and approved by MDA. There was also a lack of Android devices in the group particularly among the Android programmers, and thus three devices were purchased due to the limitations of the emulator particularly with GPS coordinates.
+\\\\
+During the process of the project, meetings were held twice weekly, one on Tuesday’s with the Project Supervisor and a second on Fridays to discuss work during the week and goals for the next Tuesday meeting. These meetings helped identify and eliminate feature creep in some areas, but also resulted in the addition of feature creep in other areas. These meetings also were used to discuss changes in design before coding. One such instance was the use of the OpenSpace API. It was during a meeting that one of the Android programmers MVZ notified the project manager of the inefficiencies of the API and this resulted in the switch from OpenSpace to Google Maps API.
+\\\\
+During prototyping, several issues were encountered but allowed certain design decisions to be made early. Production of the website prototype had several issues. These included the lack of any dynamic code (PHP). However there was a map present in the website, and an idea of the behaviour of the website was given through the prototype. The Android progressed further during prototyping in which core features including basic navigation through screens and uploading text data were operational. However, the prototype did contain features which were removed later during development.
+\\\\
+Creation of the database also proved difficult, due to the decision to host it on the universities network. There were issues with creating the database but after enquiries by MAS69, the database was created but didn’t have any data. Due to an ongoing assignment, several group members were unable to focus on the group project. The project manager, who didn’t have any required assignments at the time, created a web based interface which was used to create and delete tables with ease. Over the Christmas holiday, RYG1 created a simple interface for manually adding information in the database as well as modifying a file which displayed all the information in the database. These scripts were later used extensively for testing. However by the start of the second semester, the database tables were not being joined correctly.
+\\\\
+During the Christmas holiday, RYG1 worked extensively on the website producing the basic files for the website, however the server still had no means of putting data in the database tables. The Android development also proceeded at a fair pace during this time, with the walk recorder being implemented. However, image uploading was not functional at the time. 
+\\\\
+After completion of the exams, a meeting was held to discuss plans for Integration and Coding Week and all progress made over the Christmas holiday. Integration and coding week saw all group members working from 9am to about 5pm or 6pm. The first day of the week saw the implementation of uploading basic walk information and elimination of all feature creep that had arisen during the planning stage. There were difficulties in reading the JSON data on the server and this led to the creation of a log file which proved useful for further development. By Tuesday, the website still was not functional to an acceptable state however the web programmers had developed code which turned out to only be functional for hard coded data. In order to increase the website development, the project manager began working on the file\_saver.php file which handled the data being received from the Android device. MAS69 assisted MDA in finding a tutorial on how to extract variables from the JSON data. 
+\\\\
+RYG1 was put on full website development while MWD5 began producing JUnit tests while ZAL also produced PHPUnit tests. Initially these were to be used for the file\_saver.php file, but lack of knowledge led to the removal of several tests. The project manager worked extensively on the file\_saver.php file on Tuesday and Wednesday and was able to add information to the database, however joining the tables was solved by RYG1. On the Android a conflict arose where the Android programmers had mapped the same button to different functions. While this initially was not seen as a major issue, MVZ was instructed to create a screen to override the button conflict. This presented an issue where the buttons on the screen were not functioning. This was solved by the project manager who passed the variables as required and this fix in turn solved another similar bug that had appeared elsewhere. By Wednesday, RYG1 had to refactor all the website code to bring in correct functionality and thus the remaining members of the web team were moved into production of CSS files and testing the walks. By Thursday, at the suggestion of the QA manager, the map being displayed on the Android was removed, due to group vote, although the project manager did not agree with such a move, it did help the project remain on schedule. By early morning, the website became fully operational, with the project manager displaying multiple images on the website when a point of interest is located. By this time, the Android satisfied most of the requirements, however during late testing a bug was discovered which caused the application to crash on upload. Friday morning was spent doing extensive bug fixing, testing and commenting code with Javadoc and PHP doc. The upload crash bug was partially solved, but the application began crashing after uploading. The project manager put a work deadline 15 minutes to the final deadline by which all work would stop. On submission, the group produced very little work during the next week, but the final documentation was completed shortly after a meeting on the week prior to the submission deadline.
+\\\\
+A large issue was misunderstanding the definition of MIME type and all images were converted to a string to decode. The image decoding had problems as decoders were unable to decode the text data. HFB1 used a text editor to remove backslashes which solved the problem so code was added to file\_saver.php to remove the escape slashes added by JSON.
+\newpage 
+\subsection{Final State}
+On the website, the project has been completed and the only known flaw was the map not displaying correctly on certain browsers. The website was tested on the following: Safari, Opera, Firefox, Internet Explorer, Google Chrome, Mobile Opera (Android), Android default browser and Mobile Safari (iPad). The following browsers had issues: Firefox – the map was displayed out of place, Android default browser: Did not display the map. All other features worked correctly.
+\\\\
+The database had constraints applied to its data as required and walks were stored correctly on the website. The Android device crashed when uploading a large number of images or after a completed upload. The crash was possibly caused by the recorder only stopping the recording on completion of the upload. However the device iterates through the array of locations during upload. If there is a GPS signal during upload, the crash occurs due to data being added to the array during iteration through said array. The application also crashed when attempting to upload without a connection to the internet, however the crash may have been caused be the aforementioned bug and we were unable to isolate the cause.
+\\\\
+The user is also only able to edit the overall walk details: name, long and short descriptions. Individual points of interest cannot be edited once created. There is no user feedback on edit completion, however there is feedback when recording starts. The recording may also stop after 15 minutes of inactivity due to the Android device terminating the service. This is probably caused by the method used to implement the service. On successful uploads, the user is returned to the start screen however, due to the bug discovered late, the application may crash instead of returning the user to the start screen. 
+\\\\
+There may be several grammatical issues as of yet unidentified in the program. The GPS may also cut out leading to erratic lines when viewing a walk. This is a device and GPS issue and cannot be resolved by the application. Places, Locations and photo ID’s are acquired by getting the ID of the last entry into the database, as a result, it may be possible to have details of a walk linked incorrectly if two or more walks are uploaded and processed within fractions of seconds from one another. However, we could not test this out and cannot verify as to whether or not it can occur. Any other errors have not been identified by the project members. 
+
+\newpage
+\subsection{Member Evaluation}
+\subsubsection{Mosopefoluwa David Adejumo}
+\centerline{\emph{Mosopefoluwa David Adejumo - MDA:} \textbf{Project Leader}}
+~\\
+MDA requested the creation of weekly reports to monitor group data and handed out tasks as well as oversaw the development of the project. Several aspects of feature creep were not identified or accounted for early on in planning which affected late development. Also occasionally put a lot of focus into single parts of the project resulting in slowed development in others. Development was brought back on schedule via task reorganisation. Also worked on the file\_saver.php file as well as displaying multiple images on the browser and minor bug fixing on the Android. Would send out emails regularly to group members requesting tasks be done. 
+\subsubsection{Ryan Gouldsmith}
+\centerline{\emph{Ryan Gouldsmith - RYG1:}\textbf{ Quality Assurance Manager}}
+~\\
+Oversaw the maintenance of standards in quality assurance. Assisted the project manager in overseeing the web programmers in development as well as performing extensive work on the website. Also worked on the Test Specification producing a large number of tests to be done. The QA performed well doing web development to keep the project on schedule and was easy to make contact with for the duration of the project. Also produced minutes for all the meetings when required. Reviewed the documents as required. Excellent performance throughout development.
+
+\subsubsection{Harry Flynn Buckley}
+\centerline{\emph{Harry Flynn Buckley - HFB1:}\textbf{ Android Programmer}}
+~\\
+Worked on Android coding. Developed the first prototype and worked on image integration of the Android application with both the camera and the library. Also integrated the uploading of the device and storing walks. Towards the end of coding week, he put a lot of effort into development and bug fixing in order to get the program to an acceptable state despite setbacks. Performed excellently throughout the project, and remained very active in keeping the project manager up to date with progress
+
+\subsubsection{Martin Vasilev Zokov }
+\centerline{\emph{Martin Vasilev Zokov - MVZ:}\textbf{ Android Programmer}}
+~\\
+Worked on Android coding. Implemented the recording of walks as well as some GUI screens. Coded the algorithms for adding points of interest and recording the walk as well as GPS integration and recording checking. After completion of tasks, worked on bug fixing and Javadocs. Excellent performance throughout the project. Although there was an occasional loss of communication, work continued as expected keeping the project on schedule.
+
+\subsubsection{Mark Alexander Smith}
+\centerline{\emph{Mark Alexander Smith - MAS69:}\textbf{ Web Programmer}}
+~\\
+Saw the creation of the database and provided assistance in decoding the JSON data. Also worked on the base template of CSS in the final product and performed extensive testing. One particular field test proved extremely useful in development. Occassinally slowed down development wise, but would quickly pick up, keeping the project on schedule. Great performance throughout the project and would perform tasks in a timely manner.
+\subsubsection{Jack Alexander Reeve}
+\centerline{\emph{Jack Alexander Reeve
+ - JAR39:}\textbf{ Web Programmer}}
+~\\
+Produced early prototypes of the website. Also produced the initial drawing of walks on maps between points of interest. Worked on CSS as well as website fixing and testing on different browsers. Also worked on the list walks.php file. Did lots of tidying up of the website,
+\subsubsection{Mark Radcliffe Pitman}
+\centerline{\emph{Mark Radcliffe Pitman - MRP2:}\textbf{ Web Programmer}}
+~\\
+Initially slow performance, and occasionally difficult to contact, worked on CSS of the final site as well as creation of the terms of service page. Picked up performance after the first day of coding week. Would perform tasks as soon as requested. Worked with other web programmers to produce CSS for the list walks page and also produced an early prototype for login page and worked on the website maps API. However this was not used as accounts were removed from the final project. Great performance during coding week. Also produced some PHP Unit tests when requested. Also worked on testing the website.
+\subsubsection{Zack Lott}
+\centerline{\emph{Zack Lott - ZAL:}\textbf{ Web Tester}}
+~\\
+Worked on the test specification and also produced a test report and worked on testing the website to ensure it met all the requirements. Also produced some PHP Unit tests which. Occasionally slowed down development during coding week. However this was due to lack of technical knowledge of PHP Unit testing. Picked up performance, once PHP Unit was learnt. Also did extensive field testing of the Android and testing of the website. Great performance particularly during coding week.
+\subsubsection{Maciej Wojciech Dobrzanski}
+\centerline{\emph{Maciej Wojciech Dobrzanski - MWD5:}\textbf{ Android Tester}}
+~\\
+Worked on the test specification. Was initially working solely on documents but requested to be moved to testing, to increase involvement in the group project. Was particularly eager to contribute and offered assistance where necessary or requested tasks to perform. Produced extensive JUnit tests and extensive Android testing and identification of bugs. Performed well and completed tasks in a timely manner throughout the project. Also produced several UML diagrams for the project. 
+\newpage
+\subsection{Team Evaluation}
+As a team there were occasional issues mainly due to miscommunication or lack of communication. However, when all members were present and actively working together, development would progress rapidly as conflicts both program wise and personality wise were easily resolved. Consistent reports helped keep the project on schedule. However, communication could have been improved as there were issues that members had that the project leader would be unaware of, but would be notified eventually, usually during a meeting where the project supervisor was present. 
+~\\\\
+The team members collaborated with each other well, preventing an overlap of tasks and allowing development to proceed smoothly as well as helping keep feature creep out of the final product. If things were to improve, it would be to improve communication as that was the main issue with the group. Contacting each other was rarely the issue, it was mainly due to interpreting statements and sentences, possibly due to cultural differences of the members.
+~\\\\
+Tasks could also be monitored an better allocated to a more precise level and to take advantage of the strengths and weaknesses of each of the group members, with members sorting out issues with the affected members as needed.
+~\\\\
+The project also had issues with understanding the requirements and identifying feature creep. There was a large amount of feature creep initially and if these had been identified and removed earlier on, there may have been more time for bug fixing, and the Android may have been able to fully implement the requirements. Another issue was understanding and interpreting the requirements. Better contact or communication with the client should have been taken. This would have helped keep things to the point as the final product would better match what the client wanted as the specification given was vague in certain areas. This led to development of features or planning of features which were not required and thus time and spent or wasted performing those tasks.
+~\\\\
+It is important for members to work closely together and maintain communication and collaboration with each other. A project must be managed to a precise level and all problems should be taken up and sorted out with the appropriate person, be they the client or another member of the team. Also, in order to ensure a project is completed on time, the manager should assign tasks based on the feedback of the team members and the technical knowledge of such tasks. With a team it is fairly easy to run into conflicts in development due to poor communication and these can in turn have a greatly negative impact on the final product.
+\newpage
+\section{APPENDICES}
+\subsection{The Project Test Report}
+\newpage
+\subsection{The Project Maintenance Manual}
+\newpage
+\subsection{Personal Reflective Reports}
+\subsubsection{Martin Vasilev Zokov}
+The group project was an interesting experience from which I learned a lot. The task to make an Android application seemed a bit hard at first, but there are a lot of resources which help with understanding the problems we needed to deal with. I wanted to be one of the programmers on the projects so I was given tasks to implement some of the features in the Android application. During the process of developing the application, I learned a lot about the Android platform and how it works. Now I feel confident that I can use the knowledge gained to work on real projects for the Android platform.
+~\\\\ 
+Another great aspect of the group project is that I learned a lot about the way that commercial software is built. We were practically using the Waterfall model to implement our application and this gives insight into the way the industry works. I also improved my team working skills greatly, because the project concentrates heavily on collaboration between each member in the team. Not only about decisions that need to be made, but also when implementing certain aspects of the system, programmers should work with each other in order to create a working application.
+~\\\\ 
+The group leader (mda) did a very good job with the task allocation and I feel that I was getting along with all of my teammates. We had no misunderstandings as a group and we worked pretty well in a team.
+\subsubsection{Ryan Gouldsmith}
+I feel that my contribution to this project has been extensive. First of deciding roles for the group was relatively straight forward, and although some people ended up being moved around to other tasks later on in the project to help with the lack of work being put forward, we all agreed that this was probably the best balance of skills in our group. I was delegated the role of Quality Assurance Manager, as well as helping with any issues to do with GitHub. Prior to the coding week, I was there to ensure that all the documents were adhered to by the standard specification that we received. As a group we all read the standard documents so we knew the outline for each of the documents that we were given. I thought we worked well as a team to help ensure that everything was to standard; overall, with the Quality Assurance I felt that we all worked together well and that standards were mostly adhered to.
+~\\\\
+However, around the Christmas period the Web Development team began to fall behind with the work. Therefore, Dave asked if I could assist in pushing forward with the Web site because it was falling behind - and as I had prior knowledge of HTML and PHP I was happy to do so. However, this continued into Integration and Testing week in which I had to code majority of the website - as the Web team may have been struggling to complete the work. I felt that the web programmers had done prior PHP courses at University, which wasn't too dissimilar from our group project, and I feel they could have done a little bit more towards the implementation.
+~\\\\
+I found my team very easy to get a long with, and we didn't have any overall major disagreements. I thought were all cohersed well as a unit, and we managed to discuss the different alternatives that we all decided. I think that we all made an effort to be there for our group meetings, showing we were all engaged in the project. I felt the most difficult aspect of the project was Integration and Testing week. I thought that this was a very long week, and trying to juggle 3 different aspects was very challenging; I had be QA to make sure if we edited docs they were still in standard, code the functionality of the website and help with the decoding of the JSON file from the Android. However, it was enjoyable being able to work as a team and when I didn't have not the correct solution someone could input: this was present with Dave's help with the multiple images on the website. 
+~\\\\
+From this project I feel that I have expanded additional web knowledge. Having only basic knowledge of PHP and Javascript, it was good to be able to use this knowledge to produce an application which was flexible with the data that you gave it. I didn't however, have prior knowledge of how JSON worked, so having working decoding the JSON to put it into out Database was good and rewarding when we managed to be able to solve the issue, which stopped us for a couple of days. Additionally, the database design proved a bit of an issue as we were getting JOIN confused with foreign key, eventually we solved this and managed to sort out a database which is suitable to the design. However, I am happy I did manage to expand my knowledge on Javascript and learning different programming techniques in the language: such as arrays and loops.
+~\\\\
+From the process I have learnt a great deal of useful information. I would happily work with my group again, but I feel that we could have potentially utilised the experience and confidence in programming a bit better. I would therefore have prefered to move to web development team from the start. However, I believe we have worked well as a team and I am happy with my contribution towards the final product.
+\subsubsection{Zack Lott}
+In CS22120 we was assigned a group project where we had to make a application and website.
+We had weekly meetings with Neil about the progress of the application and website. This allows us to review the changes we did to the assignment. Our meetings were on a Friday at 10am but we occasionally had extra meetings with and without Neil to figure out what needed to be done to push the assignment forward. 
+~\\\\
+My role for this assignment was to be a tester, this meant I had to test the application and website, to check for bugs, errors and to make sure they met the requirements. I used the test specification that was created by the group with tests that were required, but with the web we used web validations and php unit testing.
+~\\\\
+From this assignment I have learnt new methods and ways of doing php from checking over the web code and creating php unit testing, before this module I hadn't learn php unit testing so with the help of Dave(mda), he helped me understand what it was doing and how to write/read it correctly. While doing the testing it made me understand the real purpose of testing, because checking the little things like checking for symbols in any text box can affect the whole application, this meant I spent a lot of my time while doing the works looking for ways that would break the application or make it crash, I managed to do this a few times but with that information our android workers put in a lot of effort and hard work to fix any problems I gave them.
+~\\\\
+The assignment did cause me a few problems but this was due to me not understanding many things due to me not studying 2nd part of java in the first year, but Ryan(ryg1) and Dave(mda) would quickly explain what it meant and how to solve the problem, this allows me to carry on with the work. If it was to hard then Dave would quickly reassign me something else so we could always keep the assignment going forward.  
+~\\\\
+I believe the group worked well, everyone got a lot with each other, we all had a laugh and they motivated me to work harder. Dave(mda) was a great leader, you could go to him with any problem and he would drop everything to help try and fix it for you. Ryan(ryg1) was also a great vice-leader as he was always there if Dave was busy and was ready to step in if Dave was unable to attend the meeting. These both helped me with the assignment if I needed anything and they always made sure I was either testing or finding out information for them. 
+\subsubsection{Jack Alexander Reeve}
+My role in the team on this project was a web programmer / designer. This meant I was responsible for designing, building and populating the website. I mainly worked on this with Mark Pitman and Ryan.
+~\\\\
+Throughout this group project I feel as though I have made an acceptable contribution tothe development of the system. In the design stages of the project I wrote up page descriptions for the website and made page designs in Adobe Photoshop. This work was used in the design specification document. I made a base template in HTML and CSS which was developed further into the finished design. In Integration and testing week I
+spent a lot of time coding parts of the website. I feel that my knowledge of databases is a little limited so this made it difficult to work on pulling the walk details out of the database and listing it on the website. I worked with Ryan on this.
+~\\\\
+I was able to pull images from the database but I wasn't sure how to pull only the images corresponding to the correct walk. Towards the start of the week I worked on plotting points and drawing lines on the map using the Google Maps API. To start with, we just plotted points using dummy long and lat values. Then I worked on getting the JavaScript code to read these values from PHP variables so that the points plotted on the map were correct. I also worked on displaying POI descriptions and titles in the pop outs from the location pins.
+~\\\\
+Communication in the team was fairly good. We used emails to organise things such as group meetings. This was a method that was reliable as everyone in the team checks their university account on a regular basis. We had meeting at least once a week but often more, at locations and times suitable for all. Sometimes we worked on aspects of the project at these meetings but most of the time we worked on sections at home and
+compiled them in the meetings.
+~\\\\
+Overall I feel we did well on the project as a group. We had a good spread of strengths which meant we were able to put in a good effort on all aspects of the project. We also had members with different skill levels which was good because it allowed other members of the team to learn.
+~\\\\
+I think if I was taking part in another project similar to this I would do more background research and learn more about the language I would be using. I had already worked with PHP, HTML5, JavaScript and CSS but not in as much detail as this project required. I should have researched specifically how to do what I needed to do well in advance of integration and testing week. Throughout integration and testing week I found myself having to research certain problems online. ~\\\\
+I am fairly happy with the final system. We met the requirements and I feel that if we
+had more time we would have been able to implement some extra features (such as
+editing walk descriptions, deleting walks etc.) I also think we could have maybe
+improved the look and design of the site, although it is functional and is all that is
+needed for this purpose
+\subsubsection{Mosopefoluwa David Adejumo}
+For the CS22120 Group Project, I had the role of group leader. I chose this because I had experience leading teams and had knowledge of both web and android development.~\\\\
+Initially, I found the role somewhat difficult, particularly in keeping all group members engaged and keeping the project on schedule. To assist me in monitoring the progress of all members, and ensure all members were contributing, I requested all members produce weekly reports which would be a summary of the work done in the last week and later on the reports would be a summary of the blog. This was useful in monitoring the amount of time each member spent on the project. ~\\\\ 
+The reports were also useful for monitoring areas where members had problems. Weekly group meetings were arranged early and I made sure all members were kept up to date with proceedings of each meeting. Many issues were brought up during meetings by or with our project supervisor some of which would be solved during the Friday meeting. ~\\\\
+I found the prototyping slow on the website end and decided to break work down into individual pages for the web prototyping. Despite initial setbacks, the members were generally responsive with instructions and I found, the carried out the tasks relatively quickly. The only issues I found serious was the lack of web development over the Christmas holiday and I lost contact with the web programmers and thus asked the quality assurance manager to begin development on the website. I ensured all members were able to contact me with ease particularly with issues. ~\\\\ 
+I found pre-assigning tasks for coding week somewhat difficult due to my inability to determine how easily a task would be accomplished, however I did find it fairly simple to do overall planning and set milestones. The project supervisor suggested I use hour based deadlines/timeframes for project tasks. I found this difficult and the group members preferred our existing system whereby deadlines were set on specific days. I.e. instead of spending a limited number of hours on a task, the task would have to be completed by a particular day. This system worked for the members. The project supervisor also suggested involving more group members, but the group members and I wanted to avoid this as it could compromise the system which we had and was working as required. ~\\\\
+Overall I think the group performed well and constantly kept me up to date with all progress made. They would quickly work on a task that I instructed and lack of technical knowledge was the main barrier to accomplishing tasks. If they had issues they would keep me informed and also notify me about problems. I found it easy to explain certain areas to them, though there were issues of misinterpretation of instructions or statements. If they had issues it was easy to solve and while there were situations where several members would have problems, the members were very intuitive at solving them. This allowed me to assist multiple members in a short space of time and thus keep development on schedule.~\\\\
+I did find several members putting in more effort than others, though this was possibly due to the different areas they worked on and the fact that some members did not understand certain concepts which was brought to my attention and thus, I believe the members cannot be faulted as they would quickly pick up work were problems were encountered. I made several jokes to keep the mood light hearted and keep morale high, which had effects as there were times particularly during integration and testing week when members became overly burdened with work and thus I would instruct them to rest as required while I took up the task they had issues with in an attempt to solve them.~\\\\
+I learned a lot about the importance of feature creep identification during the project and the importance of communication between all the members and feel my team performed extraordinarily well.
+\subsubsection{Mark Radcliffe Pitman}
+The group worked well together and there were little arguments, which was good. Everyone had there role and stuck too it. ~\\\\
+My role was the web part. Mostly CSS but helped with the HTML and PHP too. I attended most meeting with the tutor and our general meetings. I missed 2 or 3 meetings for good reasons.  We had meeting every Friday at 10am. Occasionally we had extra meeting if something needed to be sorted. ~\\\\
+I learnt a lot for this project from working with a group and more knowledge on HTML, PHP and CSS. I researched a lot on PHP and the assignment I did for web helped a lot. Also learnt a bit from the android side. It felt good once everything was done and everyone’s work came together. When seeing the app uploading to the database and it shows on the website felt fulfilling.  ~\\\\
+The leader did a very good job keeping everyone busy and telling everyone what needs to be done and by when. Was very supportive and tried to help everyone with their jobs if they needed help.~\\\\
+We did have problems like the website wasn’t receiving from the database and show on the map. Problems with the images to show up. The info box sometime didn’t show what we wanted. The CSS could mess things up with the texts, for example, making the page smaller, the words would move around where they shouldn’t be. This was all fixed after other people started helping each other cause they finished their part of the job. This showed good teamwork. ~\\\\
+Personally I enjoyed working as a group. I felt more motivated cause I didn’t want to disappoint the group. If something wasn’t done then it just doesn’t affect you but the whole group.~\\\\
+ There were some stressful moments when things weren’t working but that was expected. Nothing was really left to the last minute because the leader wanted things to be done some time before the deadline so it can be checked and changed. Glad everything went mostly well and it is finally done.
+\newpage
+\subsection{Revised Project Plan}
+\newpage
+\subsection{Revised Design Document}
+\newpage
+\section{REFERENCES}
+\newpage
+\section{DOCUMENT HISTORY}
+\setlength\LTleft{-0.5cm}
+\begin{longtable}{|p{1.3cm}|p{1.5cm}|p{2cm}|p{7cm}| p{2cm}|}
+\hline
+	Version & CFF No. & Date & Section Changed From Previous Version & Changed by \\
+\hline
+	1.0&N/A&13/02/2014&Set the Original Document Layout&RYG1
+ \\ 
+\hline
+	1.1&N/A&13/02/2014&Added other team members reports.&RYG1 \\
+\hline
+\end{longtable}
+\end{document}

@@ -1,0 +1,686 @@
+\documentclass[12pt, portrait]{article}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx, multirow}
+\usepackage{amsmath, array}
+\usepackage{fancyheadings, lastpage}
+\usepackage{pdflscape ,anyfontsize}
+\usepackage{longtable}
+\renewcommand{\refname}{}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Group Project 07 – Test Specification}
+\rhead{(Release) -Version 2.7}
+\lfoot{Aberystwyth University / Computer Science}
+\cfoot{}
+\rfoot{\thepage{}  of  \pageref{LastPage}}
+\begin{document}
+\pagestyle{fancy}
+\begin{flushleft}
+\rule[0.5cm]{13.8cm}{0.02cm}
+\end{flushleft}
+{\fontsize{20}{20}\selectfont \textbf {\centerline{Group Project 07 Test Specification}}}
+\begin{flushleft}
+\rule[0.5cm]{13.8cm}{0.01cm}
+\end{flushleft}
+
+\begin{tabular}{ l l }
+
+\\ \multirow{1}{*}{\textit{Authors: }} & Mosopefoluwa David Adejumo \\  & Ryan Gouldsmith \\
+& Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
+\\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_TEST\_01 \\
+\\ \multirow{1}{*}{\textit{Date} } & \today \\
+\\ \multirow{1}{*}{\textit{Version}} & 1.8 \\ 
+\\ \multirow{1}{*}{\textit{Status}} & Release \\
+
+\end{tabular}
+
+
+\vspace{3.2cm}
+\hfill\begin{minipage}{\dimexpr\textwidth-0.3cm}
+Department of Computer Science \\
+Aberystwyth University \\
+Aberystwyth \\
+Ceredigion\\
+SY23 3DB \\
+Copyright \small{\copyright}\\ Aberystwyth University 2013
+\end{minipage}
+\newpage
+\tableofcontents{}
+\newpage
+\section{INTRODUCTION}
+\subsection{Purpose}
+This document displays how the project will be completed and any risks involved.  It outlines the requirements specified by the client as a series of documents.
+\subsection{Scope}
+This document should be read by all members of the group. It contains a list of tasks, the schedule and risks involved in the project. It also details what the application and server will be required to do.
+\subsection{Objective}
+\begin{itemize}
+\item List the platforms to be used for the project
+\item Provide a task schedule for the project 
+\item Provide a description of how the application and website will be used.
+\item Provide a list of risks and how to reduce their effects
+\item Provide an idea of the UI for the Android application and the website
+\item Provide a description of how the application and website can be navigated
+\end{itemize}
+\newpage
+\section{TEST SPECIFICATION TABLE}
+\setlength\LTleft{-3.2cm}
+\setlength\extrarowheight{2pt}
+\begin{longtable}{|p{1.8cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+Test Ref &
+Req being Tested &Test Content&
+Input&
+Output&
+Pass Criteria
+\\
+\hline
+SE-F-001  &
+FR1 [1] &
+Check the user can successfully create a new walk. &
+Touch the create walk button.&
+Prompted for Title of Walk, short and Long description of the Walk. &
+Passes if when the start button is pressed, the screen for entering information about a walk appears. \\
+\hline
+SE-F-002 &
+FR1 [1]&
+Check to see if the co-ordinates have been set, and begin recording.&
+The Name of the walk to ``Aberystwyth''  and Description = ``Aberystwyth''&
+Prompt a message telling the user that the walk is being recorded.&
+If there's a message which notifies the user that the walk has started to record – then the location has been set. \\
+\hline
+SE-F-003 &
+FR1 [1]&
+Check to see if the options to cancel the walk are displayed once the application starts recording.&
+Set the name of the walk = ``town'' and location = ``Aberystwyth''&
+There should be an option to cancel the current walk.&
+If the information has been set successfully, there will be a button, which will be enabled showing an option to cancel the walk.\\
+\hline 
+SE-F-004&
+FR1 [1]&
+Check to see if the options to save the walk to the server are displayed when the application finish recording&
+Set the name of the walk = ``Hills''  and location ``Trefchan''&
+There should be an option to save a walk.&
+If the information has been set successfully, there will be a button which allows the user to save the walk. \\
+\hline
+SE-F-005 &
+FR1 [1]&
+Check to see if the options to add text and photos about the location are displays when the application starts recording &
+Click set a point of interest button on the walk.&
+The window which allows you to set a short and long description with a title and image will appear.&
+If the information has been set successfully, the window will show and tell you that you can enter in information into the short and long description. \\
+\hline
+SE-F-006 &
+FR1 [1] &
+Check to make sure the walk is successfully saved &
+Click save a walk, when you have finished.&
+Produce a message telling the user they have correctly saved all information to the database &
+Correctly output a message to the user telling them that they have sent the information correctly to the database. \\
+\hline 
+SE-F-007&
+FR1 [1]&
+Check to make sure the POI  is successfully saved&
+Save a point of interest at a point during the walk&
+Adds to the list of POI of the walk&
+Passes if the point of interest has been successfully added to the list of POI \\
+\hline 
+SE-F-008 &
+FR2 [1] &
+Check to see if the information about the POI is successfully saved &
+1. Save a description, short description and a picture. &
+You are then taken back to the map page. &
+Passes if you can successfully add the information to the POI and then return back to the map screen. \\
+\hline
+SE-F-009&
+FR2 [1]&
+Only allow one word for the Tour name &
+Set the name of the walk to ``Aberystwyth''&
+You should be allowed to continue with no errors.&
+Passes if you can set the name, and allows you to enter the rest of the data. \\
+\hline
+SE-F-010 &
+FR2 [1]&
+Entering tour name as two words &
+Set the name of the walk to ``Aberystwyth Town'' &
+You should be prompted with a red box around the walk Title, with a label stating it's more than one word.&
+Passes the test is the red box is present and there's a label saying that the walk name is invalid. \\ 
+\hline 
+SE-F-011 &
+FR2 [1]&
+Check that the walk titles character length is greater than 1. &
+Leave the walk title blank &
+Prompted with a red box around the walk title explaining it's less than 1 character. &
+Passes the test if it produces the red box with text explaining that there needs be more than 1 character. \\
+\hline
+SE-F-012 &
+FR2 [1]&
+Check that walk name contains only letters.&
+Enter ``\pounds 4558'' as a walk name&
+Red box around the walk name with a label saying invalid letters.&
+Passes if there's a box around the walk name saying that there's invalid characters in the text box. \\
+\hline
+SE-F-013 &
+FR2 [1]&
+Check the short description is less than a 100 characters &
+Enter ``This walk was quiet'' &
+Allowed to continue to the long description, with no warning.&
+Passes if there are no error messages that appear. \\
+\hline 
+SE-F-014 &
+FR2 [1] &
+Check the short description is greater than 0&
+Enter ``'' - so you leave the box blank&
+Produce a red box around the short description saying they need to enter a short description.&
+Passes if the short description has a red board and a message prompting the user to enter a description.\\
+\hline
+SE-F-015 &
+FR2 [1] &
+Enter the short description to be over 100 characters &
+Enter ``The walk was too long and too stressful, it wasn't amazing I wouldn't do it again – it was a too dull'' &
+``The walk was too long and too stressful, it wasn't amazing I wouldn't do it again – it was a too du'' with a message saying that they have reached the 100 character limit &
+If it cuts the description at the given place and tells the user that it may have cut of some of the description because it's over the 100 character limit. \\
+\hline
+SE-F-016&
+FR2 [1]&
+Check the long description is less than a 1000 characters &
+Enter ``The walk in general was very peaceful – the scenery was good. It would be nice to do this on a dry day, as it was too wet when we were walking, not that this put us off. My favourite place was the castle in Aberystwyth, I would definitely recommend going there.'' &
+Allow the user to continue and take a picture, without any warnings appearing on the screen&
+This test passes if there are no error messages produced and it allows the data to be saved to the database. \\
+\hline 
+SE-F-017 &
+FR2 [1]&
+Check the long description is greater than 0&
+Enter ``'' - leaving the long description blank.&
+There will be an error popped up saying that are you sure you want to leave the long description blank. &
+Passes if there's a notification which tells the user that they have left the information blank – and that they've not entered a detailed description for the walk. \\
+\hline
+SE-F-018&
+FR2 [1]&
+Enter the long description to be over 1000 characters &
+Enter ``Today I started my first walk with this application....I thought that it would be a good idea to test it locally on some smaller walks........... When I left the house it was sunny so I went for a walk along the coastal...... paths. When you looked down you could see the waves swash and.............. backwash. Where we...... were walking was an ideal..... location for Red Kites –.... and luckily because today was a clear sky I managed to get a couple of photos of them. I then continued the walk along the beach – it was calm and I went into a rock pool and saw lots of.......... crabs&
+Tell the user that the length is too long and cut off at the 1000 character:& 
+This will show a red box around the long description telling the user that they have entered the long description has exceeded the 1000 characters and they may want to cut it down. \\
+\hline 
+& 
+& 
+&
+but then it got a bit chilly so I left the beach....... this meant that I turned back. As I turned back..................... the tide came in.............. I ended up getting wet feet…....................
+.........................
+.............. But then the sun came out. I would really recommend this walk....................
+...................
+.....................
+................And I will probably do this walk again.&
+&\\
+\hline
+SE-F-019 &
+FR2 [1] &
+Check to make sure they can't enter a lot of spaces in the title or the name of the walk. &
+Enter just spaces in the title of the walk or the name of the walk &
+A red error box to show that there's just spaces in the text box. &
+Passes if there a red box showing an error warning around the text field with just spaces in.\\
+\hline
+SE-F-020 &
+FR2 [1]&
+Check they can't enter a symbol for a new Walk name&
+Enter ``!''£\$\%\^\&*()¬|??/\#;
+\}” as a name for the walk&
+There should be a red box around the  text field telling the user that they can't enter those characters as a walk name&
+Passes if there was a red box around the text field, identifying an error.\\ 
+\hline
+SE-F-021 &
+FR2 [1]&
+Check they can't enter a symbol for the description.&
+Enter “!”£\$\%\^\&*()¬|??/\#;[]\{” as a name for the short and long description&
+There should be a red box around the text field telling the user that they can't enter those characters as a description.&
+Passes if there was a red box around the text field, identifying an error.\\
+\hline
+SE-F-022 &
+FR3 [1] &
+When removing the POI make sure all the data is removed with it.&
+Remove a POI in the application, during run time.&
+The POI is removed and outputs a pop-up telling you that the data has been removed.&
+Passes if there is a pop-up telling the user that the information has been successfully been removed from the POI.\\
+\hline 
+SE-F-023 &
+FR3 [1]&
+Make sure the POI counter is updated&
+Remove a POI from the walk.&
+This will then decrement the POI counter by minus 1.&
+Passes if it successfully decrements the counter by one. \\
+\hline 
+SE-F-024 &
+FR3 [1]&
+Make sure the map is updated with the removed POI. &
+Remove a POI from the walk and then view the map.&
+They should remove the POI from the POI list, which will update the map to show the resultant deletion. &
+It will pass if once you have deleted a POI, the map will no-longer show that POI  but show all other POI \\ 
+\hline 
+SE-F-025 &
+FR3 [1]&
+Make sure there's a pop up that we have deleted the POI&
+Remove a POI from the application.&
+Pop-up a message telling the user that they just deleted a POI from their application.&
+Passes if once they have successfully deleted the POI from the walk, it will show a pop-up informing them they have deleted the POI from the application. \\
+\hline
+SE-F-026&
+FR1 [1]&
+Make sure that we can finish and walk and stop a walk.&
+Press stop the walk option on the application.&
+This should tell the user that they're about the stop the walk, and that they will finish recording.&
+Passes if there's an error message telling the user that they are about to stop the application. \\ 
+\hline
+SE-F-027 &
+FR3 [1]&
+Adding a name to the  walk &
+Enter ``Town'' as a walk for the name &
+Allows you to carry on with entering information&
+Passes if you can carry on using the information without an error warning \\
+\hline
+SE-F-028&
+FR3 [1]&
+Entering no name for the walk&
+Enter ``'' for the walk&
+Error pop up saying you need to enter some text&
+Passes if the app prevents you from entering any more information. \\ 
+\hline 
+SE-F-029&
+FR3 [1]&
+Make sure there’s a time stamp&
+Input a location and set all associated information&
+Return on screen the time it was taken.&
+Passes if the screen displays the time they finished entering in the information. \\ 
+\hline 
+SE-F-030&
+FR4 [1]&
+Add one photo from camera &
+Click and take one photo using the camera&
+Adds the image to the screen in a thumbnail view.&
+Passes if the image saves to the users’ library of images. \\
+\hline
+SE-F-031&
+FR4 [1]&
+Add Multiple photos from camera&
+Click and take more than one photo at the current location at the camera.&
+Adds the selection of images in a thumbnail view ready for viewing.&
+Passes if it allows to have more than one image per point of interest. \\
+\hline 
+SE-F-032&
+FR4 [1]&
+Make sure it's in a jpg format&
+Try to add a non-jpg image from the photo library.&
+Message telling to user that only jpg files can be selected&
+User is unable to select a non-jpg file.\\  
+\hline 
+SE-F-033&
+FR4 [1]&
+Warning message when no name is entered for the photo/location&
+No input in the name field&
+Output should be a pop-up error message&
+Error message which doesn't allow the new photo to be placed without a name \\ 
+\hline 
+SE-F-034 &
+FR5 [1]&
+Cancel a Walk&
+Select that they want to cancel the walk from the options menu. &
+Asks user if they're sure they want to cancel the walk &
+Passes if they can cancel a walk they are currently on, and it deletes it from the server and the local copy. \\ 
+\hline 
+SE-F-035&
+FR8 [1]&
+Make sure an image, short description and long description are set.&
+Enter a short description, long description and an image for a POI.&
+Be able to move onto the next screen after finishing entering information into the POI.&
+Be able to navigate back to the map, after the POI has been added. \\
+\hline 
+SE-F-036&
+FR8 [1]&
+Check that all POI have co-ordinates associated with them.&
+Click on a POI on the website.&
+It will show the X co-ordinates and the Y co-ordinates.&
+Passes if when viewed the user can see the x and y co-ordinates related to the POI. \\
+\hline
+SE-F-037&
+FR8 [1]&
+Search for a search that wasn't there.&
+Enter a search for a walk that may not exist.&
+Output that there are not any of those walks available at that time.&
+Passes if they search for a walk that's not included and that it will tell the user that there isn't an associated walk.\\
+\hline
+SE-F-038&
+FR8 [1]&
+Enter in a series of spaces to the search menu.&
+Enter ``       ''&
+This will then output to the user that they need to enter characters into the walk search.  &
+Passes if there's a red box on the search with an error message telling the user they need to enter some characters into the search box. \\
+\hline
+SE-F-039&
+FR8  [1]&
+Enter a page that's not there, so we can check the 404 pages&
+Enter “foo.php” into the URI&
+This should produce a 404 page which follows the design of the other pages, informing the user the page doesn't exist.&
+Passes if they once they have selected the wrong page they will be re-directed to a 404 page, which will inform the user they have a wrong URI... \\
+\hline 
+SE-F-040&
+FR8 [1]&
+Check that the user can use the website successfully and easily.&
+Navigate the website and check all the links.&
+This should be easy to navigate and all links work correctly.&
+Passes if the user can use the website with ease, and they will not struggle – and if all the links work correctly. \\ 
+\hline 
+SE-F-041&
+FR8 [1]&
+Check that the website is standard compliant with CSS and HTML5&
+Check all source code is valid with the W3C validator.&
+There should be no errors, or warnings and it should pass the test successfully.&
+Passes the test if there is no warnings or errors in the validator and it passes for HTML5 and CSS2/3 standards. \\ 
+\hline 
+SE-F-042&
+FR8 [1]&
+User can navigate the website between the home page and the walks page&
+User clicks the Navigation button and the Home button&
+After clicking each button the website directs the user to the page they clicked&
+It passes when the pages link correctly and it allows the user to navigate between the homepage and the walks page. \\ 
+\hline 
+SE-F-043&
+FR9 [1]&
+Check the database receives a title&
+Title of a walk received from the application&
+Title is written to the database&
+Pass if the title is inserted into a new record in the database \\ 
+\hline 
+SE-F-044&
+FR9 [1]&
+Check the database receives a description&
+Description for a walk received from the application&
+Description added to the record of the new walk&
+Record has a description \\ 
+\hline
+SE-F-045&
+FR9 [1]&
+Check the database receives a list of co-ordinates&
+Co-ordinates received from the application&
+Add them to the database&
+Co-ordinates are added to the record \\ 
+\hline 
+SE-F-046&
+FR9 [1]&
+Correct form for sending data to the server&
+Information about a walk – name, descriptions,  coordinates (start and end point, localizations), photos&
+Data send as MIME message via HTTP POST&
+Data is dispatched to the server \\ 
+\hline 
+SE-F-047&
+FR7 [1]&
+Close the app successfully&
+Application is switched&
+Data should be stored in a temp file that is used to restore later&
+Application creates a temp file with all data \\ 
+\hline 
+SE-F-048&
+FR7 [1]&
+Close the app and load back up showing any current data/walks&
+Close the app and tap the app to re-load it&
+It should close the app, go to the main screen and then when loaded it should show all the information on a current walk.&
+Passes if when closed it will show all the information from the walk they're currently on. \\ 
+\hline 
+SE-F-049&
+FR8 [1]&
+Select a walk on the web application&
+Select a walk from a list of walk.&
+Show all corresponding information on a walk.&
+Passes if when a walk is selected it shows the short description, long description, title and any images associated with it. \\
+\hline
+SE-F-050&
+FR4 [1]&
+See all images associated with the walk in jpg form&
+Enter an image with a .jpg extension.&
+That it allows the information to be added to the POI.&
+Passes if it allows the user to add a jpg image to the POI. \\ 
+\hline 
+SE-F-051&
+FR9 [1]&
+Reject data for a walk if it is corrupt&
+Information about the route, start and end points&
+Error message for corrupt data if it is corrupt (i.e. missing start or end point for a walk)&
+Error message displayed. \\
+\hline 
+SE-F-052&
+FR9 [1]&
+Save all the data correctly to the SQL relational database&
+Add all fields to the database.&
+The information will be stored in the appropriate fields.&
+It stores all the information into the appropriate fields, associated with the walk.\\
+\hline
+SE-F-053&
+FR9 [1]&
+Confirmation message that it has sent to the server correctly&
+Save and send a walk that they're on.&
+A pop-up message telling the user that they have send the information correctly.&
+Passes if when a walk is sent there will be a pop-up message which lets the user know they have sent the information to the server. \\ 
+\hline 
+SE-F-054&
+FR9 [1]&
+Show a list of walks&
+Click the ``Show a list of walks'' button.&
+Should display the list of walks saved by the user&
+Passes if all the previously saved walks are listed.\\ 
+\hline
+SE-F-055&
+EIR1 [1]&
+Ask someone to use the application to see if it's easy to use&
+Allow an outside user to use the application&
+They will give feedback on the application.&
+Passes if they think the application is easy to navigate and use. \\ 
+\hline 
+SE-F-056&
+PR1 [1]&
+Make sure the response time is less than a second&
+Click an item on the screen.&
+The corresponding information should be displayed within one second of pressing.&
+Passes if the response time for clicking an item on the application is less than 1 second. \\ 
+\hline
+SE-F-057&
+PR2 [1]&
+Check the application works on at least 2 devices&
+Check on a phone and a tablet.&
+Should display the same information and act the same too.&
+Passes if the application can be used successfully by both devices – With only minor layout changes in the UI \\ 
+\hline 
+SE-F-058&
+PR2 [1]&
+Check the website works, and validates&
+Click all links and run under the validator checker.&
+There should be no errors and everything passes.&
+Passes if the website validates correctly and all links and scripts work accordingly to how they're supposed to. \\ 
+\hline
+SE-F-059&
+PR2 [1]&
+Check the website works on the most popular internet browsers&
+Load the website on Firefox, Chrome, Safari, Opera and Internet Explorer&
+The pages should load correctly.&
+Passes if the website loads quickly and correctly on every browser. \\ 
+\hline 
+SE-F-060&
+FR1 [1]&
+Check start walk button&
+Clicking the ``Start walk'' button&
+The walk screen is brought up which then asks for walk details and starts recording&
+Button brings up the map screen \\ 
+\hline 
+SE-F-061&
+FR1 [1]&
+Options button&
+Clicking the ``Options'' button&
+Gives a screen with all the options for the application&
+Options screen \\ 
+\hline 
+SE-F-062&
+FR2 [1]&
+Test if the map screen is locked to current position&
+Swipe the map to the sides of the screen&
+Restricted view of the map&
+The map screen should be focused only on the current position of the user \\ 
+\hline 
+SE-F-063&
+FR1 [1]&
+Frequency for receiving location data should change&
+User is taking many turns&
+Increase location data gathering frequency&
+More location points added to the route so that the line represents the correct path taken \\ 
+\hline 
+SE-F-064 &
+FR1 [1]&
+Frequency for receiving location data should change&
+User walks in a straight line for a long time&
+Decrease location data gathering frequency&
+Less location points added to the route \\
+\hline 
+SE-F-065&
+FR8 [1]&
+SQL injection protection&
+Insert into an input field  ' ' or 1=1&
+The SQL query should be rejected by the server&
+Page refreshes with no error messages\\ 
+\hline
+SE-F-066&
+FR8 [1]&
+SQL injection protection&
+Insert '' DROP TABLE Users&
+The SQL query should be rejected by the server&
+Page refreshes with no error messages\\ 
+\hline
+\end{longtable}
+\newpage 
+\section{REFERENCES}
+\begin{thebibliography}{0}
+	\bibitem{ProjectPlan1.8}
+Software Engineering Group Projects.
+\emph{Requirements Specification}.
+C. J. Price and B.P.Tiddeman. 1.2 (Release). 7 November 2013
+\end{thebibliography} 
+\newpage 
+\section{DOCUMENT HISTORY}
+\setlength\LTleft{-0.5cm}
+\begin{longtable}{|p{1.3cm}|p{1.5cm}|p{2cm}|p{7cm}| p{2cm}|}
+\hline
+	Version & CFF No. & Date & Section Changed From Previous Version & Changed by \\
+\hline
+	1.0&N/A&02/11/2013&Set the Original Document Layout&RYG1
+ \\ 
+\hline
+	1.1&
+N/A&
+03/11/2013&
+Added Objective, scope and added SE-F-001 to SE-F-015&
+RYG1
+ \\
+\hline
+	1.2&
+N/A&
+03/11/2013&
+Renamed the file to standard accordance&
+RYG1
+1 \\
+\hline 
+	1.3&
+N/A&
+04/11/2013&
+Added SE-F-016 to SE-F-021&
+ZAL
+
+\\
+\hline 
+	1.4&
+N/A&
+06/11/2013&
+Added SE-F-022 to SE-F-048&
+RYG1
+ \\
+\hline 
+	1.5&
+N/A&
+07/11/2013&
+Added SE-F-049 to SE-F-051 and removed the term GPS from SE-F-002 because location data is not entirely GPS&
+MVZ
+ \\
+\hline
+	1.6&
+N/A&
+07/11/2013&
+Added description for the FR6 database tests&
+MVZ
+\\
+\hline 
+	1.7&
+N/A&
+09/11/2013&
+Corrected some spelling mistakes, changed date format to be consistent, added page break before contents, added description to SE-F-027, some clarification of pass criteria.&
+HFB1
+ \\
+\hline 
+	1.8&
+N/A&
+12/11/2013&
+Added in Referencing to the requirements documents. Organised the document. Edited some errors and issues raised.&
+RYG1
+ \\
+\hline	
+	1.9 &
+N/A&
+14/11/2013&
+Added a few descriptions. Changed the SE-F-028 test from checking coordinates to checking the username and password.&
+MWD5
+\\
+\hline 
+	2.0&
+N/A&
+14/11/2013&
+Re-organised the documents table. Added tests to make sure it matches the use-case, made amendments to the current document, updated reference numbers and updates empty rows&
+RYG1
+ \\
+\hline
+	2.1&
+N/A&
+15/11/2013&
+Spell checked and added SE-F-70 to SE-F-76.&
+ZAL
+ \\
+\hline 
+	2.2&
+N/A&
+15/11/2013&
+Changed the version number, changed the status&
+RYG1
+\\
+\hline
+	2.3&
+N/A&
+15/11/2013&
+Added SE-F077 to SE-F-084&
+MVZ
+\\
+\hline 
+	2.4&
+N/A&
+15/11/2013&
+Removed duplicated tests, updated the version number for release&
+RYG1
+ \\
+\hline 
+	2.5&
+N/A&
+15/11/2013&
+Added SQL injection tests SE-F-083 and SE-F-084&
+MVZ
+ \\
+\hline
+2.6&
+N/A&
+15/11/2013&
+Changed status and version number. Spell checked. Updated document objectives&
+MDA \\ 
+\hline 
+2.7&N/A&12/02/2013&Updated the document, removed feature creep and wrote in LaTeX&RYG1
+\\ 
+\hline
+\end{longtable}
+
+\end{document}
