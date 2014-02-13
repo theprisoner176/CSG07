@@ -8,7 +8,7 @@
 \usepackage{changepage}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Project Plan}
-\rhead{(Release) -Version 1.8}
+\rhead{(Release) -Version 2.0}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -29,7 +29,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_PM\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 1.8 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 2.0 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Release \\
 
 \end{tabular}
@@ -131,10 +131,8 @@ This module handles the conversion of data into visual form for browser based vi
 \caption{Website Use-Case Diagram}
 \label{Website Use-Case Diagram}
 \end{figure}
-\subsection{Database}
-\par{TODO IMAGE}
 \subsection{Interaction System}
-\par{Todo image}
+\par{TODO}
 \par{The diagram above represents the interaction of the whole system. The user interacts with both Android application and the website. The walks recorded by the user along with all the other information like description and the photos, are stored in the database and can be easily accessed later via the website or locally. Every action that creates or adds data is stored in the database.
 The Android application uploads walks to the server, which deals with the information and inserts it appropriately in the database. The Android application does not have a direct link to the website.The website also pulls a list of walks from the database. The website will also list all the information associated to one singular walks, such as Long description, short description, any pictures. This will then be displayed appropriately on the website.}
 \subsection{Descriptions}
@@ -161,18 +159,35 @@ The Android application uploads walks to the server, which deals with the inform
 \newpage
 \section{ANDROID USER INTERFACE DESIGN}
 \subsection{Start Screen}
-\par{TODO IMAGE}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.40]{Project_Plan/android/main_screen_new.png}
+\caption{Start Screen}
+\label{Start Screen}
+\end{figure}
 Displays only the program name, logo and group name. Tap to continue to main menu. This screen may be replaced with a tutorial or help screen on first launch. \\\\
 \textbf{\uline{NAVIGATION}}
 \par{Start $\rightarrow$ Main Menu (Fig. 4.2)} 
+\clearpage
 \subsection{New Walk Screen}
-\par{TODO IMAGE}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.40]{Project_Plan/android/new_walk.png}
+\caption{}
+\label{}
+\end{figure}
 \par{This is the walk creation screen. It allows a short and long description to be added to a walk.  \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Back $\rightarrow$ Main Menu (Fig. 4.2)}
 \par{Start Walk $\rightarrow$ Recording Window (Fig. 4.4)}
+\clearpage
 \subsection{Recording Screen}
-\par{TODO IMAGE}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.40]{Project_Plan/android/walk_recording.png}
+\caption{}
+\label{}
+\end{figure}
 \par{This screen only displays the map around the users’ current location. When a point of interest is added, it will be displayed as a pin on this screen. The options button will allow the user to sign in/logout. When viewing a walk, only the option button and the swipe menu will be available. Pinch zoom may be used instead of button zoom. If the user taps the pause button, the recording will pause. If the user taps it again, the recording will resume. Holding down the button will stop the recording and take the user to the walk complete screen. The options menu will allow the user to exit the walk without saving. \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Option $\rightarrow$ Option Menu}
@@ -180,28 +195,46 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \par{Stop $\rightarrow$ Walk Complete (Fig. 4.12)}
 \par{Swipe left across screen $\rightarrow$ Locations on Walk List (Fig. 4.11)}
 \subsection{New Point Of Interest}
-\par{TODO IMAGE}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{Project_Plan/android/add_poi.png}
+\caption{Add Point Of Interest}
+\label{Add Point Of Interest}
+\end{figure}
 \par{This screen is used to add a point of interest. It will appear semi-transparent over the map. Adding images will open a dialogue asking whether to go to the photo library or the camera app, allowing images to be added. Images will appear between the short and long description and can be removed from here. Pressing save stores the point of interest but can be removed later. \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Cancel $\rightarrow$ Recording screen with walk (Fig. 4.10) or Recording screen (Fig. 4.9)}
 \par{Add Image $\rightarrow$ Dialogue for Camera or Photo Library}
 \par{Save $\rightarrow$ Recording screen with walk (Fig. 4.10) or Recording screen (Fig. 4.9)}
-\subsection{Recording Screen With Walk}
-\par{TODO IMAGE}
-\par{This screen is the default recording screen. All points of interest are noted as a pin on the screen. Tapping the pin displays the long and short description and any images of the point of interest. When a walk is stopped the user is prompted to save the walk. Only signed in users can upload a walk to the server. When viewing a walk, only the option button and the swipe menu will be available. \\ \\}
-\textbf{\uline{NAVIGATION}}
-\par{Option $\rightarrow$ Option Menu}
-\par{Add Point of Interest $\rightarrow$ New Point of Interest Screen (Fig. 4.9)}
-\par{Stop $\rightarrow$ Walk Complete (Fig. 4.12)}
-\par{Swipe left across screen $\rightarrow$ Locations on Walk List (Fig. 4.11)}
-
+\subsection{Edit Information Walk Screen}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.40]{Project_Plan/android/edit_walk.png}
+\caption{Edit Walk}
+\label{Edit Walk}
+\end{figure}
+TODO WRITE THIS BIT
+\clearpage
 \subsection{Walk Complete}
-\par{TODO IMAGE}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.40]{Project_Plan/android/upload_walk.png}
+\caption{Upload Walk}
+\label{Upload Walk}
+\end{figure}
 \par{This screen allows the user to save a walk. If upload is pressed, the walk is saved then uploaded to the server provided the user is signed in. This screen should be unavailable if there are no points of interest to prevent uploading or saving an empty walk. This screen also shows the time taken to complete a walk, the name of the walk, the number of points of interest added and the location of the walk. \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Cancel $\rightarrow$ Recording Screen with walk (Fig. 4.10)}
 \par{Save $\rightarrow$ View My Walks Screen (Fig. 4.3)}
 \par{Upload $\rightarrow$ View My Walks Screen (Fig. 4.3)}
+\subsection{Cancel A Walk}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.40]{Project_Plan/android/cancel_walk.png}
+\caption{Cancel A Walk}
+\label{Cancel A Walk}
+\end{figure}
+TODO
 \newpage
 \section{WEBSITE USER INTERFACE DESIGN}
 \subsection{Home Page}
@@ -222,7 +255,7 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \subsection{View Walks Page}
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.60]{Project_Plan/Web/view_walks_page_01.jpg}
+\includegraphics[scale=0.60]{Project_Plan/Web/walk_list_01_copy.jpg}
 \caption{View Walks Page}
 \label{View Walks Page}
 \end{figure}
@@ -237,7 +270,7 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \subsection{Walk Page}
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.50]{Project_Plan/Web/Example_Map_Page_01.jpg}
+\includegraphics[scale=0.50]{Project_Plan/Web/poi_selected_page_01_copy.jpg}
 \caption{Walk Page }
 \label{Walk Page}
 \end{figure}
@@ -252,7 +285,12 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \par{Home $\rightarrow$ Home Page (Fig. 5.1)}
 \par{Sign out (if logged in) $\rightarrow$ View Walks Page (Fig. 5.2)}
 \subsection{Point Of Interest Selected Page}
-\par{TODO IMAGE}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.50]{Project_Plan/Web/new_map_copy.jpg}
+\caption{Point Of Interest Selected}
+\label{Point Of Interest Selected}
+\end{figure}
 \par{Clicking on a pin on the map opens this page. The selected pin is also highlighted. The page displays the average time taken from the start of the walk to arrive at this point of interest. If there are any images taken from this point of interest, the user is can view them. If the user owns this walk, they will be able to edit the descriptions and add more images. The latitude and longitude of this point of interest is also displayed opposite the short description. \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Edit POI $\rightarrow$ Edit Point of Interest Page (Fig. 5.9)}
@@ -277,10 +315,27 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \par{Click Outside Image $\rightarrow$ Previous Page}
 \section{NAVIGATION OVERVIEW}
 \subsection{Android}
-\par{TODO IMAGE}
+\begin{figure}[htp]
+\begin{adjustwidth}{-3.cm}{-4cm}
+\centering
+\includegraphics[scale=0.60]{Project_Plan/docs/android_navigation_01.png}
+\caption{Android Navigation}
+\label{Android Navigation}
+\end{adjustwidth}
+\end{figure}
 \par{Start screen is the entry point. All navigation is done via buttons and icons unless otherwise stated}
+\clearpage
 \subsection{Website}
-\par{TODO IMAGE}
+\begin{figure}[htp]
+\begin{adjustwidth}{-3cm}{-3cm}
+\centering
+\includegraphics[scale=0.6]{Project_Plan/docs/website_navigation_01.png}
+
+\caption{Website Navigation}
+\label{Website Navigation}
+\end{adjustwidth}
+\end{figure}
+
 \par{Home page is the entry point. All pages link back to the home page}
 \newpage
 \section{GANTT CHART}
@@ -295,7 +350,7 @@ Displays only the program name, logo and group name. Tap to continue to main men
 	
 \newpage
 \section{RISK ASSESSMENT}
-\begin{longtable}{|p{2.5cm}|p{1.5cm}|p{5cm}|}
+\begin{longtable}{|p{2.5cm}|p{1.5cm}|p{10cm}|}
 \hline
 	Event & Risk & Mitigation\\
 \hline
@@ -331,8 +386,9 @@ In the absence of any member, work will proceed as normal. All members should no
 	Application – Server Incompatibility & High & The application should send data in the format specified. The server must be able to parse the data accurately. In the event of incompatibility, android and server side debugging must be done to determine the cause of the incompatibility. \\
 \hline
 \end{longtable}
+\newpage
 \section{DOCUMENT HISTORY}
-\begin{longtable}{|p{2.5cm}|p{1.5cm}|p{2cm}|p{4cm}| p{2cm}|}
+\begin{longtable}{|p{1.5cm}|p{1.5cm}|p{2cm}|p{6cm}| p{2cm}|}
 \hline
 	Version & CFF No. & Date & Section Changed From Previous Version & Changed by \\
 \hline
@@ -360,8 +416,9 @@ Moved risk assessment to item 8 & MDA \\
 \hline	
 	1.9 & N/A & 13/02/14 & Re-wrote the document in LaTeX. & RYG1 \\
 \hline
+	2.0 & N/A & 13/02/14 & Added updated images to file & RYG1 \\
+\hline
 
 \end{longtable}
-
 
 \end{document}
