@@ -5,10 +5,18 @@
 \usepackage{fancyheadings, lastpage}
 \usepackage{pdflscape ,anyfontsize}
 \usepackage{longtable}
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 \renewcommand{\refname}{}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Final Report}
-\rhead{(Draft) -Version 1.2}
+\rhead{(Draft) -Version 1.3}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -28,7 +36,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_FR\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 1.2 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 1.3 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Draft \\
 
 \end{tabular}
@@ -97,8 +105,17 @@ The database had constraints applied to its data as required and walks were stor
 \\\\
 The user is also only able to edit the overall walk details: name, long and short descriptions. Individual points of interest cannot be edited once created. There is no user feedback on edit completion, however there is feedback when recording starts. The recording may also stop after 15 minutes of inactivity due to the Android device terminating the service. This is probably caused by the method used to implement the service. On successful uploads, the user is returned to the start screen however, due to the bug discovered late, the application may crash instead of returning the user to the start screen. 
 \\\\
-There may be several grammatical issues as of yet unidentified in the program. The GPS may also cut out leading to erratic lines when viewing a walk. This is a device and GPS issue and cannot be resolved by the application. Places, Locations and photo ID’s are acquired by getting the ID of the last entry into the database, as a result, it may be possible to have details of a walk linked incorrectly if two or more walks are uploaded and processed within fractions of seconds from one another. However, we could not test this out and cannot verify as to whether or not it can occur. Any other errors have not been identified by the project members. 
-
+There may be several grammatical issues as of yet unidentified in the program. The GPS may also cut out leading to erratic lines when viewing a walk. This is a device and GPS issue and cannot be resolved by the application. Places, Locations and photo ID’s are acquired by getting the ID of the last entry into the database, as a result, it may be possible to have details of a walk linked incorrectly if two or more walks are uploaded and processed within fractions of seconds from one another. However, we could not test this out and cannot verify as to whether or not it can occur. Any other errors have not been identified by the project members.
+\\\\
+There were several website files submitted which were not our own work. These files were used solely for early designing and prototyping.
+The files that were not created by us are:
+\begin{itemize}
+\item all font files
+\item all external javascript files
+\item all files in the shadowbox-3.0.3 folder
+\item all images in the Website/images folder
+\item lightbox.css
+\end{itemize}
 \newpage
 \subsection{Member Evaluation}
 \subsubsection{Mosopefoluwa David Adejumo}
@@ -229,12 +246,58 @@ Our first meeting involved us deciding roles for our team. We decided that David
 Our group would meet on a regular basis, every Tuesday with our Tutorial Tutor, Neil Taylor.  We would then also meet together as a group once or twice a week in our own time, usually in the orchard or the old college in town. I think this gave us an edge over other groups as each week we would all attend and discuss any problems we had, and create new jobs before we visit Neil later in the week. Obviously not everyone could make every session due to other commitments, but communication between the group was good enough so that this happened as little as possible.~\\\\
 We were in a good position leading up to Integration and Testing week (ITW), however this week is where most of the work would get done. I started on working with Ryan on the filesaver.php file. This became an issue with the group and became a harder task to do than first project and therefore took a lot longer than first suggested. Later in the week I continued with the website by creating the base of the CSS and also helping out with some problems, and also taking out some testing of the android application.~\\\\ 
 Overall I believe that our group took the correct attitude towards such a big project and getting as much done as possible before ITW. Meeting in our own time took a big weight off our shoulders and lead us to getting a working application that would send information to the database and website. David lead us well in making sure deadlines were met and that we were up-to-date on the Gantt chart.
+\subsection{Harry Flynn Buckley}
+During this task I occupied myself with the Android-server communication and general handling of the walk data on the device. I feel that I am largely responsible for the class design of the Android application, and although towards the end the project it had to stray a little from the initial design, due to unforeseen complications with the Android camera and gallery apps, I am still happy with majority of the design choices. As there were only two people programming on the android, I had quite a lot of input to all the aspects of the android, the pop up dialogs where the only area which I feel I only had little contribution. 
+~\\\\
+The group worked quite effectively, discussing much of the design before making a decision, I do however think that class diagram was not looked at very thoroughly as I received little feedback on my designs. I think the UI design perhaps had too much focus in the early meetings because UI is something that is very accessible and everyone has an opinion on. When the implementation part of the project started I wrote the initial GUI based on what was decided by the group, this went on to become the GUI of the final submission. I then worked on writing the all the model classes (WalkModel,LocationPoint,PointOfInterest, ImageInformation). A feature that was eventually cut was a local sqlite database that stored walks before they where uploaded, I managed to get the database working with much of the walk data but it was not complete.The next task that I was set on was the uploading of walk data to the server, this was initially done in name value pairs, before we decided on using JSON. To test the upload I had written a php file that receives and saves the send data and I think this file contributed to the final file\_saver.php. During ITW I finished off the JSON packaging, and did  all the camera and gallery interaction. I had some trouble writing the camera and gallery, as it involved slightly redesigning the way images are stored and how places of interest are added to the walk model. The packaging of the walk data into a JSON format was also quite difficult.
+~\\\\
+Overall I have found the process quite fun and exciting, more so the closer we got to the code hand in date.
 \newpage
+\subsection{Maintenance Document}
+\subsubsection{Android Maintenance}
+\paragraph{Program Description}
+The function of this program is to allow the user to document walks. The path of the walk is tracked by the GPS of the device and by tracking the GPS of the device and providing the user with the means add places of interest.
+\paragraph{Program Structure}
+The program is organised in to Android Activities classes that control the application until a new Activity is started.
+\\\\
+The initial activity that the used sees is the StartScreen, that presents the user with a button prompting the start of a new walk, this button will start a new activity that creates the walk.
+\\\\
+WalkSetupScreen allows the user to enter basic walk data such as title and description. This input is used to create a new walk.
+The majority of  functionality is dealt with by the WalkScreen, it is responsible for the providing the user with options about the walk. From here places of interest can be created and added to the current walk.
+\paragraph{Significant Algorithms}
+The methods below open up new screens
+\\\\
+public void finishWalk(View v)\{\}
+\\\\
+public void editWalkDialog(View v)\{\}
+\\\\
+public void cancelWalk(View v)\{\}
+\paragraph{Files}
+Image for map background \[1\]
+\paragraph{Interfaces}
+See Design Specification - 
+\paragraph{Possible Improvements}
+Fix crash on upload bug
+\\\\
+Edit individual points of interest
+\paragraph{Physical Limitations}
+Number of images that can be uploaded is dependent on the amount of RAM on the device
+\\\\
+Requires a device with inbuilt GPS capability. Cannot use cell network or wifi for location finding
+\paragraph{Rebuilding and Testing}
+Junit test provided
+\\\\
+BUilt and tested on Android 4.2.1
+\\\\
+Ensure required images are available
+
 \subsection{Revised Project Plan}
 \newpage
 \subsection{Revised Design Document}
 \newpage
 \section{REFERENCES}
+\[1\]Earth image from http://www.abcteach.com/free/e/earth\_3d\_rgb.jpg
+
 \newpage
 \section{DOCUMENT HISTORY}
 \setlength\LTleft{-0.5cm}
@@ -248,6 +311,8 @@ Overall I believe that our group took the correct attitude towards such a big pr
 	1.1&N/A&13/02/2014&Added other team members reports.&RYG1 \\
 \hline
 	1.2&N/A&13/02/2014&Added new reports and made small edits.&MDA \\
+	\hline
+	1.3&N/A&13/02/2014&Added new reports and Android maintenance details.&MDA \\
 \hline
 \end{longtable}
 \end{document}
