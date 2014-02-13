@@ -23,8 +23,8 @@
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{6}
 \renewcommand{\headrulewidth}{0pt}
-\lhead{Group Project 07 – Project Plan}
-\rhead{(Release) -Version 1.8}
+\lhead{Group Project 07 – Design Specification}
+\rhead{(Release) -Version 2.6}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -44,7 +44,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_PM\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 1.8 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 2.6 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Release \\
 
 \end{tabular}
@@ -606,6 +606,11 @@ The LocationListener is deliberately not activated at all times while a walk is 
 \subsubsection{Sequence Diagram For Web}
 \subsubsection{Overall Interaction Sequence Diagram}
 \subsection{Class Diagram}
+\includegraphics[scale=0.60]{Design/class_diagram.jpg}
+The classes ending in ‘screen’, are all Activities. They all, in some way, display a layout to the screen and respond to user input. Any response that requires further processing would be passed to another class and then handed back to be displayed, but it would be the ’screen’ class itself that initialised the action.  
+There are several classes that have been suffixed with ‘View’, these classes all extend the android class View. They are all visible to the user and act much like ‘screen’ classes except that they don’t use the whole screen and do not change the displayed screen only create new Views.  
+The classes WalkModel,PointOfInterest and Location can all be considered to be model classes. There are used to store the walks data in an organised fashion, and have no methods to do anything other than to set and get information.  
+WalkManager, ImageHandler and FileTransferManager all perform some tasks that are not immediately apparent the user. They are the utility classes that are used by others.
 \subsection{Significant Algorithms}
 \subsubsection{Android Algorithms}
 \paragraph{RouteRecorder Algorithm}
@@ -645,30 +650,50 @@ if(mysqli_connect_errno())
 mysqli_close($con);
 \end{lstlisting}
 \paragraph{Append To The Server Database}
-\begin{lstlisting}
-/**
-* List all the fields that you wish to append to the database
-*/
-function connectToDatabase(){
-$sql="INSERT INTO csgp07_13_14  (ShortDescription, LongDescription, PointOfInterest, Coordinates, Title)
-VALUES
-('$_POST[ShortDescription]','$_POST[LongDescription]','$_POST[PointOfInterest]', '$_POST[Coordinates]', '$_POST[Title]')";
-if (!mysqli_query($con,$sql))
-{
-die('Error: ' . mysqli_error($con));
-}
-echo "1 record added";
-}
-mysqli_close($con)
+\begin{lstlisting}[language = php]
+$sql = "INSERT INTO List_of_Walks
+		(title, shortDesc, longDesc, hours, distance)
+		VALUES('$title', '$short_desc', '$long_desc', '$hours', '$distance')"; 
+	$queryWalk = mysqli_query($walk_conn,$sql);
+		$walkID = mysqli_insert_id($walk_conn);
 
-/**
-*The code to find a image
-*/
+	
 
-/** 
-* getWalkListInfo(); is used to get the 
-* information of the columns you wish to show
-*/
+		foreach($route as $loc){
+			//loop through every location
+			$longitude = $loc['longitude'];
+			$latitude = $loc['latitude'];
+			$time = $loc['time'];
+			
+			$sql = "INSERT INTO Location(walkID, latitude, longitude, timestamp)	
+			VALUES('$walkID', '$latitude','$longitude', '$time')";
+		$queryLoc =	mysqli_query($walk_conn,$sql);
+			$locID = mysqli_insert_id($walk_conn);
+			
+			if(isSet($loc['description'])){
+				//If description, location is point of interest
+				$description = $loc['description'];
+				$name = $loc['title'];
+				$sql = "INSERT INTO Place_description(description, locationId, name)
+						values('$description', '$locID', '$name')";
+				$queryPlace = mysqli_query($walk_conn,$sql);
+				$placeId = mysqli_insert_id($walk_conn);
+				if(isSet($loc['images'])){
+				$photoCount = 0;
+				//If there are images decode and rename them
+					foreach($loc['images']as $image){
+						$image = implode($image);
+						$image = str_replace("\\", "", $image, $count);
+						$image =  base64_decode($image);
+						$photoName = $walkID . "_" . $locID . "_" . $placeId . "_" . $photoCount;
+						file_put_contents("images/".$photoName . ".jpg",$image);
+						$photoCount++;
+						$sql = "INSERT INTO Photo(photoName, placeId)
+						values('$photoName', '$placeId')";
+						$queryPhoto =	mysqli_query($walk_conn,$sql);
+					}
+				}
+			}
 \end{lstlisting}
 \subsection{TODO CHECK THE ALGORITHMS}
 \subsection{Significant Data Structures}
@@ -760,6 +785,8 @@ from MWD5 and MAS69. Added missing images. Added images and descriptions to sect
 \hline 
 	2.5&N/A&12/02/14&Re-wrote in LaTeX, removing feature creep &RYG1 \\
 \hline
+	2.6&N/A&13/02/14&Minor error checks and removal &MDA \\
+ \hline
 \end{longtable}
 
 \end{document}
