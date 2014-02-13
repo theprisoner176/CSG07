@@ -8,7 +8,7 @@
 \renewcommand{\refname}{}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Final Report}
-\rhead{(Draft) -Version 1.1}
+\rhead{(Draft) -Version 1.2}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -28,7 +28,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_FR\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 1.1 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 1.2 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Draft \\
 
 \end{tabular}
@@ -48,17 +48,16 @@ Copyright \small{\copyright}\\ Aberystwyth University 2013
 \newpage
 \section{INTRODUCTION}
 \subsection{Purpose}
-This document displays how the project will be completed and any risks involved.  It outlines the requirements specified by the client as a series of documents.
+This document contains a report of all the events and status of the project and is a compilation of all the documents used
 \subsection{Scope}
-This document should be read by all members of the group. It contains a list of tasks, the schedule and risks involved in the project. It also details what the application and server will be required to do.
+This document should be read by all members of the group for approval. It contains an overall evaluation of every group member and the details of the project, it's final state with details of all the events of the project
 \subsection{Objective}
 \begin{itemize}
-\item List the platforms to be used for the project
-\item Provide a task schedule for the project 
-\item Provide a description of how the application and website will be used.
-\item Provide a list of risks and how to reduce their effects
-\item Provide an idea of the UI for the Android application and the website
-\item Provide a description of how the application and website can be navigated
+\item Provide a historical account of events during the project
+\item Provide a report on how all the members performed and the team
+\item Provide a report from every member about how they feel they performed
+\item Provide a compilation of all documents used for development and planning
+\item Provide details on how to maintain the project for future use
 \end{itemize}
 \newpage
 \section{THE END-OF-PROJECT REPORT}
@@ -68,9 +67,12 @@ The program satisfied most of the basic requirements. On the website, all the re
 There was also heavy feature creep much of which was removed from the final product. The feature creep resulted in time wasted on features that were cut. One main issue was displaying a map on the Android this was going to be used to display points of interest and allow editing of points of interest, but was cut due to difficulties in implementation. There was also an issue where the development on the website stagnated. This lack of progress led to the website being off schedule. Extra work was performed by the QA Manager to bring us back on schedule. A third issue was issues with decoding the JSON data on the server. To allow us to see what data was being sent, we created a log file and used it to assist in the coding of the decoder. Images were also converted to a string and decoded using base64.
 \\\\
 Overall, the team performed well, however the lack of progress on the web team caused issues late in development and the tasks had to be reorganized. The Android programmers performed exceptionally well, remaining on schedule. However, the manager spent times focusing on several areas particularly during coding week and so several members would occasionally cease to do work, having not been assigned a task. There were issues with Github not tracking the number of commits made by members, despite showing these commits in the log.
+\\\\
+Below is an example of a weekly report. This report is a summary of work done as the actual reports provided by the members were more detailed
+\includegraphics[scale=0.60]{Final_report/weekly_report.png}
 \newpage
 \subsection{History}
-At the start of the project, the group were all required to produce reports of all work performed during the week which was usually a summary of the blog. These reports were submitted to the project manager to ensure the project remained on schedule. Planning began immediately and the project manager made several revisions to the Gantt chart and one of the members requested a change of roles which was included in the Gantt chart. 
+At the start of the project, the group were all required to produce reports of all work performed during the week which was usually a summary of the blog. These reports were submitted to the project manager to ensure the project remained on schedule. Planning began immediately and the project manager made several revisions to the Gantt chart and one of the members requested a change of roles which was included in the Gantt chart. During the design phase we wanted the walks to record actual user movement and not a direct point to point depiction of the walk. This meant storing more cooridnate information in the database. We used the term Point of Interest (POI) to refer to locations where the user added a description or images. These points of interest would be where markers are displayed on the website, with locations simply being coordinates. I.e. A Location is a set of coordinates while a point of interest is a location with more info such as a description and images.
 \\\\
 The project plan was produced during a meeting in which all members suggested the initial design of the system and their understanding of the requirements. MDA typed the document and used images created by MWD5 and JAR39. Subsequent documents were produced as a contributed effort where different members worked on their specialized areas. I.e the web programmers worked on the website aspect of the design specification, while the android programmers worked on the Android aspect. The class diagram was produced by HFB1 and approved by MDA. There was also a lack of Android devices in the group particularly among the Android programmers, and thus three devices were purchased due to the limitations of the emulator particularly with GPS coordinates.
 \\\\
@@ -89,7 +91,7 @@ RYG1 was put on full website development while MWD5 began producing JUnit tests 
 A large issue was misunderstanding the definition of MIME type and all images were converted to a string to decode. The image decoding had problems as decoders were unable to decode the text data. HFB1 used a text editor to remove backslashes which solved the problem so code was added to file\_saver.php to remove the escape slashes added by JSON.
 \newpage 
 \subsection{Final State}
-On the website, the project has been completed and the only known flaw was the map not displaying correctly on certain browsers. The website was tested on the following: Safari, Opera, Firefox, Internet Explorer, Google Chrome, Mobile Opera (Android), Android default browser and Mobile Safari (iPad). The following browsers had issues: Firefox – the map was displayed out of place, Android default browser: Did not display the map. All other features worked correctly.
+On the website, the project has been completed and the only known flaw was the map not displaying correctly on certain browsers. The website was tested on the following: Safari, Opera, Firefox, Internet Explorer, Google Chrome, Mobile Opera (Android), Android default browser and Mobile Safari (iPad). The following browsers had issues: Firefox – the map was displayed out of place on older versions, Android default browser: Did not display the map. All other features worked correctly, Internet Explorer - Some versions did not display the map, other versions displayed it out of place.
 \\\\
 The database had constraints applied to its data as required and walks were stored correctly on the website. The Android device crashed when uploading a large number of images or after a completed upload. The crash was possibly caused by the recorder only stopping the recording on completion of the upload. However the device iterates through the array of locations during upload. If there is a GPS signal during upload, the crash occurs due to data being added to the array during iteration through said array. The application also crashed when attempting to upload without a connection to the internet, however the crash may have been caused be the aforementioned bug and we were unable to isolate the cause.
 \\\\
@@ -126,7 +128,7 @@ Saw the creation of the database and provided assistance in decoding the JSON da
 \centerline{\emph{Jack Alexander Reeve
  - JAR39:}\textbf{ Web Programmer}}
 ~\\
-Produced early prototypes of the website. Also produced the initial drawing of walks on maps between points of interest. Worked on CSS as well as website fixing and testing on different browsers. Also worked on the list walks.php file. Did lots of tidying up of the website,
+Produced early prototypes of the website. Also produced the initial drawing of walks on maps between points of interest. Worked on CSS as well as website fixing and testing on different browsers. Also worked on the list walks.php file. Did lots of tidying up of the website, particularly towards the deadline. Excellent performance and produced most items on time. Difficult to reach between the start of the Christmas holidays and the semester starting week, but quickly made up for lost work.
 \subsubsection{Mark Radcliffe Pitman}
 \centerline{\emph{Mark Radcliffe Pitman - MRP2:}\textbf{ Web Programmer}}
 ~\\
@@ -143,7 +145,7 @@ Worked on the test specification. Was initially working solely on documents but 
 \subsection{Team Evaluation}
 As a team there were occasional issues mainly due to miscommunication or lack of communication. However, when all members were present and actively working together, development would progress rapidly as conflicts both program wise and personality wise were easily resolved. Consistent reports helped keep the project on schedule. However, communication could have been improved as there were issues that members had that the project leader would be unaware of, but would be notified eventually, usually during a meeting where the project supervisor was present. 
 ~\\\\
-The team members collaborated with each other well, preventing an overlap of tasks and allowing development to proceed smoothly as well as helping keep feature creep out of the final product. If things were to improve, it would be to improve communication as that was the main issue with the group. Contacting each other was rarely the issue, it was mainly due to interpreting statements and sentences, possibly due to cultural differences of the members.
+The team members collaborated with each other well, preventing an overlap of tasks and allowing development to proceed smoothly as well as helping keep feature creep out of the final product. If things were to improve, it would be to improve communication as that was the main issue with the group. Contacting each other was rarely the issue, it was mainly due to misinterpreting statements and sentences, possibly due to cultural differences of the members.
 ~\\\\
 Tasks could also be monitored an better allocated to a more precise level and to take advantage of the strengths and weaknesses of each of the group members, with members sorting out issues with the affected members as needed.
 ~\\\\
@@ -219,7 +221,14 @@ I learnt a lot for this project from working with a group and more knowledge on 
 The leader did a very good job keeping everyone busy and telling everyone what needs to be done and by when. Was very supportive and tried to help everyone with their jobs if they needed help.~\\\\
 We did have problems like the website wasn’t receiving from the database and show on the map. Problems with the images to show up. The info box sometime didn’t show what we wanted. The CSS could mess things up with the texts, for example, making the page smaller, the words would move around where they shouldn’t be. This was all fixed after other people started helping each other cause they finished their part of the job. This showed good teamwork. ~\\\\
 Personally I enjoyed working as a group. I felt more motivated cause I didn’t want to disappoint the group. If something wasn’t done then it just doesn’t affect you but the whole group.~\\\\
- There were some stressful moments when things weren’t working but that was expected. Nothing was really left to the last minute because the leader wanted things to be done some time before the deadline so it can be checked and changed. Glad everything went mostly well and it is finally done.
+ There were some stressful moments when things weren’t working but that was expected. Nothing was really left to the last minute because the leader wanted things to be done some time before the deadline so it can be checked and changed. Glad everything went mostly well and it
+is finally done.
+\subsection{Mark Alexander Smith}
+Our CS22110 module involved us being part of a nine-person team and creating an android application about walk tours. It would involve the application using GPS on a users phone, saving the details (co-ordinates, description and images) of that users walk; this would link to a database. This information could then be sent to a website which would display all of the users walks.~\\\\ 
+Our first meeting involved us deciding roles for our team. We decided that David should be our project leader; he was enthusiastic about taking up this role. Ryan took up the role as being QA manager. Martin and Harry both took the roles of being android developers. Myself, Jack and Mark P took the roles of website developers, myself creating the database. Zack and Maciej accepting the roles of being android and PHP testers.~\\\\
+Our group would meet on a regular basis, every Tuesday with our Tutorial Tutor, Neil Taylor.  We would then also meet together as a group once or twice a week in our own time, usually in the orchard or the old college in town. I think this gave us an edge over other groups as each week we would all attend and discuss any problems we had, and create new jobs before we visit Neil later in the week. Obviously not everyone could make every session due to other commitments, but communication between the group was good enough so that this happened as little as possible.~\\\\
+We were in a good position leading up to Integration and Testing week (ITW), however this week is where most of the work would get done. I started on working with Ryan on the filesaver.php file. This became an issue with the group and became a harder task to do than first project and therefore took a lot longer than first suggested. Later in the week I continued with the website by creating the base of the CSS and also helping out with some problems, and also taking out some testing of the android application.~\\\\ 
+Overall I believe that our group took the correct attitude towards such a big project and getting as much done as possible before ITW. Meeting in our own time took a big weight off our shoulders and lead us to getting a working application that would send information to the database and website. David lead us well in making sure deadlines were met and that we were up-to-date on the Gantt chart.
 \newpage
 \subsection{Revised Project Plan}
 \newpage
@@ -237,6 +246,8 @@ Personally I enjoyed working as a group. I felt more motivated cause I didn’t 
  \\ 
 \hline
 	1.1&N/A&13/02/2014&Added other team members reports.&RYG1 \\
+\hline
+	1.2&N/A&13/02/2014&Added new reports and made small edits.&MDA \\
 \hline
 \end{longtable}
 \end{document}
