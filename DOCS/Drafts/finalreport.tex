@@ -1,4 +1,4 @@
-\documentclass[12pt, portrait]{article}
+\documentclass[12pt]{article}
 \usepackage[normalem]{ulem}
 \usepackage{graphicx, multirow}
 \usepackage{amsmath, array}
@@ -6,8 +6,19 @@
 \usepackage{pdflscape ,anyfontsize}
 \usepackage{longtable}
 \usepackage{titlesec}
+\usepackage{filecontents}
+\usepackage{listings}
+\usepackage{algpseudocode}
+\usepackage{newclude}
+\usepackage{pdfpages}
+\usepackage{geometry}
+\geometry{
+left = 15mm,
+right = 15mm
+}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{6}
 
-\setcounter{secnumdepth}{4}
 
 \titleformat{\paragraph}
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
@@ -16,7 +27,7 @@
 \renewcommand{\refname}{}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Final Report}
-\rhead{(Draft) -Version 1.3}
+\rhead{(Draft) -Version 1.5}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -36,7 +47,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_FR\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 1.3 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 1.5 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Draft \\
 
 \end{tabular}
@@ -53,6 +64,7 @@ Copyright \small{\copyright}\\ Aberystwyth University 2013
 \end{minipage}
 \newpage
 \tableofcontents{}
+
 \newpage
 \section{INTRODUCTION}
 \subsection{Purpose}
@@ -77,7 +89,10 @@ There was also heavy feature creep much of which was removed from the final prod
 Overall, the team performed well, however the lack of progress on the web team caused issues late in development and the tasks had to be reorganized. The Android programmers performed exceptionally well, remaining on schedule. However, the manager spent times focusing on several areas particularly during coding week and so several members would occasionally cease to do work, having not been assigned a task. There were issues with Github not tracking the number of commits made by members, despite showing these commits in the log.
 \\\\
 Below is an example of a weekly report. This report is a summary of work done as the actual reports provided by the members were more detailed
+\begin{figure}
 \includegraphics[scale=0.60]{Final_report/weekly_report.png}
+\caption{Example of a weekly report.}
+\end{figure}
 \newpage
 \subsection{History}
 At the start of the project, the group were all required to produce reports of all work performed during the week which was usually a summary of the blog. These reports were submitted to the project manager to ensure the project remained on schedule. Planning began immediately and the project manager made several revisions to the Gantt chart and one of the members requested a change of roles which was included in the Gantt chart. During the design phase we wanted the walks to record actual user movement and not a direct point to point depiction of the walk. This meant storing more cooridnate information in the database. We used the term Point of Interest (POI) to refer to locations where the user added a description or images. These points of interest would be where markers are displayed on the website, with locations simply being coordinates. I.e. A Location is a set of coordinates while a point of interest is a location with more info such as a description and images.
@@ -94,7 +109,8 @@ During the Christmas holiday, RYG1 worked extensively on the website producing t
 \\\\
 After completion of the exams, a meeting was held to discuss plans for Integration and Coding Week and all progress made over the Christmas holiday. Integration and coding week saw all group members working from 9am to about 5pm or 6pm. The first day of the week saw the implementation of uploading basic walk information and elimination of all feature creep that had arisen during the planning stage. There were difficulties in reading the JSON data on the server and this led to the creation of a log file which proved useful for further development. By Tuesday, the website still was not functional to an acceptable state however the web programmers had developed code which turned out to only be functional for hard coded data. In order to increase the website development, the project manager began working on the file\_saver.php file which handled the data being received from the Android device. MAS69 assisted MDA in finding a tutorial on how to extract variables from the JSON data. 
 \\\\
-RYG1 was put on full website development while MWD5 began producing JUnit tests while ZAL also produced PHPUnit tests. Initially these were to be used for the file\_saver.php file, but lack of knowledge led to the removal of several tests. The project manager worked extensively on the file\_saver.php file on Tuesday and Wednesday and was able to add information to the database, however joining the tables was solved by RYG1. On the Android a conflict arose where the Android programmers had mapped the same button to different functions. While this initially was not seen as a major issue, MVZ was instructed to create a screen to override the button conflict. This presented an issue where the buttons on the screen were not functioning. This was solved by the project manager who passed the variables as required and this fix in turn solved another similar bug that had appeared elsewhere. By Wednesday, RYG1 had to refactor all the website code to bring in correct functionality and thus the remaining members of the web team were moved into production of CSS files and testing the walks. By Thursday, at the suggestion of the QA manager, the map being displayed on the Android was removed, due to group vote, although the project manager did not agree with such a move, it did help the project remain on schedule. By early morning, the website became fully operational, with the project manager displaying multiple images on the website when a point of interest is located. By this time, the Android satisfied most of the requirements, however during late testing a bug was discovered which caused the application to crash on upload. Friday morning was spent doing extensive bug fixing, testing and commenting code with Javadoc and PHP doc. The upload crash bug was partially solved, but the application began crashing after uploading. The project manager put a work deadline 15 minutes to the final deadline by which all work would stop. On submission, the group produced very little work during the next week, but the final documentation was completed shortly after a meeting on the week prior to the submission deadline.
+RYG1 was put on full website development while MWD5 began producing JUnit tests while ZAL also produced PHPUnit tests. Initially these were to be used for the file\_saver.php file, but lack of knowledge led to the removal of several tests. The project manager worked extensively on the file\_saver.php file on Tuesday and Wednesday and was able to add information to the database, however joining the tables was solved by RYG1. On the Android a conflict arose where the Android programmers had mapped the same button to different functions. While this initially was not seen as a major issue, MVZ was instructed to create a screen to override the button conflict. This presented an issue where the buttons on the screen were not functioning. This was solved by the project manager who passed the variables as required and this fix in turn solved another similar bug that had appeared elsewhere. By Wednesday, RYG1 had to refactor all the website code to bring in correct functionality and thus the remaining members of the web team were moved into production of CSS files and testing the walks. \\\\
+By Thursday, at the suggestion of the QA manager, the map being displayed on the Android was removed, due to group vote, although the project manager did not agree with such a move, it did help the project remain on schedule. By early morning, the website became fully operational, with the project manager displaying multiple images on the website when a point of interest is located. By this time, the Android satisfied most of the requirements, however during late testing a bug was discovered which caused the application to crash on upload. Friday morning was spent doing extensive bug fixing, testing and commenting code with Javadoc and PHP doc. The upload crash bug was partially solved, but the application began crashing after uploading. The project manager put a work deadline 15 minutes to the final deadline by which all work would stop. On submission, the group produced very little work during the next week, but the final documentation was completed shortly after a meeting on the week prior to the submission deadline.
 \\\\
 A large issue was misunderstanding the definition of MIME type and all images were converted to a string to decode. The image decoding had problems as decoders were unable to decode the text data. HFB1 used a text editor to remove backslashes which solved the problem so code was added to file\_saver.php to remove the escape slashes added by JSON.
 \newpage 
@@ -174,6 +190,75 @@ It is important for members to work closely together and maintain communication 
 \subsection{The Project Test Report}
 \newpage
 \subsection{The Project Maintenance Manual}
+\subsubsection{Android Maintenance}
+\paragraph{Program Description}
+The function of this program is to allow the user to document walks. The path of the walk is tracked by the GPS of the device and by tracking the GPS of the device and providing the user with the means add places of interest.
+\paragraph{Program Structure}
+The program is organised in to Android Activities classes that control the application until a new Activity is started.
+\\\\
+The initial activity that the used sees is the StartScreen, that presents the user with a button prompting the start of a new walk, this button will start a new activity that creates the walk.
+\\\\
+WalkSetupScreen allows the user to enter basic walk data such as title and description. This input is used to create a new walk.
+The majority of  functionality is dealt with by the WalkScreen, it is responsible for the providing the user with options about the walk. From here places of interest can be created and added to the current walk.
+\paragraph{Significant Algorithms}
+The methods below open up new screens
+\\\\
+public void finishWalk(View v)\{\}
+\\\\
+public void editWalkDialog(View v)\{\}
+\\\\
+public void cancelWalk(View v)\{\}
+\paragraph{Files}
+Image for map background \[1\]
+\paragraph{Interfaces}
+See Design Specification - 
+\paragraph{Possible Improvements}
+Fix crash on upload bug
+\\\\
+Edit individual points of interest
+\paragraph{Physical Limitations}
+Number of images that can be uploaded is dependent on the amount of RAM on the device
+\\\\
+Requires a device with inbuilt GPS capability. Cannot use cell network or wifi for location finding
+\paragraph{Rebuilding and Testing}
+JUnit test provided
+\\\\
+Built and tested on Android 4.2.1
+\\\\
+Ensure required images are available
+\newpage
+
+\subsubsection{Web Application}
+\paragraph{Program Description} 
+The walk\_details.php file is used to show a walk in details. It uses Google Maps API to show the path of the walk and markers to show a point of interest. This file also shows the images from the selected walk. The images can be viewed in a lightbox.
+~\\\\
+On the list of walks page, this is where all the walks show up that has been uploaded from the app. This is done by the website connects to the database and receive all the details and echo them on this page. The user can pick what walk he would like to look at. By clicking on the walk he wants to see, that will take him to the walk\_details.php and that shows the walk in more detail.  The list works with the size of the page. The bigger the page, the more columns there are. This is don’t by making the information that is echo to float to the left.
+
+\paragraph{Algorithms}
+In the walk\_details.php file, we use \textdollar\_GET to get the correct 'walk' and 'walk\_id' from the MySQL database. This is needed so that we can use a query which pulls just the data we want. This is also needed to grab the photos which were taken at each specific POI on the walk. The images are pulled using a loop which echoes an image via an absolute url and a php array.
+~\\\\
+We use JSON to encode each of the values (e.g. \textdollar lat, \textdollar long, \textdollar title) these can then be put into the corresponding javascript arrays. These can then be displayed on the Google Maps API. 
+~\\\\
+In list\_walks.php, it first connects to MY SQL database while using \newline database\_layer.php and echo out all the list of walks. This is done by \textdollar\_GET which receives title, id, walk title and short description. Once that is all done, it closes the connection to the database.
+\paragraph{Main Data Areas}
+The main data for the walk\_details page is held in php array variables when they are initially pulled from the database. This data then gets used to display map points on the Google Maps API.
+~\\\\
+This page only receives important information that is needed for this page.  The way it has been laid out is with the title shows up more clearly than others cause that what the user is looking for.
+\paragraph{Files}
+This page only shows what is on the database and cannot change anything in the database.
+\paragraph{Interfaces}
+This page will need permissions set to allow the page on the server.
+\paragraph{Suggestions For Improvements}
+Being able to edit descriptions and titles would have been a good feature to have. The structure of the program allows for expansion and extra features to be added. I feel that this would be easy to add to the existing program structure. It would also be a good idea to allow walks to be deleted. This could be done with a simple MySQL query.
+~\\\\
+Having images show up on the list would had made it more appealing so users can see already what kind of walk it would be.
+
+\paragraph{Things To Watch Out For When Making Changes}
+Not much you can change to affect the web. It doesn’t edit much just displays the information. The only real risk is not connecting to the database and retrieving the information.
+\paragraph{Physical Limitations Of The Program}
+Again not many limitations on the web site. It is only displaying the information. It works with all browsers.
+\paragraph{Rebuilding And Testing}
+When rebuilding it, makes sure the CSS files are in the same place so the pages are still directed to the part.  Just make sure if the connection to the database is fine. Just test this by PHPunit. It will show you if you have any errors. 
 \newpage
 \subsection{Personal Reflective Reports}
 \subsubsection{Martin Vasilev Zokov}
@@ -240,61 +325,25 @@ We did have problems like the website wasn’t receiving from the database and s
 Personally I enjoyed working as a group. I felt more motivated cause I didn’t want to disappoint the group. If something wasn’t done then it just doesn’t affect you but the whole group.~\\\\
  There were some stressful moments when things weren’t working but that was expected. Nothing was really left to the last minute because the leader wanted things to be done some time before the deadline so it can be checked and changed. Glad everything went mostly well and it
 is finally done.
-\subsection{Mark Alexander Smith}
+\subsubsection{Mark Alexander Smith}
 Our CS22110 module involved us being part of a nine-person team and creating an android application about walk tours. It would involve the application using GPS on a users phone, saving the details (co-ordinates, description and images) of that users walk; this would link to a database. This information could then be sent to a website which would display all of the users walks.~\\\\ 
 Our first meeting involved us deciding roles for our team. We decided that David should be our project leader; he was enthusiastic about taking up this role. Ryan took up the role as being QA manager. Martin and Harry both took the roles of being android developers. Myself, Jack and Mark P took the roles of website developers, myself creating the database. Zack and Maciej accepting the roles of being android and PHP testers.~\\\\
 Our group would meet on a regular basis, every Tuesday with our Tutorial Tutor, Neil Taylor.  We would then also meet together as a group once or twice a week in our own time, usually in the orchard or the old college in town. I think this gave us an edge over other groups as each week we would all attend and discuss any problems we had, and create new jobs before we visit Neil later in the week. Obviously not everyone could make every session due to other commitments, but communication between the group was good enough so that this happened as little as possible.~\\\\
 We were in a good position leading up to Integration and Testing week (ITW), however this week is where most of the work would get done. I started on working with Ryan on the filesaver.php file. This became an issue with the group and became a harder task to do than first project and therefore took a lot longer than first suggested. Later in the week I continued with the website by creating the base of the CSS and also helping out with some problems, and also taking out some testing of the android application.~\\\\ 
 Overall I believe that our group took the correct attitude towards such a big project and getting as much done as possible before ITW. Meeting in our own time took a big weight off our shoulders and lead us to getting a working application that would send information to the database and website. David lead us well in making sure deadlines were met and that we were up-to-date on the Gantt chart.
-\subsection{Harry Flynn Buckley}
+\subsubsection{Harry Flynn Buckley}
 During this task I occupied myself with the Android-server communication and general handling of the walk data on the device. I feel that I am largely responsible for the class design of the Android application, and although towards the end the project it had to stray a little from the initial design, due to unforeseen complications with the Android camera and gallery apps, I am still happy with majority of the design choices. As there were only two people programming on the android, I had quite a lot of input to all the aspects of the android, the pop up dialogs where the only area which I feel I only had little contribution. 
 ~\\\\
 The group worked quite effectively, discussing much of the design before making a decision, I do however think that class diagram was not looked at very thoroughly as I received little feedback on my designs. I think the UI design perhaps had too much focus in the early meetings because UI is something that is very accessible and everyone has an opinion on. When the implementation part of the project started I wrote the initial GUI based on what was decided by the group, this went on to become the GUI of the final submission. I then worked on writing the all the model classes (WalkModel,LocationPoint,PointOfInterest, ImageInformation). A feature that was eventually cut was a local sqlite database that stored walks before they where uploaded, I managed to get the database working with much of the walk data but it was not complete.The next task that I was set on was the uploading of walk data to the server, this was initially done in name value pairs, before we decided on using JSON. To test the upload I had written a php file that receives and saves the send data and I think this file contributed to the final file\_saver.php. During ITW I finished off the JSON packaging, and did  all the camera and gallery interaction. I had some trouble writing the camera and gallery, as it involved slightly redesigning the way images are stored and how places of interest are added to the walk model. The packaging of the walk data into a JSON format was also quite difficult.
 ~\\\\
 Overall I have found the process quite fun and exciting, more so the closer we got to the code hand in date.
 \newpage
-\subsection{Maintenance Document}
-\subsubsection{Android Maintenance}
-\paragraph{Program Description}
-The function of this program is to allow the user to document walks. The path of the walk is tracked by the GPS of the device and by tracking the GPS of the device and providing the user with the means add places of interest.
-\paragraph{Program Structure}
-The program is organised in to Android Activities classes that control the application until a new Activity is started.
-\\\\
-The initial activity that the used sees is the StartScreen, that presents the user with a button prompting the start of a new walk, this button will start a new activity that creates the walk.
-\\\\
-WalkSetupScreen allows the user to enter basic walk data such as title and description. This input is used to create a new walk.
-The majority of  functionality is dealt with by the WalkScreen, it is responsible for the providing the user with options about the walk. From here places of interest can be created and added to the current walk.
-\paragraph{Significant Algorithms}
-The methods below open up new screens
-\\\\
-public void finishWalk(View v)\{\}
-\\\\
-public void editWalkDialog(View v)\{\}
-\\\\
-public void cancelWalk(View v)\{\}
-\paragraph{Files}
-Image for map background \[1\]
-\paragraph{Interfaces}
-See Design Specification - 
-\paragraph{Possible Improvements}
-Fix crash on upload bug
-\\\\
-Edit individual points of interest
-\paragraph{Physical Limitations}
-Number of images that can be uploaded is dependent on the amount of RAM on the device
-\\\\
-Requires a device with inbuilt GPS capability. Cannot use cell network or wifi for location finding
-\paragraph{Rebuilding and Testing}
-Junit test provided
-\\\\
-BUilt and tested on Android 4.2.1
-\\\\
-Ensure required images are available
 
 \subsection{Revised Project Plan}
-\newpage
+
 \subsection{Revised Design Document}
-\newpage
+
+
 \section{REFERENCES}
 \[1\]Earth image from http://www.abcteach.com/free/e/earth\_3d\_rgb.jpg
 
@@ -314,5 +363,12 @@ Ensure required images are available
 	\hline
 	1.3&N/A&13/02/2014&Added new reports and Android maintenance details.&MDA \\
 \hline
+	1.4&N/A&13/02/2014&Moved the Mainenance to the correct section of the document. Added the Web Application maintence report.&RYG1 \\
+\hline
+	1.5&N/A&13/02/2014&Text correction. Added new paragraphs.&MDA \\
+\hline	
 \end{longtable}
+
+
+
 \end{document}
