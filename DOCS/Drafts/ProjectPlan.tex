@@ -167,7 +167,7 @@ The Android application uploads walks to the server, which deals with the inform
 \end{figure}
 Displays only the program name, logo and group name. Tap to continue to main menu. This screen may be replaced with a tutorial or help screen on first launch. \\\\
 \textbf{\uline{NAVIGATION}}
-\par{Start $\rightarrow$ Main Menu (Fig. 4.2)} 
+\par{Start $\rightarrow$ New Walk Screen (Fig. 4.2)} 
 \clearpage
 \subsection{New Walk Screen}
 \begin{figure}[htp]
@@ -178,8 +178,8 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \end{figure}
 \par{This is the walk creation screen. It allows a short and long description to be added to a walk.  \\ \\}
 \textbf{\uline{NAVIGATION}}
-\par{Back $\rightarrow$ Main Menu (Fig. 4.2)}
-\par{Start Walk $\rightarrow$ Recording Window (Fig. 4.4)}
+\par{Back $\rightarrow$ Main Menu (Fig. 4.1)}
+\par{Start Walk $\rightarrow$ Recording Screen (Fig. 4.3)}
 \clearpage
 \subsection{Recording Screen}
 \begin{figure}[htp]
@@ -190,10 +190,10 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \end{figure}
 \par{This screen only displays the map around the users’ current location. When a point of interest is added, it will be displayed as a pin on this screen. The options button will allow the user to sign in/logout. When viewing a walk, only the option button and the swipe menu will be available. Pinch zoom may be used instead of button zoom. If the user taps the pause button, the recording will pause. If the user taps it again, the recording will resume. Holding down the button will stop the recording and take the user to the walk complete screen. The options menu will allow the user to exit the walk without saving. \\ \\}
 \textbf{\uline{NAVIGATION}}
-\par{Option $\rightarrow$ Option Menu}
-\par{Add Point of Interest $\rightarrow$ New Point of Interest Screen (Fig. 4.9)}
-\par{Stop $\rightarrow$ Walk Complete (Fig. 4.12)}
-\par{Swipe left across screen $\rightarrow$ Locations on Walk List (Fig. 4.11)}
+\par{Add POI $\rightarrow$ New Point of Interest Screen (Fig. 4.4)}
+\par{Edit Walk $\rightarrow$ Edit Walk Information Screen (Fig 4.5)}
+\par{Finish $\rightarrow$ Walk Complete Screen(Fig. 4.6)}
+\par(Cancel Walk $\rightarrow$ Start screen without uploading walk (Fig 4.1)}
 \subsection{New Point Of Interest}
 \begin{figure}[htp]
 \centering
@@ -203,17 +203,19 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \end{figure}
 \par{This screen is used to add a point of interest. It will appear semi-transparent over the map. Adding images will open a dialogue asking whether to go to the photo library or the camera app, allowing images to be added. Images will appear between the short and long description and can be removed from here. Pressing save stores the point of interest but can be removed later. \\ \\}
 \textbf{\uline{NAVIGATION}}
-\par{Cancel $\rightarrow$ Recording screen with walk (Fig. 4.10) or Recording screen (Fig. 4.9)}
+\par{Cancel $\rightarrow$ Recording screen without saving(Fig. 4.3)}
 \par{Add Image $\rightarrow$ Dialogue for Camera or Photo Library}
-\par{Save $\rightarrow$ Recording screen with walk (Fig. 4.10) or Recording screen (Fig. 4.9)}
-\subsection{Edit Information Walk Screen}
+\par{Save $\rightarrow$ Recording screen with save (Fig. 4.3) or Recording screen (Fig. 4.9)}
+\subsection{Edit Walk Information Screen}
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.40]{Project_Plan/android/edit_walk.png}
 \caption{Edit Walk}
 \label{Edit Walk}
 \end{figure}
-TODO WRITE THIS BIT
+\par{This screen allows the user to edit the walk information)
+\par{OK $\rightarrow$ Recording Screen with new details(Fig 4.3)}
+\par{Cancel $\rightarrow$ Recording Screen without saving (Fig 4.3)}
 \clearpage
 \subsection{Walk Complete}
 \begin{figure}[htp]
@@ -224,9 +226,8 @@ TODO WRITE THIS BIT
 \end{figure}
 \par{This screen allows the user to save a walk. If upload is pressed, the walk is saved then uploaded to the server provided the user is signed in. This screen should be unavailable if there are no points of interest to prevent uploading or saving an empty walk. This screen also shows the time taken to complete a walk, the name of the walk, the number of points of interest added and the location of the walk. \\ \\}
 \textbf{\uline{NAVIGATION}}
-\par{Cancel $\rightarrow$ Recording Screen with walk (Fig. 4.10)}
-\par{Save $\rightarrow$ View My Walks Screen (Fig. 4.3)}
-\par{Upload $\rightarrow$ View My Walks Screen (Fig. 4.3)}
+\par{Cancel $\rightarrow$ Recording Screen without uploading(Fig. 4.3)}
+\par{OK $\rightarrow$ Start Screen (Fig. 4.1)}
 \subsection{Cancel A Walk}
 \begin{figure}[htp]
 \centering
@@ -246,10 +247,8 @@ TODO
 \caption{Website Home Page}
 \label{Website Home Page}
 \end{figure}
-\par{This is the homepage of the website. From here the user can find information about the application and a link to where the mobile application can be downloaded. They can also log-in or register via this page and can view walks. \\ \\}
+\par{This is the homepage of the website. From here the user can find information about the application page and can view walks. \\ \\}
 \textbf{\uline{NAVIGATION}}
-\par{Log-in $\rightarrow$ Log-in Page (Fig. 5.3)}
-\par{Register $\rightarrow$ Registration Page (Fig. 5.4)}
 \par{View Walks $\rightarrow$ View Walks Page (Fig. 5.2)}
 \clearpage
 \subsection{View Walks Page}
@@ -261,10 +260,7 @@ TODO
 \end{figure}
 \par{The user can view all uploaded walks via this screen. From here the user can see a small map overview of the walk and the short description of the points of interest. If the user is signed in, they can view their walks from this page. \\ \\}
 \textbf{\uline{NAVIGATION}}
-\par{Click on Walk $\rightarrow$ Walk Page (Fig. 5.6)}
-\par{Log-in $\rightarrow$ Log-in Page (Fig. 5.3)}
-\par{Register $\rightarrow$ Registration Page (Fig. 5.4)}
-\par{View My Walks $\rightarrow$ View My Walks Page (Fig. 5.5)}
+\par{Click on Walk $\rightarrow$ Walk Page (Fig. 5.3)}
 \par{Home $\rightarrow$ Home Page (Fig. 5.1)}
 \clearpage
 \subsection{Walk Page}
@@ -276,14 +272,10 @@ TODO
 \end{figure}
 \par{This page displays a map overview of the walk, the average time taken to complete the walk and the long and short descriptions. The first image from every point of interest is displayed at the bottom of the screen. \\ \\}
 \textbf{\uline{NAVIGATION}}
-\par{Click on Image $\rightarrow$ Point of Interest Image Page (Fig. 5.8)}
-\par{Click Pin on Map $\rightarrow$ Point of Image Selected Page (Fig. 5.7)}
-\par{Delete Walk (if owner) $\rightarrow$ View Walks Page (Fig. 5.2)}
+\par{Click on Image $\rightarrow$ Point of Interest Image Page (Fig. 5.4)}
+\par{Click Pin on Map $\rightarrow$ Point of Image Selected Page (Fig. 5.5)}
 \par{View Walks $\rightarrow$ View Walks Page (Fig. 5.2)}
-\par{Register $\rightarrow$ Registration Page (Fig. 5.4)}
-\par{Log-in $\rightarrow$ Log-in Page (Fig. 5.3)}
 \par{Home $\rightarrow$ Home Page (Fig. 5.1)}
-\par{Sign out (if logged in) $\rightarrow$ View Walks Page (Fig. 5.2)}
 \subsection{Point Of Interest Selected Page}
 \begin{figure}[htp]
 \centering
@@ -293,15 +285,10 @@ TODO
 \end{figure}
 \par{Clicking on a pin on the map opens this page. The selected pin is also highlighted. The page displays the average time taken from the start of the walk to arrive at this point of interest. If there are any images taken from this point of interest, the user is can view them. If the user owns this walk, they will be able to edit the descriptions and add more images. The latitude and longitude of this point of interest is also displayed opposite the short description. \\ \\}
 \textbf{\uline{NAVIGATION}}
-\par{Edit POI $\rightarrow$ Edit Point of Interest Page (Fig. 5.9)}
-\par{Delete Walk (if owner) $\rightarrow$ View My Walks Page (Fig. 5.5)}
-\par{Click on Image $\rightarrow$ Point of Interest Image Page (Fig. 5.8)}
-\par{Click Pin on Map $\rightarrow$ Point of Image Selected Page (Fig. 5.7)}
+\par{Click on Map $\rightarrow$ Walk Page (Fig. 5.3)}
+\par{Click Pin on Map $\rightarrow$ Point of Image Selected Page (Fig. 5.5)}
 \par{View Walks $\rightarrow$ View Walks Page (Fig. 5.2)}
-\par{Register $\rightarrow$ Registration Page (Fig. 5.4)}
-\par{Log-in $\rightarrow$ Log-in Page (Fig. 5.3)}
 \par{Home $\rightarrow$ Home Page (Fig. 5.1)}
-\par{Sign out (if logged in) $\rightarrow$ View Walks Page (Fig. 5.2)}
 \clearpage
 \subsection{Point Of Interest Image Page}
 \begin{figure}[htp]
