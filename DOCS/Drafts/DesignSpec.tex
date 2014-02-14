@@ -8,6 +8,7 @@
 \usepackage{listings}
 \usepackage{algpseudocode}
 \usepackage{changepage}
+\usepackage[a4paper]{geometry}
 \renewcommand{\refname}{}
 % REFERENCE http://tex.stackexchange.com/questions/4891/how-do-i-control-the-spacing-above-a-new-paragraph %
 \makeatletter
@@ -607,7 +608,14 @@ The LocationListener is deliberately not activated at all times while a walk is 
 \subsubsection{Sequence Diagram For Web}
 \subsubsection{Overall Interaction Sequence Diagram}
 \subsection{Class Diagram}
-\includegraphics[scale=0.60]{Design/class_diagram.jpg}
+\newgeometry{top=1.5cm, bottom =1.2cm}
+\begin{landscape}
+
+\begin{adjustwidth}{-1cm}{-0cm}
+\includegraphics[scale=1.16]{Design/class_diagram.jpg}
+\end{adjustwidth}
+\end{landscape}
+\restoregeometry
 The classes ending in ‘screen’, are all Activities. They all, in some way, display a layout to the screen and respond to user input. Any response that requires further processing would be passed to another class and then handed back to be displayed, but it would be the ’screen’ class itself that initialised the action.  
 There are several classes that have been suffixed with ‘View’, these classes all extend the android class View. They are all visible to the user and act much like ‘screen’ classes except that they don’t use the whole screen and do not change the displayed screen only create new Views.  
 The classes WalkModel,PointOfInterest and Location can all be considered to be model classes. There are used to store the walks data in an organised fashion, and have no methods to do anything other than to set and get information.  
