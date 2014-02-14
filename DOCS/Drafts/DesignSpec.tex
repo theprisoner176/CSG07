@@ -7,6 +7,7 @@
 \usepackage{longtable}
 \usepackage{listings}
 \usepackage{algpseudocode}
+\usepackage{changepage}
 \renewcommand{\refname}{}
 % REFERENCE http://tex.stackexchange.com/questions/4891/how-do-i-control-the-spacing-above-a-new-paragraph %
 \makeatletter
@@ -650,60 +651,64 @@ if(mysqli_connect_errno())
 mysqli_close($con);
 \end{lstlisting}
 \paragraph{Append To The Server Database}
-\textdollar sql = "INSERT INTO List\_of\_Walks(title, shortDesc, longDesc, hours, distance)
-\\\\
-\zeroindent	
-VALUES('\textdollar title','\textdollar short\_desc', '\textdollar long\_desc', '\textdollar hours', '\textdollar distance')"; 
-\\\\
-		\textdollar queryWalk = mysqli\_query(\textdollar walk\_conn,\textdollar sql);
-        \\\\
-        \zeroindent
-		\textdollar walkID = mysqli\_insert\_id(\textdollar walk\_conn);	
-\\\\
-		foreach(\textdollar route as \textdollar loc)\{
-        \\\\
-			//loop through every location
-			\\\\
-			\textdollar longitude = \textdollar loc['longitude'];
-            \\\\
-			\textdollar latitude = \textdollar loc['latitude'];
-            \\\\
-			\textdollar time = \textdollar loc['time'];
-			\\\\
-			\textdollar sql = "INSERT INTO Location(walkID, latitude, longitude, timestamp)	
-            \\\\
-			VALUES('\textdollar walkID', '\textdollar latitude','\textdollar longitude', '\textdollar time')";
-            \\\\
-		\textdollar queryLoc =	mysqli\_query(\textdollar walk\_conn,\textdollar sql);
-        \\\\
-			\textdollar locID = mysqli\_insert\_id(\textdollar walk\_conn);
-			\\\\
-			if(isSet(\textdollar loc['description']))\{
-            \\\\
-				//If description, location is point of interest
-				\textdollar description = \textdollar loc['description'];
-				\textdollar name = \textdollar loc['title'];
-				\textdollar sql = "INSERT INTO Place\_description(description, locationId, name)
-						values('\textdollar description', '\textdollar locID', '\textdollar name')";
-				\textdollar queryPlace = mysqli\_query(\textdollar walk\_conn,\textdollar sql);
-				\textdollar placeId = mysqli\_insert\_id(\textdollar walk\_conn);
-				if(isSet(\textdollar loc['images']))\{
-				\textdollar photoCount = 0;
-				//If there are images decode and rename them
-					foreach(\textdollar loc['images']as \textdollar image)\{
-						\textdollar image = implode(\textdollar image);
-						\textdollar image = str\_replace("\\", "", \textdollar image, \textdollar count);
-						\textdollar image =  base64\_decode(\textdollar image);
-						\textdollar photoName = \textdollar walkID . "\_" . \textdollar locID . "\_" . \textdollar placeId . "\_" . \textdollar photoCount;
-						file\_put\_contents("images/".\textdollar photoName . ".jpg",\textdollar image);
-						\textdollar photoCount++;
-						\textdollar sql = "INSERT INTO Photo(photoName, placeId)
-						values('\textdollar photoName', '\textdollar placeId')";
-						\textdollar queryPhoto =	mysqli\_query(\textdollar walk\_conn,\textdollar sql);
-					\}
-				\}
-			\}
+\begin{adjustwidth}{-3cm}{-3cm}
+\begin{lstlisting}
+$sql = "INSERT INTO List_of_Walks(title, shortDesc, longDesc, hours, distance) VALUES('$title','$short_desc', '$long_desc', '$hours', '$distance')"; 
 
+$queryWalk = mysqli_query($walk_conn,$sql);
+    
+$walkID = mysqli_insert_id($walk_conn);	
+		
+foreach($route as $loc){
+       
+	loop through every location
+			
+	$longitude = $loc['longitude'];
+            
+	$latitude = $loc['latitude'];
+            
+	$time = $loc['time'];
+			
+	$sql = "INSERT INTO Location(walkID, latitude, longitude, timestamp)VALUES('$walkID','$latitude','$longitude', '$time')";
+            
+	$queryLoc = mysqli_query($walk_conn,$sql);
+        
+	$locID = mysqli_insert_id($walk_conn);
+	/*If description, location is point of interest*/
+	if(isSet($loc['description'])){			
+		$description = $loc['description'];
+		$name = $loc['title'];
+		$sql = "INSERT INTO Place_description(description, locationId, name)values('$description', '$locID', '$name')";
+		$queryPlace = mysqli_query($walk_conn,$sql);
+		$placeId = mysqli_insert_id($walk_conn);
+			if(isSet($loc['images']))\{
+				$photoCount = 0;
+				/*If there are images decode and rename them*/
+				foreach($loc['images']as $image)\{
+				
+					$image = implode($image);
+						
+					$image = str_replace("\\", "",$image, $count);
+						
+					$image =  base64_decode($image);
+						
+					$photoName = $walkID . "_" . $locID . "_" . $placeId . "_" . $photoCount;
+						
+					file_put_contents("images/".$photoName . ".jpg",$image);
+						
+					$photoCount++;
+						
+					$sql = "INSERT INTO Photo(photoName, placeId)values('$photoName', '$placeId')";
+						
+					$queryPhoto =mysqli_query($walk_conn,$sql);
+						
+					}
+					
+				}
+				
+			}
+\end{lstlisting}
+\end{adjustwidth}
 \subsection{TODO CHECK THE ALGORITHMS}
 \subsection{Significant Data Structures}
 \subsubsection{WalkModel}
