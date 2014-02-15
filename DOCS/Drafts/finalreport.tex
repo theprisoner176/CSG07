@@ -11,13 +11,23 @@
 \usepackage{algpseudocode}
 \usepackage{pdfpages}
 \usepackage[a4paper]{geometry}
-
+% REFERENCE http://tex.stackexchange.com/questions/4891/how-do-i-control-the-spacing-above-a-new-paragraph %
+\makeatletter
+\renewcommand{\paragraph}{
+  \@startsection{paragraph}{4}
+  {\z@}{3.25ex \@plus -10em \@minus 1em}{0.1em}
+  {\normalfont\normalsize\bfseries}
+}
+\lstset{
+    breaklines=true,
+  }
+\makeatother
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{6}
 \renewcommand{\refname}{}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Final Report}
-\rhead{(Draft) -Version 1.5}
+\rhead{(Draft) -Version 1.7}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -38,7 +48,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_FR\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 1.5 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 1.7 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Draft \\
 
 \end{tabular}
@@ -267,8 +277,9 @@ For our database we have 4 relations these are are:
 \caption{List Of Walks Table}
 \label{List Of Walks Table}
 \end{figure}
+In the list of Walks there is an if to identify the walk, this the primary key and all values are Unique. Next we have a title of the walk as a text field. Then we have a Short description of as a text field too, this has to be less than a 100 characters in length. Another field we have is the long description, which has to be to be less than 1000 characters. Finally, both hours and distance are of type Float. ~\\
 ~\\
-	\indent\textbf{Location:}~\\
+	\indent\textbf{Location:}~\\\clearpage
 	This table is where the user's co-ordinates, as either ``background'' co-ordinates are stored, or co-ordinates for the Point of interest during the walk. 
 	\begin{figure}[htp]
 \centering
@@ -276,8 +287,10 @@ For our database we have 4 relations these are are:
 \caption{Location Table}
 \label{Location Table}
 \end{figure}
+This table uses id as a unique primary key which is auto incremented and is of type integer. Another field in this table is the WalkId which is a foreign key references to Id in the list of walks - this is a foreign key as you will be able to keep track of which locations appear according to each walk. We then have latitude, longitude and a timestamp all as float representations. When the Android application records it will record background locations, so expect to have lots of co-ordinates in the table, that are not necessarily points of interest.
+
 	~\\
-	\clearpage
+	
 	\indent\textbf{Place Descripion}~\\
 	This table stores the description and name of any Location (Point of Interest) during the walk. Each Walk will be uniquely identified by the locationID
 	\begin{figure}[htp]
@@ -286,6 +299,7 @@ For our database we have 4 relations these are are:
 \caption{Place Description Table}
 \label{Place Description Table}
 \end{figure}
+This table refers to any point of interest during the walk. In this table you have a primary key called Id, which auto-increments everytime and is of type Integer.Then in the table there is the locationId, this is a foreign key reference to the key id, in the Location table - this again, is a way of keeping track of which point of interest is associated with a location and the co-ordinates for the point of interest. There is then a name and description which are both text fields in the database. These store the name of the point of interest and the description about the point of interest.
 	~\\
 	\indent\textbf{Photo Usage:}~\\
 	This is thetable which stores the photos for any given Point Of Interest. The table will allow multiple image for one location to be held as it stores the id for thepoint of interest
@@ -295,19 +309,20 @@ For our database we have 4 relations these are are:
 \caption{Photo Usage Table}
 \label{Photo Usage Table}
 \end{figure}
+In this table, we have a primary key Id for the photo which is auto incremented and uniquely identifies each photo in the table. PlaceID is a foreign key reference to the id in the place description table - again this is used to keep track of which photo is in which point of Interest. Finally, photoname stores the name of the photo minus the .jpg extension.
 \paragraph{Algorithms}
 All alogorithms for inserting into the database is in file\_saver.php: This section is in the web maintanence section.
 All algorithms for interacting with the database is in the list\_walks.php file, and walk\_details.php: These section is in the web maintanence section.
 \paragraph{Main Data Areas}
-
+There are no substantial data storage areas in the database as the database itself is the storage area. However when we get information from the database it returns it as an array. But this is covered in the Web Maintanence document.
 \paragraph{Files}
-
+There only needs to be one file in which the database is set up. This file is the C\_tables.php; as without this file the database will not be set up correctly. The user will then need to edit the Java source code to point the JSON Encoded values to the correct hosted area for the file\_saver.php which will then add the information to the database.
 \paragraph{Interfaces}
-The Database required MYSQL to be installed on the server.
+The Database required MYSQL to be installed on the server. To view the tables then there are additional .php files in the directory structure. 
 \paragraph{Suggestions For Improvement}
-
+An improvement which could be that the user would use software called PHPmyadmin. This would help greatly with having a visual representation of the database, as well as seeing the data in the database. This may help the user see it, rather than continuously using our PHP script.
 \paragraph{Things To Watch Out For}
-
+On our scripts we have added the Foreign Key References at the bottom of create table script, rather than under the actual value - so if the user is to edit this information and change any key dependencies then make sure that the last item is syntaxically correct. Additionally, make sure that user chmod 700 the files - even though they're just SQL scripts inside, the file is .php - so you may not be able to run the script if the permissions are not set correctly.
 \paragraph{Physical Limitation}
 We think a physical limitation of our database is such: When the user uploads a walk, it retrieves the last ID key from the database and then increments it by one. Therefore, we feel that if a user tries to upload two walks simulataneously then we do not know what will happen. Thus, this leads to the potential issue of locking; where two users try to access the database at the same time.
 \paragraph{Rebuilding And Testing}
@@ -442,6 +457,8 @@ To conclude, I’ve learned a lot during the group project. I was trying to do a
 	1.5&N/A&13/02/2014&Text correction. Added new paragraphs.&MDA \\
 \hline	
 	1.6&N/A&13/02/2014&Added the Database Manual Section&RYG1 \\
-\hline	
+\hline
+	1.7&N/A&13/02/2014&Added more information to the Database manual&RYG1 \\
+\hline		
 \end{longtable}
 \end{document}
