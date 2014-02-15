@@ -6,13 +6,13 @@
 \usepackage{pdflscape ,anyfontsize}
 \usepackage{longtable}
 \usepackage{changepage}
+\usepackage[a4paper]{geometry}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Project Plan}
-\rhead{(Release) -Version 2.0}
+\rhead{(Release) -Version 2.1}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
-\usepackage{graphicx}
 \begin{document}
 \pagestyle{fancy}
 \begin{flushleft}
@@ -29,7 +29,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_PM\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 2.0 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 2.1 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Release \\
 
 \end{tabular}
@@ -193,7 +193,7 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \par{Add POI $\rightarrow$ New Point of Interest Screen (Fig. 4.4)}
 \par{Edit Walk $\rightarrow$ Edit Walk Information Screen (Fig 4.5)}
 \par{Finish $\rightarrow$ Walk Complete Screen(Fig. 4.6)}
-\par(Cancel Walk $\rightarrow$ Start screen without uploading walk (Fig 4.1)}
+\par{Cancel Walk $\rightarrow$ Start screen without uploading walk (Fig 4.1)}
 \subsection{New Point Of Interest}
 \begin{figure}[htp]
 \centering
@@ -300,12 +300,13 @@ TODO
 \par{This simply enlarges the image clicked. Clicking outside the box minimizes the image back into the tray. \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Click Outside Image $\rightarrow$ Previous Page}
+\newpage
 \section{NAVIGATION OVERVIEW}
 \subsection{Android}
 \begin{figure}[htp]
 \begin{adjustwidth}{-3.cm}{-4cm}
 \centering
-\includegraphics[scale=0.60]{Project_Plan/docs/android_navigation_01.png}
+\includegraphics[scale=0.6]{Project_Plan/docs/android_navigation_01.png}
 \caption{Android Navigation}
 \label{Android Navigation}
 \end{adjustwidth}
@@ -326,15 +327,18 @@ TODO
 \par{Home page is the entry point. All pages link back to the home page}
 \newpage
 \section{GANTT CHART}
+\newgeometry{top=1.5cm, bottom =1.2cm}
+\begin{landscape}
 	\begin{figure}[htp]
-	\begin{adjustwidth}{-3.cm}{}
+	\begin{adjustwidth}{-0.7cm}{0cm}
 \centering
-\includegraphics[scale=0.42]{Project_Plan/docs/gant_chart_01.PNG}
+\includegraphics[scale=0.58]{Project_Plan/docs/gant_chart_01.PNG}
 \caption{Gantt Chart}
 \label{Gantt Chart}
 \end{adjustwidth}
 \end{figure}
-	
+\end{landscape}
+\restoregeometry
 \newpage
 \section{RISK ASSESSMENT}
 \begin{longtable}{|p{2.5cm}|p{1.5cm}|p{10cm}|}
@@ -405,7 +409,9 @@ Moved risk assessment to item 8 & MDA \\
 \hline
 	2.0 & N/A & 13/02/14 & Added updated images to file & RYG1 \\
 \hline
-
+	2.1	& N/A & 15/02/14 & Re-sized the Gantt Chart & RYG1 \\
+\hline
 \end{longtable}
+
 
 \end{document}
