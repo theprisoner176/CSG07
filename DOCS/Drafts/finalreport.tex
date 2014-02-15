@@ -9,21 +9,11 @@
 \usepackage{filecontents}
 \usepackage{listings}
 \usepackage{algpseudocode}
-\usepackage{newclude}
 \usepackage{pdfpages}
-\usepackage{geometry}
-\geometry{
-left = 15mm,
-right = 15mm
-}
+\usepackage[a4paper]{geometry}
+
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{6}
-
-
-\titleformat{\paragraph}
-{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
-\titlespacing*{\paragraph}
-{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 \renewcommand{\refname}{}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Final Report}
@@ -62,6 +52,7 @@ Ceredigion\\
 SY23 3DB \\
 Copyright \small{\copyright}\\ Aberystwyth University 2013
 \end{minipage}
+
 \newpage
 \tableofcontents{}
 
@@ -228,7 +219,7 @@ Built and tested on Android 4.2.1
 Ensure required images are available
 \newpage
 
-\subsubsection{Web Application}
+\subsubsection{Web Application Maintenance}
 \paragraph{Program Description} 
 The walk\_details.php file is used to show a walk in details. It uses Google Maps API to show the path of the walk and markers to show a point of interest. This file also shows the images from the selected walk. The images can be viewed in a lightbox.
 ~\\\\
@@ -259,6 +250,30 @@ Not much you can change to affect the web. It doesn’t edit much just displays 
 Again not many limitations on the web site. It is only displaying the information. It works with all browsers.
 \paragraph{Rebuilding And Testing}
 When rebuilding it, makes sure the CSS files are in the same place so the pages are still directed to the part.  Just make sure if the connection to the database is fine. Just test this by PHPunit. It will show you if you have any errors. 
+\newpage
+\subsubsection{Database Maintenance}
+\paragraph{Program Description}
+For the application to work successfully, and have a link between the Android application and the website then a Datbase is needed for communication. For our implementation, we used a MySQL database. From the requirements specification we have got 4 database relations. The database in this application is there to store the completed walks from the Android Application: The user will complete a walk and send the required information to the server, which will deode it and input the information into the correct fields in the table. 
+Our 3 relations are: 
+	\\
+	\indent\textbf{List Of Walks:}~\\
+	This is where the user's overall walk gets uploaded to. For each walk in this table is a completely separate walk - no two walks in this table are identical as it will always have a different ID Key.~\\
+	\indent\textbf{Location:}~\\
+	This table is where the user's co-ordinates, as either ``background'' co-ordinates are stored, or co-ordinates for the Point of interest during the walk. ~\\
+	\indent\textbf{Place Descripion}~\\
+	This table stores the description and name of any Location (Point of Interest) during the walk. Each Walk will be uniquely identified by the locationID~\\
+	\indent\textbf{Photo Usage:}~\\
+	This is thetable which stores the photos for any given Point Of Interest. The table will allow multiple image for one location to be held as it stores the id for thepoint of interest.		
+\paragraph{Algorithms}
+
+\paragraph{Main Data Areas}
+\paragraph{Files}
+\paragraph{Interfaces}
+The Database required MYSQL to be installed on the server.
+\paragraph{Suggestions For Improvement}
+\paragraph{Things To Watch Out For}
+\paragraph{Physical Limitation}
+\paragraph{Rebuilding And Testing}
 \newpage
 \subsection{Personal Reflective Reports}
 \subsubsection{Martin Vasilev Zokov}
@@ -340,8 +355,17 @@ Overall I have found the process quite fun and exciting, more so the closer we g
 \newpage
 
 \subsection{Revised Project Plan}
-
+\includepdf[scale=	0.95, pages={1-29}, pagecommand={}]{ProjectPlan.pdf}
+\newgeometry{top=1.5cm, bottom =1.2cm}
+\includepdf[scale=	0.95, pages={30}, pagecommand={}, landscape=true]{ProjectPlan.pdf}
+\restoregeometry
+\includepdf[scale=0.95, pages={31-33}, pagecommand={}]{ProjectPlan.pdf}
 \subsection{Revised Design Document}
+\includepdf[scale=0.95, pages=1-21, pagecommand={}]{DesignSpec.pdf}
+\newgeometry{top=1.5cm, bottom =1.2cm}
+\includepdf[scale=	0.95, pages={22}, pagecommand={}, landscape=true]{DesignSpec.pdf}
+\restoregeometry
+\includepdf[scale=	0.95, pages={23-29}, pagecommand={}]{DesignSpec.pdf}
 
 
 \section{REFERENCES}
@@ -368,7 +392,4 @@ Overall I have found the process quite fun and exciting, more so the closer we g
 	1.5&N/A&13/02/2014&Text correction. Added new paragraphs.&MDA \\
 \hline	
 \end{longtable}
-
-
-
 \end{document}

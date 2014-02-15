@@ -26,10 +26,11 @@
 \setcounter{tocdepth}{6}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Design Specification}
-\rhead{(Release) -Version 2.6}
+\rhead{(Release) -Version 2.7}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
+\usepackage{graphicx}
 \begin{document}
 \pagestyle{fancy}
 \begin{flushleft}
@@ -46,7 +47,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_PM\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 2.6 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 2.7 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Release \\
 
 \end{tabular}
@@ -187,6 +188,12 @@ This section gives an overview of what classes/files cover what requirements as 
 \subsection{Component Diagrams}
 \subsubsection{Android}
 \subsubsection{Website}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.50]{Design/web_diagram.png}
+\caption{Web Component Diagram}
+\label{Web Component Diagram}
+\end{figure}
 \subsubsection{Database Server}
 \section{INTERFACE DESCRIPTION}
 This section contains an implementation of different classes and files in the program. However, there is a possibility that the implementation in the final product may differ from what is displayed here.
@@ -607,12 +614,12 @@ Action 3 is the exit point of the loop for the current walk recording. It is don
 The LocationListener is deliberately not activated at all times while a walk is in progress in order to save battery life.
 \subsubsection{Sequence Diagram For Web}
 \subsubsection{Overall Interaction Sequence Diagram}
+
 \subsection{Class Diagram}
 \newgeometry{top=1.5cm, bottom =1.2cm}
 \begin{landscape}
-
 \begin{adjustwidth}{-1cm}{-0cm}
-\includegraphics[scale=1.16]{Design/class_diagram.jpg}
+\includegraphics[scale=0.6]{Design/class_diagram_new.jpg}
 \end{adjustwidth}
 \end{landscape}
 \restoregeometry
@@ -808,6 +815,8 @@ from MWD5 and MAS69. Added missing images. Added images and descriptions to sect
 	2.5&N/A&12/02/14&Re-wrote in LaTeX, removing feature creep &RYG1 \\
 \hline
 	2.6&N/A&13/02/14&Minor error checks and removal &MDA \\
+ \hline
+ 	2.7&N/A&13/02/14&Added Images & RYG1\\
  \hline
 \end{longtable}
 
