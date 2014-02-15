@@ -27,7 +27,7 @@
 \renewcommand{\refname}{}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Final Report}
-\rhead{(Draft) -Version 1.8}
+\rhead{(Draft) -Version 1.7}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -48,7 +48,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_FR\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 1.8 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 1.7 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Draft \\
 
 \end{tabular}
@@ -202,43 +202,6 @@ The initial activity that the used sees is the StartScreen, that presents the us
 \\\\
 WalkSetupScreen allows the user to enter basic walk data such as title and description. This input is used to create a new walk.
 The majority of  functionality is dealt with by the WalkScreen, it is responsible for the providing the user with options about the walk. From here places of interest can be created and added to the current walk.
-\\\\
-\textbf{Walk module}- This module handles all data about a walk - the route that was taken during the walk, the points of interest that were added and the information for the walk itself.
-~\\
-\textbf{Classes:} WalkModel, LocationPoint, PointOfInterest~\\\\
-WalkModel stores the details of a walk. it uses three string variables for the title, short description and long description. It also keeps all the route data into a Vector of LocationPoint objects. The WalkModel object also calculates the distance traveled and the time spent on a walk.
-~\\\\
-LocationPoint objects are created when GPS data is received and the longitude and latitude are stored as well as a time stamp for the location.
-~\\\\
-PointOfInterest objects are inherited from the LocationPoint class and whenever a new POI is added. These objects have a Vector of ImageInformation objects that were added from either the camera or the gallery. PointOfInterest objects also have a title and a description. This information is added in the pop up dialog which is shown when the user adds a new PointOfInterest. The exact coordinates for the object are taken from the last known position, which is recorded in the RouteRecorder class.
-~\\\\
-\textbf{Recorder module}~\\
-This module handles the recording and storing of route data.~\\
-\textbf{Classes}: RouteRecorder, PositionListener~\\\\
-RouteRecorder creates the LocationManager (Android API) and gives it a PositionListener object to respond to received GPS data. The listener then calls the newLocation method from the RouteRecorder to add it to the Vector of LocationPoints.~\\\\
-The RouteRecorder keeps track of the last known position which is used when adding new points of interest. 
-~\\\\
-\textbf{Image module}~\\
-This module is responsible for adding images to a walk. It is used to either get an image from the camera or select an image from the gallery on the device. ~\\
-\textbf{Classes:} ImageHandler, ImageInformation
-~\\\\ImageHandler uses two result codes to choose whether to start an activity to pick an image from the gallery or take a new picture.~\\\\
-ImageInformation is used to store information for a single image. It is mainly used to encode the image information as a string in Base64 encoding and is then sent to the server.~\\\\
-\textbf{File Transfer module}~\\
-This module is responsible for sending~\\
-\textbf{Classes:} FileTransferManager ~\\\\
-FileTransferManager is responsible for packaging all the data for the current walk into a single JSON object that is then sent as an HTTP POST to a web server. It also has an inner class which is responsible for the upload. It starts in a new Thread in which the upload is handled.~\\\\
-\textbf{Pop dialogs module}~\\
-This module is used to display popup dialogs for various.~\\ 
-\textbf{Classes:}DialogView, CancelWalkView, EditWalkView, GpsCheckDialog, PoiDialogView, WalkFinishedView~\\
-All of these classes are essentially the same. They use the abstract class DialogView to create a default pop up window and show different layouts depending on the situation. Each of the popup classes uses a different layout that is defined in an XML file and displayed in the pop up. There is a listener which has a different implementation in each of the classes to respond to the button clicks in different ways.
-~\\\\
-CancelWalkView brings up a warning message that this action will delete all information about the walk.
-~\\\\
-EditWalkView gives options to set a different title, short and long descriptions for the current walk. A future improvement could be displaying the current title and descriptions for the walk.
-~\\\\
-GpsCheckDialog is displayed if the GPS on the device is not turned on and gives the user an option to go to the GPS settings and turn it on.
-~\\\\
-WalkFinishedView gives the option to stop the current walk, upload it and go back to the main screen of the application.
 \paragraph{Significant Algorithms}
 The methods below open up new screens
 \\\\
@@ -247,114 +210,24 @@ public void finishWalk(View v)\{\}
 public void editWalkDialog(View v)\{\}
 \\\\
 public void cancelWalk(View v)\{\}
-~\\\\
-The below methods are related to the \textbf{Walk Model:}
-
-public WalkModel() \{\}~\\
-This is the default constructor for the WalkModel that creates the Vector for the route. ~\\\\
-public String getTitle()\{\} ~\\
-This gets the title of the walk ~\\\\
-public void setTitle(String newTitle)\{\}~\\
-This sets the title of the walk ~\\\\
-public String getShortDescription()\{\}~\\
-This gets the short description of the walk ~\\\\
-public void setShortDescription(String newShortDesc)\{\}~\\
-This sets the short description of the walk ~\\\\
-public String getLongDescription()\{\}~\\
-This gets the long description of the walk~\\\\
-public void setLongDescription(String newLongDesc)~\{\}~\\
-This sets the long description of the walk~\\\\
-public Vector \textless LocationPoint \textgreater getRoutePath()\{\}~\\
-This gets the Vector of LocationPoint objects~\\\\
-public void addLocation(LocationPoint point)\{\}~\\
-This adds a new location to the Vector ~\\\\
-public double getDistance()\{\}~\\
-This calculates the distance between the start and end of the walk ~\\\\
-public double getTimeTaken()\{\}~\\
-This calculates the total time spent on a walk.
-~\\\\
-The below methods are for \textbf{Location Point:}~\\\\
-public LocationPoint(double lat, double lng)\{\}~\\
-A constructor for the LocationPoint. Automatically takes a timestamp.~\\\\
-public long getTime() \{\} ~\\
-Gets the timestamp of the point. ~\\\\
-public double getLongitude() \{\}~\\
-Gets the longitude of the point ~\\\\
-public double getLatitude() \{\} ~\\
-Gets the latitude of the point~\\\\
-public static double distBetween(LocationPoint point, LocationPoint point2) \{\} ~\\
-Calculates the distance between two locations. ~\\\\
-The below methods are for \textbf{Point Of Interest} ~\\\\
-public PointOfInterest(LocationPoint point) \{\}~\\
-Constructor for the PointOfInterest. Uses the superconstructor from the LocationPoint class ~\\\\
-public void addImage(ImageInformation newImage) \{\}~\\ 
-adds an image to the Vector of images~\\\\
-public Vector \textless ImageInformation \textgreater getImages() \{\}~\\
-Gets the Vector of images~\\\\
-public String getDescription() \{\}~\\
-Gets the description of the PointOfInterest ~\\\\
-public void setDescription(String desc) \{\} ~\\
-Sets the description of the PointOfInterest ~\\\\
-public String getTitle() \{\} ~\\
-Gets the title of the PointOfInterest ~\\\\
-public void setTitle(String title) \{\}~\\
-sets the title of the PointOfInterest ~\\\\
-The below methods are for \textbf{Route Recorder}~\\
-public RouteRecorder(WalkScreen screen, WalkModel walk, LocationManager manager)\{\}~\\
-Construtor for the class. Creates a PositionListener and registers it with the passed LocationManager~\\\\
-private void setLastKnownPosition(LocationPoint newPoint)\{\} \{\}~\\ sets the last known position (the last received GPS location)~\\\\
-public LocationPoint getLastKnownPosition() \{\} ~\\
-returns the last known position~\\\\
-public void newLocation(LocationPoint loc) \{\} ~\\
-adds a new location to the current walk's Vector of LocationPoints ~\\\\
-public void finishWalk() \{\}~\\
-Stops the GPS updates for the LocationManager and makes it null ~\\\\
-Below is the main alorithms for the \textbf{Image Module}~\\
-public ImageHandler(WalkScreen owner) \{\}~\\
-Constructor for the ImageHandler object ~\\\\
-public void getPhotoFromLibrary() \{\}~\\
-Starts an activity to get a photo from the gallery~\\\\
-public void getPhotoFromCamera() \{\}~\\
-Starts an activity to take a picture with the camera ~\\\\
-private File createFile() \{\} ~\\
-Creates the file that the camera will save the taken picture to. The filename is just the current system time in milliseconds. ~\\\\
-public ImageInformation(String filename) \{\}~\\
-Constructor for the ImageInformation object ~\\\\
-public String getImageAsString() \{\} ~\\
-Gets the encoded image as a string on Base64 encoding ~\\\\
-public FileTransferManager(WalkScreen screen, WalkModel w) \{\} ~\\ Constructor for the FileTransferManager~\\\\
-private static JSONObject packageData(WalkModel data) \{\}~\\
-Packages all the WalkModel as a JSON object ~\\\\
-private static JSONArray packagepathData(Vector \textless LocationPoint \textgreater route) throws JSONException \{\}~\\
-Packages the whole route as a JSON object~\\\\
-private static boolean post(JSONObject pakagedData, WalkScreen walk) \{\}~\\
-Sends the data as a POST message to the server ~\\
-~\\
-Any further Algorithms are mentioned in the Design specification.
 \paragraph{Files}
-[1]  Image for map background 
+Image for map background \[1\]
 \paragraph{Interfaces}
 See Design Specification - 
 \paragraph{Possible Improvements}
 Fix crash on upload bug
 \\\\
 Edit individual points of interest
-~\\\\
-An improvement for future versions could be a better algorithm for managing GPS usage, GPS frequency and an algorithm for selecting which of the received locations can be discarded based on the accuracy of the received coordinates and other factors like user standing in one spot for an extended period of time.
 \paragraph{Physical Limitations}
 Number of images that can be uploaded is dependent on the amount of RAM on the device
 \\\\
 Requires a device with inbuilt GPS capability. Cannot use cell network or wifi for location finding
-\\\\
-There is a known bug in the upload method which some times causes a crash when uploading. This is due to the fact that while uploading the GPS data is still being received and written to the Vector of LocationPoints. This can be fixed by having the route Vector copied into a local variable and the loop for the upload would iterate through the local variable instead of the one that is passed to the method.
 \paragraph{Rebuilding and Testing}
 JUnit test provided
 \\\\
 Built and tested on Android 4.2.1
 \\\\
 Ensure required images are available
-\\\\
- If the user wishes to edit this document then they will need to install a LaTeX editor,  and compile and build the document based on that softwares documentation on how to do so. If the user wishes to add a new test, because of a fault then all they need to add the tests at the end of the test document by entering a test number, requirement, Test Content, Input, Output and a pass Criteria. They can do this in LaTeX by adding the \& symbol between each text data collumn - they can then finish it off by adding $\backslash \backslash$ to the end of the information - finally add a $\backslash$hline and this will complete the table.
 \newpage
 
 \subsubsection{Web Application Maintenance}
@@ -456,8 +329,6 @@ We think a physical limitation of our database is such: When the user uploads a 
 To rebuild our database tables you simply have to firstly created a database to put the tables in to, from then you have to edit the mysqli\_connect parameters to your own host, your own username and password and your selected database. Then to create the tables you will simply have to run the c\_tables.php file; this will create the database for you and all the relations and dependecies.
 
 To test the Database we have written a small PHP script/webpage which allows you to view the tables and what information you have in them at any given time. There is also an addiitonal fil called drop\_tables.php - this will allow you to drop all the data from the tables. \textbf{NOTE:} any tables which have been dropped will then be deleted, you will then need to call c\_tables.php again, to create the tables.
-
-All tests to do with the database are in the Test Specification Document, under requirement: FR9 in the document. If the user wishes to edit this document then they will need to install a LaTeX editor,  and compile and build the document based on that softwares documentation on how to do so. If the user wishes to add a new test, because of a fault then all they need to add the tests at the end of the test document by entering a test number, requirement, Test Content, Input, Output and a pass Criteria. They can do this in LaTeX by adding the \& symbol between each text data collumn - they can then finish it off by adding $\backslash \backslash$ to the end of the information - finally add a $\backslash$hline and this will complete the table. 
 \newpage
 \subsection{Personal Reflective Reports}
 \subsubsection{Martin Vasilev Zokov}
@@ -589,7 +460,5 @@ To conclude, I’ve learned a lot during the group project. I was trying to do a
 \hline
 	1.7&N/A&13/02/2014&Added more information to the Database manual&RYG1 \\
 \hline		
-	1.8&N/A&13/02/2014&Added more information to the Android manual&RYG1 \\
-	\hline
 \end{longtable}
 \end{document}
