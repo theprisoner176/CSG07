@@ -1,0 +1,17 @@
+3.2.1.8 Rebuilding and Testing
+
+The following libraries are used to build and test the program:
+
+Android 4.4 API (version 19), https://developer.android.com/about/versions/android-4.4.html
+as all android version are backwards compatible we chose to use the most recent (at time of creation) to build the project.
+
+Android Support Library version 4, this library is included in with the code in WalkTourCreator/libs.
+This add support for features found in API 4 and below.
+
+JUnit 4, http://junit.org/
+JUnit is required to run the test cases for the program.
+
+All testing has been on a device running Android 4.2.1, due to the limited availability of devices, and the general poor quality of Android emulators, other Android versions have not been tested. All tests can be found in WalkTourCreator/src/uk/ac/aber/cs221/group07/walktourcreator/tests.
+
+
+The program was created and written as an eclipse project and can easily be imported and then built by the tools provided by eclipse. 
