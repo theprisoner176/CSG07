@@ -197,6 +197,7 @@ This section gives an overview of what classes/files cover what requirements as 
 \subsubsection{Website}
 \clearpage
 \begin{figure}[htp]
+
 \centering
 \includegraphics[scale=0.50]{Design/web_diagram.png}
 \caption{Web Component Diagram}
@@ -614,21 +615,37 @@ public class FileTransferManager{
 \section{DETAILED DESIGN}
 This section details the algorithms and interactions that will be implemented in the program. The algorithms used may differ from the final product.
 \subsection{UML Diagrams}
-\subsubsection{Sequence Diagram}
+\subsubsection{Android Sequence Diagram}\clearpage
+\begin{figure}[htp]
+
+\begin{adjustwidth}{-3cm}{0cm}
+\centering
+\includegraphics[scale=0.90]{Design/route_record_sequence_diagram.PNG}
+\caption{Android Sequence Diagram}
+\label{Android Sequence Diagram}
+\end{adjustwidth}
+\end{figure}
 The sequence diagram describes the recording of a walk and how the classes which are involved in the process interact.
 In action 1. the user is prompted for details in the WalkSetupScreen and after he/she presses the start walk button, a map screen is shown and a RouteRecorder and WalkModel objects are created. After that the application goes into a loop of actions from the RouteRecorder, LocationListener and WalkModel classes. The recorder asks the listener for location data and when the data is returned, it is saved in the WalkModel's array of location points.
 Action 2 is optional for the user, because it is not mandatory to have a Point of interest or photos in every walk. If a user decides to click the “Add POI” button, the LocationListener gives the coordinates of the current location to the RouteRecorder and they are saved in the WalkModel object.
 Action 3 is the exit point of the loop for the current walk recording. It is done by clicking the stop button which brakes the loop and saves the last set of coordinates for the current walk.
 The LocationListener is deliberately not activated at all times while a walk is in progress in order to save battery life.
 \subsubsection{Sequence Diagram For Web}
+\begin{figure}[htp]
+\begin{adjustwidth}{-2cm}{0cm}
+\centering
+\includegraphics[scale=0.70]{Design/web_sequence_diagram.PNG}
+\caption{Web Sequence Diagram}
+\label{Web Sequence Diagram}
+\end{adjustwidth}
+\end{figure}
 \subsubsection{Overall Interaction Sequence Diagram}
 
 \subsection{Class Diagram}
-\newgeometry{top=1.4cm, bottom =-0.8cm}
+\newgeometry{top=1.5cm, bottom =-0.8cm}
 \begin{landscape}
 \begin{adjustwidth}{0.5cm}{2cm}
 \includegraphics[scale=2.74253]{Design/class_diagram_new.jpg}
-
 \end{adjustwidth}
 \end{landscape}
 \restoregeometry
@@ -826,6 +843,8 @@ from MWD5 and MAS69. Added missing images. Added images and descriptions to sect
 	2.6&N/A&13/02/14&Minor error checks and removal &MDA \\
  \hline
  	2.7&N/A&13/02/14&Added Images & RYG1\\
+ \hline
+ 2.8&N/A&13/02/14&Added Sequence Diagrams &RYG1\\
  \hline
 \end{longtable}
 
