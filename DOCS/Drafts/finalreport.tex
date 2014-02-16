@@ -381,11 +381,20 @@ This page only receives important information that is needed for this page.  The
 This page only shows what is on the database and cannot change anything in the database.
 \paragraph{Interfaces}
 This page will need permissions set to allow the page on the server.
+\newline
+The following files can be used to manually add data into the database and view all data in the database for testing: list_table.php, field_form.php and add_fields.php
+~\\\\
+Field Forms
+\newline
+Field forms allows the developer to add information like name, description, etc to the database. This is where the information that is entered will be sent to the database. It can also be used for testing the database constraints.
+~\\\\
+Add Fields
+\newline
+The reason we need to add test data is to see if everything is working. The data will be sent to the database and see if it shows up on the website. We can see if the website also works without the android. Also to see if the website can retrieve everything and show them properly on the page. If that does not work then there is something wrong with the database or the website is not retrieving.
 \paragraph{Suggestions For Improvements}
 Being able to edit descriptions and titles would have been a good feature to have. The structure of the program allows for expansion and extra features to be added. I feel that this would be easy to add to the existing program structure. It would also be a good idea to allow walks to be deleted. This could be done with a simple MySQL query.
 ~\\\\
 Having images show up on the list would had made it more appealing so users can see already what kind of walk it would be.
-
 \paragraph{Things To Watch Out For When Making Changes}
 Ensure the database connection information is correct and the database language is in MySQL. Make sure all external files such as the JavaScript and CSS are in the correct directories
 \paragraph{Physical Limitations Of The Program}
@@ -598,7 +607,7 @@ To conclude, I've learned a lot during the group project. I was trying to do as 
 \hline		
 	1.8&N/A&13/02/2014&Added more information to the Android manual&RYG1 \\
 	\hline
-	1.9&N/A&13/02/2014&Grammar, syntax and spelling corrections. Capitalized user names&MDA \\
+	1.9&N/A&13/02/2014&Grammar, syntax and spelling corrections. Capitalized user names. Updated system interaction and added use case descriptions. Added maintenance docs for field form and add fields PHP files.&MDA \\
 	\hline
 \end{longtable}
 \end{document}
