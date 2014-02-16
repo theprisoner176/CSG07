@@ -9,7 +9,7 @@
 \usepackage[a4paper]{geometry}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Project Plan}
-\rhead{(Release) -Version 2.2}
+\rhead{(Release) -Version 2.3}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -29,7 +29,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_PM\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 2.2 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 2.3 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Release \\
 
 \end{tabular}
@@ -96,15 +96,13 @@ This module handles the location where data is stored. If the user is not connec
 This module handles the displaying options about the walk, like cancelling it, adding points of interest or uploading it.
 \subsubsection{Walk Recorder}
 This module handles the storage of points of interest, the time taken for a walk and the walks location during recording.
-\subsubsection{Local Database}
-\par{This module stores all locally saved walks and maps cache. It handles the retrieval and uploading of walks to the server.}
 \subsubsection{Database Protocol}
 This module handles the conversion of database request to their required language such as from POST to HTTP for the website.
 \subsubsection{Server}
 This is the server that handles all requests between the database, website and android application
 \subsubsection{Request Handler}
 \par{This module deals with linking data between users}
-\subsubsection{User Walks}
+\subsubsection{Walks}
 This module handles the retrieval and presentation of the walks uploaded by the user.
 \subsubsection{Physical Database}
 \par{This is the machine where all request are handled}
@@ -132,7 +130,7 @@ This module handles the conversion of data into visual form for browser based vi
 \label{Website Use-Case Diagram}
 \end{figure}
 \subsection{Interaction System}
-\par{TODO}
+\includegraphics[scale=0.60]{Project_Plan/docs/system_interaction.jpg}
 \par{The diagram above represents the interaction of the whole system. The user interacts with both Android application and the website. The walks recorded by the user along with all the other information like description and the photos, are stored in the database and can be easily accessed later via the website or locally. Every action that creates or adds data is stored in the database.
 The Android application uploads walks to the server, which deals with the information and inserts it appropriately in the database. The Android application does not have a direct link to the website.The website also pulls a list of walks from the database. The website will also list all the information associated to one singular walks, such as Long description, short description, any pictures. This will then be displayed appropriately on the website.}
 \subsection{Descriptions}
@@ -147,8 +145,12 @@ The Android application uploads walks to the server, which deals with the inform
 } & \multicolumn{1}{|p{10cm}|}{The user must add points of interest on the walk. This includes a short description, an optional long description and optional images. A timestamp is automatically taken when a point of interest is saved}
 \\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{Save and upload a walk} & \multicolumn{1}{|p{10cm}|}{When the user has finished their walk they will click the finish the walk button, this will then upload the walk to the server where it will be processed.}
 \\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{Cancel a walk} & \multicolumn{1}{|p{10cm}|}{If the user wishes to end their walk then they can click the cancel button. This will cancel any recorded data associated with the current walk.}
-\\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{Edit Walk Details} & \multicolumn{1}{|p{10cm}|}{The user will be able to edit any information associated with the current walk. This could be a point of interest, or the title of the whole walk. The information about the walk, in which they're editing, has to be shown to the user.}
-\\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{Add Images} & \multicolumn{1}{|p{10cm}|}{The user can take a picture of a location and add it to the walk. Alternatively, they can add a picture from their photo library. The user should be also able to upload multiple images to any given point of interest.}
+\\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{Edit walk details} & \multicolumn{1}{|p{10cm}|}{The user will be able to edit any information associated with the current walk. This could be a point of interest, or the title of the whole walk. The information about the walk, in which they're editing, has to be shown to the user.}
+\\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{Add point of interest} & \multicolumn{1}{|p{10cm}|}{The user can add points of interest. These are locations with descriptions with or without images}
+\\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{Add POI Images} & \multicolumn{1}{|p{10cm}|}{The user can take a picture of a location and add it to the walk. Alternatively, they can add a picture from their photo library. The user should be also able to upload multiple images to any given point of interest.}
+\\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{Add POI Long Description} & \multicolumn{1}{|p{10cm}|}{The user can add a detailed description of a point of interest}
+\\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{Add POI Short Description} & \multicolumn{1}{|p{10cm}|}{The user can add a brief description summarising a point of interest}
+\\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{Add Walk Descriptions} & \multicolumn{1}{|p{10cm}|}{The user can add description both long and short to the walk and can be edited later}
 \\\hline
  \multirow{4}{*}{Website} & \multicolumn{1}{|p{3cm}|}{View the list of walks} & \multicolumn{1}{|p{10cm}|}{This will show a list of the walks in the database that multiple user has uploaded to the server. They will be displayed in a list form on the website.} \\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{View walk long description}& \multicolumn{1}{|p{10cm}|}{Once a walk has been selected from the list of walks it will tell the user what the long description associated to that walk is. This will also appear, in the google maps popup.}
 \\\cline{2-3} & \multicolumn{1}{|p{3cm}|}{View walk short description}& \multicolumn{1}{|p{10cm}|}{Once a walk has been selected from the list of walks it will tell the user what the short description associated to that walk is. This will also appear, in the google maps popup.}
@@ -166,7 +168,7 @@ The Android application uploads walks to the server, which deals with the inform
 \caption{Start Screen}
 \label{Start Screen}
 \end{figure}
-Displays only the program name, logo and group name. Tap to continue to main menu. This screen may be replaced with a tutorial or help screen on first launch. \\\\
+Used as a filler screen before the user starts a walk. This screen may be replaced with a tutorial or help screen on first launch in future. \\\\
 \textbf{\uline{NAVIGATION}}
 \par{Start $\rightarrow$ New Walk Screen (Fig. 4.2)} 
 \clearpage
@@ -189,7 +191,7 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \caption{}
 \label{}
 \end{figure}
-\par{This screen only displays the map around the users’ current location. When a point of interest is added, it will be displayed as a pin on this screen. The options button will allow the user to sign in/logout. When viewing a walk, only the option button and the swipe menu will be available. Pinch zoom may be used instead of button zoom. If the user taps the pause button, the recording will pause. If the user taps it again, the recording will resume. Holding down the button will stop the recording and take the user to the walk complete screen. The options menu will allow the user to exit the walk without saving. \\ \\}
+\par{This screen will give the user the option to edit the walk, add points of interest and finish or cancel walks. Recording will only begin when a GPS signal has been found. The user will receive a message to indicate recording has begun\\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Add POI $\rightarrow$ New Point of Interest Screen (Fig. 4.4)}
 \par{Edit Walk $\rightarrow$ Edit Walk Information Screen (Fig 4.5)}
@@ -202,11 +204,11 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \caption{Add Point Of Interest}
 \label{Add Point Of Interest}
 \end{figure}
-\par{This screen is used to add a point of interest. It will appear semi-transparent over the map. Adding images will open a dialogue asking whether to go to the photo library or the camera app, allowing images to be added. Images will appear between the short and long description and can be removed from here. Pressing save stores the point of interest but can be removed later. \\ \\}
+\par{This screen is used to add a point of interest. It will appear over the recording screen. Adding images will open a dialogue asking whether to go to the photo library or the camera app, allowing images to be added. Images will appear between the short and long description and can be removed from here. Pressing save stores the point of interest but can be removed later. \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Cancel $\rightarrow$ Recording screen without saving(Fig. 4.3)}
 \par{Add Image $\rightarrow$ Dialogue for Camera or Photo Library}
-\par{Save $\rightarrow$ Recording screen with save (Fig. 4.3) or Recording screen (Fig. 4.9)}
+\par{Save $\rightarrow$ Recording screen with save (Fig. 4.3)}
 \subsection{Edit Walk Information Screen}
 \begin{figure}[htp]
 \centering
@@ -214,7 +216,7 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \caption{Edit Walk}
 \label{Edit Walk}
 \end{figure}
-\par{This screen allows the user to edit the walk information)
+\par{This screen allows the user to edit the walk information}
 \par{OK $\rightarrow$ Recording Screen with new details(Fig 4.3)}
 \par{Cancel $\rightarrow$ Recording Screen without saving (Fig 4.3)}
 \clearpage
@@ -225,7 +227,7 @@ Displays only the program name, logo and group name. Tap to continue to main men
 \caption{Upload Walk}
 \label{Upload Walk}
 \end{figure}
-\par{This screen allows the user to save a walk. If upload is pressed, the walk is saved then uploaded to the server provided the user is signed in. This screen should be unavailable if there are no points of interest to prevent uploading or saving an empty walk. This screen also shows the time taken to complete a walk, the name of the walk, the number of points of interest added and the location of the walk. \\ \\}
+\par{This screen allows the user to save a walk. If upload is pressed, the walk is saved then uploaded to the server provided the user is signed in. This screen should be unavailable if there are no points of interest to prevent uploading or saving an empty walk. IN future, this screen could show the time taken to complete a walk, the name of the walk, the number of points of interest added and the location of the walk. \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Cancel $\rightarrow$ Recording Screen without uploading(Fig. 4.3)}
 \par{OK $\rightarrow$ Start Screen (Fig. 4.1)}
@@ -259,7 +261,7 @@ TODO
 \caption{View Walks Page}
 \label{View Walks Page}
 \end{figure}
-\par{The user can view all uploaded walks via this screen. From here the user can see a small map overview of the walk and the short description of the points of interest. If the user is signed in, they can view their walks from this page. \\ \\}
+\par{The user can view all uploaded walks via this screen. From here the user can see a small map overview of the walk and the short description of the points of interest. \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Click on Walk $\rightarrow$ Walk Page (Fig. 5.3)}
 \par{Home $\rightarrow$ Home Page (Fig. 5.1)}
@@ -272,7 +274,7 @@ TODO
 \caption{Walk Page }
 \label{Walk Page}
 \end{figure}
-\par{This page displays a map overview of the walk, the average time taken to complete the walk and the long and short descriptions. The first image from every point of interest is displayed at the bottom of the screen. \\ \\}
+\par{This page displays a map overview of the walk, the average time taken to complete the walk and the long and short descriptions. The images from every point of interest are displayed at the bottom of the screen. \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Click on Image $\rightarrow$ Point of Interest Image Page (Fig. 5.4)}
 \par{Click Pin on Map $\rightarrow$ Point of Image Selected Page (Fig. 5.5)}
@@ -287,7 +289,7 @@ TODO
 \caption{Point Of Interest Selected}
 \label{Point Of Interest Selected}
 \end{figure}
-\par{Clicking on a pin on the map opens this page. The selected pin is also highlighted. The page displays the average time taken from the start of the walk to arrive at this point of interest. If there are any images taken from this point of interest, the user is can view them. If the user owns this walk, they will be able to edit the descriptions and add more images. The latitude and longitude of this point of interest is also displayed opposite the short description. \\ \\}
+\par{Clicking on a pin on the map opens this page. The selected pin is also highlighted. The page displays the average time taken from the start of the walk to arrive at this point of interest. If there are any images taken from this point of interest, the user is can view them.\\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Click on Map $\rightarrow$ Walk Page (Fig. 5.3)}
 \par{Click Pin on Map $\rightarrow$ Point of Image Selected Page (Fig. 5.5)}
@@ -349,7 +351,7 @@ TODO
 \hline
 	Event & Risk & Mitigation\\
 \hline
-	Git Downtime & Low & All work should be backed up on multiple devices, preferably the University of Aberystwyth M: Drive and local backup locations.\\
+	Git Downtime & Low & All work should be backed up on multiple devices, preferably the University of Aberystwyth M: Drive and local backup locations. Work can continue on local bramches\\
 \hline
 	Absence of Team Leader & Low & The deputy team leader will take up responsibilities as required.\\
 \hline
@@ -416,6 +418,8 @@ Moved risk assessment to item 8 & MDA \\
 	2.1	& N/A & 15/02/14 & Re-sized the Gantt Chart & RYG1 \\
 \hline
 	2.2	& N/A & 16/02/14 & Edited Feature creep Images & RYG1 \\
+\hline
+	2.3	& N/A & 16/02/14 & Updated navigation and interface description texts and use case descriptions. Added system interaction diagram & MDA \\
 \hline
 \end{longtable}
 
