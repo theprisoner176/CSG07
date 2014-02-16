@@ -227,8 +227,8 @@ ImageInformation is used to store information for a single image. It is mainly u
 This module is responsible for sending~\\
 \textbf{Classes:} FileTransferManager ~\\\\
 FileTransferManager is responsible for packaging all the data for the current walk into a single JSON object that is then sent as an HTTP POST to a web server. It also has an inner class which is responsible for the upload. It starts in a new Thread in which the upload is handled.~\\\\
-\textbf{Pop dialogs module}~\\
-This module is used to display popup dialogs for various.~\\ 
+\textbf{Popup dialogues module}~\\
+This module is used to display popup dialogues for various.~\\ 
 \textbf{Classes:}DialogView, CancelWalkView, EditWalkView, GpsCheckDialog, PoiDialogView, WalkFinishedView~\\
 All of these classes are essentially the same. They use the abstract class DialogView to create a default pop up window and show different layouts depending on the situation. Each of the popup classes uses a different layout that is defined in an XML file and displayed in the pop up. There is a listener which has a different implementation in each of the classes to respond to the button clicks in different ways.
 ~\\\\
@@ -275,9 +275,9 @@ This calculates the total time spent on a walk.
 ~\\\\
 The below methods are for \textbf{Location Point:}~\\\\
 public LocationPoint(double lat, double lng)\{\}~\\
-A constructor for the LocationPoint. Automatically takes a timestamp.~\\\\
+A constructor for the LocationPoint. Automatically takes a time-stamp.~\\\\
 public long getTime() \{\} ~\\
-Gets the timestamp of the point. ~\\\\
+Gets the time-stamp of the point. ~\\\\
 public double getLongitude() \{\}~\\
 Gets the longitude of the point ~\\\\
 public double getLatitude() \{\} ~\\
@@ -286,7 +286,7 @@ public static double distBetween(LocationPoint point, LocationPoint point2) \{\}
 Calculates the distance between two locations. ~\\\\
 The below methods are for \textbf{Point Of Interest} ~\\\\
 public PointOfInterest(LocationPoint point) \{\}~\\
-Constructor for the PointOfInterest. Uses the superconstructor from the LocationPoint class ~\\\\
+Constructor for the PointOfInterest. Uses the super-constructor from the LocationPoint class ~\\\\
 public void addImage(ImageInformation newImage) \{\}~\\ 
 adds an image to the Vector of images~\\\\
 public Vector \textless ImageInformation \textgreater getImages() \{\}~\\
@@ -301,7 +301,7 @@ public void setTitle(String title) \{\}~\\
 sets the title of the PointOfInterest ~\\\\
 The below methods are for \textbf{Route Recorder}~\\
 public RouteRecorder(WalkScreen screen, WalkModel walk, LocationManager manager)\{\}~\\
-Construtor for the class. Creates a PositionListener and registers it with the passed LocationManager~\\\\
+Constructor for the class. Creates a PositionListener and registers it with the passed LocationManager~\\\\
 private void setLastKnownPosition(LocationPoint newPoint)\{\} \{\}~\\ sets the last known position (the last received GPS location)~\\\\
 public LocationPoint getLastKnownPosition() \{\} ~\\
 returns the last known position~\\\\
@@ -309,7 +309,7 @@ public void newLocation(LocationPoint loc) \{\} ~\\
 adds a new location to the current walk's Vector of LocationPoints ~\\\\
 public void finishWalk() \{\}~\\
 Stops the GPS updates for the LocationManager and makes it null ~\\\\
-Below is the main alorithms for the \textbf{Image Module}~\\
+Below is the main algorithms for the \textbf{Image Module}~\\
 public ImageHandler(WalkScreen owner) \{\}~\\
 Constructor for the ImageHandler object ~\\\\
 public void getPhotoFromLibrary() \{\}~\\
@@ -317,7 +317,7 @@ Starts an activity to get a photo from the gallery~\\\\
 public void getPhotoFromCamera() \{\}~\\
 Starts an activity to take a picture with the camera ~\\\\
 private File createFile() \{\} ~\\
-Creates the file that the camera will save the taken picture to. The filename is just the current system time in milliseconds. ~\\\\
+Creates the file that the camera will save the taken picture to. The file name is just the current system time in milliseconds. ~\\\\
 public ImageInformation(String filename) \{\}~\\
 Constructor for the ImageInformation object ~\\\\
 public String getImageAsString() \{\} ~\\
@@ -344,7 +344,7 @@ An improvement for future versions could be a better algorithm for managing GPS 
 \paragraph{Physical Limitations}
 Number of images that can be uploaded is dependent on the amount of RAM on the device
 \\\\
-Requires a device with inbuilt GPS capability. Cannot use cell network or wifi for location finding
+Requires a device with inbuilt GPS capability. Cannot use cell network or WIFI for location finding
 \\\\
 There is a known bug in the upload method which some times causes a crash when uploading. This is due to the fact that while uploading the GPS data is still being received and written to the Vector of LocationPoints. This can be fixed by having the route Vector copied into a local variable and the loop for the upload would iterate through the local variable instead of the one that is passed to the method.
 \paragraph{Rebuilding and Testing}
@@ -354,23 +354,23 @@ Built and tested on Android 4.2.1
 \\\\
 Ensure required images are available
 \\\\
- If the user wishes to edit this document then they will need to install a LaTeX editor,  and compile and build the document based on that softwares documentation on how to do so. If the user wishes to add a new test, because of a fault then all they need to add the tests at the end of the test document by entering a test number, requirement, Test Content, Input, Output and a pass Criteria. They can do this in LaTeX by adding the \& symbol between each text data collumn - they can then finish it off by adding $\backslash \backslash$ to the end of the information - finally add a $\backslash$hline and this will complete the table.
+ If the user wishes to edit this document then they will need to install a LaTeX editor,  and compile and build the document based on the software's documentation on how to do so. If the user wishes to add a new test, because of a fault then all they need to add the tests at the end of the test document by entering a test number, requirement, Test Content, Input, Output and a pass Criteria. They can do this in LaTeX by adding the \& symbol between each text data column - they can then finish it off by adding $\backslash \backslash$ to the end of the information - finally add a $\backslash$hline and this will complete the table.
 \newpage
 
 \subsubsection{Web Application Maintenance}
 \paragraph{Program Description} 
 The walk\_details.php file is used to show a walk in details. It uses Google Maps API to show the path of the walk and markers to show a point of interest. This file also shows the images from the selected walk. The images can be viewed in a lightbox.
 ~\\\\
-On the list of walks page, this is where all the walks show up that has been uploaded from the app. This is done by the website connects to the database and receive all the details and echo them on this page. The user can pick what walk he would like to look at. By clicking on the walk he wants to see, that will take him to the walk\_details.php and that shows the walk in more detail.  The list works with the size of the page. The bigger the page, the more columns there are. This is donâ€™t by making the information that is echo to float to the left.
+On the list of walks page, all the walks that have been uploaded from the Android application show up. This is done by connecting to the database and retrieving all the walk details and echoing them onto the page. The user can select walk he would like to view by clicking on said walk. This will redirect him to the walk\_details.php sending a GET request containing the walk ID which will show more detail about the walk.  The list is responsive to the size of the browser window. The bigger the window, the more columns there are. This is done via CSS by making the information that is echoed float to the left.
 
 \paragraph{Algorithms}
-In the walk\_details.php file, we use \textdollar\_GET to get the correct 'walk' and 'walk\_id' from the MySQL database. This is needed so that we can use a query which pulls just the data we want. This is also needed to grab the photos which were taken at each specific POI on the walk. The images are pulled using a loop which echoes an image via an absolute url and a php array.
+In the walk\_details.php file, we use \textdollar\_GET to get the correct 'walk' and 'walk\_id' from the MySQL database. This is needed so that we can use a query which pulls just the data we want. This is also needed to grab the photos which were taken at each specific POI on the walk. The images are pulled using a loop which prints an image via an absolute url and a php array.
 ~\\\\
-We use JSON to encode each of the values (e.g. \textdollar lat, \textdollar long, \textdollar title) these can then be put into the corresponding javascript arrays. These can then be displayed on the Google Maps API. 
+We use JSON to encode each of the variables (e.g. \textdollar lat, \textdollar long, \textdollar title) these can then be put into the corresponding JavaScript arrays. These can then be displayed on the Google Maps. 
 ~\\\\
-In list\_walks.php, it first connects to MY SQL database while using \newline database\_layer.php and echo out all the list of walks. This is done by \textdollar\_GET which receives title, id, walk title and short description. Once that is all done, it closes the connection to the database.
+The list\_walks.php, first connects to MY SQL database while using \newline database\_layer.php to sanitise the queries and then echoes out all the walks. This is done by \textdollar\_GET which receives title, id, walk title and short description. Once that is all done, it closes the connection to the database.
 \paragraph{Main Data Areas}
-The main data for the walk\_details page is held in php array variables when they are initially pulled from the database. This data then gets used to display map points on the Google Maps API.
+The main data for the walk\_details page is held in PHP array variables when they are initially pulled from the database. This data then gets used to display map points on the Google Maps API.
 ~\\\\
 This page only receives important information that is needed for this page.  The way it has been laid out is with the title shows up more clearly than others cause that what the user is looking for.
 \paragraph{Files}
@@ -383,15 +383,17 @@ Being able to edit descriptions and titles would have been a good feature to hav
 Having images show up on the list would had made it more appealing so users can see already what kind of walk it would be.
 
 \paragraph{Things To Watch Out For When Making Changes}
-Not much you can change to affect the web. It doesnâ€™t edit much just displays the information. The only real risk is not connecting to the database and retrieving the information.
+Ensure the database connection information is correct and the database language is in MySQL. Make sure all external files such as the JavaScript and CSS are in the correct directories
 \paragraph{Physical Limitations Of The Program}
-Again not many limitations on the web site. It is only displaying the information. It works with all browsers.
+Certain features require JavaScript to be enabled. If the user has disabled or blocked JavaScript, some features will not be visible.
+The website can potentially display several images which may use a large amount of bandwidth or data.
 \paragraph{Rebuilding And Testing}
-When rebuilding it, makes sure the CSS files are in the same place so the pages are still directed to the part.  Just make sure if the connection to the database is fine. Just test this by PHPunit. It will show you if you have any errors. 
+When rebuilding, make sure the CSS files are in the same place so the pages are still directed to the part.  Just make sure if the connection to the database is fine. Just test this by PHPunit. It will show you if you have any errors. 
+Also ensure the database has the required tables and their dependencies.
 \newpage
 \subsubsection{Database Maintenance}
 \paragraph{Program Description}
-For the application to work successfully, and have a link between the Android application and the website then a Datbase is needed for communication. For our implementation, we used a MySQL database. From the requirements specification we have got 4 database relations. The database in this application is there to store the completed walks from the Android Application: The user will complete a walk and send the required information to the server, which will deode it and input the information into the correct fields in the table. 
+For the application to work successfully, and have a link between the Android application and the website then a Database is needed for communication. For our implementation, we used a MySQL database. From the requirements specification we have got 4 database relations. The database in this application is there to store the completed walks from the Android Application: The user will complete a walk and send the required information to the server, which will deode it and input the information into the correct fields in the table. 
 .
 \paragraph{Program Structure}	
 For our database we have 4 relations these are are: 
@@ -418,7 +420,7 @@ This table uses id as a unique primary key which is auto incremented and is of t
 
 	~\\
 	
-	\indent\textbf{Place Descripion}~\\
+	\indent\textbf{Place Description}~\\
 	This table stores the description and name of any Location (Point of Interest) during the walk. Each Walk will be uniquely identified by the locationID
 	\begin{figure}[htp]
 \centering
@@ -426,10 +428,10 @@ This table uses id as a unique primary key which is auto incremented and is of t
 \caption{Place Description Table}
 \label{Place Description Table}
 \end{figure}
-This table refers to any point of interest during the walk. In this table you have a primary key called Id, which auto-increments everytime and is of type Integer.Then in the table there is the locationId, this is a foreign key reference to the key id, in the Location table - this again, is a way of keeping track of which point of interest is associated with a location and the co-ordinates for the point of interest. There is then a name and description which are both text fields in the database. These store the name of the point of interest and the description about the point of interest.
+This table refers to any point of interest during the walk. In this table you have a primary key called Id, which auto-increments every time a walk is added and is of type Integer.Then in the table there is the locationId, this is a foreign key reference to the key id, in the Location table - this again, is a way of keeping track of which point of interest is associated with a location and the co-ordinates for the point of interest. There is then a name and description which are both text fields in the database. These store the name of the point of interest and the description about the point of interest.
 	~\\
 	\indent\textbf{Photo Usage:}~\\
-	This is thetable which stores the photos for any given Point Of Interest. The table will allow multiple image for one location to be held as it stores the id for thepoint of interest
+	This is the table which stores the photos for any given Point Of Interest. The table will allow multiple image for one location to be held as it stores the id for the point of interest
 	\begin{figure}[htp]
 \centering
 \includegraphics[scale=0.70]{Final_report/Photo_Usage.png}
@@ -438,26 +440,26 @@ This table refers to any point of interest during the walk. In this table you ha
 \end{figure}
 In this table, we have a primary key Id for the photo which is auto incremented and uniquely identifies each photo in the table. PlaceID is a foreign key reference to the id in the place description table - again this is used to keep track of which photo is in which point of Interest. Finally, photoname stores the name of the photo minus the .jpg extension.
 \paragraph{Algorithms}
-All alogorithms for inserting into the database is in file\_saver.php: This section is in the web maintanence section.
-All algorithms for interacting with the database is in the list\_walks.php file, and walk\_details.php: These section is in the web maintanence section.
+All algorithms for inserting into the database is in file\_saver.php: This section is in the web maintenance section.
+All algorithms for interacting with the database is in the list\_walks.php file, and walk\_details.php: These section is in the web maintenance section.
 \paragraph{Main Data Areas}
-There are no substantial data storage areas in the database as the database itself is the storage area. However when we get information from the database it returns it as an array. But this is covered in the Web Maintanence document.
+There are no substantial data storage areas in the database as the database itself is the storage area. However when we get information from the database it returns it as an array. But this is covered in the Web Maintenance document.
 \paragraph{Files}
 There only needs to be one file in which the database is set up. This file is the C\_tables.php; as without this file the database will not be set up correctly. The user will then need to edit the Java source code to point the JSON Encoded values to the correct hosted area for the file\_saver.php which will then add the information to the database.
 \paragraph{Interfaces}
-The Database required MYSQL to be installed on the server. To view the tables then there are additional .php files in the directory structure. 
+The Database required MYSQL to be installed on the server. To view the tables then there are additional PHP files in the directory structure. 
 \paragraph{Suggestions For Improvement}
 An improvement which could be that the user would use software called PHPmyadmin. This would help greatly with having a visual representation of the database, as well as seeing the data in the database. This may help the user see it, rather than continuously using our PHP script.
 \paragraph{Things To Watch Out For}
-On our scripts we have added the Foreign Key References at the bottom of create table script, rather than under the actual value - so if the user is to edit this information and change any key dependencies then make sure that the last item is syntaxically correct. Additionally, make sure that user chmod 700 the files - even though they're just SQL scripts inside, the file is .php - so you may not be able to run the script if the permissions are not set correctly.
+On our scripts we have added the Foreign Key References at the bottom of create table script, rather than under the actual value - so if the user is to edit this information and change any key dependencies then make sure that the last item is syntactically correct. Additionally, make sure that user chmod 700 the files - even though they're just SQL scripts inside, the file is .php - so you may not be able to run the script if the permissions are not set correctly.
 \paragraph{Physical Limitation}
-We think a physical limitation of our database is such: When the user uploads a walk, it retrieves the last ID key from the database and then increments it by one. Therefore, we feel that if a user tries to upload two walks simulataneously then we do not know what will happen. Thus, this leads to the potential issue of locking; where two users try to access the database at the same time.
+We think a physical limitation of our database is such: When the user uploads a walk, it retrieves the last ID key from the database and then increments it by one. Therefore, we feel that if a user tries to upload two walks simultaneously then we do not know what will happen. Thus, this leads to the potential issue of locking; where two users try to access the database at the same time.
 \paragraph{Rebuilding And Testing}
-To rebuild our database tables you simply have to firstly created a database to put the tables in to, from then you have to edit the mysqli\_connect parameters to your own host, your own username and password and your selected database. Then to create the tables you will simply have to run the c\_tables.php file; this will create the database for you and all the relations and dependecies.
+To rebuild our database tables you simply have to firstly created a database to put the tables in to, from then you have to edit the mysqli\_connect parameters to your own host, your own username and password and your selected database. Then to create the tables you will simply have to run the c\_tables.php file; this will create the database for you and all the relations and dependencies.
 
-To test the Database we have written a small PHP script/webpage which allows you to view the tables and what information you have in them at any given time. There is also an addiitonal fil called drop\_tables.php - this will allow you to drop all the data from the tables. \textbf{NOTE:} any tables which have been dropped will then be deleted, you will then need to call c\_tables.php again, to create the tables.
+To test the Database we have written a small PHP script/web page which allows you to view the tables and what information you have in them at any given time. There is also an additional file called drop\_tables.php - this will allow you to drop all the data from the tables. \textbf{NOTE:} any tables which have been dropped will then be deleted, you will then need to call c\_tables.php again, to create the tables.
 
-All tests to do with the database are in the Test Specification Document, under requirement: FR9 in the document. If the user wishes to edit this document then they will need to install a LaTeX editor,  and compile and build the document based on that softwares documentation on how to do so. If the user wishes to add a new test, because of a fault then all they need to add the tests at the end of the test document by entering a test number, requirement, Test Content, Input, Output and a pass Criteria. They can do this in LaTeX by adding the \& symbol between each text data collumn - they can then finish it off by adding $\backslash \backslash$ to the end of the information - finally add a $\backslash$hline and this will complete the table. 
+All tests to do with the database are in the Test Specification Document, under requirement: FR9 in the document. If the user wishes to edit this document then they will need to install a LaTeX editor,  and compile and build the document based on that software's documentation on how to do so. If the user wishes to add a new test, because of a fault then all they need to add the tests at the end of the test document by entering a test number, requirement, Test Content, Input, Output and a pass Criteria. They can do this in LaTeX by adding the \& symbol between each text data collumn - they can then finish it off by adding $\backslash \backslash$ to the end of the information - finally add a $\backslash$hline and this will complete the table. 
 \newpage
 \subsection{Personal Reflective Reports}
 \subsubsection{Martin Vasilev Zokov}
@@ -465,7 +467,7 @@ The group project was an interesting experience from which I learned a lot. The 
 ~\\\\ 
 Another great aspect of the group project is that I learned a lot about the way that commercial software is built. We were practically using the Waterfall model to implement our application and this gives insight into the way the industry works. I also improved my team working skills greatly, because the project concentrates heavily on collaboration between each member in the team. Not only about decisions that need to be made, but also when implementing certain aspects of the system, programmers should work with each other in order to create a working application.
 ~\\\\ 
-The group leader (mda) did a very good job with the task allocation and I feel that I was getting along with all of my teammates. We had no misunderstandings as a group and we worked pretty well in a team.
+The group leader (mda) did a very good job with the task allocation and I feel that I was getting along with all of my team mates. We had no misunderstandings as a group and we worked pretty well in a team.
 \subsubsection{Ryan Gouldsmith}
 I feel that my contribution to this project has been extensive. First of deciding roles for the group was relatively straight forward, and although some people ended up being moved around to other tasks later on in the project to help with the lack of work being put forward, we all agreed that this was probably the best balance of skills in our group. I was delegated the role of Quality Assurance Manager, as well as helping with any issues to do with GitHub. Prior to the coding week, I was there to ensure that all the documents were adhered to by the standard specification that we received. As a group we all read the standard documents so we knew the outline for each of the documents that we were given. I thought we worked well as a team to help ensure that everything was to standard; overall, with the Quality Assurance I felt that we all worked together well and that standards were mostly adhered to.
 ~\\\\
@@ -473,24 +475,24 @@ However, around the Christmas period the Web Development team began to fall behi
 ~\\\\
 I found my team very easy to get a long with, and we didn't have any overall major disagreements. I thought were all cohersed well as a unit, and we managed to discuss the different alternatives that we all decided. I think that we all made an effort to be there for our group meetings, showing we were all engaged in the project. I felt the most difficult aspect of the project was Integration and Testing week. I thought that this was a very long week, and trying to juggle 3 different aspects was very challenging; I had be QA to make sure if we edited docs they were still in standard, code the functionality of the website and help with the decoding of the JSON file from the Android. However, it was enjoyable being able to work as a team and when I didn't have not the correct solution someone could input: this was present with Dave's help with the multiple images on the website. 
 ~\\\\
-From this project I feel that I have expanded additional web knowledge. Having only basic knowledge of PHP and Javascript, it was good to be able to use this knowledge to produce an application which was flexible with the data that you gave it. I didn't however, have prior knowledge of how JSON worked, so having working decoding the JSON to put it into out Database was good and rewarding when we managed to be able to solve the issue, which stopped us for a couple of days. Additionally, the database design proved a bit of an issue as we were getting JOIN confused with foreign key, eventually we solved this and managed to sort out a database which is suitable to the design. However, I am happy I did manage to expand my knowledge on Javascript and learning different programming techniques in the language: such as arrays and loops.
+From this project I feel that I have expanded additional web knowledge. Having only basic knowledge of PHP and JavaScript, it was good to be able to use this knowledge to produce an application which was flexible with the data that you gave it. I didn't however, have prior knowledge of how JSON worked, so having working decoding the JSON to put it into out Database was good and rewarding when we managed to be able to solve the issue, which stopped us for a couple of days. Additionally, the database design proved a bit of an issue as we were getting JOIN confused with foreign key, eventually we solved this and managed to sort out a database which is suitable to the design. However, I am happy I did manage to expand my knowledge on JavaScript and learning different programming techniques in the language: such as arrays and loops.
 ~\\\\
-From the process I have learnt a great deal of useful information. I would happily work with my group again, but I feel that we could have potentially utilised the experience and confidence in programming a bit better. I would therefore have prefered to move to web development team from the start. However, I believe we have worked well as a team and I am happy with my contribution towards the final product.
+From the process I have learnt a great deal of useful information. I would happily work with my group again, but I feel that we could have potentially utilised the experience and confidence in programming a bit better. I would therefore have preferred to move to web development team from the start. However, I believe we have worked well as a team and I am happy with my contribution towards the final product.
 \subsubsection{Zack Lott}
 In CS22120 we was assigned a group project where we had to make a application and website.
 We had weekly meetings with Neil about the progress of the application and website. This allows us to review the changes we did to the assignment. Our meetings were on a Friday at 10am but we occasionally had extra meetings with and without Neil to figure out what needed to be done to push the assignment forward. 
 ~\\\\
-My role for this assignment was to be a tester, this meant I had to test the application and website, to check for bugs, errors and to make sure they met the requirements. I used the test specification that was created by the group with tests that were required, but with the web we used web validations and php unit testing.
+My role for this assignment was to be a tester, this meant I had to test the application and website, to check for bugs, errors and to make sure they met the requirements. I used the test specification that was created by the group with tests that were required, but with the web we used web validations and PHP unit testing.
 ~\\\\
-From this assignment I have learnt new methods and ways of doing php from checking over the web code and creating php unit testing, before this module I hadn't learn php unit testing so with the help of Dave(mda), he helped me understand what it was doing and how to write/read it correctly. While doing the testing it made me understand the real purpose of testing, because checking the little things like checking for symbols in any text box can affect the whole application, this meant I spent a lot of my time while doing the works looking for ways that would break the application or make it crash, I managed to do this a few times but with that information our android workers put in a lot of effort and hard work to fix any problems I gave them.
+From this assignment I have learnt new methods and ways of doing PHP from checking over the web code and creating PHP Unit testing, before this module I hadn't learn PHP unit testing so with the help of Dave(MDA), he helped me understand what it was doing and how to write/read it correctly. While doing the testing it made me understand the real purpose of testing, because checking the little things like checking for symbols in any text box can affect the whole application, this meant I spent a lot of my time while doing the works looking for ways that would break the application or make it crash, I managed to do this a few times but with that information our android workers put in a lot of effort and hard work to fix any problems I gave them.
 ~\\\\
-The assignment did cause me a few problems but this was due to me not understanding many things due to me not studying 2nd part of java in the first year, but Ryan(ryg1) and Dave(mda) would quickly explain what it meant and how to solve the problem, this allows me to carry on with the work. If it was to hard then Dave would quickly reassign me something else so we could always keep the assignment going forward.  
+The assignment did cause me a few problems but this was due to me not understanding many things due to me not studying 2nd part of Java in the first year, but Ryan(ryg1) and Dave(MDA) would quickly explain what it meant and how to solve the problem, this allows me to carry on with the work. If it was to hard then Dave would quickly reassign me something else so we could always keep the assignment going forward.  
 ~\\\\
-I believe the group worked well, everyone got a lot with each other, we all had a laugh and they motivated me to work harder. Dave(mda) was a great leader, you could go to him with any problem and he would drop everything to help try and fix it for you. Ryan(ryg1) was also a great vice-leader as he was always there if Dave was busy and was ready to step in if Dave was unable to attend the meeting. These both helped me with the assignment if I needed anything and they always made sure I was either testing or finding out information for them. 
+I believe the group worked well, everyone got a lot with each other, we all had a laugh and they motivated me to work harder. Dave(MDA) was a great leader, you could go to him with any problem and he would drop everything to help try and fix it for you. Ryan(ryg1) was also a great vice-leader as he was always there if Dave was busy and was ready to step in if Dave was unable to attend the meeting. These both helped me with the assignment if I needed anything and they always made sure I was either testing or finding out information for them. 
 \subsubsection{Jack Alexander Reeve}
 My role in the team on this project was a web programmer / designer. This meant I was responsible for designing, building and populating the website. I mainly worked on this with Mark Pitman and Ryan.
 ~\\\\
-Throughout this group project I feel as though I have made an acceptable contribution tothe development of the system. In the design stages of the project I wrote up page descriptions for the website and made page designs in Adobe Photoshop. This work was used in the design specification document. I made a base template in HTML and CSS which was developed further into the finished design. In Integration and testing week I
+Throughout this group project I feel as though I have made an acceptable contribution to the development of the system. In the design stages of the project I wrote up page descriptions for the website and made page designs in Adobe Photoshop. This work was used in the design specification document. I made a base template in HTML and CSS which was developed further into the finished design. In Integration and testing week I
 spent a lot of time coding parts of the website. I feel that my knowledge of databases is a little limited so this made it difficult to work on pulling the walk details out of the database and listing it on the website. I worked with Ryan on this.
 ~\\\\
 I was able to pull images from the database but I wasn't sure how to pull only the images corresponding to the correct walk. Towards the start of the week I worked on plotting points and drawing lines on the map using the Google Maps API. To start with, we just plotted points using dummy long and lat values. Then I worked on getting the JavaScript code to read these values from PHP variables so that the points plotted on the map were correct. I also worked on displaying POI descriptions and titles in the pop outs from the location pins.
@@ -520,7 +522,7 @@ The group worked well together and there were little arguments, which was good. 
 My role was the web part. Mostly CSS but helped with the HTML and PHP too. I attended most meeting with the tutor and our general meetings. I missed 2 or 3 meetings for good reasons.  We had meeting every Friday at 10am. Occasionally we had extra meeting if something needed to be sorted. ~\\\\
 I learnt a lot for this project from working with a group and more knowledge on HTML, PHP and CSS. I researched a lot on PHP and the assignment I did for web helped a lot. Also learnt a bit from the android side. It felt good once everything was done and everyoneâ€™s work came together. When seeing the app uploading to the database and it shows on the website felt fulfilling.  ~\\\\
 The leader did a very good job keeping everyone busy and telling everyone what needs to be done and by when. Was very supportive and tried to help everyone with their jobs if they needed help.~\\\\
-We did have problems like the website wasnâ€™t receiving from the database and show on the map. Problems with the images to show up. The info box sometime didnâ€™t show what we wanted. The CSS could mess things up with the texts, for example, making the page smaller, the words would move around where they shouldnâ€™t be. This was all fixed after other people started helping each other cause they finished their part of the job. This showed good teamwork. ~\\\\
+We did have problems like the website wasnâ€t receiving from the database and show on the map. Problems with the images to show up. The info box sometime didnâ€™t show what we wanted. The CSS could mess things up with the texts, for example, making the page smaller, the words would move around where they shouldnâ€™t be. This was all fixed after other people started helping each other cause they finished their part of the job. This showed good teamwork. ~\\\\
 Personally I enjoyed working as a group. I felt more motivated cause I didnâ€™t want to disappoint the group. If something wasnâ€™t done then it just doesnâ€™t affect you but the whole group.~\\\\
  There were some stressful moments when things werenâ€™t working but that was expected. Nothing was really left to the last minute because the leader wanted things to be done some time before the deadline so it can be checked and changed. Glad everything went mostly well and it
 is finally done.
@@ -541,7 +543,7 @@ At the beginning of the project, we were assigned to certain roles â€“ I wa
 ~\\\\
  I was also supposed to work on the Use Case and UML Diagrams. We had quite a few ideas of how they should look like, I was trying to gather and improve them. Iâ€™ve learned quite a lot about the UML Diagrams, which were not really my strong side. The use cases were designed quite well, we thought it might be a good idea to add a few features to the project to make it more appealing, so the changes were clearly visible on the diagrams. The coders helped me develop a good diagram. Although the use cases were not a big issue and they were ready really quickly, I was really worried about the UML diagram as it took me a really long time to come up with the idea of how it should look like. I knew that the coders were not able to start working because of me, and I was trying to figure it out as soon as possible, to give them more time on the project itself. 
 ~\\\\
-After the design spec was ready, I did not really have a lot of work to do. I was trying to help the coders with the Android application, but the Android java code was a little bit different than a normal java code, so it was quite difficult for me. The group asked me to work on a Git Wiki. I managed to catch a few things of how to write it pretty quickly and spend about a week developing it. I think it wasnâ€™t really good as my overall knowledge of the project details was quite shallow, everyone had to add a few things from their own experience during development of the project. I was really struggling with it because I didnâ€™t really see a point in doing it â€“ I didnâ€™t see how it could be useful.
+After the design spec was ready, I did not really have a lot of work to do. I was trying to help the coders with the Android application, but the Android Java code was a little bit different than a normal java code, so it was quite difficult for me. The group asked me to work on a Git Wiki. I managed to catch a few things of how to write it pretty quickly and spend about a week developing it. I think it wasnâ€™t really good as my overall knowledge of the project details was quite shallow, everyone had to add a few things from their own experience during development of the project. I was really struggling with it because I didnâ€™t really see a point in doing it â€“ I didnâ€™t see how it could be useful.
 ~\\\\
 When I came back from the Christmas break, I reviewed all of the documents weâ€™ve prepared and I tried to catch up with the current state of the project to be able to spend my time well during the coding week. When I was really able to do my part(which was testing) I tried to help everyone else â€“ created JUnit tests, was helping the coders and doing a little bit of all-around help, asking other group members if they needed any help. I did all I could with the documentation when there was nothing else to do. The first plan was that I am supposed to write the final documentation, but when the coding week was coming to an end, we all knew that one person just cannot do that, it will have to be a group effort, as everyone did something else and no one really had a deep knowledge of every single part of the project.
 ~\\\\
@@ -582,7 +584,7 @@ To conclude, Iâ€™ve learned a lot during the group project. I was trying to
 	\hline
 	1.3&N/A&13/02/2014&Added new reports and Android maintenance details.&MDA \\
 \hline
-	1.4&N/A&13/02/2014&Moved the Mainenance to the correct section of the document. Added the Web Application maintence report.&RYG1 \\
+	1.4&N/A&13/02/2014&Moved the Maintenance to the correct section of the document. Added the Web Application maintenance report.&RYG1 \\
 \hline
 	1.5&N/A&13/02/2014&Text correction. Added new paragraphs.&MDA \\
 \hline	
