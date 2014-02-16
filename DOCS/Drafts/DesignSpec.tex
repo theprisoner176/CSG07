@@ -25,7 +25,7 @@
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{6}
 \renewcommand{\headrulewidth}{0pt}
-\lhead{Group Project 07 â€“ Design Specification}
+\lhead{Group Project 07 – Design Specification}
 \rhead{(Release) -Version 2.7}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
@@ -132,7 +132,7 @@ Allows the user to view walks in more detail. The website is also hosted on the 
 Requirements covered: (FR8, FR9)
 \subsection{Significant Classes}
 \subsubsection{Android Application}
-This section describes the most significant classes in the application. The complete set of classes can be seen in the class diagram â€“ Section 4.1.2. These classes will all be written in Java.
+This section describes the most significant classes in the application. The complete set of classes can be seen in the class diagram – Section 4.1.2. These classes will all be written in Java.
 \paragraph{WalkModel}
 \zeroindent
 A WalkModel holds all the data concerning a single route, this includes a list of all location points that trace the path and a list of all the places of interest.
@@ -159,7 +159,7 @@ This file will be used to give the user a more in depth look at a specific walk.
 This means they will be able to see a map view, images taken on the walk, and points of interest.
 \paragraph{Google Maps Api}
 The Google Maps API will be used to portray a persons walk data into a visual map.
-The user will also be able to view points of interest on the map. This will serve as a separate file that will interact with Googleâ€™s system.
+The user will also be able to view points of interest on the map. This will serve as a separate file that will interact with Google’s system.
 \paragraph{File\_Saver}
 The Apache HTTP Client will be used for by the android application to send data to our database server. This will mean our application will be able to 'POST' data to the server. This reduces load on the server compared to our previous idea of zipping and unzipping each set of files for a walk. The data will be sent as a JSON string. This file will decode the JSON string and add all the walk data to the appropriate tables where required
 \subsection{Table Mapping Requirements Onto Classes}
@@ -187,7 +187,15 @@ This section gives an overview of what classes/files cover what requirements as 
 \section{DEPENDENCY DESCRIPTIONS}
 \subsection{Component Diagrams}
 \subsubsection{Android}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.90]{Design/AndroidDP.jpg}
+\caption{Android Dependency Diagram}
+\label{Android Dependency Diagram}
+\end{figure}
+
 \subsubsection{Website}
+\clearpage
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.50]{Design/web_diagram.png}
@@ -609,7 +617,7 @@ This section details the algorithms and interactions that will be implemented in
 \subsubsection{Sequence Diagram}
 The sequence diagram describes the recording of a walk and how the classes which are involved in the process interact.
 In action 1. the user is prompted for details in the WalkSetupScreen and after he/she presses the start walk button, a map screen is shown and a RouteRecorder and WalkModel objects are created. After that the application goes into a loop of actions from the RouteRecorder, LocationListener and WalkModel classes. The recorder asks the listener for location data and when the data is returned, it is saved in the WalkModel's array of location points.
-Action 2 is optional for the user, because it is not mandatory to have a Point of interest or photos in every walk. If a user decides to click the â€œAdd POIâ€� button, the LocationListener gives the coordinates of the current location to the RouteRecorder and they are saved in the WalkModel object.
+Action 2 is optional for the user, because it is not mandatory to have a Point of interest or photos in every walk. If a user decides to click the “Add POI” button, the LocationListener gives the coordinates of the current location to the RouteRecorder and they are saved in the WalkModel object.
 Action 3 is the exit point of the loop for the current walk recording. It is done by clicking the stop button which brakes the loop and saves the last set of coordinates for the current walk.
 The LocationListener is deliberately not activated at all times while a walk is in progress in order to save battery life.
 \subsubsection{Sequence Diagram For Web}
@@ -623,8 +631,8 @@ The LocationListener is deliberately not activated at all times while a walk is 
 \end{adjustwidth}
 \end{landscape}
 \restoregeometry
-The classes ending in â€˜screenâ€™, are all Activities. They all, in some way, display a layout to the screen and respond to user input. Any response that requires further processing would be passed to another class and then handed back to be displayed, but it would be the â€™screenâ€™ class itself that initialised the action.  
-There are several classes that have been suffixed with â€˜Viewâ€™, these classes all extend the android class View. They are all visible to the user and act much like â€˜screenâ€™ classes except that they donâ€™t use the whole screen and do not change the displayed screen only create new Views.  
+The classes ending in ‘screen’, are all Activities. They all, in some way, display a layout to the screen and respond to user input. Any response that requires further processing would be passed to another class and then handed back to be displayed, but it would be the ’screen’ class itself that initialised the action.  
+There are several classes that have been suffixed with ‘View’, these classes all extend the android class View. They are all visible to the user and act much like ‘screen’ classes except that they don’t use the whole screen and do not change the displayed screen only create new Views.  
 The classes WalkModel,PointOfInterest and Location can all be considered to be model classes. There are used to store the walks data in an organised fashion, and have no methods to do anything other than to set and get information.  
 WalkManager, ImageHandler and FileTransferManager all perform some tasks that are not immediately apparent the user. They are the utility classes that are used by others.
 \subsection{Significant Algorithms}
@@ -653,7 +661,7 @@ connectToDatabase();
 * This code will connect to our own database with our database name,
 * username and password
 */  
-$con=mysqli_connect("db.dcs.aber.ac.ukâ€�, â€œcsgp07_13_14â€�,"csadmgp07","c54admgp07");
+$con=mysqli_connect("db.dcs.aber.ac.uk”, “csgp07_13_14”,"csadmgp07","c54admgp07");
 
 /*
 * If the php fails to connect to the database this will appear
