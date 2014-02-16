@@ -335,8 +335,10 @@ Sends the data as a POST message to the server ~\\
 Any further Algorithms are mentioned in the Design specification.
 \paragraph{Files}
 [1]  Image for map background 
-\paragraph{Interfaces}
-See Design Specification - 
+\paragraph{Interfaces and Significant Algorithms}
+Route recording algorithm – See Design Specification SE_07_DS, Section 4
+\paragraph{Change Hazards}
+If changing JSON variables, ensure the PHP files file_saver.php has been updated with the new variables. Make sure the URL is correctly assigned. The recorder image must be present or the application will crash. For new Popup dialogues be sure to pass the layout to the superclass for inflation and get the inflated layout from the superclass (super(context, myLayout); this.layout = this.getlayout();) failure to do so may prevent buttons from working.
 \paragraph{Possible Improvements}
 Fix crash on upload bug
 \\\\
