@@ -27,7 +27,7 @@
 \renewcommand{\refname}{}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 - Final Report}
-\rhead{(Draft) -Version 1.9}
+\rhead{(Draft) -Version 2.0}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -48,7 +48,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_FR\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 1.9 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 2.0 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Draft \\
 
 \end{tabular}
@@ -336,9 +336,10 @@ Any further Algorithms are mentioned in the Design specification.
 \paragraph{Files}
 [1]  Image for map background 
 \paragraph{Interfaces and Significant Algorithms}
-Route recording algorithm – See Design Specification SE_07_DS, Section 4
+Route recording algorithm – See Design Specification SE\_07\_DS, Section 4
+
 \paragraph{Change Hazards}
-If changing JSON variables, ensure the PHP files file_saver.php has been updated with the new variables. Make sure the URL is correctly assigned. The recorder image must be present or the application will crash. For new Popup dialogues be sure to pass the layout to the superclass for inflation and get the inflated layout from the superclass (super(context, myLayout); this.layout = this.getlayout();) failure to do so may prevent buttons from working.
+If changing JSON variables, ensure the PHP files file\_saver.php has been updated with the new variables. Make sure the URL is correctly assigned. The recorder image must be present or the application will crash. For new Popup dialogues be sure to pass the layout to the superclass for inflation and get the inflated layout from the superclass (super(context, myLayout); this.layout = this.getlayout();) failure to do so may prevent buttons from working.
 \paragraph{Possible Improvements}
 Fix crash on upload bug
 \\\\
@@ -382,7 +383,7 @@ This page only shows what is on the database and cannot change anything in the d
 \paragraph{Interfaces}
 This page will need permissions set to allow the page on the server.
 \newline
-The following files can be used to manually add data into the database and view all data in the database for testing: list_table.php, field_form.php and add_fields.php
+The following files can be used to manually add data into the database and view all data in the database for testing: list\_table.php, field\_form.php and add\_fields.php
 ~\\\\
 Field Forms
 \newline
@@ -571,11 +572,11 @@ To conclude, I've learned a lot during the group project. I was trying to do as 
 \includepdf[scale=0.95, pages={30-32}, pagecommand={}]{ProjectPlan.pdf}
 
 \subsection{Revised Design Document}
-\includepdf[scale=0.95, pages={1-22}, pagecommand={}]{DesignSpec.pdf}
+\includepdf[scale=0.95, pages={1-23}, pagecommand={}]{DesignSpec.pdf}
 \newgeometry{top=1.5cm, bottom =1.2cm}
-\includepdf[scale=	0.95, pages={23}, pagecommand={}, landscape=true]{DesignSpec.pdf}
+\includepdf[scale=	0.95, pages={24}, pagecommand={}, landscape=true]{DesignSpec.pdf}
 \restoregeometry
-\includepdf[scale=	0.95, pages={24-30}, pagecommand={}]{DesignSpec.pdf}
+\includepdf[scale=	0.95, pages={25-31}, pagecommand={}]{DesignSpec.pdf}
 
 
 \section{REFERENCES}
@@ -608,6 +609,8 @@ To conclude, I've learned a lot during the group project. I was trying to do as 
 	1.8&N/A&13/02/2014&Added more information to the Android manual&RYG1 \\
 	\hline
 	1.9&N/A&13/02/2014&Grammar, syntax and spelling corrections. Capitalized user names. Updated system interaction and added use case descriptions. Added maintenance docs for field form and add fields PHP files.&MDA \\
+	\hline
+	2.0&N/A&13/02/2014&Updated Version numbering.&RYG1 \\
 	\hline
 \end{longtable}
 \end{document}
