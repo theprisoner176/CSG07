@@ -9,6 +9,7 @@
 \usepackage{algpseudocode}
 \usepackage{changepage}
 \usepackage[a4paper]{geometry}
+\usepackage{pdfpages}
 \renewcommand{\refname}{}
 % REFERENCE http://tex.stackexchange.com/questions/4891/how-do-i-control-the-spacing-above-a-new-paragraph %
 \makeatletter
@@ -91,7 +92,7 @@ The walk tour application consists of:
 \item The Website application.
 \end{itemize}
 \subsubsection{The Android Application}
-\par{The Android application is used to create physical data representing a route allowing the users to record and upload a walk. It allows the user to add points of interest along a route and associate points of images. It displays a map screen and is used to record location data for a walk using GPS. It also gives the user options to add pictures to a walk. \newline Requirements Covered: (FR1, FR2, FR3, FR4, FR5, FR6, FR7,FR9, EIR1, PR1)}
+\par{The Android application is used to create physical data representing a route allowing the users to record and upload a walk. It allows the user to add points of interest along a route and associate images. It displays a map screen and is used to record location data for a walk using GPS. It also gives the user options to add pictures to a walk. \newline Requirements Covered: (FR1, FR2, FR3, FR4, FR5, FR6, FR7,FR9, EIR1, PR1)}
 \subsubsection{The Database Server}
 Stores walk info in MySQL which it receives from the Android application as a MIME type. When the server application receives information for a walk it appends the location data to the database and stores all pictures on the server machine. The database server will also have a PHP file which handles the uploading of data from the Android device. The file that handles the upload can be accessed via the URL in a browser, but doing so will present an error message.
 Requirements Covered: (DC3)
@@ -142,9 +143,9 @@ The RouteRecorder retrieves the current location from the system, and depending 
 \paragraph{FileTransferManager}
 \zeroindent 
 A connection will be made with the server via the FileTransferManager. It is responsible uploading and downloading WalkModels, including all associated images, from the database server. This class only interacts with the WalkManager, so any objects wishing to upload of download content must connect through WalkManager, this is to add an extra layer of abstraction that simplifies the solution.
-\paragraph{GeneralActivity}
+\paragraph{WalkScreen}
 \zeroindent
-GeneralActivity is an abstract class that extends Activity. It defines the general layout of all the screens (MainMenuSreen, MapScreen, etc.). It provides subclasses with access to several static variable that describe the layout that allow changes such things as the background, and text colour. All the screens displayed to the user are subclasses of GeneralActivity.
+This is the main class, which creates the RouteRecorder. All the data handling for a walk is completed in this Activity. The method for image handling are also called within this class as well as the pop-ups; these are created within the same activity. Adding the points of interest along a walk are also used in this Activity. The uploading a walk will also be called from this Activity too.
 \subsubsection{Database Server}
 The files here are used to control the interaction between the database and the other programs in the module. All these files will be written in PHP. Object Oriented Programming will not be implemented in this system.
 \subsubsection{Web Application}
@@ -167,15 +168,15 @@ This section gives an overview of what classes/files cover what requirements as 
 
 \begin{tabular}{|p{1cm}|p{10cm}|}
 \hline
-	FR1 & GeneralActivity, MapScreen, WalkSetupScreen, MyWalksScreen, MainMenuScreen, OptionsScreen, WalkInfoView\\
+	FR1 & WalkScreen, WalkSetupScreen, MainMenuScreen, CancelWallkView\\
 \hline
-	FR2 & MapScreen, RouteRecorder, WalkModel\\
+	FR2 & WalkScreen, RouteRecorder, WalkModel\\
 \hline
 	FR3 & LocationPoint, PointOfInterest\\
 \hline
 	FR4 & LocationPoint, PointOfInterest\\
 \hline
-	FR5 & WalkInfoView\\
+	FR5 & CancelWalkView, EditWalkView\\
 \hline
 	FR6 & WalkManager, FileTransferManager
 \\
@@ -208,408 +209,315 @@ This section gives an overview of what classes/files cover what requirements as 
 This section contains an implementation of different classes and files in the program. However, there is a possibility that the implementation in the final product may differ from what is displayed here.
 \subsection{Screens}
 The following classes all extend Activity and are used to control the display.
-\subsubsection{OptionsScreen}
-\begin{lstlisting}[language=java]
-public class OptionsScreen extends GeneralActivity {
-	/**
-	 * This method changes the background color,
-	 * of all generalActivity subclasses
-	 * @param v, is the object that called the method.
-	 */
-	public void changeBackgroundColor(View v);
-}
-\end{lstlisting}
+
 \subsubsection{MainMenuScreen}
 \begin{lstlisting}[language=java]
-public class MainMenu extends GeneralActivity {
+/**
+ * This class is responsible for displaying the main menu 
+ * screen, and reacting
+ * to button presses. It is the first screen that is 
+ * presented to the user.
+ * /
+public class MainMenu extends Activity{
 
-	/**
-	 * Starts a new MyWalkScreen activity,
-	 * and displays it to the user.
-	 *@param v, is the object that called the method.
-	 */
-	public void startMyWalksScreen(View v);
-
-	/**
-	 * Starts a new WalkSetupScreen activity,
-	 * and displays it to the user.
-	 * @param v, is the object that called the method.
-	 */
-	public void startWalkSetupScreen(View v);
-	
-	/**
-	 * Starts a new OptionsScreen activity,
-	 * and displays it to the user.
-	 * @param v, is the object that called the method.
-	 */
-	public void startOptionsScreen(View v);
-
-	/**
-	 * Starts a new LoginScreen activity,
-	 * and displays it to the user.
-	 * @param v, is the object that called the method.
-	 */
-	public void StartLoginScreen(View v);
-}
-\end{lstlisting}
-\subsubsection{MyWalkScreen}
-\begin{lstlisting}[language=java]
-public class MyWalksScreen extends GeneralActivity {
-	
-	/**
-	 * open a WalkInfoView popup on selected walk
-	 * @param v, is the object that called the method.
-	 */
-	public void viewWalk(View v);
+/**
+ * Starts a new WalkSetupScreen activity, and displays it
+ * to the user. It is
+ * called when the user presses the start walk button.
+ * @param v is the View that is called the method.
+ */
+public void startWalkSetupScreen(View v);
 }
 \end{lstlisting}
 \subsubsection{WalkSetupScreen}
 \begin{lstlisting}[language=java]
-public class WalkSetupScreen extends GeneralActivity {
-	
-	/**
-	 * Starts a new MapScreen activity
-	 * and displays it to the user.
-	 * The detail that the user has input,
-	 * are passed to the new activity.
-	 * @param v, is the object that called the method.		
-	 */
-	public void startWalk(View v);
+/**
+ * This class is responsible for displaying the walk setup
+ * screen which sets the
+ * title and descriptions for a walk
+ */
+public class WalkSetupScreen  extends Activity{
+
+   /**
+    * Starts a new WalkScreen activity, displays it to the 
+    * user and starts
+    * recording GPS data. The details that the user has 
+    * input, are passed to the
+    * new activity.
+    * @param v  is the View that called this method
+    */
+   public void startWalk(View v) ;
 }
 \end{lstlisting}
-\subsubsection{MapScreen}
+\subsubsection{WalkScreen}
 \begin{lstlisting}[language=java]
-public class MapScreen extends GeneralActivity {
-	
-	/**
-	 * creates and displays a AddPoiView.
-	 * @param v, is the object that called the method.
-	 */
-	public void addPOI(View v);
-	
-	/**
-	 * creates and displays a WalkFinishedView.
-	 * @param v, is the object that called the method.
-	 */
-	public void finishWalk(View v);
-	
-	/**
-	 * creates and displays a PlacesVisitedView.
-	 * @param v, is the object that called the method.
-	 */
-	public void showPlacesVisited(View v);
+/**
+ * This class is responsible for displaying the walk screen
+ * and reacting to button presses.
+ */
+public class WalkScreen extends extends Activity {
 
-}
-\end{lstlisting}
-\subsubsection{GeneralActivity}
-\begin{lstlisting}[language=java]
-public abstract class GeneralActivity extends Activity{
+   /**
+    * creates and displays a AddPoiView.
+    * @param v , is the object that called the method.
+    * @param v, is the object that called the method.
+    */
+   public void addPOI(View v);
 
-	/**
-	 * changes the background color of all GeneralActivity
-	 * subclasses to the passed
-	 * value. The int c, represents a color.	
-	 */
-	public void setBackgroundColor(int c);
+   /**
+    * creates and displays a WalkFinishedView.
+    * @param v, is the object that called the method.
+    */
+   public void finishWalk(View v);
 
-	/**
-	 * changes the foreground color of all
-	 * GeneralActivity subclasses to the passed 
-	 * value. The int c, represents a color.	 		
-	*/
-	public void setForegroundColor(int c);
+   /**
+    * creates and displays a EditWalkView.
+    * @param v, is the object that called the method.
+    */
+   public void editWalkDialog(View v);
 
-	
-	/**
-	 * changes the text color of all GeneralActivity
-	 * subclasses to the passed value.
-	 * The int c, represents a color.
-	 */
-	public void setTextColor(int c);
+   /**
+    * creates and displays a CancelWalkView.
+    * @param v, is the object that called the method.
+    */
+   public void cancelWalk(View v);
+
+   /** 
+    *Opens the gallery to add a picture to the current walk
+    * @param v the object that called the method
+    */
+   public void getFromGallery(View v);
+
+   /** Opens the camera app to take a picture that will be
+    * added to the walk.
+    * @param v the object that called the method
+    */
+   public void getFromCamera(View v);
+
+   /** Adds a new point of interest*/
+   public void addPoi();
+
+   /** Starts the upload of a walk to the server.*/
+   public void uploadWalk();
+
+   /**
+    * returns the user to the start screen, is called 
+    * either after the upload has
+    * finished or when the user cancels the walk.
+    * @param status, 
+    * */
+   public void returnToStart(boolean status);
 }
 \end{lstlisting}
 \subsection{Views}
-\subsubsection{MapView}
+\subsubsection{DialogView}
 \begin{lstlisting}[language=java]
-public class MapView/*our class*/ extends MapFragment/*from google API*/{
-	/**
-	 * sets the walks that is to be displayed
-	 */	
-	public void setWalk(WalkModel walk);
-		
-	/**
-	 * this method will cause the map 'window' 
-	 *	to redraw the route on to itself.
-	 */
-	public void updateWalk();
-}
-\end{lstlisting}
-\subsubsection{WalkInfoView}
-\begin{lstlisting}[language=java]
-public class WalkInfoView extends PopupView{
+/**
+ * An abstract class to easily create different 
+ * popup screens which can be
+ * customzied. Implements the OnClickListener interface to 
+ * repsond to key
+ * presses.
+ */
+public abstract class DialogView implements OnClickListener {
+   /** Destroys the popup */
+   public void dismiss();
 
-	/**
-	 * creates a WalkInfoView instance.
-	 * The WalkModel that is passed to it 
-	 *is displayed in in the popup.  
-	 */
-	public class WalkInfoView(WalkModel walk);
-}
-\end{lstlisting}
-\subsubsection{PopupView}
-\begin{lstlisting}[language=java]
-public abstract class PopupView extends DialogFragment {
-	/**
-	 * closes the popup view.
-	 * @param v, is the object that called the method.
-	 */
-	public void closePopup(View v);
-}
-\end{lstlisting}
-\subsubsection{PoiInfoView}
-\begin{lstlisting}[language=java]
-public class PoiInfoView extends PopupView{		
-			
-	/**
-	 * creates a PoiInfoView instance. The PointOfInterest
-	 * that is passed to it
-	 *is displayed in in the popup.  
-	 */
-	public void PoiInfoView(PointOfInterest point);
-}
-\end{lstlisting}
-\subsubsection{PlacesVisitedView}
-\begin{lstlisting}[language=java]
-public class PlacesVisitedView extends PopupView{
-	/**
-	 * creates a PlacesVisitedView instance.
-	 * All the PointOfInterest from the 	
-	 *passed walk are displayed in a table.
-	 */
-	public void PlacesVisitedView(WalkModel walk);		
-
-	/**
-	 * opens a PoiInfoView.
-	 * @param v, is the object that called the method.
-	 */
-	public void getPoiInfo(View v);
-}
-\end{lstlisting}
-\subsubsection{WalkFinishedView}
-\begin{lstlisting}[language=java]
-public class WalkFinishedView extends PopupView{
-	/**
-	 * displays a screen displaying
-	 * a summary of the finished walk, and 
-	 * shows various options to the user regarding the WalkModel.
-	 */
-	public void WalkFinishedView(WalkModel walk);
-
-	/**
-	 * open a PoiInfoView
-	 * @param v, is the object that called the method.
-	 */
-	public void uploadWalk(View v);
-}
-\end{lstlisting}
-\subsubsection{AddPoiView}
-\begin{lstlisting}[language=java]
-public class AddPoiView extends PopupView{
-	/**
-	 * displays an place description input popup,
-	 *  and gives it a link to the RouteRecorder
-	 */
-	public void AddPoiView(RouteRecorder recorder);
-
-	/**
-	 * creates a PointOfInterst out of the given
-	 * data (from text fields) and 	add the point the the WalkModel
-	 * @param v, is the object that called the method.	
-	 */
-	public void submit(View v);
-	
-	/**
-	 * uses ImageHandler to open the photoLibrary,
-	 * the selected photo is then added to the PointOfInterest.
-	 * @param v, is the object that called the method.
-	*/
-	public void getPhotoFromLibrary(View v);
-
-	/**
-	 * uses ImageHandler to open the camera app,
-	 * the taken photo is then added to the PointOfInterest.
-	 * @param v, is the object that called the method.
-	 */
-	public void getPhotoFromCamera(View v);
+   /** Displays the popup */
+   public void show() ;
 }
 \end{lstlisting}
 \subsection{Models}
 \subsubsection{WalkModel}
 \begin{lstlisting}[language=java]
-public class WalkModel {	
+/**
+ * stores all information about a single walk
+ */
+public class WalkModel {    
 
-	/**
-	 * creates a WalkModel, with LocationPoints already set, it is used 
-	 *by the WalkManager when loading walk from database.
-	 */
-	public WalkModel(String title,Vector<LocationPoint> path,String shortDesc,String longDesc);
+   /**
+    *  @return the name of the walk.
+    */
+   public String getTitle();
 
-	/**
-	 * @return a vector of all the LocationPoint in the walk.
-	 */
-	public Vector<LocationPoint> getRoutePath();
-	
-	/**
-	 * @return the running total of km travelled.
-	*/
-	public double getDistance();
-	
-	/**
-	 * @return the elapsed time since the walk was started.
-	 */
-	public double getTimeTaken();
-	
-	/**
-	 * @return the name of the walk.
-	 */
-	public String getTitle();
-	
-	/**
-	 * @return a short description of the walk
-	 */	
-	public String getShortDescription();
-	
-	/**
-	 * set the short description of the walk.
-	 */
-	public void setShortDescription(String newShortDesc);
-		
-	/**
-	 * @return a long description of the walk.
-	 */
-	public String getLongDescription();
-	
-	/**
-	 * set the long description for the walk.
-	 */
-	public void setLongDescription(String newLongDesc);
-	
-	/**
-	 * adds a LocationPoint to the walk.
-	 */
-	public void addLocation(LocationPoint point);
+   /**
+    * Sets the name of the walk
+    * 
+    * @param the new name of the walk.
+    * 
+    */
+   public void setTitle(String newTitle);
+
+   /**
+    *  @return a short description of the walk 
+    */
+   public String getShortDescription() ;
+
+   /**
+    * @param newShortDesc,set the short description of the
+    * walk. 
+    */
+   public void setShortDescription(String newShortDesc) ;
+
+   /** 
+    * @return a long description of the walk.
+    */
+   public String getLongDescription();
+
+   /**
+    *  @param newShortDesc,set the long description for the walk.
+    */
+   public void setLongDescription(String newLongDesc);
+
+   /**
+    * @return a vector of all the LocationPoint in the walk. 
+    * Including PointsOfInterests
+    */
+   public Vector<LocationPoint> getRoutePath();
+
+   /** 
+    * adds a LocationPoint to the walk. 
+    * 
+    * @param point, the location you want to add
+    */
+   public void addLocation(LocationPoint point);
+
+   /**
+    * works out the total distance traveled along the walk.
+    * 
+    * @return the running total of km traveled. 
+    */
+   public double getDistance();
+   /** 
+    * works out the total time taken.
+    * 
+    * @return the elapsed time since the walk was started
+    */
+   public double getTimeTaken();
+
+
 }
 \end{lstlisting}
 \subsubsection{LocationPoint}
 \begin{lstlisting}[language=java]
+/**
+ * This class stores a map position and records the time at 
+ * which is was taken
+ * /
 public class LocationPoint {
+/**
+ * @return the Time that the recording was made
+ */
+public long getTime();   
 
-	/**
-	 * creates a new LocationPoint
-	 */
-	public LocationPoint(double x,double y);
-	
-	/**
-	 * creates a LocationPoint,
-	 *  used to recreate a point stored in the
-	 *database.
-	 */
-	public LocationPoint(double x,double y,double time);
-	
-	/**
-	 * @return the time at which the point was recorded.
-	 */
-	public double getTime();
-		
-	/**
-	 * @return the longitude, the east/west
-	 * distance from Greenwich. 
-	 */
-	public double getLongitude();
-		
-	/**
-	 * @return the latitude, the north/south distance from the equator.
-	 */
-	public double getLatitude();
-	
-	/**
-	 * @return the distance between itself and a passed point.
-	 */
-	protected double distanceTo(LocationPoint point);
+/**
+ * @return the longitude, the east/west distance from 
+ * Greenwich.
+ */
+public double getLongitude();
+
+/**
+ * @return the latitude, the north/south distance from the equator.
+ */
+public double getLatitude();
+
+/**
+ * works out the distance between two locations.
+ * 
+ * @param point is the first location
+ * @param point1 is the second location
+ * @return the distance between the two locations in 
+ * kilometers
+ */
+public static double distBetween(LocationPoint point, LocationPoint point2);
 }
 \end{lstlisting}
 \subsubsection{PointOfInterest}
 \begin{lstlisting}[language=java]
+/**
+ * Stores information about a place of interest
+ */
 public class PointOfInterest extends LocationPoint{
 
-	/**
-	 * creates a PointOfInterest, at position x,y.
-	 *  The time is set automatically
-	 */
-	public PointOfInterest(double x,double y);
-	
-	/**
-	 * creates a PointOfInterest, at position x,y.
-	 * The time is also explicitly defined, this is 
-	 * used when creating a PointOfInterest from a database entry.
-	 */
-	public PointOfInterest(double x,double y,double time);
-	
-	/**
-	 * @return all the images associated with this point.
-	 */
-	public Vector<ImageInformation> getImages();
+   /**
+    * adds reference to an image to the poi.
+    * 
+    * @param newImage,is the image that is to be added
+    */
+   public void addImage(ImageInformation newImage);
 
-	/**
-	 * @return the description of this place.
-	 */
-	public String getDescription();
+   /**
+    *  @return all the images associated with this point. 
+    */
+   public Vector<ImageInformation> getImages();
 
-	/**
-	 * sets the description of this point.
-	 */
-	public void setDescription(String desc);
+   /** 
+    * @return the description of this place. 
+    */
+   public String getDescription();
+
+   /** 
+    * @param desc, sets the description of this point.
+    */
+   public void setDescription(String desc);
+
+   /**
+    * gets the title of the POI
+    * 
+    * @return String the title of the walk
+    */
+   public String getTitle();
+
+   /** sets the title of this point.
+    * 
+    * @param title, new title
+    */
+   public void setTitle(String title);
+
+
 }
+
 \end{lstlisting}
 \subsection{Controllers}
 \subsubsection{RouteRecorder}
 \begin{lstlisting}[language=java]
 public class RouteRecorder extends Service implements LocationListener{
-		
-	/**
-	 * creates a RouteRecorder instance,
-	 *  with the MapView that will display the walk.
-	 */
-	public RouteRecorder(MapView map);
-	
-	/**
-	 * starts the recording of location points
-	 */
-	public void startRecording();
-	
-	/**
-	 * adds a PointOfInterest to the recorded path.
-	 */
-	public void savePoi(PointOfInterest poi);
-	
-	/**
-	 * stops the recoding of locations.
-	 */
-	public void finish();
+   /**
+   	* Gets the last known position
+    * @return LocationPoint object
+    * 
+    */
+   public LocationPoint getLastKnownPosition();
+
+   /**
+    * saves the location in the WalkModel object
+    * 
+    * @param loc
+    */
+   public void newLocation(LocationPoint loc);
+
+   /**
+    * stops the recoding of locations.
+    */
+   public void finishWalk();
 }
 \end{lstlisting}
 \subsubsection{FileTransferManager}
 \begin{lstlisting}[language=java]
+/**
+ * Handles the encoding and uploading of walk data.
+ */
 public class FileTransferManager{
-		
-	/**
-	 *@param walk 
-	 * makes a connection to data server and
-	 *  uploads all files belonging to the given
-	 * file, the return values will be zero if
-	 *  the method succeeded without problems.		
-	 */
-	public int uploadWalk(WalkModel walk);
+
+   /**
+    * makes a connection to data server and uploads all 
+    * files belonging to the
+    * given file.the return value will be zero if the 
+    * method succeeded without problems.
+    * @param walk,the walkModel that will be sent to the 
+    * server
+    */
+   public int uploadWalk(WalkModel walk);
 }
 \end{lstlisting}
 \section{DETAILED DESIGN}
@@ -628,7 +536,7 @@ This section details the algorithms and interactions that will be implemented in
 The sequence diagram describes the recording of a walk and how the classes which are involved in the process interact.
 In action 1. the user is prompted for details in the WalkSetupScreen and after he/she presses the start walk button, a map screen is shown and a RouteRecorder and WalkModel objects are created. After that the application goes into a loop of actions from the RouteRecorder, LocationListener and WalkModel classes. The recorder asks the listener for location data and when the data is returned, it is saved in the WalkModel's array of location points.
 Action 2 is optional for the user, because it is not mandatory to have a Point of interest or photos in every walk. If a user decides to click the “Add POI” button, the LocationListener gives the coordinates of the current location to the RouteRecorder and they are saved in the WalkModel object.
-Action 3 is the exit point of the loop for the current walk recording. It is done by clicking the stop button which brakes the loop and saves the last set of coordinates for the current walk.
+Action 3 is the exit point of the loop for the current walk recording. It is done by clicking the stop button which brakes the loop.
 The LocationListener is deliberately not activated at all times while a walk is in progress in order to save battery life.
 \subsubsection{Sequence Diagram For Web}
 \begin{figure}[htp]
@@ -652,9 +560,11 @@ Both the walk details and the walk list page can link back to the index page. Al
 \centering
 \includegraphics[scale=0.80]{Design/sequence_diagram.jpg}
 \caption{Overall Sequence Diagram}
-\label{Web Sequence Diagram}
+\label{Overall Sequence Diagram}
 \end{adjustwidth}
 \end{figure}
+This diagram details the sequence in which data is sent and retrieved and how the Web Application and Android Applications interact with the database. Not all these interactions may be completed in one sitting. The Android application and Web Application interact independently of each other. In action 1 the Android Application gathers all the information about a walk including images and sends it to the HTTP Protocol via a post request in the form of a JSON file. In action 2 the HTTP Protocol, via the Apache HTTP Client, encodes the data for sending to the database, this is done via a JSON file as a MIME type, the image is encoded as a based 64 string. In action 3 The Data Layer decodes the JSON from the Android and stores it in the database. On request theData Layer retrieves the data from the database and sends it to the Web Application. In action 4 The Web Application requests information that is retrieved from the database. In the event that such information is not found, the Web Application displays an error to the user.
+
 \subsection{Class Diagram}
 \newgeometry{top=1.5cm, bottom =-0.8cm}
 \begin{landscape}
@@ -665,8 +575,8 @@ Both the walk details and the walk list page can link back to the index page. Al
 \restoregeometry
 The classes ending in ‘screen’, are all Activities. They all, in some way, display a layout to the screen and respond to user input. Any response that requires further processing would be passed to another class and then handed back to be displayed, but it would be the ’screen’ class itself that initialised the action.  
 There are several classes that have been suffixed with ‘View’, these classes all extend the android class View. They are all visible to the user and act much like ‘screen’ classes except that they don’t use the whole screen and do not change the displayed screen only create new Views.  
-The classes WalkModel,PointOfInterest and Location can all be considered to be model classes. There are used to store the walks data in an organised fashion, and have no methods to do anything other than to set and get information.  
-WalkManager, ImageHandler and FileTransferManager all perform some tasks that are not immediately apparent the user. They are the utility classes that are used by others.
+The classes WalkModel,PointOfInterest and LocationPoint can all be considered to be model classes. They are used to store the walks data in an organised fashion, and have no methods to do anything other than to set and get information.  
+WalkManager, ImageHandler and FileTransferManager all perform some tasks that are not immediately apparent to the user. They are the utility classes that are used by others.
 \subsection{Significant Algorithms}
 \subsubsection{Android Algorithms}
 \paragraph{RouteRecorder Algorithm}
@@ -679,101 +589,49 @@ WalkManager, ImageHandler and FileTransferManager all perform some tasks that ar
 	\EndIf
 \EndWhile
 \end{algorithmic}
+\paragraph{JSON Encoder}
+\begin{algorithmic}
+\State json.add("title", data.getTitle )
+\State json.add("short\_desc", data.getShortDescription )
+\State json.add("long\_desc", data.getLongDescription )
+\State json.add("hours", data.getTimeTaken )
+\State json.add("distance", data.getDistance )
+
+\For{ all data getPath as point}
+   \State locationObject.add("longitude", point.getLongitude )
+   \State locationObject.add("latitude", point.getLatitude )
+   \State locationObject.add("time", point.getTime )
+   \If{point is an instance of PointOfInterest}
+      \State locationObject.add("description",point.getDescription )
+      \State locationObject.add("title", point.getTitle )
+      \For{all point.getImages  as image}
+         \State imagObject.add ("file\_data", image.getImageAsString )
+         \State imageArray.add imagObject
+      	\State location.put("images", images)
+      \EndFor
+   \EndIf
+  \State pointsArray.put(locationObject)
+\EndFor
+\State json.add("route", pointsArray)
+\end{algorithmic}
 \subsubsection{PHP Algorithms}
 \paragraph{Connect To The Database}
-\zeroindent
-\begin{lstlisting}
-/**
-* This is the function to connect to the a database
-*/ 
-connectToDatabase();
-
-
-/**
-* This code will connect to our own database with our database name,
-* username and password
-*/  
-$con=mysqli_connect("db.dcs.aber.ac.uk”, “csgp07_13_14”,"csadmgp07","c54admgp07");
-
-/*
-* If the php fails to connect to the database this will appear
-*/
-//heck connection
-if(mysqli_connect_errno())
-{
-	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-mysqli_close($con);
-\end{lstlisting}
+\includegraphics[scale=0.8]{Design/phpcode.jpg}
 \paragraph{Append To The Server Database}
-\begin{adjustwidth}{-3cm}{-3cm}
-\begin{lstlisting}
-$sql = "INSERT INTO List_of_Walks(title, shortDesc, longDesc, hours, distance) VALUES('$title','$short_desc', '$long_desc', '$hours', '$distance')"; 
-
-mysqli_query($walk_conn,$sql);
-    
-$walkID = mysqli_insert_id($walk_conn);	
-		
-foreach($route as $loc){
-       
-			
-	$longitude = $loc['longitude'];           
-	$latitude = $loc['latitude'];            
-	$time = $loc['time'];			
-	$sql = "INSERT INTO Location(walkID, latitude, longitude, timestamp)VALUES('$walkID','$latitude','$longitude', '$time')";
-            
-	mysqli_query($walk_conn,$sql);
-        
-	$locID = mysqli_insert_id($walk_conn);
-	if(isSet($loc['description'])){			
-		$description = $loc['description'];
-		$name = $loc['title'];
-		$sql = "INSERT INTO Place_description(description, locationId, name)values('$description', '$locID', '$name')";
-		mysqli_query($walk_conn,$sql);
-		$placeId = mysqli_insert_id($walk_conn);
-			if(isSet($loc['images']))\{
-				$photoCount = 0;
-				foreach($loc['images']as $image)\{
-				
-					$image = implode($image);
-						
-					$image =  base64_decode($image);
-						
-					$photoName = $walkID . "_" . $locID . "_" . $placeId . "_" . $photoCount;
-						
-					file_put_contents("images/".$photoName . ".jpg",$image);
-						
-					$photoCount++;
-						
-					$sql = "INSERT INTO Photo(photoName, placeId)values('$photoName', '$placeId')";
-						
-					mysqli_query($walk_conn,$sql);
-						
-					}
-					
-				}
-				
-			}
-\end{lstlisting}
-\end{adjustwidth}
-\subsection{TODO CHECK THE ALGORITHMS}
+\includepdf[pages=-, pagecommand={}, scale=0.8]{Design/php.pdf}
 \subsection{Significant Data Structures}
 \subsubsection{WalkModel}
-This is the most significant data structure in the Android application. It contains the infor-
-mation for the route taken,
+This is the most significant data structure in the Android application. It contains the information for the route taken,
 all of the GPS coordinates that the user has walked through, Points of interest.
 \subsubsection{LocationPoint}
-This class is responsible for storing a point on the map. It has variables for longitude, lati-
-tude and a timestamp.
+This class is responsible for storing a point on the map. It has variables for longitude, latitude and a timestamp.
 After a GPS reading is taken for the current physical location is taken, it is put in an object
 of this class and stored in the WalkModel.
 \subsubsection{PointOfInterest}
-This data structure is used when adding a point of interest. It holds information for the de-
-scription and title of a POI.
+This data structure is used when adding a point of interest. It holds information for the description and title of a POI.
 The class extends the LocationPoint so a POI can have location coordinates and a time
 stamp.
-This data structure is used when adding a point of interest. It holds information for the de-
-scription and title of a POI.
+This data structure is used when adding a point of interest. It holds information for the description and title of a POI.
 The class extends the LocationPoint so a POI can have location coordinates and a time
 stamp.
 \newpage 
@@ -855,7 +713,5 @@ from MWD5 and MAS69. Added missing images. Added images and descriptions to sect
  2.9&N/A&13/02/14&Updated database file saver algorithm &MDA\\
  \hline
 \end{longtable}
-
-
 
 \end{document}
