@@ -334,16 +334,16 @@ Field forms allows the developer to add information like name, description, etc 
 Add Fields
 \newline
 The reason we need to add test data is to see if everything is working. The data will be sent to the database and see if it shows up on the website. We can see if the website also works without the android. Also to see if the website can retrieve everything and show them properly on the page. If that does not work then there is something wrong with the database or the website is not retrieving.
-\paragraph{Suggestions For Improvements}
+\paragraph{Suggestions for Improvements}
 Being able to edit descriptions and titles would have been a good feature to have. The structure of the program allows for expansion and extra features to be added. I feel that this would be easy to add to the existing program structure. It would also be a good idea to allow walks to be deleted. This could be done with a simple MySQL query.
 ~\\\\
 Having images show up on the list would had made it more appealing so users can see already what kind of walk it would be.
 \paragraph{Things To Watch Out For When Making Changes}
 Ensure the database connection information is correct and the database language is in MySQL. Make sure all external files such as the JavaScript and CSS are in the correct directories
-\paragraph{Physical Limitations Of The Program}
+\paragraph{Physical Limitations of The Program}
 Certain features require JavaScript to be enabled. If the user has disabled or blocked JavaScript, some features will not be visible.
 The website can potentially display several images which may use a large amount of bandwidth or data.
-\paragraph{Rebuilding And Testing}
+\paragraph{Rebuilding and Testing}
 When rebuilding, make sure the CSS files are in the same place so the pages are still directed to the part.  Just make sure if the connection to the database is fine. Just test this by PHPunit. It will show you if you have any errors. 
 Also ensure the database has the required tables and their dependencies.
 \newpage
@@ -410,7 +410,7 @@ An improvement which could be that the user would use software called PHPmyadmin
 On our scripts we have added the Foreign Key References at the bottom of create table script, rather than under the actual value - so if the user is to edit this information and change any key dependencies then make sure that the last item is syntactically correct. Additionally, make sure that user chmod 700 the files - even though they're just SQL scripts inside, the file is .php - so you may not be able to run the script if the permissions are not set correctly.
 \paragraph{Physical Limitation}
 We think a physical limitation of our database is such: When the user uploads a walk, it retrieves the last ID key from the database and then increments it by one. Therefore, we feel that if a user tries to upload two walks simultaneously then we do not know what will happen. Thus, this leads to the potential issue of locking; where two users try to access the database at the same time.
-\paragraph{Rebuilding And Testing}
+\paragraph{Rebuilding and Testing}
 To rebuild our database tables you simply have to firstly created a database to put the tables in to, from then you have to edit the mysqli\_connect parameters to your own host, your own username and password and your selected database. Then to create the tables you will simply have to run the c\_tables.php file; this will create the database for you and all the relations and dependencies.
 
 To test the Database we have written a small PHP script/web page which allows you to view the tables and what information you have in them at any given time. There is also an additional file called d\_tables.php - this will allow you to drop all the data from the tables. \textbf{NOTE:} any tables which have been dropped will then be deleted, you will then need to call c\_tables.php again, to create the tables.
@@ -507,21 +507,21 @@ To conclude, I've learned a lot during the group project. I was trying to do as 
 \newpage
 
 \subsection{Revised Project Plan}
-\includepdf[scale=	0.95, pages={1-27}, pagecommand={}]{ProjectPlan.pdf}
+\includepdf[scale=	0.95, pages={1-27}, pagecommand={}]{SE_07_PM_01.pdf}
 \newgeometry{top=1.5cm, bottom =1.2cm}
-\includepdf[scale=	0.95, pages={28}, pagecommand={}, landscape=true]{ProjectPlan.pdf}
+\includepdf[scale=	0.95, pages={28}, pagecommand={}, landscape=true]{SE_07_PM_01.pdf}
 \restoregeometry
-\includepdf[scale=0.95, pages={29-}, pagecommand={}]{ProjectPlan.pdf}
+\includepdf[scale=0.95, pages={29-}, pagecommand={}]{SE_07_PM_01.pdf}
 
 
 
 
 \subsection{Revised Design Document}
-\includepdf[scale=0.95, pages={1-22}, pagecommand={}]{DesignSpec.pdf}
+\includepdf[scale=0.95, pages={1-22}, pagecommand={}]{SE_07_DS_01.pdf}
 \newgeometry{top=1.5cm, bottom =1.2cm}
-\includepdf[scale=	0.95, pages={23}, pagecommand={}, landscape=true]{DesignSpec.pdf}
+\includepdf[scale=	0.95, pages={23}, pagecommand={}, landscape=true]{SE_07_DS_01.pdf}
 \restoregeometry
-\includepdf[scale=	0.95, pages={24-}, pagecommand={}]{DesignSpec.pdf}
+\includepdf[scale=	0.95, pages={24-}, pagecommand={}]{SE_07_DS_01.pdf}
 
 
 
@@ -597,8 +597,11 @@ Lightbox Lightbox application~\\ Internet:http://lokeshdhakar.com/projects/light
 	\hline
 	2.3&N/A&17/02/2014&Fixed Layout&RYG1 \\
 	\hline
+	2.4&N/A&17/02/2014&Reviewed&RYG1 \\
+	\hline
 	2.4&N/A&17/02/2014&Corrected grammar. Changed to release&MDA \\
 	\hline
 \end{longtable}
+
 
 \end{document}
