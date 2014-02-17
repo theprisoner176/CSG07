@@ -9,7 +9,7 @@
 \usepackage[a4paper]{geometry}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Project Plan}
-\rhead{(Release) -Version 2.3}
+\rhead{(Release) -Version 2.4}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -29,7 +29,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_PM\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 2.3 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 2.4 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Release \\
 
 \end{tabular}
@@ -197,6 +197,7 @@ Used as a filler screen before the user starts a walk. This screen may be replac
 \par{Edit Walk $\rightarrow$ Edit Walk Information Screen (Fig 4.5)}
 \par{Finish $\rightarrow$ Walk Complete Screen(Fig. 4.6)}
 \par{Cancel Walk $\rightarrow$ Start screen without uploading walk (Fig 4.1)}
+\newpage
 \subsection{New Point Of Interest}
 \begin{figure}[htp]
 \centering
@@ -230,7 +231,7 @@ Used as a filler screen before the user starts a walk. This screen may be replac
 \par{This screen allows the user to save a walk. If upload is pressed, the walk is saved then uploaded to the server provided the user is signed in. This screen should be unavailable if there are no points of interest to prevent uploading or saving an empty walk. IN future, this screen could show the time taken to complete a walk, the name of the walk, the number of points of interest added and the location of the walk. \\ \\}
 \textbf{\uline{NAVIGATION}}
 \par{Cancel $\rightarrow$ Recording Screen without uploading(Fig. 4.3)}
-\par{OK $\rightarrow$ Start Screen (Fig. 4.1)}
+\par{OK $\rightarrow$ Recording screen during upload (Fig 4.3) Then Start Screen on upload complete(Fig. 4.1)}
 \subsection{Cancel A Walk}
 \begin{figure}[htp]
 \centering
@@ -238,7 +239,10 @@ Used as a filler screen before the user starts a walk. This screen may be replac
 \caption{Cancel A Walk}
 \label{Cancel A Walk}
 \end{figure}
-TODO
+\par{This screen allows the user to cancel a walk without saving. Selecting OK will return them to the start screen. Cancel will continue the walk}
+\textbf{\uline{NAVIGATION}}
+\par{Cancel $\rightarrow$ Recording screen (Fig 4.3)}
+\par{OK $\rightarrow$ Start screen without uploading (Fig 4.1)}
 \newpage
 \section{WEBSITE USER INTERFACE DESIGN}
 \subsection{Home Page}
@@ -420,6 +424,8 @@ Moved risk assessment to item 8 & MDA \\
 	2.2	& N/A & 16/02/14 & Edited Feature creep Images & RYG1 \\
 \hline
 	2.3	& N/A & 16/02/14 & Updated navigation and interface description texts and use case descriptions. Added system interaction diagram & MDA \\
+\hline
+	2.4	& N/A & 16/02/14 & Added cancel walk descriptions and sorted formatting & MDA \\
 \hline
 \end{longtable}
 

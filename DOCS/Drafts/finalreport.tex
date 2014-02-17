@@ -114,12 +114,20 @@ After completion of the exams, a meeting was held to discuss plans for Integrati
 RYG1 was put on full website development and the website was moved to MDA's public html as project leader, while MWD5 began producing JUnit tests while ZAL also produced PHPUnit tests. Initially these were to be used for the file\_saver.php file, but lack of knowledge led to the removal of several tests. The project manager worked extensively on the file\_saver.php file on Tuesday and Wednesday and was able to add information to the database, however joining the tables was solved by RYG1. On the Android a conflict arose where the Android programmers had mapped the same button to different functions. While this initially was not seen as a major issue, MVZ was instructed to create a screen to override the button conflict. This presented an issue where the buttons on the screen were not functioning. This was solved by the project manager who passed the variables as required and this fix in turn solved another similar bug that had appeared elsewhere. By Wednesday, RYG1 had to refactor all the website code to bring in correct functionality and thus the remaining members of the web team were moved into production of CSS files and testing the walks. \\\\
 By Thursday, at the suggestion of the QA manager, the map being displayed on the Android was removed, due to group vote, although the project manager did not agree with such a move, it did help the project remain on schedule. By early morning, the website became fully operational, with the project manager displaying multiple images on the website when a point of interest is located. By this time, the Android satisfied most of the requirements, however during late testing a bug was discovered which caused the application to crash on upload. Friday morning was spent doing extensive bug fixing, testing and commenting code with Javadoc and PHP doc. The upload crash bug was partially solved, but the application began crashing after uploading. The project manager put a work deadline 15 minutes to the final deadline by which all work would stop. On submission, the group produced very little work during the next week, but the final documentation was completed shortly after a meeting on the week prior to the submission deadline.
 \\\\
-A large issue was misunderstanding the definition of MIME type and all images were converted to a string to decode. The image decoding had problems as decoders were unable to decode the text data. HFB1 used a text editor to remove backslashes which solved the problem so code was added to file\_saver.php to remove the escape slashes added by JSON.
+A major issue was misunderstanding the definition of MIME type and all images were converted to a string to decode. The image decoding had problems as decoders were unable to decode the text data. HFB1 used a text editor to remove backslashes which solved the problem so code was added to file\_saver.php to remove the escape slashes added by JSON.
+\\\\
+By the final week of documentation, development stagnated. MDA and RYG1 had to put in extra effort to see to the completion of the final document. However other members did contribute though not to the level of MDA and RYG1.
 \newpage 
 \subsection{Final State}
 On the website, the project has been completed and the only known flaw was the map not displaying correctly on certain browsers. The website was tested on the following: Safari, Opera, Firefox, Internet Explorer, Google Chrome, Mobile Opera (Android), Android default browser and Mobile Safari (iPad). The following browsers had issues:\- Firefox: the map was displayed out of place on older versions, Android default browser: Did not display the map. All other features worked correctly, Internet Explorer: Some versions did not display the map, other versions displayed it out of place.
 \\\\
-The final website can be found here http://users.aber.ac.uk/mda/csgp07/wtc all other server based files including database testing files can be found here http://users.aber.ac.uk/mda/csgp07 (Login for database testing- Username: grp7admin Password: Wc7gp)
+The final website can be found here http://users.aber.ac.uk/mda/csgp07/wtc 
+\newline
+all other server based files including database testing files can be found here
+\newline
+http://users.aber.ac.uk/mda/csgp07 
+\newline
+(Login for database testing- Username: grp7admin Password: Wc7gp)
 \\\\
 The database had constraints applied to its data as required and walks were stored correctly on the website. The Android device crashed when uploading a large number of images or after a completed upload. The crash was possibly caused by the recorder only stopping the recording on completion of the upload. However the device iterates through the array of locations during upload. If there is a GPS signal during upload, the crash occurs due to data being added to the array during iteration through said array. The application also crashed when attempting to upload without a connection to the internet, however the crash may have been caused be the aforementioned bug and we were unable to isolate the cause.
 \\\\
@@ -352,10 +360,12 @@ Number of images that can be uploaded is dependent on the amount of RAM on the d
 Requires a device with inbuilt GPS capability. Cannot use cell network or WIFI for location finding
 \\\\
 There is a known bug in the upload method which some times causes a crash when uploading. This is due to the fact that while uploading the GPS data is still being received and written to the Vector of LocationPoints. This can be fixed by having the route Vector copied into a local variable and the loop for the upload would iterate through the local variable instead of the one that is passed to the method.
+\newline
+Also a crash which was identified as being caused by a null pointer can be fixed by removing line 164 of WalkScreen as this function is also called on line 176 (recorder.finishWalk();).
 \paragraph{Rebuilding and Testing}
 JUnit test provided
 \\\\
-Built and tested on Android 4.2.1
+Built and tested on Android 4.2.1 and 4.2.2
 \\\\
 Ensure required images are available
 \\\\
@@ -379,11 +389,15 @@ The main data for the walk\_details page is held in PHP array variables when the
 ~\\\\
 This page only receives important information that is needed for this page.  The way it has been laid out is with the title shows up more clearly than others cause that what the user is looking for.
 \paragraph{Files}
-This page only shows what is on the database and cannot change anything in the database.
+All CSS and external JavaScript files are required for some features.
 \paragraph{Interfaces}
 This page will need permissions set to allow the page on the server.
 \newline
 The following files can be used to manually add data into the database and view all data in the database for testing: list\_table.php, field\_form.php and add\_fields.php
+~\\\\
+List Tables
+\newline
+This file displays all data in the tables with now filters and also displays all the tables created along with the table names and column names.
 ~\\\\
 Field Forms
 \newline
@@ -471,7 +485,7 @@ We think a physical limitation of our database is such: When the user uploads a 
 \paragraph{Rebuilding And Testing}
 To rebuild our database tables you simply have to firstly created a database to put the tables in to, from then you have to edit the mysqli\_connect parameters to your own host, your own username and password and your selected database. Then to create the tables you will simply have to run the c\_tables.php file; this will create the database for you and all the relations and dependencies.
 
-To test the Database we have written a small PHP script/web page which allows you to view the tables and what information you have in them at any given time. There is also an additional file called drop\_tables.php - this will allow you to drop all the data from the tables. \textbf{NOTE:} any tables which have been dropped will then be deleted, you will then need to call c\_tables.php again, to create the tables.
+To test the Database we have written a small PHP script/web page which allows you to view the tables and what information you have in them at any given time. There is also an additional file called d\_tables.php - this will allow you to drop all the data from the tables. \textbf{NOTE:} any tables which have been dropped will then be deleted, you will then need to call c\_tables.php again, to create the tables.
 
 All tests to do with the database are in the Test Specification Document, under requirement: FR9 in the document. If the user wishes to edit this document then they will need to install a LaTeX editor,  and compile and build the document based on that software's documentation on how to do so. If the user wishes to add a new test, because of a fault then all they need to add the tests at the end of the test document by entering a test number, requirement, Test Content, Input, Output and a pass Criteria. They can do this in LaTeX by adding the \& symbol between each text data collumn - they can then finish it off by adding $\backslash \backslash$ to the end of the information - finally add a $\backslash$hline and this will complete the table. 
 \newpage
@@ -611,6 +625,8 @@ To conclude, I've learned a lot during the group project. I was trying to do as 
 	1.9&N/A&13/02/2014&Grammar, syntax and spelling corrections. Capitalized user names. Updated system interaction and added use case descriptions. Added maintenance docs for field form and add fields PHP files.&MDA \\
 	\hline
 	2.0&N/A&13/02/2014&Updated Version numbering.&RYG1 \\
+	\hline
+	2.1&N/A&13/02/2014&Formatting issues fixed. Updated evaluation &MDA \\
 	\hline
 	
 \end{longtable}

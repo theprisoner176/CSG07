@@ -26,7 +26,7 @@
 \setcounter{tocdepth}{6}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Design Specification}
-\rhead{(Release) -Version 2.7}
+\rhead{(Release) -Version 2.9}
 \lfoot{Aberystwyth University / Computer Science}
 \cfoot{}
 \rfoot{\thepage{}  of  \pageref{LastPage}}
@@ -47,7 +47,7 @@
 & Harry Flynn Buckley \\ & Zack Lott \\ & Mark Radcliffe Pitman \\ & Jack Alexander Reeve \\ & Mark Alexander Smith \\ &Martin Vasilev Zokov \\ & Maciej Wojciech Dobrzanski \\
 \\ \multirow{1}{*}{\textit{Config ref: }} & SE\_07\_PM\_01 \\
 \\ \multirow{1}{*}{\textit{Date} } & \today \\
-\\ \multirow{1}{*}{\textit{Version}} & 2.7 \\ 
+\\ \multirow{1}{*}{\textit{Version}} & 2.9 \\ 
 \\ \multirow{1}{*}{\textit{Status}} & Release \\
 
 \end{tabular}
@@ -696,40 +696,32 @@ mysqli_close($con);
 \begin{lstlisting}
 $sql = "INSERT INTO List_of_Walks(title, shortDesc, longDesc, hours, distance) VALUES('$title','$short_desc', '$long_desc', '$hours', '$distance')"; 
 
-$queryWalk = mysqli_query($walk_conn,$sql);
+mysqli_query($walk_conn,$sql);
     
 $walkID = mysqli_insert_id($walk_conn);	
 		
 foreach($route as $loc){
        
-	loop through every location
 			
-	$longitude = $loc['longitude'];
-            
-	$latitude = $loc['latitude'];
-            
-	$time = $loc['time'];
-			
+	$longitude = $loc['longitude'];           
+	$latitude = $loc['latitude'];            
+	$time = $loc['time'];			
 	$sql = "INSERT INTO Location(walkID, latitude, longitude, timestamp)VALUES('$walkID','$latitude','$longitude', '$time')";
             
-	$queryLoc = mysqli_query($walk_conn,$sql);
+	mysqli_query($walk_conn,$sql);
         
 	$locID = mysqli_insert_id($walk_conn);
-	/*If description, location is point of interest*/
 	if(isSet($loc['description'])){			
 		$description = $loc['description'];
 		$name = $loc['title'];
 		$sql = "INSERT INTO Place_description(description, locationId, name)values('$description', '$locID', '$name')";
-		$queryPlace = mysqli_query($walk_conn,$sql);
+		mysqli_query($walk_conn,$sql);
 		$placeId = mysqli_insert_id($walk_conn);
 			if(isSet($loc['images']))\{
 				$photoCount = 0;
-				/*If there are images decode and rename them*/
 				foreach($loc['images']as $image)\{
 				
 					$image = implode($image);
-						
-					$image = str_replace("\\", "",$image, $count);
 						
 					$image =  base64_decode($image);
 						
@@ -741,7 +733,7 @@ foreach($route as $loc){
 						
 					$sql = "INSERT INTO Photo(photoName, placeId)values('$photoName', '$placeId')";
 						
-					$queryPhoto =mysqli_query($walk_conn,$sql);
+					mysqli_query($walk_conn,$sql);
 						
 					}
 					
@@ -845,6 +837,9 @@ from MWD5 and MAS69. Added missing images. Added images and descriptions to sect
  	2.7&N/A&13/02/14&Added Images & RYG1\\
  \hline
  2.8&N/A&13/02/14&Added Sequence Diagrams &RYG1\\
+ \hline
+ \hline
+ 2.9&N/A&13/02/14&Updated database file saver algorithm &MDA\\
  \hline
 \end{longtable}
 
