@@ -252,102 +252,14 @@ GpsCheckDialog is displayed if the GPS on the device is not turned on and gives 
 ~\\\\
 WalkFinishedView gives the option to stop the current walk, upload it and go back to the main screen of the application.
 \paragraph{Significant Algorithms}
-The methods below open up new screens
-\\\\
-public void finishWalk(View v)\{\}
-\\\\
-public void editWalkDialog(View v)\{\}
-\\\\
-public void cancelWalk(View v)\{\}
-~\\\\
-The below methods are related to the \textbf{Walk Model:}
-
-public WalkModel() \{\}~\\
-This is the default constructor for the WalkModel that creates the Vector for the route. ~\\\\
-public String getTitle()\{\} ~\\
-This gets the title of the walk ~\\\\
-public void setTitle(String newTitle)\{\}~\\
-This sets the title of the walk ~\\\\
-public String getShortDescription()\{\}~\\
-This gets the short description of the walk ~\\\\
-public void setShortDescription(String newShortDesc)\{\}~\\
-This sets the short description of the walk ~\\\\
-public String getLongDescription()\{\}~\\
-This gets the long description of the walk~\\\\
-public void setLongDescription(String newLongDesc)~\{\}~\\
-This sets the long description of the walk~\\\\
-public Vector \textless LocationPoint \textgreater getRoutePath()\{\}~\\
-This gets the Vector of LocationPoint objects~\\\\
-public void addLocation(LocationPoint point)\{\}~\\
-This adds a new location to the Vector ~\\\\
-public double getDistance()\{\}~\\
-This calculates the distance between the start and end of the walk ~\\\\
-public double getTimeTaken()\{\}~\\
-This calculates the total time spent on a walk.
-~\\\\
-The below methods are for \textbf{Location Point:}~\\\\
-public LocationPoint(double lat, double lng)\{\}~\\
-A constructor for the LocationPoint. Automatically takes a time-stamp.~\\\\
-public long getTime() \{\} ~\\
-Gets the time-stamp of the point. ~\\\\
-public double getLongitude() \{\}~\\
-Gets the longitude of the point ~\\\\
-public double getLatitude() \{\} ~\\
-Gets the latitude of the point~\\\\
-public static double distBetween(LocationPoint point, LocationPoint point2) \{\} ~\\
-Calculates the distance between two locations. ~\\\\
-The below methods are for \textbf{Point Of Interest} ~\\\\
-public PointOfInterest(LocationPoint point) \{\}~\\
-Constructor for the PointOfInterest. Uses the super-constructor from the LocationPoint class ~\\\\
-public void addImage(ImageInformation newImage) \{\}~\\ 
-adds an image to the Vector of images~\\\\
-public Vector \textless ImageInformation \textgreater getImages() \{\}~\\
-Gets the Vector of images~\\\\
-public String getDescription() \{\}~\\
-Gets the description of the PointOfInterest ~\\\\
-public void setDescription(String desc) \{\} ~\\
-Sets the description of the PointOfInterest ~\\\\
-public String getTitle() \{\} ~\\
-Gets the title of the PointOfInterest ~\\\\
-public void setTitle(String title) \{\}~\\
-sets the title of the PointOfInterest ~\\\\
-The below methods are for \textbf{Route Recorder}~\\
-public RouteRecorder(WalkScreen screen, WalkModel walk, LocationManager manager)\{\}~\\
-Constructor for the class. Creates a PositionListener and registers it with the passed LocationManager~\\\\
-private void setLastKnownPosition(LocationPoint newPoint)\{\} \{\}~\\ sets the last known position (the last received GPS location)~\\\\
-public LocationPoint getLastKnownPosition() \{\} ~\\
-returns the last known position~\\\\
-public void newLocation(LocationPoint loc) \{\} ~\\
-adds a new location to the current walk's Vector of LocationPoints ~\\\\
-public void finishWalk() \{\}~\\
-Stops the GPS updates for the LocationManager and makes it null ~\\\\
-Below is the main algorithms for the \textbf{Image Module}~\\
-public ImageHandler(WalkScreen owner) \{\}~\\
-Constructor for the ImageHandler object ~\\\\
-public void getPhotoFromLibrary() \{\}~\\
-Starts an activity to get a photo from the gallery~\\\\
-public void getPhotoFromCamera() \{\}~\\
-Starts an activity to take a picture with the camera ~\\\\
-private File createFile() \{\} ~\\
-Creates the file that the camera will save the taken picture to. The file name is just the current system time in milliseconds. ~\\\\
-public ImageInformation(String filename) \{\}~\\
-Constructor for the ImageInformation object ~\\\\
-public String getImageAsString() \{\} ~\\
-Gets the encoded image as a string on Base64 encoding ~\\\\
-public FileTransferManager(WalkScreen screen, WalkModel w) \{\} ~\\ Constructor for the FileTransferManager~\\\\
-private static JSONObject packageData(WalkModel data) \{\}~\\
-Packages all the WalkModel as a JSON object ~\\\\
-private static JSONArray packagepathData(Vector \textless LocationPoint \textgreater route) throws JSONException \{\}~\\
-Packages the whole route as a JSON object~\\\\
-private static boolean post(JSONObject pakagedData, WalkScreen walk) \{\}~\\
-Sends the data as a POST message to the server ~\\
-~\\
+Route recording algorithm  \\ 
+JSON Encoding \\
+See Design Specification SE\_07\_DS
 Any further Algorithms are mentioned in the Design specification.
 \paragraph{Files}
 [5] Image for map background 
-\paragraph{Interfaces and Significant Algorithms}
-Route recording algorithm – See Design Specification SE\_07\_DS, Section 4
-
+\paragraph{Interfaces}
+Any further Interfaces are mentioned in the Design Specification SE\_07\_DS
 \paragraph{Change Hazards}
 If changing JSON variables, ensure the PHP files file\_saver.php has been updated with the new variables. Make sure the URL is correctly assigned. The recorder image must be present or the application will crash. For new Popup dialogues be sure to pass the layout to the superclass for inflation and get the inflated layout from the superclass (super(context, myLayout); this.layout = this.getlayout();) failure to do so may prevent buttons from working.
 \paragraph{Possible Improvements}
