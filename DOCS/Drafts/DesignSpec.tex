@@ -206,7 +206,7 @@ This section gives an overview of what classes/files cover what requirements as 
 \end{figure}
 \subsubsection{Database Server}
 \section{INTERFACE DESCRIPTION}
-This section contains an implementation of different classes and files in the program. However, there is a possibility that the implementation in the final product may differ from what is displayed here.
+This section contains method and class declarations for all major aspects of the program. The following code describes sthe public methods that are used in the program.
 \subsection{Screens}
 The following classes all extend Activity and are used to control the display.
 
@@ -310,6 +310,7 @@ public class WalkScreen extends extends Activity {
 }
 \end{lstlisting}
 \subsection{Views}
+Views are subsections of the screen. Here we use popup windows to both inform the user and prompt user input.
 \subsubsection{DialogView}
 \begin{lstlisting}[language=java]
 /**
@@ -328,6 +329,7 @@ public abstract class DialogView implements OnClickListener {
 }
 \end{lstlisting}
 \subsection{Models}
+The model classes are used to store the walk data
 \subsubsection{WalkModel}
 \begin{lstlisting}[language=java]
 /**
@@ -479,6 +481,7 @@ public class PointOfInterest extends LocationPoint{
 
 \end{lstlisting}
 \subsection{Controllers}
+Below are the important classes that interact with the walk model.
 \subsubsection{RouteRecorder}
 \begin{lstlisting}[language=java]
 public class RouteRecorder extends Service implements LocationListener{
