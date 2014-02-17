@@ -7,6 +7,7 @@
 \usepackage{longtable}
 \usepackage{changepage}
 \usepackage[a4paper]{geometry}
+\renewcommand{\refname}{}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Group Project 07 – Project Plan}
 \rhead{(Release) -Version 2.5}
@@ -121,20 +122,20 @@ This module handles the conversion of data into visual form for browser based vi
 \caption{Android Use-Case diagram}
 \label{Android Use-Case Diagram}
 \end{figure}
+\newpage
 \subsection{Website}
-\clearpage
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.60]{Project_Plan/docs/website_use_case.jpg}
+\includegraphics[scale=0.50]{Project_Plan/docs/website_use_case.jpg}
 \caption{Website Use-Case Diagram}
 \label{Website Use-Case Diagram}
 \end{figure}
 \subsection{Interaction System}
-\includegraphics[scale=0.60]{Project_Plan/docs/system_interaction.jpg}
+\includegraphics[scale=0.50]{Project_Plan/docs/system_interaction.jpg}
 \par{The diagram above represents the interaction of the whole system. The user interacts with both Android application and the website. The walks recorded by the user along with all the other information like description and the photos, are stored in the database and can be easily accessed later via the website. All uploads are stored in the database for the website to retrieve
 The Android application uploads walks to the server, which deals with the information and inserts it appropriately in the database. The Android application does not have a direct link to the website.The website also pulls a list of walks from the database. The website will also list all the information associated to one singular walks, such as Long description, short description, any pictures. This will then be displayed appropriately on the website.}
+
 \subsection{Descriptions}
-\clearpage
 \setlength\LTleft{-1cm}
 \begin{longtable}{|p{2cm}|p{3cm}|p{10cm}|}
 \hline
@@ -218,7 +219,8 @@ Used as a filler screen before the user starts a walk. This screen may be replac
 \caption{Edit Walk}
 \label{Edit Walk}
 \end{figure}
-\par{This screen allows the user to edit the walk information}
+\par{This screen allows the user to edit the walk information. \\ \\}
+\textbf{\uline{NAVIGATION}}
 \par{OK $\rightarrow$ Recording Screen with new details(Fig 4.3)}
 \par{Cancel $\rightarrow$ Recording Screen without saving (Fig 4.3)}
 \clearpage
@@ -233,6 +235,7 @@ Used as a filler screen before the user starts a walk. This screen may be replac
 \textbf{\uline{NAVIGATION}}
 \par{Cancel $\rightarrow$ Recording Screen without uploading(Fig. 4.3)}
 \par{OK $\rightarrow$ Recording screen during upload (Fig 4.3) Then Start Screen on upload complete(Fig. 4.1)}
+\newpage
 \subsection{Cancel A Walk}
 \begin{figure}[htp]
 \centering
@@ -389,6 +392,25 @@ In the absence of any member, work will proceed as normal. All members should no
 \hline
 \end{longtable}
 \newpage
+\section{REFERENCES}
+\begin{thebibliography}{0}
+	\bibitem{Req1.8}
+Software Engineering Group Projects.
+\emph{Requirements Specification}.
+C. J. Price and B.P.Tiddeman. 1.2 (Release). 7 November 2013
+	\bibitem{ProjectPlan1.8}
+Software Engineering Group Projects.
+\emph{Project Plan Specification Standards}.
+B. P. Tiddeman SE.QA.05  1.2(Release) 23rd September 2013
+\bibitem{HTML5}
+W3C HTML5 elements ~\\Internet: http://www.w3.org/TR/html5/dom.html\#elements-in-the-dom[17 Feb 2014]
+\bibitem{Android}
+Android Android version ~\\
+Internet:http://www.android.com/[17 Feb 2014]
+\bibitem{SQL}
+MySQL MySQL  Internet:http://www.mysql.com/[17 Feb 2014]
+\end{thebibliography}
+\newpage
 \section{DOCUMENT HISTORY}
 \begin{longtable}{|p{1.5cm}|p{1.5cm}|p{2cm}|p{6cm}| p{2cm}|}
 \hline
@@ -432,7 +454,5 @@ Moved risk assessment to item 8 & MDA \\
 	2.5	& N/A & 16/02/14 & Text Corrections & MDA \\
 \hline
 \end{longtable}
-
-
 
 \end{document}

@@ -639,8 +639,22 @@ The LocationListener is deliberately not activated at all times while a walk is 
 \label{Web Sequence Diagram}
 \end{adjustwidth}
 \end{figure}
+The sequence diagram describes the user interaction with the website, and the websites interaction with the database.
+In action 1, the user navigates to the index page either via a link or via the URL
+In action 2, the user navigates to a page where a list of walks is displayed. The list shows all the information in the database at any one given time.The only information gathered from the database will be the walks location, title, short description and thumbnail image if possible.
+In action 3 the user can view a selected walk. The file will fetch in addition to the data fetched in action 2, the long description, all images associated with the walk, the duration of the walk and all the points of interest. The user can then click on a point of interest for further information about a walks location.
+Both the walk details and the walk list page can link back to the index page. All pages can easily be accessed via the URL however, if the user attempts to visit the walk details page via the URL, they will be redirected to the walk list page and given an error message.
+\clearpage
 \subsubsection{Overall Interaction Sequence Diagram}
 
+\begin{figure}[htp]
+\begin{adjustwidth}{-2cm}{0cm}
+\centering
+\includegraphics[scale=0.80]{Design/sequence_diagram.jpg}
+\caption{Overall Sequence Diagram}
+\label{Web Sequence Diagram}
+\end{adjustwidth}
+\end{figure}
 \subsection{Class Diagram}
 \newgeometry{top=1.5cm, bottom =-0.8cm}
 \begin{landscape}
