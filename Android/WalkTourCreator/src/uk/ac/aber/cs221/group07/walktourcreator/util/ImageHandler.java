@@ -1,9 +1,9 @@
-package uk.ac.aber.cs221.group07.walktourcreator.model;
+package uk.ac.aber.cs221.group07.walktourcreator.util;
 
 import java.io.File;
 import java.io.IOException;
 
-import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.viewcontroller.WalkScreen;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;

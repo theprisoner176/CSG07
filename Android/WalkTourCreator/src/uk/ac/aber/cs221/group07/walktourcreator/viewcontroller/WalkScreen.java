@@ -1,8 +1,8 @@
-package uk.ac.aber.cs221.group07.walktourcreator.activities;
+package uk.ac.aber.cs221.group07.walktourcreator.viewcontroller;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
-import uk.ac.aber.cs221.group07.walktourcreator.model.FileTransferManager;
-import uk.ac.aber.cs221.group07.walktourcreator.model.ImageHandler;
+import uk.ac.aber.cs221.group07.walktourcreator.util.FileTransferManager;
+import uk.ac.aber.cs221.group07.walktourcreator.util.ImageHandler;
 import uk.ac.aber.cs221.group07.walktourcreator.model.ImageInformation;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;

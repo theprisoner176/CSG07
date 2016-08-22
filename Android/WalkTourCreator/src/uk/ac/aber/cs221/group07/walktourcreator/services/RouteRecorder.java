@@ -1,6 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.services;
 
-import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.viewcontroller.WalkScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import android.app.Service;

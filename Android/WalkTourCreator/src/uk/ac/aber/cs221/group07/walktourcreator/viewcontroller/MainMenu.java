@@ -1,4 +1,4 @@
-package uk.ac.aber.cs221.group07.walktourcreator.activities;
+package uk.ac.aber.cs221.group07.walktourcreator.viewcontroller;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
 import android.app.Activity;

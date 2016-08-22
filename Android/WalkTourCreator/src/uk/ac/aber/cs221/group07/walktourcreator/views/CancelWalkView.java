@@ -1,6 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
-import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.viewcontroller.WalkScreen;
 import android.content.DialogInterface;
 
 /**

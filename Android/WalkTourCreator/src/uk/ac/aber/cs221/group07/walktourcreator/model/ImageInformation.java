@@ -27,7 +27,7 @@ public class ImageInformation {
    /**
     * Creates the ImageInformation and set name
     * 
-    * @param fileName the name of the new photo
+    * @param filename the name of the new photo
     */
    public ImageInformation(String filename) {
       fileName = filename;

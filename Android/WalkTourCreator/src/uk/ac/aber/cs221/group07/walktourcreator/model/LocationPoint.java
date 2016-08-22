@@ -58,7 +58,7 @@ public class LocationPoint {
     * works out the distance between two locations.
     * 
     * @param point is the first location
-    * @param point1 is the second location
+    * @param point2 is the second location
     * @return the distance between the two locations in kilometers
     */
    public static double distBetween(LocationPoint point, LocationPoint point2) {

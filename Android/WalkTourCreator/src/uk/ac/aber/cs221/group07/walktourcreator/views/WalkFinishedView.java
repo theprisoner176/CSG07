@@ -1,6 +1,6 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
-import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.viewcontroller.WalkScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,7 +32,7 @@ public class WalkFinishedView implements DialogInterface.OnClickListener {
     *           the activity that created the popup
     * @param viewLayout
     *           id of the layout that will be used
-    * @param currentwalk
+    * @param currentWalk
     *           the current walk object
     * @param walkScreen
     *           the current walk screen

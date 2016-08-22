@@ -25,7 +25,7 @@ public class PositionListener implements LocationListener {
    /**
     * creates a positionListener that will be attached to a locationManager,
     * 
-    * @param RouteRecorder the recorder for the current walk.
+    * @param rec the recorder for the current walk.
     */
    public PositionListener(RouteRecorder rec) {
       recorder = rec;
@@ -34,7 +34,7 @@ public class PositionListener implements LocationListener {
    /**
     * Method that is called automatically each time a location is received
     * 
-    * @param Location the location that needs to be added
+    * @param loc the location that needs to be added
     */
    @Override
    public void onLocationChanged(Location loc) {

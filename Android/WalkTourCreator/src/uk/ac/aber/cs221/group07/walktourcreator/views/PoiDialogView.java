@@ -1,14 +1,13 @@
 package uk.ac.aber.cs221.group07.walktourcreator.views;
 
 import uk.ac.aber.cs221.group07.walktourcreator.R;
-import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.viewcontroller.WalkScreen;
 import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
 import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 /**

@@ -1,6 +1,5 @@
-package uk.ac.aber.cs221.group07.walktourcreator.model;
+package uk.ac.aber.cs221.group07.walktourcreator.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
@@ -16,9 +15,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.Environment;
-
-import uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen;
+import uk.ac.aber.cs221.group07.walktourcreator.model.ImageInformation;
+import uk.ac.aber.cs221.group07.walktourcreator.model.LocationPoint;
+import uk.ac.aber.cs221.group07.walktourcreator.model.PointOfInterest;
+import uk.ac.aber.cs221.group07.walktourcreator.model.WalkModel;
+import uk.ac.aber.cs221.group07.walktourcreator.viewcontroller.WalkScreen;
 
 /**
  * Handles the encoding and uploading of walk data.

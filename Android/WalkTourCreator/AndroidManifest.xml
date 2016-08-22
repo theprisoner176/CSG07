@@ -43,7 +43,7 @@
         <uses-library android:name="android.test.runner" />
         <!-- android:theme="@style/AppTheme" -->
         <activity
-            android:name="uk.ac.aber.cs221.group07.walktourcreator.activities.MainMenu"
+            android:name="uk.ac.aber.cs221.group07.walktourcreator.viewcontroller.MainMenu"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_main_menu" >
             <intent-filter>
@@ -53,12 +53,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="uk.ac.aber.cs221.group07.walktourcreator.activities.WalkScreen"
+            android:name="uk.ac.aber.cs221.group07.walktourcreator.viewcontroller.WalkScreen"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_map_screen" >
         </activity>
         <activity
-            android:name="uk.ac.aber.cs221.group07.walktourcreator.activities.WalkSetupScreen"
+            android:name="uk.ac.aber.cs221.group07.walktourcreator.viewcontroller.WalkSetupScreen"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_walk_setup_screen" >
         </activity>
