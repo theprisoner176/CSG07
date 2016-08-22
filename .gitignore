@@ -8,3 +8,4 @@ out/
 bin/
 *.class
 .DS_Store
+Android/WalkTourCreator/lib
